@@ -2,7 +2,6 @@
 
 import React, { useMemo, useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { errorMonitor } from "events";
 
 // Base URL for your audio files
 const AUDIO_BASE_URL = "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/";

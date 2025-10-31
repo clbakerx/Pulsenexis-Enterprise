@@ -149,7 +149,7 @@ export default function LicensingPage() {
                 <div className="text-center">
                   <div className="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">3</div>
                   <h3 className="font-semibold text-neutral-900 mb-2">Review Agreement</h3>
-                  <p className="text-sm text-neutral-600">We'll send you a custom licensing agreement for your approval.</p>
+                  <p className="text-sm text-neutral-600">We&apos;ll send you a custom licensing agreement for your approval.</p>
                 </div>
                 <div className="text-center">
                   <div className="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">4</div>
@@ -164,7 +164,7 @@ export default function LicensingPage() {
               <h2 className="text-2xl font-semibold text-neutral-900 mb-6">Frequently Asked Questions</h2>
               <div className="space-y-4">
                 <div className="p-6 border border-neutral-200 rounded-xl">
-                  <h3 className="font-semibold text-neutral-900 mb-2">What's included with a sync license?</h3>
+                  <h3 className="font-semibold text-neutral-900 mb-2">What&apos;s included with a sync license?</h3>
                   <p className="text-neutral-700">
                     Sync licenses include the right to synchronize the music with visual content, high-quality audio files 
                     (WAV/MP3), and detailed usage terms specific to your project scope.

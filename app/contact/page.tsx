@@ -32,8 +32,8 @@ export default function ContactPage() {
             <section>
               <h2 className="text-2xl font-semibold text-neutral-900 mb-6">Get In Touch</h2>
               <p className="text-neutral-700 leading-relaxed mb-8">
-                We'd love to hear from you! Whether you're an artist looking to join our catalog, 
-                a listener with feedback, or a partner interested in collaboration, we're here to help.
+                We&apos;d love to hear from you! Whether you&apos;re an artist looking to join our catalog, 
+                a listener with feedback, or a partner interested in collaboration, we&apos;re here to help.
               </p>
 
               <div className="space-y-6">
@@ -144,7 +144,7 @@ export default function ContactPage() {
                   </button>
 
                   <p className="text-sm text-neutral-600 text-center">
-                    We'll get back to you within 24-48 hours.
+                    We&apos;ll get back to you within 24-48 hours.
                   </p>
                 </form>
               </div>
