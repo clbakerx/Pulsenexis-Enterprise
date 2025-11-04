@@ -1,6 +1,38 @@
+'use client';
+
 import Link from "next/link";
+import { useState } from "react";
 
 export default function ContactPage() {
+  const [showNoEmailApp, setShowNoEmailApp] = useState(false);
+
+  const composeMailto = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    
+    const name = (formData.get('name') || '').toString();
+    const email = (formData.get('email') || '').toString();
+    const subject = (formData.get('subject') || 'Support Request').toString();
+    const message = (formData.get('message') || '').toString();
+    const order = (formData.get('order') || '').toString().trim();
+    
+    const bodyLines = [
+      `Name: ${name}`,
+      `Email: ${email}`,
+      order ? `Order #: ${order}` : null,
+      '',
+      message
+    ].filter(Boolean).join('\r\n');
+    
+    const mailtoUrl = `mailto:info@pulsenexis.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines)}`;
+    window.location.href = mailtoUrl;
+    
+    setTimeout(() => {
+      setShowNoEmailApp(true);
+    }, 800);
+  };
+
   return (
     <div className="min-h-screen bg-white text-neutral-900">
       {/* Header */}
@@ -29,20 +61,22 @@ export default function ContactPage() {
           
           <div className="bg-gradient-to-r from-purple-50 to-amber-50 p-6 rounded-xl border border-neutral-200 mb-8">
             <p className="text-lg text-neutral-700 leading-relaxed">
-              Have questions about licensing, need support, or want to learn more about PulseNexis? 
-              We&apos;d love to hear from you. Our team is here to help you find the perfect music for your projects.
+              Fill the form below or email us directly at{' '}
+              <a href="mailto:info@pulsenexis.com" className="text-purple-600 hover:text-purple-700 font-medium">
+                info@pulsenexis.com
+              </a>.
             </p>
           </div>
 
           {/* Contact Form */}
           <section className="mb-12">
-            <h2 className="text-2xl font-semibold text-neutral-900 mb-6">Send us a Message</h2>
+            <h2 className="text-2xl font-semibold text-neutral-900 mb-6">Contact Us</h2>
             
-            <form action="/api/contact" method="POST" className="space-y-6">
+            <form onSubmit={composeMailto} className="space-y-6">
               <div className="grid gap-6 md:grid-cols-2">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-neutral-700 mb-2">
-                    Full Name *
+                    Name
                   </label>
                   <input
                     type="text"
@@ -50,13 +84,12 @@ export default function ContactPage() {
                     name="name"
                     required
                     className="w-full rounded-xl border border-neutral-300 bg-white text-neutral-900 placeholder:text-neutral-400 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                    placeholder="Your full name"
                   />
                 </div>
 
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-neutral-700 mb-2">
-                    Email Address *
+                    Email
                   </label>
                   <input
                     type="email"
@@ -64,33 +97,40 @@ export default function ContactPage() {
                     name="email"
                     required
                     className="w-full rounded-xl border border-neutral-300 bg-white text-neutral-900 placeholder:text-neutral-400 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                    placeholder="your.email@example.com"
+                  />
+                </div>
+              </div>
+
+              <div className="grid gap-6 md:grid-cols-2">
+                <div>
+                  <label htmlFor="subject" className="block text-sm font-medium text-neutral-700 mb-2">
+                    Subject
+                  </label>
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    required
+                    className="w-full rounded-xl border border-neutral-300 bg-white text-neutral-900 placeholder:text-neutral-400 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="order" className="block text-sm font-medium text-neutral-700 mb-2">
+                    Order # (optional)
+                  </label>
+                  <input
+                    type="text"
+                    id="order"
+                    name="order"
+                    className="w-full rounded-xl border border-neutral-300 bg-white text-neutral-900 placeholder:text-neutral-400 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-neutral-700 mb-2">
-                  Subject *
-                </label>
-                <select
-                  id="subject"
-                  name="subject"
-                  required
-                  className="w-full rounded-xl border border-neutral-300 bg-white text-neutral-900 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                >
-                  <option value="">Select a topic</option>
-                  <option value="licensing">Music Licensing</option>
-                  <option value="support">Technical Support</option>
-                  <option value="general">General Inquiry</option>
-                  <option value="partnership">Partnership Opportunities</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-
-              <div>
                 <label htmlFor="message" className="block text-sm font-medium text-neutral-700 mb-2">
-                  Message *
+                  Message
                 </label>
                 <textarea
                   id="message"
@@ -98,17 +138,32 @@ export default function ContactPage() {
                   required
                   rows={6}
                   className="w-full rounded-xl border border-neutral-300 bg-white text-neutral-900 placeholder:text-neutral-400 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
-                  placeholder="Tell us how we can help you..."
                 ></textarea>
               </div>
 
-              <button
-                type="submit"
-                className="w-full md:w-auto rounded-xl bg-gradient-to-r from-purple-600 to-purple-700 px-8 py-3 text-lg font-semibold text-white shadow-lg hover:from-purple-700 hover:to-purple-800 transition-all duration-200"
-              >
-                Send Message
-              </button>
+              <div className="flex gap-4 items-center flex-wrap">
+                <button
+                  type="submit"
+                  className="rounded-xl bg-gradient-to-r from-purple-600 to-purple-700 px-8 py-3 text-lg font-semibold text-white shadow-lg hover:from-purple-700 hover:to-purple-800 transition-all duration-200"
+                >
+                  Compose Email
+                </button>
+                <a 
+                  href="mailto:info@pulsenexis.com" 
+                  className="text-neutral-600 hover:text-neutral-900 transition-colors"
+                >
+                  Or email info@pulsenexis.com
+                </a>
+              </div>
             </form>
+
+            {showNoEmailApp && (
+              <div className="mt-6 p-4 bg-amber-50 border border-amber-200 rounded-xl">
+                <p className="text-amber-800">
+                  If no email app opens, copy this address: <strong>info@pulsenexis.com</strong>
+                </p>
+              </div>
+            )}
           </section>
 
           {/* Contact Information */}
