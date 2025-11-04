@@ -1,71 +1,6 @@
-"use client";
-
 import Link from "next/link";
-import { useState } from "react";
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<{
-    type: 'success' | 'error' | null;
-    message: string;
-  }>({ type: null, message: '' });
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus({ type: null, message: '' });
-
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        setSubmitStatus({
-          type: 'success',
-          message: result.message
-        });
-        // Clear form
-        setFormData({
-          name: '',
-          email: '',
-          subject: '',
-          message: ''
-        });
-      } else {
-        setSubmitStatus({
-          type: 'error',
-          message: result.error || 'Something went wrong'
-        });
-      }
-    } catch (error) {
-      setSubmitStatus({
-        type: 'error',
-        message: 'Network error. Please check your connection and try again.'
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
-  };
   return (
     <div className="min-h-screen bg-white text-neutral-900">
       {/* Header */}
@@ -92,143 +27,116 @@ export default function ContactPage() {
         <div className="prose prose-neutral prose-lg max-w-none">
           <h1 className="text-4xl font-bold tracking-tight text-neutral-900 mb-8">Contact Us</h1>
           
-          <div className="grid gap-8 lg:grid-cols-2">
-            {/* Contact Information */}
-            <section>
-              <h2 className="text-2xl font-semibold text-neutral-900 mb-6">Get In Touch</h2>
-              <p className="text-neutral-700 leading-relaxed mb-8">
-                We&apos;d love to hear from you! Whether you&apos;re an artist looking to join our catalog, 
-                a listener with feedback, or a partner interested in collaboration, we&apos;re here to help.
-              </p>
-
-              <div className="space-y-6">
-                {/* General Contact */}
-                <div className="p-6 border border-neutral-200 rounded-xl">
-                  <h3 className="text-lg font-semibold text-neutral-900 mb-3">General Inquiries</h3>
-                  <div className="space-y-2 text-neutral-700">
-                    <p>📧 <a href="mailto:info@pulsenexisp.com" className="text-purple-600 hover:text-purple-700">info@pulsenexis.com</a></p>
-  
-                  </div>
-                </div>
-
-    
-
-                {/* Technical Support */}
-                <div className="p-6 border border-neutral-200 rounded-xl">
-                  <h3 className="text-lg font-semibold text-neutral-900 mb-3">Technical Support</h3>
-                  <div className="space-y-2 text-neutral-700">
-                    <p>📧 <a href="mailto:info@pulsenexis.com" className="text-purple-600 hover:text-purple-700">info@pulsenexis.com</a></p>
-                    <p>Or visit our <Link href="/support" className="text-purple-600 hover:text-purple-700">Support Center</Link></p>
-                  </div>
-                </div>
-
-                {/* Business Partnerships */}
-                <div className="p-6 border border-neutral-200 rounded-xl">
-                  <h3 className="text-lg font-semibold text-neutral-900 mb-3">Business & Partnerships</h3>
-                  <div className="space-y-2 text-neutral-700">
-                    <p>📧 <a href="mailto:info@pulsenexis.com" className="text-purple-600 hover:text-purple-700">info@pulsenexis.com</a></p>
-                    <p className="text-sm">Licensing, collaborations, and business opportunities</p>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* Contact Form */}
-            <section>
-              <div className="bg-gradient-to-br from-purple-50 to-amber-50 p-8 rounded-xl border border-neutral-200">
-                <h2 className="text-2xl font-semibold text-neutral-900 mb-6">Send us a Message</h2>
-                
-                <form className="space-y-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-neutral-700 mb-2">
-                      Full Name *
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      required
-                      className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-colors"
-                      placeholder="Your full name"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-neutral-700 mb-2">
-                      Email Address *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-colors"
-                      placeholder="your.email@example.com"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-neutral-700 mb-2">
-                      Subject *
-                    </label>
-                    <select
-                      id="subject"
-                      name="subject"
-                      required
-                      className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-colors"
-                    >
-                      <option value="">Select a topic</option>
-                      <option value="general">General Inquiry</option>
-                      <option value="artist">Artist Submission</option>
-                      <option value="technical">Technical Support</option>
-                      <option value="business">Business/Partnership</option>
-                      <option value="licensing">Licensing Inquiry</option>
-                      <option value="feedback">Feedback</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-neutral-700 mb-2">
-                      Message *
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      rows={6}
-                      required
-                      className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-colors resize-vertical"
-                      placeholder="Tell us how we can help you..."
-                    ></textarea>
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
-                  >
-                    Send Message
-                  </button>
-
-                  <p className="text-sm text-neutral-600 text-center">
-                    We&apos;ll get back to you within 24-48 hours.
-                  </p>
-                </form>
-              </div>
-            </section>
+          <div className="bg-gradient-to-r from-purple-50 to-amber-50 p-6 rounded-xl border border-neutral-200 mb-8">
+            <p className="text-lg text-neutral-700 leading-relaxed">
+              Have questions about licensing, need support, or want to learn more about PulseNexis? 
+              We&apos;d love to hear from you. Our team is here to help you find the perfect music for your projects.
+            </p>
           </div>
 
-          {/* Additional Info */}
-          <section className="mt-12 text-center">
-            <div className="bg-neutral-50 p-8 rounded-xl border border-neutral-200">
-              <h2 className="text-xl font-semibold text-neutral-900 mb-4">Office Hours</h2>
-              <div className="grid gap-4 md:grid-cols-2 max-w-md mx-auto">
+          {/* Contact Form */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-semibold text-neutral-900 mb-6">Send us a Message</h2>
+            
+            <form action="/api/contact" method="POST" className="space-y-6">
+              <div className="grid gap-6 md:grid-cols-2">
                 <div>
-                  <p className="font-medium text-neutral-700">Monday - Friday</p>
-                  <p className="text-neutral-600">9:00 AM - 6:00 PM EST</p>
+                  <label htmlFor="name" className="block text-sm font-medium text-neutral-700 mb-2">
+                    Full Name *
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    className="w-full rounded-xl border border-neutral-300 bg-white text-neutral-900 placeholder:text-neutral-400 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    placeholder="Your full name"
+                  />
                 </div>
+
                 <div>
-                  <p className="font-medium text-neutral-700">Weekend</p>
-                  <p className="text-neutral-600">Limited Support</p>
+                  <label htmlFor="email" className="block text-sm font-medium text-neutral-700 mb-2">
+                    Email Address *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    className="w-full rounded-xl border border-neutral-300 bg-white text-neutral-900 placeholder:text-neutral-400 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    placeholder="your.email@example.com"
+                  />
                 </div>
+              </div>
+
+              <div>
+                <label htmlFor="subject" className="block text-sm font-medium text-neutral-700 mb-2">
+                  Subject *
+                </label>
+                <select
+                  id="subject"
+                  name="subject"
+                  required
+                  className="w-full rounded-xl border border-neutral-300 bg-white text-neutral-900 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                >
+                  <option value="">Select a topic</option>
+                  <option value="licensing">Music Licensing</option>
+                  <option value="support">Technical Support</option>
+                  <option value="general">General Inquiry</option>
+                  <option value="partnership">Partnership Opportunities</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-neutral-700 mb-2">
+                  Message *
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  rows={6}
+                  className="w-full rounded-xl border border-neutral-300 bg-white text-neutral-900 placeholder:text-neutral-400 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
+                  placeholder="Tell us how we can help you..."
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                className="w-full md:w-auto rounded-xl bg-gradient-to-r from-purple-600 to-purple-700 px-8 py-3 text-lg font-semibold text-white shadow-lg hover:from-purple-700 hover:to-purple-800 transition-all duration-200"
+              >
+                Send Message
+              </button>
+            </form>
+          </section>
+
+          {/* Contact Information */}
+          <section>
+            <h2 className="text-2xl font-semibold text-neutral-900 mb-6">Other Ways to Reach Us</h2>
+            
+            <div className="grid gap-6 md:grid-cols-2">
+              <div className="p-6 border border-neutral-200 rounded-xl">
+                <h3 className="text-xl font-semibold text-purple-900 mb-3">📧 Email</h3>
+                <p className="text-neutral-700 mb-4">
+                  For general inquiries, licensing questions, or support.
+                </p>
+                <a 
+                  href="mailto:info@pulsenexis.com" 
+                  className="text-purple-600 hover:text-purple-700 font-medium"
+                >
+                  info@pulsenexis.com
+                </a>
+              </div>
+
+              <div className="p-6 border border-neutral-200 rounded-xl">
+                <h3 className="text-xl font-semibold text-purple-900 mb-3">⚡ Quick Response</h3>
+                <p className="text-neutral-700 mb-4">
+                  We typically respond to all inquiries within 24-48 hours.
+                </p>
+                <p className="text-sm text-neutral-600">
+                  Business hours: Monday - Friday, 9 AM - 6 PM EST
+                </p>
               </div>
             </div>
           </section>

@@ -1,4 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: NextRequest) {
   try {
@@ -22,52 +25,59 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Here you would typically integrate with an email service like:
-    // - SendGrid
-    // - Nodemailer with SMTP
-    // - AWS SES
-    // - Mailgun
-    // 
-    // For now, we'll return a success response and log the data
-    console.log('Contact form submission:', {
-      name,
-      email,
-      subject,
-      message,
-      timestamp: new Date().toISOString(),
-      destination: 'info@pulsenexis.com'
-    });
-
-    // In a real implementation, you would send the email here
-    // Example with a hypothetical email service:
-    /*
-    await emailService.send({
-      to: 'info@pulsenexis.com',
-      from: 'noreply@pulsenexis.com',
+    // Send email using Resend
+    const emailData = await resend.emails.send({
+      from: 'PulseNexis Contact <noreply@pulsenexis.com>',
+      to: ['info@pulsenexis.com'],
+      replyTo: email,
       subject: `Contact Form: ${subject}`,
       html: `
-        <h3>New Contact Form Submission</h3>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Subject:</strong> ${subject}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, '<br>')}</p>
-      `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #7b6cd9; border-bottom: 2px solid #7b6cd9; padding-bottom: 10px;">
+            New Contact Form Submission
+          </h2>
+          
+          <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <p><strong>From:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Subject:</strong> ${subject}</p>
+          </div>
+          
+          <div style="background: white; padding: 20px; border: 1px solid #e9ecef; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #333;">Message:</h3>
+            <p style="white-space: pre-wrap; line-height: 1.6; color: #555;">${message}</p>
+          </div>
+          
+          <div style="margin-top: 20px; padding: 15px; background: #e7f3ff; border-radius: 8px;">
+            <p style="margin: 0; font-size: 14px; color: #666;">
+              <strong>Note:</strong> This email was sent from the PulseNexis contact form. 
+              You can reply directly to this email to respond to ${name}.
+            </p>
+          </div>
+        </div>
+      `,
     });
-    */
+
+    console.log('Email sent successfully:', emailData.data?.id || 'Email sent');
 
     return NextResponse.json(
       { 
         success: true, 
-        message: 'Thank you for your message! We\'ll get back to you within 24-48 hours.' 
+        message: 'Thank you for your message! We\'ll get back to you within 24-48 hours.',
+        emailId: emailData.data?.id 
       },
       { status: 200 }
     );
 
   } catch (error) {
     console.error('Contact form error:', error);
+    
+    // Return user-friendly error message
     return NextResponse.json(
-      { error: 'Something went wrong. Please try again later.' },
+      { 
+        error: 'Sorry, there was an issue sending your message. Please try again or email us directly at info@pulsenexis.com.',
+        details: process.env.NODE_ENV === 'development' ? error : undefined
+      },
       { status: 500 }
     );
   }

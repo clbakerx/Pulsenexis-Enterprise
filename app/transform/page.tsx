@@ -34,7 +34,7 @@ export default function TransformPage() {
             </h1>
             <p className="mx-auto mt-6 max-w-3xl text-xl leading-8 text-neutral-600">
               Every transformational moment in your life deserves music that amplifies your purpose, 
-              elevates your vision, and propels you toward the person you're becoming.
+              elevates your vision, and propels you toward the person you&apos;re becoming.
             </p>
             
             <div className="mt-10 flex items-center justify-center gap-6">
