@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 
 export default function TransformPage() {
   return (
@@ -65,7 +64,7 @@ export default function TransformPage() {
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold tracking-tight mb-6">
-              You're Building Something Extraordinary
+              You&apos;re Building Something Extraordinary
             </h2>
             <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
               But every creator, entrepreneur, and visionary faces the same challenge: 
@@ -80,7 +79,7 @@ export default function TransformPage() {
               </div>
               <h3 className="text-xl font-semibold mb-4">Generic Music Kills Your Vibe</h3>
               <p className="text-neutral-400">
-                Stock music sounds like everyone else's content. Your vision deserves something unique that sets you apart.
+                Stock music sounds like everyone else&apos;s content. Your vision deserves something unique that sets you apart.
               </p>
             </div>
 
@@ -100,7 +99,7 @@ export default function TransformPage() {
               </div>
               <h3 className="text-xl font-semibold mb-4">Mismatched Energy Breaks Flow</h3>
               <p className="text-neutral-400">
-                Wrong music disrupts your audience's emotional journey, weakening your message's impact.
+                Wrong music disrupts your audience&apos;s emotional journey, weakening your message&apos;s impact.
               </p>
             </div>
           </div>
@@ -125,7 +124,7 @@ export default function TransformPage() {
                   <div>
                     <h3 className="text-lg font-semibold text-neutral-900 mb-2">Amplifies Your Message</h3>
                     <p className="text-neutral-600">
-                      The right soundtrack doesn't just accompany your content—it amplifies your message, 
+                      The right soundtrack doesn&apos;t just accompany your content—it amplifies your message, 
                       making every word, every frame, every moment more impactful.
                     </p>
                   </div>
@@ -152,7 +151,7 @@ export default function TransformPage() {
                     <h3 className="text-lg font-semibold text-neutral-900 mb-2">Accelerates Your Growth</h3>
                     <p className="text-neutral-600">
                       When your content hits different, people remember you. They share you. They seek you out. 
-                      That's how movements are born.
+                      That&apos;s how movements are born.
                     </p>
                   </div>
                 </div>
@@ -189,7 +188,7 @@ export default function TransformPage() {
             </h2>
             <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
               When you match the right music to your mission, magic happens. 
-              Here's what our community experiences:
+              Here&apos;s what our community experiences:
             </p>
           </div>
 
@@ -202,8 +201,8 @@ export default function TransformPage() {
                 <h3 className="text-xl font-semibold text-neutral-900">3x Engagement</h3>
               </div>
               <p className="text-neutral-600 text-center">
-                "My content went from good to unforgettable. People started sharing, 
-                commenting, and asking where I found such powerful music."
+                &quot;My content went from good to unforgettable. People started sharing, 
+                commenting, and asking where I found such powerful music.&quot;
               </p>
               <div className="mt-6 text-center">
                 <span className="text-sm font-medium text-purple-600">— Sarah K., Content Creator</span>
@@ -218,8 +217,8 @@ export default function TransformPage() {
                 <h3 className="text-xl font-semibold text-neutral-900">Perfect Alignment</h3>
               </div>
               <p className="text-neutral-600 text-center">
-                "Finally found music that matches my brand's energy. Every track feels like 
-                it was made specifically for my vision."
+                &quot;Finally found music that matches my brand&apos;s energy. Every track feels like 
+                it was made specifically for my vision.&quot;
               </p>
               <div className="mt-6 text-center">
                 <span className="text-sm font-medium text-purple-600">— Marcus T., Entrepreneur</span>
@@ -234,8 +233,8 @@ export default function TransformPage() {
                 <h3 className="text-xl font-semibold text-neutral-900">Instant Impact</h3>
               </div>
               <p className="text-neutral-600 text-center">
-                "Within hours of switching to PulseNexis music, my videos started hitting different. 
-                The transformation was immediate."
+                &quot;Within hours of switching to PulseNexis music, my videos started hitting different. 
+                The transformation was immediate.&quot;
               </p>
               <div className="mt-6 text-center">
                 <span className="text-sm font-medium text-purple-600">— Alex M., YouTuber</span>
@@ -253,8 +252,8 @@ export default function TransformPage() {
               Every Day You Wait Is a Day Your Competitors Get Ahead
             </h2>
             <p className="text-xl text-neutral-300 max-w-4xl mx-auto mb-12">
-              While you're settling for ordinary music, someone else is using extraordinary soundtracks 
-              to captivate the audience you're meant to serve. Don't let perfect be the enemy of progress.
+            While you&apos;re settling for ordinary music, someone else is using extraordinary soundtracks 
+            to captivate the audience you&apos;re meant to serve. Don&apos;t let perfect be the enemy of progress.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
@@ -263,7 +262,7 @@ export default function TransformPage() {
                 <ul className="text-left space-y-2 text-neutral-400">
                   <li>• Generic music that blends into the noise</li>
                   <li>• Weak emotional connection with your audience</li>
-                  <li>• Content that's quickly forgotten</li>
+                  <li>• Content that&apos;s quickly forgotten</li>
                   <li>• Missing out on your breakthrough moment</li>
                 </ul>
               </div>
@@ -328,7 +327,7 @@ export default function TransformPage() {
             </div>
 
             <div className="mt-12 text-purple-200">
-              <p className="text-sm">Join thousands of creators who've found their sound.</p>
+              <p className="text-sm">Join thousands of creators who&apos;ve found their sound.</p>
               <p className="text-sm font-semibold">Your transformation starts today.</p>
             </div>
           </div>

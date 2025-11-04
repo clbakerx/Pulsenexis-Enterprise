@@ -195,7 +195,7 @@ export default function PlansPage() {
           <div className="space-y-8">
             <div className="bg-white p-6 rounded-2xl border border-neutral-200">
               <h3 className="text-lg font-semibold text-neutral-900 mb-3">
-                What's the difference between streaming and downloading?
+                What&apos;s the difference between streaming and downloading?
               </h3>
               <p className="text-neutral-600">
                 With streaming, you can listen to all music in our catalog while connected to the internet. 
@@ -208,8 +208,8 @@ export default function PlansPage() {
                 Can I upgrade from monthly to annual plan?
               </h3>
               <p className="text-neutral-600">
-                Yes! You can upgrade to the annual plan at any time and we'll prorate the billing. 
-                You'll immediately gain access to downloads and priority support.
+                Yes! You can upgrade to the annual plan at any time and we&apos;ll prorate the billing. 
+                You&apos;ll immediately gain access to downloads and priority support.
               </p>
             </div>
 
