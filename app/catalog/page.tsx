@@ -94,7 +94,7 @@ const Cover = ({ title }: { title: string }) => (
           className="w-16 h-16 object-contain rounded-lg"
           onError={(e) => {
             const target = e.target as HTMLImageElement;
-            (target as any).style.display = "none";
+            target.style.display = "none";
             target.nextElementSibling?.classList.remove("hidden");
           }}
         />
@@ -287,7 +287,7 @@ export default function CatalogPage() {
     const handleError = () => {
       const error = audio.error;
       const errorCode = error?.code || "unknown";
-      const errorMessage = (error as any)?.message || "Unknown error";
+      const errorMessage = ((error as unknown) as { message?: string })?.message ?? "Unknown error";
 
       if (!useProxy) {
         console.log("🔄 Switching to proxy mode due to error...");
@@ -562,11 +562,11 @@ export default function CatalogPage() {
                       width={32}
                       height={32}
                       className="w-8 h-8 object-contain rounded"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        (target as any).style.display = "none";
-                        target.nextElementSibling?.classList.remove("hidden");
-                      }}
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = "none";
+                          target.nextElementSibling?.classList.remove("hidden");
+                        }}
                     />
                     {/* Fallback mini honey drop (hidden by default) */}
                     <div className="hidden relative">
@@ -662,18 +662,18 @@ export default function CatalogPage() {
           <div className="rounded-2xl border bg-white shadow-lg p-3 flex items-center gap-3">
             <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-amber-50 to-orange-100 border border-amber-200 flex items-center justify-center">
               {/* Mini HoneyDrip Logo for Now Playing */}
-              <Image
-                src="/HoneyDrip Logo.jpg"
-                alt="HoneyDrip Records"
-                width={32}
-                height={32}
-                className="w-8 h-8 object-contain rounded"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  (target as any).style.display = "none";
-                  target.nextElementSibling?.classList.remove("hidden");
-                }}
-              />
+                    <Image
+                      src="/HoneyDrip Logo.jpg"
+                      alt="HoneyDrip Records"
+                      width={32}
+                      height={32}
+                      className="w-8 h-8 object-contain rounded"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = "none";
+                        target.nextElementSibling?.classList.remove("hidden");
+                      }}
+                    />
               {/* Fallback mini honey drop (hidden by default) */}
               <div className="hidden relative">
                 <div className="w-6 h-6 bg-gradient-to-b from-amber-400 to-amber-600 rounded-full relative">

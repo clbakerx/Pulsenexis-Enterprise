@@ -210,7 +210,7 @@ export default function LicensingPage() {
                     Browse Music Catalog
                   </Link>
                   <a
-                    href="mailto:licensing@honeydrip.com"
+                    href="mailto:info@pulsenexis.com"
                     className="inline-flex items-center justify-center rounded-xl border border-white/30 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-colors"
                   >
                     Request Licensing Quote

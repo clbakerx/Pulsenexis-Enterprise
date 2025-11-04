@@ -70,6 +70,15 @@ export default function PulseNexisHome() {
               >
                 Join PulseNexis Now
               </a>
+              <a
+                href="https://fanbase.com/pulsenexis"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center rounded-2xl border border-white/30 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/30"
+                aria-label="PulseNexis on Fanbase (opens in a new tab)"
+              >
+                Visit us on Fanbase
+              </a>
             </div>
           </div>
         </section>
