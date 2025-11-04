@@ -11,7 +11,7 @@ export const metadata = {
 const faqs = [
   {
     q: "How do I license a song?",
-    a: "Open the song page and choose a license tier. You'll be guided to checkout. After purchase, your license and download links are emailed to you.",
+    a: "Contact us via info@pulsenexis.com and one of our agents will ensure your needs are met. We'll guide you through the licensing process and provide personalized assistance.",
   },
   {
     q: "Can I use a song on YouTube or Instagram?",
@@ -19,7 +19,7 @@ const faqs = [
   },
   {
     q: "Do you offer refunds?",
-    a: "Because digital assets are immediately accessible, all sales are final. If you have trouble with a file or received the wrong version, contact us and we’ll make it right.",
+    a: "Because digital assets are immediately accessible, all sales are final. If you have trouble with a file or received the wrong version, contact us and we'll make it right.",
   },
   {
     q: "Where can I find my receipt and license?",
@@ -125,7 +125,7 @@ export default function SupportPage() {
             <h3 className="text-lg font-semibold">Other ways to reach us</h3>
             <ul className="mt-3 space-y-3 text-gray-700">
               <li>
-                <a href="mailto:support@pulsenexis.com" className="underline">support@pulsenexis.com</a>
+                <a href="mailto:info@pulsenexis.com" className="underline">info@pulsenexis.com</a>
               </li>
               <li>
                 <a href="/terms" className="underline">License & Terms</a>
