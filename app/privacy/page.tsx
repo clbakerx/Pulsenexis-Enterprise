@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export const metadata = {
   title: "Privacy Policy • PulseNexis",
   description: "How PulseNexis collects, uses, and protects your data.",
@@ -48,6 +50,23 @@ export default function PrivacyPage() {
       <p>
         For privacy questions, contact <a href="mailto:info@pulsenexis.com">info@pulsenexis.com</a>.
       </p>
+
+      <div className="not-prose mt-12 border-t pt-8">
+        <div className="flex flex-wrap gap-4 justify-center">
+          <Link 
+            href="/" 
+            className="inline-flex items-center rounded-xl bg-indigo-600 px-6 py-3 font-semibold text-white transition hover:bg-indigo-700"
+          >
+            ← Return to Home
+          </Link>
+          <Link 
+            href="/catalog" 
+            className="inline-flex items-center rounded-xl border border-indigo-600 px-6 py-3 font-semibold text-indigo-600 transition hover:bg-indigo-50"
+          >
+            Browse Music Catalog
+          </Link>
+        </div>
+      </div>
     </main>
   );
 }
