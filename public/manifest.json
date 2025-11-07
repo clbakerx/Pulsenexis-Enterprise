@@ -114,6 +114,8 @@
     "artist": "PulseNexis",
     "streamPath": "Anytime.mp3",
     "duration": "3:27",
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
       "Pop"
     ]
@@ -342,7 +344,14 @@
       "R&B"
     ]
   },
-  {
+ {
+    "title": "Chasing Dreams",
+    "artist": "PulseNexis",
+    "streamPath": "Chasing Dreams.mp3",
+    "genre": [
+      "R&B"
+    ]
+  },{
     "title": "Choose My Heart",
     "artist": "PulseNexis",
     "streamPath": "Choose My Heart.mp3",
