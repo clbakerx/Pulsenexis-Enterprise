@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 "use client";
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 interface BlueprintData {
@@ -212,9 +213,9 @@ export default function RnBBlueprintPage() {
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <a href="/" className="text-sm text-zinc-400 hover:text-yellow-400 transition-colors">
+              <Link href="/" className="text-sm text-zinc-400 hover:text-yellow-400 transition-colors">
                 ← Back to Home
-              </a>
+              </Link>
               <div>
                 <h1 className="text-2xl font-bold text-yellow-400">R&B Blueprint</h1>
                 <p className="text-sm text-zinc-400 mt-1">PulseNexis Song Creation Tool</p>
