@@ -27,6 +27,8 @@ export default function PulseNexisHome() {
                 MORE <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor" className="mt-px"><path d="M5.25 7.5L10 12.25 14.75 7.5"/></svg>
               </button>
               <div className="invisible absolute right-0 mt-2 w-48 divide-y divide-neutral-100 rounded-xl border border-neutral-200 bg-white p-1 opacity-0 shadow-xl transition-all group-hover:visible group-hover:opacity-100">
+                <Link className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/blueprint-landing">Blueprint</Link>
+                <Link className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/rnb-blueprint">Create</Link>
                 <Link className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/transform">Why You Need This</Link>
                 <Link className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/about">About</Link>
                 <Link className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/contact">Contact</Link>
@@ -40,6 +42,8 @@ export default function PulseNexisHome() {
             <summary className="list-none cursor-pointer rounded-xl border border-neutral-200 px-3 py-1.5 text-sm font-medium">Menu</summary>
             <div className="absolute right-0 mt-2 w-64 rounded-xl border border-neutral-200 bg-white p-2 shadow-xl">
               <Link className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/catalog">Music Catalog</Link>
+              <Link className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/blueprint-landing">Blueprint</Link>
+              <Link className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/rnb-blueprint">Create</Link>
               <Link className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/transform">Why You Need This</Link>
               <Link className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/about">About</Link>
               <Link className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/contact">Contact</Link>
@@ -63,6 +67,12 @@ export default function PulseNexisHome() {
                 className="inline-flex items-center justify-center rounded-2xl bg-white px-5 py-3 text-sm font-semibold text-neutral-900 shadow-sm hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-neutral-900/20"
               >
                 BROWSE MUSIC CATALOG
+              </Link>
+              <Link
+                href="/blueprint-landing"
+                className="inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-yellow-500 to-yellow-600 px-5 py-3 text-sm font-semibold text-neutral-900 shadow-lg hover:from-yellow-600 hover:to-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500/30 transition-all duration-200"
+              >
+                R&B BLUEPRINT
               </Link>
               <Link
                 href="/transform"
