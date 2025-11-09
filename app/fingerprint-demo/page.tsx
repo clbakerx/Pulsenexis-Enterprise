@@ -125,18 +125,18 @@ export default function FingerprintDemoPage() {
             </p>
             
             <div className="bg-white rounded-lg p-4 font-mono text-sm">
-              <div className="text-green-600 mb-2">// 1. Install the library</div>
+              <div className="text-green-600 mb-2">{`// 1. Install the library`}</div>
               <div className="text-neutral-700">npm install @fingerprintjs/fingerprintjs</div>
               
-              <div className="text-green-600 mb-2 mt-4">// 2. Import and use the hook</div>
+              <div className="text-green-600 mb-2 mt-4">{`// 2. Import and use the hook`}</div>
               <div className="text-neutral-700">
-                import {`{useFingerprinting}`} from '@/hooks/useFingerprinting';<br/>
+                import {`{useFingerprinting}`} from &apos;@/hooks/useFingerprinting&apos;;<br/>
                 const {`{fingerprint, isLoading}`} = useFingerprinting();
               </div>
               
-              <div className="text-green-600 mb-2 mt-4">// 3. Handle consent</div>
+              <div className="text-green-600 mb-2 mt-4">{`// 3. Handle consent`}</div>
               <div className="text-neutral-700">
-                import ConsentBanner from '@/components/ConsentBanner';<br/>
+                import ConsentBanner from &apos;@/components/ConsentBanner&apos;;<br/>
                 {`<ConsentBanner onConsentChange={handleConsent} />`}
               </div>
             </div>
