@@ -273,7 +273,7 @@ export function ConsentBanner({ onConsentChange }: ConsentBannerProps) {
             <div className="mt-4 p-3 bg-blue-50 rounded-lg">
               <p className="text-xs text-blue-800">
                 <strong>Your Privacy:</strong> You can change these preferences anytime. 
-                We respect your choices and will only use the data you've consented to share.
+                We respect your choices and will only use the data you&apos;ve consented to share.
               </p>
             </div>
           </div>

@@ -8,7 +8,7 @@ import {
   hasMarketingConsent 
 } from '@/lib/server-consent-manager';
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const serverConsent = await getServerConsent();
     const hasConsent = await hasValidConsent();

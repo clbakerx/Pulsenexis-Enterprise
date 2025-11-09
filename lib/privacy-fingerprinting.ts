@@ -138,7 +138,7 @@ export class PrivacyFriendlyFingerprinting {
         // Don't include userAgent, platform for privacy
         userAgent: '',
         platform: '',
-        doNotTrack: (navigator as any).doNotTrack,
+        doNotTrack: (navigator as Navigator & { doNotTrack?: string | null }).doNotTrack,
         hardwareConcurrency: 0,
       },
       screenInfo: {
@@ -179,7 +179,7 @@ export class PrivacyFriendlyFingerprinting {
   /**
    * Export user's fingerprinting data (GDPR compliance)
    */
-  public exportUserData(): any {
+  public exportUserData(): { fingerprint: FingerprintData | null; consent: ConsentSettings | null; exportTimestamp: string } {
     const fingerprint = fingerprinting.getStoredFingerprint();
     const consent = this.getConsentSettings();
     

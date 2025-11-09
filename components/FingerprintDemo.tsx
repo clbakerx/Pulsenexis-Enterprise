@@ -16,15 +16,14 @@ export function FingerprintDemo() {
   } = useFingerprinting();
 
   const {
-    hasServerConsent,
     isLoading: serverConsentLoading,
-    error: serverConsentError,
     checkServerConsent,
     clearConsent: clearServerConsent,
+    hasServerConsent,
   } = useServerConsent();
   
   const [showDetails, setShowDetails] = useState(false);
-  const [apiResponse, setApiResponse] = useState<any>(null);
+  const [apiResponse, setApiResponse] = useState<{ message?: string; error?: string; analytics?: Record<string, unknown> } | null>(null);
 
   const sendToAPI = async () => {
     if (!fingerprint) return;

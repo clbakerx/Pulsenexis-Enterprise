@@ -1,5 +1,5 @@
 // lib/fingerprinting.ts
-import FingerprintJS from '@fingerprintjs/fingerprintjs';
+import FingerprintJS, { Agent } from '@fingerprintjs/fingerprintjs';
 
 export interface FingerprintData {
   visitorId: string;
@@ -9,7 +9,7 @@ export interface FingerprintData {
     language: string;
     platform: string;
     cookieEnabled: boolean;
-    doNotTrack: boolean | null;
+    doNotTrack: string | null;
     hardwareConcurrency: number;
   };
   screenInfo: {
@@ -28,7 +28,7 @@ export interface FingerprintData {
 
 export class DeviceFingerprinting {
   private static instance: DeviceFingerprinting;
-  private fpPromise: Promise<any> | null = null;
+  private fpPromise: Promise<Agent> | null = null;
 
   private constructor() {}
 
@@ -42,7 +42,7 @@ export class DeviceFingerprinting {
   /**
    * Initialize FingerprintJS (call this once)
    */
-  private async initFingerprinting(): Promise<any> {
+  private async initFingerprinting(): Promise<Agent> {
     if (!this.fpPromise) {
       this.fpPromise = FingerprintJS.load();
     }
@@ -64,7 +64,7 @@ export class DeviceFingerprinting {
         language: navigator.language,
         platform: navigator.platform,
         cookieEnabled: navigator.cookieEnabled,
-        doNotTrack: (navigator as any).doNotTrack,
+        doNotTrack: (navigator as Navigator & { doNotTrack?: string | null }).doNotTrack,
         hardwareConcurrency: navigator.hardwareConcurrency || 0,
       };
 
@@ -140,11 +140,12 @@ export class DeviceFingerprinting {
    */
   private async generateAudioFingerprint(): Promise<string> {
     try {
-      if (!window.AudioContext && !(window as any).webkitAudioContext) {
+      const windowWithWebkit = window as Window & { webkitAudioContext?: typeof AudioContext };
+      if (!window.AudioContext && !windowWithWebkit.webkitAudioContext) {
         return '';
       }
 
-      const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+      const audioContext = new (window.AudioContext || windowWithWebkit.webkitAudioContext!)();
       const oscillator = audioContext.createOscillator();
       const analyser = audioContext.createAnalyser();
       const gainNode = audioContext.createGain();
@@ -196,7 +197,7 @@ export class DeviceFingerprinting {
         language: navigator.language,
         platform: navigator.platform,
         cookieEnabled: navigator.cookieEnabled,
-        doNotTrack: (navigator as any).doNotTrack,
+        doNotTrack: (navigator as Navigator & { doNotTrack?: string | null }).doNotTrack,
         hardwareConcurrency: navigator.hardwareConcurrency || 0,
       },
       screenInfo: {

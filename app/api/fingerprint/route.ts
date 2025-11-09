@@ -12,9 +12,24 @@ export interface FingerprintAnalytics {
   ipAddress: string;
   fingerprint: {
     visitorId: string;
-    browserInfo: any;
-    screenInfo: any;
-    timezoneInfo: any;
+    browserInfo: {
+      userAgent: string;
+      language: string;
+      platform: string;
+      cookieEnabled: boolean;
+      doNotTrack: string | null;
+      hardwareConcurrency: number;
+    };
+    screenInfo: {
+      width: number;
+      height: number;
+      colorDepth: number;
+      pixelRatio: number;
+    };
+    timezoneInfo: {
+      timezone: string;
+      offset: number;
+    };
     canvasFingerprint?: string;
     audioFingerprint?: string;
   };
