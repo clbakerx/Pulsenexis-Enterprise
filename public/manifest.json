@@ -5,7 +5,7 @@
     "streamPath": "A Crazy Ride.mp3",
     "duration": "3:24",
     "album": "PulseNexis Collection",
-    "year": 2024,
+    "year": 2025,
     "genre": [
       "Pop"
     ]
@@ -16,7 +16,7 @@
     "streamPath": "A Fool For You.mp3",
     "duration": "3:45",
     "album": "PulseNexis Collection",
-    "year": 2024,
+    "year": 2025,
     "genre": [
       "Pop"
     ]
@@ -27,7 +27,7 @@
     "streamPath": "A Million Ways (To Love You).mp3",
     "duration": "3:00",
     "album": "PulseNexis Collection",
-    "year": 2024,
+    "year": 2025,
     "genre": [
       "R&B"
     ]
@@ -38,7 +38,7 @@
     "streamPath": "Adore You.mp3",
     "duration": "3:32",
     "album": "PulseNexis Collection",
-    "year": 2024,
+    "year": 2025,
     "genre": [
       "R&B"
     ]
@@ -49,7 +49,7 @@
     "streamPath": "All Eyes on You.mp3",
     "duration": "3:18",
     "album": "PulseNexis Collection",
-    "year": 2024,
+    "year": 2025,
     "genre": [
       "Pop"
     ]
@@ -71,7 +71,7 @@
     "streamPath": "All My Life.mp3",
     "duration": "3:29",
     "album": "PulseNexis Collection",
-    "year": 2024,
+    "year": 2025,
     "genre": [
       "Pop"
     ]
@@ -82,7 +82,7 @@
     "streamPath": "All That's Left of Me.mp3",
     "duration": "4:02",
     "album": "PulseNexis Collection",
-    "year": 2024,
+    "year": 2025,
     "genre": [
       "Pop"
     ]
@@ -93,18 +93,7 @@
     "streamPath": "All You Need is Me.mp3",
     "duration": "3:54",
     "album": "PulseNexis Collection",
-    "year": 2024,
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Anytime You Like",
-    "artist": "PulseNexis",
-    "streamPath": "Anytime You Like.mp3",
-    "duration": "3:15",
-    "album": "PulseNexis Collection",
-    "year": 2024,
+    "year": 2025,
     "genre": [
       "Pop"
     ]
@@ -121,17 +110,12 @@
     ]
   },
   {
-    "title": "Ask Anything of me",
+    "title": "Anytime You Like",
     "artist": "PulseNexis",
-    "streamPath": "Ask Anything of me.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Ask Anything of Me (Remix)",
-    "artist": "PulseNexis",
-    "streamPath": "Ask Anything of Me (Remix).mp3",
+    "streamPath": "Anytime You Like.mp3",
+    "duration": "3:15",
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
       "Pop"
     ]
@@ -140,21 +124,42 @@
     "title": "As Long as I have you",
     "artist": "PulseNexis",
     "streamPath": "AsLongasIhaveyou.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
       "Pop"
     ]
-  },{
-    "title": "Captain Save a Heart",
+  },
+  {
+    "title": "Ask Anything of me",
     "artist": "PulseNexis",
-    "streamPath": "Captain Save a Heart.mp3",
+    "streamPath": "Ask Anything of me.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
-      "R&B"
+      "Pop"
+    ]
+  },
+  {
+    "title": "Ask Anything of Me (Remix)",
+    "artist": "PulseNexis",
+    "streamPath": "Ask Anything of Me (Remix).mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
     ]
   },
   {
     "title": "At 2AM",
     "artist": "PulseNexis",
     "streamPath": "At 2AM.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
       "Pop"
     ]
@@ -163,6 +168,9 @@
     "title": "Baby Come With Me",
     "artist": "PulseNexis",
     "streamPath": "Baby Come With Me.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
       "Pop"
     ]
@@ -171,6 +179,9 @@
     "title": "Back in Style",
     "artist": "PulseNexis",
     "streamPath": "Back in Style.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
       "Pop"
     ]
@@ -179,6 +190,9 @@
     "title": "Baseline Crush",
     "artist": "PulseNexis",
     "streamPath": "Baseline Crush.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
       "Pop"
     ]
@@ -187,14 +201,9 @@
     "title": "Beat 33",
     "artist": "PulseNexis",
     "streamPath": "Beat 33.mp3",
-    "genre": [
-      "Rap"
-    ]
-  },
-  {
-    "title": "Beat32",
-    "artist": "PulseNexis",
-    "streamPath": "Beat32.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
       "Rap"
     ]
@@ -203,6 +212,9 @@
     "title": "Beat_1",
     "artist": "PulseNexis",
     "streamPath": "Beat_1.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
       "Rap"
     ]
@@ -211,6 +223,20 @@
     "title": "Beat_2",
     "artist": "PulseNexis",
     "streamPath": "Beat_2.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Rap"
+    ]
+  },
+  {
+    "title": "Beat32",
+    "artist": "PulseNexis",
+    "streamPath": "Beat32.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
       "Rap"
     ]
@@ -219,14 +245,9 @@
     "title": "Before I Know it",
     "artist": "PulseNexis",
     "streamPath": "Before I Know it.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Before I Let You In",
-    "artist": "PulseNexis",
-    "streamPath": "Before I Let You In.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
       "Pop"
     ]
@@ -235,29 +256,31 @@
     "title": "Before I Know It (Remix)",
     "artist": "PulseNexis",
     "streamPath": "Before I Know It (Remix).mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
       "Pop"
     ]
-  },{
-    "title": "Every Inch of You",
+  },
+  {
+    "title": "Before I Let You In",
     "artist": "PulseNexis",
-    "streamPath": "Every Inch of You.mp3",
+    "streamPath": "Before I Let You In.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
-      "R&B"
+      "Pop"
     ]
   },
   {
     "title": "Body on Repeat",
     "artist": "PulseNexis",
     "streamPath": "Body on Repeat.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Body Talk (Stunner)",
-    "artist": "PulseNexis",
-    "streamPath": "Body Talk (Stunner).mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
       "Pop"
     ]
@@ -266,6 +289,20 @@
     "title": "Body Talk",
     "artist": "PulseNexis",
     "streamPath": "Body Talk.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Body Talk (Stunner)",
+    "artist": "PulseNexis",
+    "streamPath": "Body Talk (Stunner).mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
       "Pop"
     ]
@@ -274,6 +311,9 @@
     "title": "Booty Trap",
     "artist": "PulseNexis",
     "streamPath": "Booty Trap.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
       "Pop"
     ]
@@ -282,6 +322,9 @@
     "title": "Boy Bye",
     "artist": "PulseNexis",
     "streamPath": "Boy Bye.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
       "Rap"
     ]
@@ -290,6 +333,9 @@
     "title": "Brand New Love",
     "artist": "PulseNexis",
     "streamPath": "Brand New Love.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
       "R&B"
     ]
@@ -298,245 +344,9 @@
     "title": "Bring Your Loving Home to Me",
     "artist": "PulseNexis",
     "streamPath": "Bring Your Loving Home to Me.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "By Grace, We Rise",
-    "artist": "PulseNexis",
-    "streamPath": "By Grace, We Rise.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "By My Side",
-    "artist": "PulseNexis",
-    "streamPath": "By My Side.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "By Your Side (No Wait and See)",
-    "artist": "PulseNexis",
-    "streamPath": "By Your Side (No Wait and See).mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Caller ID (Her Side)",
-    "artist": "PulseNexis",
-    "streamPath": "Caller ID (Her Side).mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Can't Let You Go Tonight",
-    "artist": "PulseNexis",
-    "streamPath": "Can't Let You Go Tonight.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Call My Name",
-    "artist": "PulseNexis",
-    "streamPath": "Call My Name.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Certified Tease",
-    "artist": "PulseNexis",
-    "streamPath": "Certified Tease.mp3",
-    "genre": [
-      "R&B"
-    ]
-  },
- {
-    "title": "Chasing Dreams",
-    "artist": "PulseNexis",
-    "streamPath": "Chasing Dreams.mp3",
-    "genre": [
-      "R&B"
-    ]
-  },{
-    "title": "Choose My Heart",
-    "artist": "PulseNexis",
-    "streamPath": "Choose My Heart.mp3",
-    "genre": [
-      "R&B"
-    ]
-  },
-  {
-    "title": "Chop Chop 2",
-    "artist": "PulseNexis",
-    "streamPath": "Chop Chop 2.mp3",
-    "genre": [
-      "Rap"
-    ]
-  },
-  {
-    "title": "Chop Chop",
-    "artist": "PulseNexis",
-    "streamPath": "Chop Chop.mp3",
-    "genre": [
-      "Rap"
-    ]
-  },
-  {
-    "title": "Clear View (Can I Have You)",
-    "artist": "PulseNexis",
-    "streamPath": "Clear View (Can I Have You).mp3",
-    "genre": [
-      "R&B"
-    ]
-  },
-  {
-    "title": "Coast Groove",
-    "artist": "PulseNexis",
-    "streamPath": "Coast Groove.mp3",
-    "genre": [
-      "Dance"
-    ]
-  },
-  {
-    "title": "Come Get This Love (Remix)",
-    "artist": "PulseNexis",
-    "streamPath": "Come Get This Love (Remix).mp3",
-    "genre": [
-      "R&B"
-    ]
-  },
-  {
-    "title": "Come Get This Love",
-    "artist": "PulseNexis",
-    "streamPath": "Come Get This Love.mp3",
-    "genre": [
-      "R&B"
-    ]
-  },
-  {
-    "title": "Darling You",
-    "artist": "PulseNexis",
-    "streamPath": "Darling You.mp3",
-    "genre": [
-      "R&B"
-    ]
-  },
-  {
-    "title": "Deeper Than Me",
-    "artist": "PulseNexis",
-    "streamPath": "Deeper Than Me.mp3",
-    "genre": [
-      "R&B"
-    ]
-  },
-  {
-    "title": "Devoted",
-    "artist": "PulseNexis",
-    "streamPath": "Devoted.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Do You Recall",
-    "artist": "PulseNexis",
-    "streamPath": "Do You Recall.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Don't Let Me Go",
-    "artist": "PulseNexis",
-    "streamPath": "Don't Let Me Go.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Don't Let Me Ba a Memory",
-    "artist": "PulseNexis",
-    "streamPath": "Don't Let Me Ba a Memory.wav",
-    "genre": [
-      "R&B"
-    ]
-  },
-  {
-    "title": "Don't Want to Wake Without You",
-    "artist": "PulseNexis",
-    "streamPath": "Don't Want to Wake Without You.mp3",
-    "genre": [
-      "R&B"
-    ]
-  },
-  {
-    "title": "Dont Play Boogee With Me",
-    "artist": "PulseNexis",
-    "streamPath": "Dont Play Boogee With Me.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Dream Lover",
-    "artist": "PulseNexis",
-    "streamPath": "Dream Lover.mp3",
-    "genre": [
-      "R&B"
-    ]
-  },
-  {
-    "title": "Drippin",
-    "artist": "PulseNexis",
-    "streamPath": "Drippin.mp3",
-    "genre": [
-      "Rap"
-    ]
-  },
-  {
-    "title": "East to West (Your Beauty)",
-    "artist": "PulseNexis",
-    "streamPath": "East to West (Your Beauty).mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Echoes of Us",
-    "artist": "PulseNexis",
-    "streamPath": "Echoes of Us.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Echoes of You",
-    "artist": "PulseNexis",
-    "streamPath": "Echoes of You.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Emotional Acrobat",
-    "artist": "PulseNexis",
-    "streamPath": "Emotional Acrobat.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Even Now",
-    "artist": "PulseNexis",
-    "streamPath": "Even Now.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
       "Pop"
     ]
@@ -545,14 +355,405 @@
     "title": "Brown Sugar Skin",
     "artist": "PulseNexis",
     "streamPath": "Brown Sugar Skin.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
       "Pop"
+    ]
+  },
+  {
+    "title": "By Grace, We Rise",
+    "artist": "PulseNexis",
+    "streamPath": "By Grace, We Rise.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "By My Side",
+    "artist": "PulseNexis",
+    "streamPath": "By My Side.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "By Your Side (No Wait and See)",
+    "artist": "PulseNexis",
+    "streamPath": "By Your Side (No Wait and See).mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Call My Name",
+    "artist": "PulseNexis",
+    "streamPath": "Call My Name.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Caller ID (Her Side)",
+    "artist": "PulseNexis",
+    "streamPath": "Caller ID (Her Side).mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Can't Let You Go Tonight",
+    "artist": "PulseNexis",
+    "streamPath": "Can't Let You Go Tonight.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Captain Save a Heart",
+    "artist": "PulseNexis",
+    "streamPath": "Captain Save a Heart.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "R&B"
+    ]
+  },
+  {
+    "title": "Certified Tease",
+    "artist": "PulseNexis",
+    "streamPath": "Certified Tease.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "R&B"
+    ]
+  },
+  {
+    "title": "Chasing Dreams",
+    "artist": "PulseNexis",
+    "streamPath": "Chasing Dreams.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "R&B"
+    ]
+  },
+  {
+    "title": "Choose My Heart",
+    "artist": "PulseNexis",
+    "streamPath": "Choose My Heart.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "R&B"
+    ]
+  },
+  {
+    "title": "Chop Chop",
+    "artist": "PulseNexis",
+    "streamPath": "Chop Chop.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Rap"
+    ]
+  },
+  {
+    "title": "Chop Chop 2",
+    "artist": "PulseNexis",
+    "streamPath": "Chop Chop 2.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Rap"
+    ]
+  },
+  {
+    "title": "Clear View (Can I Have You)",
+    "artist": "PulseNexis",
+    "streamPath": "Clear View (Can I Have You).mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "R&B"
+    ]
+  },
+  {
+    "title": "Coast Groove",
+    "artist": "PulseNexis",
+    "streamPath": "Coast Groove.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Dance"
+    ]
+  },
+  {
+    "title": "Come Get This Love",
+    "artist": "PulseNexis",
+    "streamPath": "Come Get This Love.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "R&B"
+    ]
+  },
+  {
+    "title": "Come Get This Love (Remix)",
+    "artist": "PulseNexis",
+    "streamPath": "Come Get This Love (Remix).mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "R&B"
+    ]
+  },
+  {
+    "title": "Crown Me Gently",
+    "artist": "PulseNexis",
+    "streamPath": "Crown Me Gently.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Rap"
+    ]
+  },
+  {
+    "title": "Dancing in the Moonlight",
+    "artist": "PulseNexis",
+    "streamPath": "Dancing in the Moonlight.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Darling You",
+    "artist": "PulseNexis",
+    "streamPath": "Darling You.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "R&B"
+    ]
+  },
+  {
+    "title": "Deeper Than Me",
+    "artist": "PulseNexis",
+    "streamPath": "Deeper Than Me.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "R&B"
+    ]
+  },
+  {
+    "title": "Designer Tears",
+    "artist": "PulseNexis",
+    "streamPath": "Designer Tears.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Rap"
+    ]
+  },
+  {
+    "title": "Devoted",
+    "artist": "PulseNexis",
+    "streamPath": "Devoted.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Do You Recall",
+    "artist": "PulseNexis",
+    "streamPath": "Do You Recall.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Don't Let Me Ba a Memory",
+    "artist": "PulseNexis",
+    "streamPath": "Don't Let Me Ba a Memory.wav",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "R&B"
+    ]
+  },
+  {
+    "title": "Don't Let Me Go",
+    "artist": "PulseNexis",
+    "streamPath": "Don't Let Me Go.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Don't Want to Wake Without You",
+    "artist": "PulseNexis",
+    "streamPath": "Don't Want to Wake Without You.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "R&B"
+    ]
+  },
+  {
+    "title": "Dont Play Boogee With Me",
+    "artist": "PulseNexis",
+    "streamPath": "Dont Play Boogee With Me.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Dream Lover",
+    "artist": "PulseNexis",
+    "streamPath": "Dream Lover.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "R&B"
+    ]
+  },
+  {
+    "title": "Drippin",
+    "artist": "PulseNexis",
+    "streamPath": "Drippin.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Rap"
+    ]
+  },
+  {
+    "title": "East to West (Your Beauty)",
+    "artist": "PulseNexis",
+    "streamPath": "East to West (Your Beauty).mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Echoes of Us",
+    "artist": "PulseNexis",
+    "streamPath": "Echoes of Us.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Echoes of You",
+    "artist": "PulseNexis",
+    "streamPath": "Echoes of You.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Emotional Acrobat",
+    "artist": "PulseNexis",
+    "streamPath": "Emotional Acrobat.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Even Now",
+    "artist": "PulseNexis",
+    "streamPath": "Even Now.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Every Inch of You",
+    "artist": "PulseNexis",
+    "streamPath": "Every Inch of You.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "R&B"
     ]
   },
   {
     "title": "Follow You Forever",
     "artist": "PulseNexis",
     "streamPath": "Follow You Forever.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
       "R&B"
     ]
@@ -561,6 +762,9 @@
     "title": "Forever Starts Tonight",
     "artist": "PulseNexis",
     "streamPath": "Forever Starts Tonight.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
       "R&B"
     ]
@@ -569,6 +773,9 @@
     "title": "Forever With Me",
     "artist": "PulseNexis",
     "streamPath": "Forever With Me.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
       "R&B"
     ]
@@ -577,6 +784,9 @@
     "title": "Forever, If You Let Me",
     "artist": "PulseNexis",
     "streamPath": "Forever, If You Let Me.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
       "R&B"
     ]
@@ -585,6 +795,9 @@
     "title": "Girl, This Love's Forever",
     "artist": "PulseNexis",
     "streamPath": "Girl, This Love's Forever.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
       "R&B"
     ]
@@ -593,6 +806,9 @@
     "title": "Girl, What's Your Name",
     "artist": "PulseNexis",
     "streamPath": "Girl, What's Your Name.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
       "Pop"
     ]
@@ -601,6 +817,9 @@
     "title": "Give the World to You",
     "artist": "PulseNexis",
     "streamPath": "Give the World to You.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
       "Pop"
     ]
@@ -609,813 +828,9 @@
     "title": "Gold Digga",
     "artist": "PulseNexis",
     "streamPath": "Gold Digga.mp3",
-    "genre": [
-      "Rap"
-    ]
-  },
-  {
-    "title": "Held",
-    "artist": "PulseNexis",
-    "streamPath": "Held.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Here at Your Beck n Call",
-    "artist": "PulseNexis",
-    "streamPath": "Here at Your Beck n Call.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "High Stakes Love (Remix)",
-    "artist": "PulseNexis",
-    "streamPath": "High Stakes Love (Remix).mp3",
-    "genre": [
-      "R&B"
-    ]
-  },
-  {
-    "title": "Holding on to you",
-    "artist": "PulseNexis",
-    "streamPath": "Holding on to you.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Holding On(Remix)",
-    "artist": "PulseNexis",
-    "streamPath": "Holding On(Remix).mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Holding on to you (Remix)",
-    "artist": "PulseNexis",
-    "streamPath": "Holding on to you (Remix).mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "How I Love You",
-    "artist": "PulseNexis",
-    "streamPath": "How I Love You.mp3",
-    "genre": [
-      "R&B"
-    ]
-  },
-  {
-    "title": "How We Roll",
-    "artist": "PulseNexis",
-    "streamPath": "How We Roll.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "How Will I Know",
-    "artist": "PulseNexis",
-    "streamPath": "How Will I Know.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "I Adore You (Remix)",
-    "artist": "PulseNexis",
-    "streamPath": "I Adore You (Remix).mp3",
-    "genre": [
-      "R&B"
-    ]
-  },
-  {
-    "title": "I Needed You",
-    "artist": "PulseNexis",
-    "streamPath": "I Needed You.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "I'll Hold You Forever",
-    "artist": "PulseNexis",
-    "streamPath": "I'll Hold You Forever.mp3",
-    "genre": [
-      "R&B"
-    ]
-  },
-  {
-    "title": "I'll Never Love Another (Remix)",
-    "artist": "PulseNexis",
-    "streamPath": "I'll Never Love Another (Remix).mp3",
-    "genre": [
-      "R&B"
-    ]
-  },
-  {
-    "title": "If I Never Hold You Again",
-    "artist": "PulseNexis",
-    "streamPath": "If I Never Hold You Again.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "IF IT'S REAL",
-    "artist": "PulseNexis",
-    "streamPath": "IF IT'S REAL.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "If Love is Listening",
-    "artist": "PulseNexis",
-    "streamPath": "If Love is Listening.mp3",
-    "genre": [
-      "R&B"
-    ]
-  },
-  {
-    "title": "Ignite My Fire (Remix)",
-    "artist": "PulseNexis",
-    "streamPath": "Ignite My Fire (Remix).mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Ignite My Fire",
-    "artist": "PulseNexis",
-    "streamPath": "Ignite My Fire.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "In the Sky",
-    "artist": "PulseNexis",
-    "streamPath": "In the Sky.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Dancing in the Moonlight",
-    "artist": "PulseNexis",
-    "streamPath": "Dancing in the Moonlight.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "In This Storm",
-    "artist": "PulseNexis",
-    "streamPath": "In This Storm.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "In Time",
-    "artist": "PulseNexis",
-    "streamPath": "In Time.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "In Your Hands",
-    "artist": "PulseNexis",
-    "streamPath": "In Your Hands.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Ill Never Love Another",
-    "artist": "PulseNexis",
-    "streamPath": "Ill Never Love Another.mp3",
-    "genre": [
-      "R&B"
-    ]
-  },
-  {
-    "title": "Just a Little Tweak",
-    "artist": "PulseNexis",
-    "streamPath": "Just a Little Tweak.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Just Because (2)",
-    "artist": "PulseNexis",
-    "streamPath": "Just Because (2).mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Just Because",
-    "artist": "PulseNexis",
-    "streamPath": "Just Because.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Just for the Moment",
-    "artist": "PulseNexis",
-    "streamPath": "Just for the Moment.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Lady I",
-    "artist": "PulseNexis",
-    "streamPath": "Lady I.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Las Vegas Nights",
-    "artist": "PulseNexis",
-    "streamPath": "Las Vegas Nights.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Last Night",
-    "artist": "PulseNexis",
-    "streamPath": "Last Night.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Lead The Way",
-    "artist": "PulseNexis",
-    "streamPath": "Lead The Way.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Let Me Pour Remastered",
-    "artist": "PulseNexis",
-    "streamPath": "Let Me Pour Remastered.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Let's Make It Real",
-    "artist": "PulseNexis",
-    "streamPath": "Let's Make It Real.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Like Heaven To Me",
-    "artist": "PulseNexis",
-    "streamPath": "Like Heaven To Me.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Louder Than Words",
-    "artist": "PulseNexis",
-    "streamPath": "Louder Than Words.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Love has never been like us",
-    "artist": "PulseNexis",
-    "streamPath": "Love has never been like us.mp3",
-    "genre": [
-      "R&B"
-    ]
-  },
-  {
-    "title": "Love is the only Reason",
-    "artist": "PulseNexis",
-    "streamPath": "Love is the only Reason.mp3",
-    "genre": [
-      "R&B"
-    ]
-  },
-  {
-    "title": "Love Scene",
-    "artist": "PulseNexis",
-    "streamPath": "Love Scene.mp3",
-    "genre": [
-      "R&B"
-    ]
-  },
-  {
-    "title": "Love's Lullaby",
-    "artist": "PulseNexis",
-    "streamPath": "Love's Lullaby.mp3",
-    "genre": [
-      "R&B"
-    ]
-  },
-  {
-    "title": "Made For Me",
-    "artist": "PulseNexis",
-    "streamPath": "Made For Me.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Made to Love You",
-    "artist": "PulseNexis",
-    "streamPath": "Made to Love You.mp3",
-    "genre": [
-      "R&B"
-    ]
-  },
-  {
-    "title": "Make you my wife",
-    "artist": "PulseNexis",
-    "streamPath": "Make you my wife.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Making Love to You",
-    "artist": "PulseNexis",
-    "streamPath": "Making Love to You.mp3",
-    "genre": [
-      "R&B"
-    ]
-  },
-  {
-    "title": "Me For You",
-    "artist": "PulseNexis",
-    "streamPath": "Me For You.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Mic Dreams",
-    "artist": "PulseNexis",
-    "streamPath": "Mic Dreams.mp3",
-    "genre": [
-      "Rap"
-    ]
-  },
-  {
-    "title": "More Than Friends",
-    "artist": "PulseNexis",
-    "streamPath": "More Than Friends.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Move Like That",
-    "artist": "PulseNexis",
-    "streamPath": "Move Like That.mp3",
-    "genre": [
-      "Dance"
-    ]
-  },
-  {
-    "title": "Move Like That (Remix)",
-    "artist": "PulseNexis",
-    "streamPath": "Move Like That (Remix).mp3",
-    "genre": [
-      "Dance"
-    ]
-  },
-  {
-    "title": "My Greatest Treasure",
-    "artist": "PulseNexis",
-    "streamPath": "My Greatest Treasure.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Old School Groove",
-    "artist": "PulseNexis",
-    "streamPath": "Old School Groove.mp3",
-    "genre": [
-      "Dance"
-    ]
-  },
-  {
-    "title": "Old Time Groove",
-    "artist": "PulseNexis",
-    "streamPath": "Old Time Groove.mp3",
-    "genre": [
-      "Dance"
-    ]
-  },
-  {
-    "title": "Planet Fool_1",
-    "artist": "PulseNexis",
-    "streamPath": "Planet Fool_1.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "The Cool In You",
-    "artist": "PulseNexis",
-    "streamPath": "The Cool In You.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Shelter Me",
-    "artist": "PulseNexis",
-    "streamPath": "Shelter Me.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "So Fine",
-    "artist": "PulseNexis",
-    "streamPath": "So Fine.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "So Right, So Fine copy",
-    "artist": "PulseNexis",
-    "streamPath": "So Right, So Fine copy.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },{
-    "title": "Something New",
-    "artist": "PulseNexis",
-    "streamPath": "Something New.mp3",
-    "genre": [
-      "R$B"
-    ]
-  },
-  {
-    "title": "Honey Drip Track_1",
-    "artist": "PulseNexis",
-    "streamPath": "Honey Drip Track_1.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Honey Drip Track_2",
-    "artist": "PulseNexis",
-    "streamPath": "Honey Drip Track_2.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Taking My Time",
-    "artist": "PulseNexis",
-    "streamPath": "Taking My Time.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Tell Me If You Do (conflicted)",
-    "artist": "PulseNexis",
-    "streamPath": "Tell Me If You Do (conflicted).mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "The Awakening",
-    "artist": "PulseNexis",
-    "streamPath": "The Awakening.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "The First Time I Never (conflicted)",
-    "artist": "PulseNexis",
-    "streamPath": "The First Time I Never (conflicted).mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "The Way We Could Be",
-    "artist": "PulseNexis",
-    "streamPath": "The Way We Could Be.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "This Golden Thread",
-    "artist": "PulseNexis",
-    "streamPath": "This Golden Thread.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "This is What I Love",
-    "artist": "PulseNexis",
-    "streamPath": "This is What I Love.mp3",
-    "genre": [
-      "R&B"
-    ]
-  },
-  {
-    "title": "This thing wont work",
-    "artist": "PulseNexis",
-    "streamPath": "This thing wont work.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "This wont work",
-    "artist": "PulseNexis",
-    "streamPath": "This wont work.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Through the Storm",
-    "artist": "PulseNexis",
-    "streamPath": "Through the Storm.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Time to Let Him Go",
-    "artist": "PulseNexis",
-    "streamPath": "Time to Let Him Go.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Turn it Up",
-    "artist": "PulseNexis",
-    "streamPath": "Turn it Up.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Turn On To Love",
-    "artist": "PulseNexis",
-    "streamPath": "Turn On To Love.mp3",
-    "genre": [
-      "R&B"
-    ]
-  },
-  {
-    "title": "Undone by You",
-    "artist": "PulseNexis",
-    "streamPath": "Undone by You.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Vegas Dreams",
-    "artist": "PulseNexis",
-    "streamPath": "Vegas Dreams.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Watch it (Two)",
-    "artist": "PulseNexis",
-    "streamPath": "Watch it (Two).mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Watch it",
-    "artist": "PulseNexis",
-    "streamPath": "Watch it.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Weak at the Knees",
-    "artist": "PulseNexis",
-    "streamPath": "Weak at the Knees.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Weak at the Knees (Remix)",
-    "artist": "PulseNexis",
-    "streamPath": "Weak at the Knees (Remix).mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "What I Wanna Do to You",
-    "artist": "PulseNexis",
-    "streamPath": "What I Wanna Do to You.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "What Part Of No Do You Not Understand (Remix)",
-    "artist": "PulseNexis",
-    "streamPath": "What Part Of No Do You Not Understand (Remix).mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "What You Wanna Do",
-    "artist": "PulseNexis",
-    "streamPath": "What You Wanna Do.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "What You Waitin For (Remix)",
-    "artist": "PulseNexis",
-    "streamPath": "What You Waitin For (Remix).mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "What You Waitin For",
-    "artist": "PulseNexis",
-    "streamPath": "What You Waitin For.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "What You Wanna Do (Remix)",
-    "artist": "PulseNexis",
-    "streamPath": "What You Wanna Do (Remix).mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "What's Your Number",
-    "artist": "PulseNexis",
-    "streamPath": "What's Your Number.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "When Time Heals",
-    "artist": "PulseNexis",
-    "streamPath": "When Time Heals.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "When Will I See You Again",
-    "artist": "PulseNexis",
-    "streamPath": "When Will I See You Again.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "When You Do That Thing You Do To Me",
-    "artist": "PulseNexis",
-    "streamPath": "When You Do That Thing You Do To Me.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "When You Look",
-    "artist": "PulseNexis",
-    "streamPath": "When You Look.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "When You Do That Thing You Do (Remix)",
-    "artist": "PulseNexis",
-    "streamPath": "When You Do That Thing You Do (Remix).mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "When You are Mine",
-    "artist": "PulseNexis",
-    "streamPath": "When You are Mine.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Whenever You Call",
-    "artist": "PulseNexis",
-    "streamPath": "Whenever You Call.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Where Are You",
-    "artist": "PulseNexis",
-    "streamPath": "Where Are You.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Where Love Used to Live",
-    "artist": "PulseNexis",
-    "streamPath": "Where Love Used to Live.mp3",
-    "genre": [
-      "R&B"
-    ]
-  },
-  {
-    "title": "With My Heart, I Do",
-    "artist": "PulseNexis",
-    "streamPath": "With My Heart, I Do.mp3",
-    "genre": [
-      "R&B"
-    ]
-  },
-  {
-    "title": "With These Words",
-    "artist": "PulseNexis",
-    "streamPath": "With These Words.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Without Your Air",
-    "artist": "PulseNexis",
-    "streamPath": "Without Your Air.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Worth The Wait (Remix)",
-    "artist": "PulseNexis",
-    "streamPath": "Worth The Wait (Remix).mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Wrapped Tight",
-    "artist": "PulseNexis",
-    "streamPath": "Wrapped Tight.mp3",
-    "genre": [
-      "Pop"
-    ]
-  },
-  {
-    "title": "Crown Me Gently",
-    "artist": "PulseNexis",
-    "streamPath": "Crown Me Gently.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
       "Rap"
     ]
@@ -1424,6 +839,9 @@
     "title": "Gold Tears",
     "artist": "PulseNexis",
     "streamPath": "Gold Tears.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
       "Rap"
     ]
@@ -1432,30 +850,537 @@
     "title": "Heavens Receipt",
     "artist": "PulseNexis",
     "streamPath": "Heavens Receipt.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
       "Rap"
     ]
   },
   {
-    "title": "You Got Me Funked Up",
+    "title": "Held",
     "artist": "PulseNexis",
-    "streamPath": "You Got Me Funked Up.mp3",
+    "streamPath": "Held.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Here at Your Beck n Call",
+    "artist": "PulseNexis",
+    "streamPath": "Here at Your Beck n Call.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "High Stakes Love (Remix)",
+    "artist": "PulseNexis",
+    "streamPath": "High Stakes Love (Remix).mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
       "R&B"
     ]
   },
   {
-    "title": "You Played Me",
+    "title": "Holding on to you",
     "artist": "PulseNexis",
-    "streamPath": "You Played Me.mp3",
+    "streamPath": "Holding on to you.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
     "genre": [
-      "Rap"
+      "Pop"
     ]
   },
   {
-    "title": "Designer Tears",
+    "title": "Holding on to you (Remix)",
     "artist": "PulseNexis",
-    "streamPath": "Designer Tears.mp3",
+    "streamPath": "Holding on to you (Remix).mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Holding On(Remix)",
+    "artist": "PulseNexis",
+    "streamPath": "Holding On(Remix).mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Honey Drip Track_1",
+    "artist": "PulseNexis",
+    "streamPath": "Honey Drip Track_1.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Honey Drip Track_2",
+    "artist": "PulseNexis",
+    "streamPath": "Honey Drip Track_2.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "How I Love You",
+    "artist": "PulseNexis",
+    "streamPath": "How I Love You.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "R&B"
+    ]
+  },
+  {
+    "title": "How We Roll",
+    "artist": "PulseNexis",
+    "streamPath": "How We Roll.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "How Will I Know",
+    "artist": "PulseNexis",
+    "streamPath": "How Will I Know.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "I Adore You (Remix)",
+    "artist": "PulseNexis",
+    "streamPath": "I Adore You (Remix).mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "R&B"
+    ]
+  },
+  {
+    "title": "I Needed You",
+    "artist": "PulseNexis",
+    "streamPath": "I Needed You.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "I Still Can't Believe",
+    "artist": "PulseNexis",
+    "streamPath": "I Still Can't Believe.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "I'll Hold You Forever",
+    "artist": "PulseNexis",
+    "streamPath": "I'll Hold You Forever.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "R&B"
+    ]
+  },
+  {
+    "title": "I'll Never Love Another (Remix)",
+    "artist": "PulseNexis",
+    "streamPath": "I'll Never Love Another (Remix).mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "R&B"
+    ]
+  },
+  {
+    "title": "If I Never Hold You Again",
+    "artist": "PulseNexis",
+    "streamPath": "If I Never Hold You Again.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "IF IT'S REAL",
+    "artist": "PulseNexis",
+    "streamPath": "IF IT'S REAL.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "If Love is Listening",
+    "artist": "PulseNexis",
+    "streamPath": "If Love is Listening.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "R&B"
+    ]
+  },
+  {
+    "title": "Ignite My Fire",
+    "artist": "PulseNexis",
+    "streamPath": "Ignite My Fire.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Ignite My Fire (Remix)",
+    "artist": "PulseNexis",
+    "streamPath": "Ignite My Fire (Remix).mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Ill Never Love Another",
+    "artist": "PulseNexis",
+    "streamPath": "Ill Never Love Another.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "R&B"
+    ]
+  },
+  {
+    "title": "In the Sky",
+    "artist": "PulseNexis",
+    "streamPath": "In the Sky.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "In This Storm",
+    "artist": "PulseNexis",
+    "streamPath": "In This Storm.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "In Time",
+    "artist": "PulseNexis",
+    "streamPath": "In Time.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "In Your Hands",
+    "artist": "PulseNexis",
+    "streamPath": "In Your Hands.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Just a Little Tweak",
+    "artist": "PulseNexis",
+    "streamPath": "Just a Little Tweak.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Just Because",
+    "artist": "PulseNexis",
+    "streamPath": "Just Because.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Just Because (2)",
+    "artist": "PulseNexis",
+    "streamPath": "Just Because (2).mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Just for the Moment",
+    "artist": "PulseNexis",
+    "streamPath": "Just for the Moment.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Lady I",
+    "artist": "PulseNexis",
+    "streamPath": "Lady I.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Las Vegas Nights",
+    "artist": "PulseNexis",
+    "streamPath": "Las Vegas Nights.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Last Night",
+    "artist": "PulseNexis",
+    "streamPath": "Last Night.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Lead The Way",
+    "artist": "PulseNexis",
+    "streamPath": "Lead The Way.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Let Me Pour Remastered",
+    "artist": "PulseNexis",
+    "streamPath": "Let Me Pour Remastered.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Let's Make It Real",
+    "artist": "PulseNexis",
+    "streamPath": "Let's Make It Real.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Like Heaven To Me",
+    "artist": "PulseNexis",
+    "streamPath": "Like Heaven To Me.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Louder Than Words",
+    "artist": "PulseNexis",
+    "streamPath": "Louder Than Words.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2025,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Love has never been like us",
+    "artist": "PulseNexis",
+    "streamPath": "Love has never been like us.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "R&B"
+    ]
+  },
+  {
+    "title": "Love is the only Reason",
+    "artist": "PulseNexis",
+    "streamPath": "Love is the only Reason.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "R&B"
+    ]
+  },
+  {
+    "title": "Love Scene",
+    "artist": "PulseNexis",
+    "streamPath": "Love Scene.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "R&B"
+    ]
+  },
+  {
+    "title": "Love's Lullaby",
+    "artist": "PulseNexis",
+    "streamPath": "Love's Lullaby.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "R&B"
+    ]
+  },
+  {
+    "title": "Made For Me",
+    "artist": "PulseNexis",
+    "streamPath": "Made For Me.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Made to Love You",
+    "artist": "PulseNexis",
+    "streamPath": "Made to Love You.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "R&B"
+    ]
+  },
+  {
+    "title": "Make you my wife",
+    "artist": "PulseNexis",
+    "streamPath": "Make you my wife.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Making Love to You",
+    "artist": "PulseNexis",
+    "streamPath": "Making Love to You.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "R&B"
+    ]
+  },
+  {
+    "title": "Me For You",
+    "artist": "PulseNexis",
+    "streamPath": "Me For You.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Mic Dreams",
+    "artist": "PulseNexis",
+    "streamPath": "Mic Dreams.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
     "genre": [
       "Rap"
     ]
@@ -1464,14 +1389,614 @@
     "title": "Money Talks (V-2)",
     "artist": "PulseNexis",
     "streamPath": "Money Talks (V-2).mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
     "genre": [
       "Rap"
+    ]
+  },
+  {
+    "title": "More Than Friends",
+    "artist": "PulseNexis",
+    "streamPath": "More Than Friends.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Move Like That",
+    "artist": "PulseNexis",
+    "streamPath": "Move Like That.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Dance"
+    ]
+  },
+  {
+    "title": "Move Like That (Remix)",
+    "artist": "PulseNexis",
+    "streamPath": "Move Like That (Remix).mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Dance"
+    ]
+  },
+  {
+    "title": "My Greatest Treasure",
+    "artist": "PulseNexis",
+    "streamPath": "My Greatest Treasure.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Old School Groove",
+    "artist": "PulseNexis",
+    "streamPath": "Old School Groove.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Dance"
+    ]
+  },
+  {
+    "title": "Old Time Groove",
+    "artist": "PulseNexis",
+    "streamPath": "Old Time Groove.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Dance"
+    ]
+  },
+  {
+    "title": "Planet Fool_1",
+    "artist": "PulseNexis",
+    "streamPath": "Planet Fool_1.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
     ]
   },
   {
     "title": "Private Faith",
     "artist": "PulseNexis",
     "streamPath": "Private Faith.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Rap"
+    ]
+  },
+  {
+    "title": "Shelter Me",
+    "artist": "PulseNexis",
+    "streamPath": "Shelter Me.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "So Fine",
+    "artist": "PulseNexis",
+    "streamPath": "So Fine.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "So Right, So Fine copy",
+    "artist": "PulseNexis",
+    "streamPath": "So Right, So Fine copy.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Something New",
+    "artist": "PulseNexis",
+    "streamPath": "Something New.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "R&B"
+    ]
+  },
+  {
+    "title": "Taking My Time",
+    "artist": "PulseNexis",
+    "streamPath": "Taking My Time.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Tell Me If You Do (conflicted)",
+    "artist": "PulseNexis",
+    "streamPath": "Tell Me If You Do (conflicted).mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "The Awakening",
+    "artist": "PulseNexis",
+    "streamPath": "The Awakening.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "The Cool In You",
+    "artist": "PulseNexis",
+    "streamPath": "The Cool In You.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "The First Time I Never (conflicted)",
+    "artist": "PulseNexis",
+    "streamPath": "The First Time I Never (conflicted).mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "The Way We Could Be",
+    "artist": "PulseNexis",
+    "streamPath": "The Way We Could Be.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "This Golden Thread",
+    "artist": "PulseNexis",
+    "streamPath": "This Golden Thread.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "This is What I Love",
+    "artist": "PulseNexis",
+    "streamPath": "This is What I Love.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "R&B"
+    ]
+  },
+  {
+    "title": "This thing wont work",
+    "artist": "PulseNexis",
+    "streamPath": "This thing wont work.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "This wont work",
+    "artist": "PulseNexis",
+    "streamPath": "This wont work.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Through the Storm",
+    "artist": "PulseNexis",
+    "streamPath": "Through the Storm.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Time to Let Him Go",
+    "artist": "PulseNexis",
+    "streamPath": "Time to Let Him Go.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Turn it Up",
+    "artist": "PulseNexis",
+    "streamPath": "Turn it Up.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Turn On To Love",
+    "artist": "PulseNexis",
+    "streamPath": "Turn On To Love.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "R&B"
+    ]
+  },
+  {
+    "title": "Undone by You",
+    "artist": "PulseNexis",
+    "streamPath": "Undone by You.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Vegas Dreams",
+    "artist": "PulseNexis",
+    "streamPath": "Vegas Dreams.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Watch it",
+    "artist": "PulseNexis",
+    "streamPath": "Watch it.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Watch it (Two)",
+    "artist": "PulseNexis",
+    "streamPath": "Watch it (Two).mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Weak at the Knees",
+    "artist": "PulseNexis",
+    "streamPath": "Weak at the Knees.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Weak at the Knees (Remix)",
+    "artist": "PulseNexis",
+    "streamPath": "Weak at the Knees (Remix).mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "What I Wanna Do to You",
+    "artist": "PulseNexis",
+    "streamPath": "What I Wanna Do to You.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "What Part Of No Do You Not Understand (Remix)",
+    "artist": "PulseNexis",
+    "streamPath": "What Part Of No Do You Not Understand (Remix).mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "What You Waitin For",
+    "artist": "PulseNexis",
+    "streamPath": "What You Waitin For.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "What You Waitin For (Remix)",
+    "artist": "PulseNexis",
+    "streamPath": "What You Waitin For (Remix).mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "What You Wanna Do",
+    "artist": "PulseNexis",
+    "streamPath": "What You Wanna Do.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "What You Wanna Do (Remix)",
+    "artist": "PulseNexis",
+    "streamPath": "What You Wanna Do (Remix).mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "What's Your Number",
+    "artist": "PulseNexis",
+    "streamPath": "What's Your Number.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "When Time Heals",
+    "artist": "PulseNexis",
+    "streamPath": "When Time Heals.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "When Will I See You Again",
+    "artist": "PulseNexis",
+    "streamPath": "When Will I See You Again.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "When You are Mine",
+    "artist": "PulseNexis",
+    "streamPath": "When You are Mine.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "When You Do That Thing You Do (Remix)",
+    "artist": "PulseNexis",
+    "streamPath": "When You Do That Thing You Do (Remix).mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "When You Do That Thing You Do To Me",
+    "artist": "PulseNexis",
+    "streamPath": "When You Do That Thing You Do To Me.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "When You Look",
+    "artist": "PulseNexis",
+    "streamPath": "When You Look.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Whenever You Call",
+    "artist": "PulseNexis",
+    "streamPath": "Whenever You Call.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Where Are You",
+    "artist": "PulseNexis",
+    "streamPath": "Where Are You.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Where Love Used to Live",
+    "artist": "PulseNexis",
+    "streamPath": "Where Love Used to Live.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "R&B"
+    ]
+  },
+  {
+    "title": "With My Heart, I Do",
+    "artist": "PulseNexis",
+    "streamPath": "With My Heart, I Do.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "R&B"
+    ]
+  },
+  {
+    "title": "With These Words",
+    "artist": "PulseNexis",
+    "streamPath": "With These Words.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Without Your Air",
+    "artist": "PulseNexis",
+    "streamPath": "Without Your Air.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Worth The Wait (Remix)",
+    "artist": "PulseNexis",
+    "streamPath": "Worth The Wait (Remix).mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "Wrapped Tight",
+    "artist": "PulseNexis",
+    "streamPath": "Wrapped Tight.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "Pop"
+    ]
+  },
+  {
+    "title": "You Got Me Funked Up",
+    "artist": "PulseNexis",
+    "streamPath": "You Got Me Funked Up.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
+    "genre": [
+      "R&B"
+    ]
+  },
+  {
+    "title": "You Played Me",
+    "artist": "PulseNexis",
+    "streamPath": "You Played Me.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
     "genre": [
       "Rap"
     ]
@@ -1480,6 +2005,9 @@
     "title": "Your Love Comes With Side Effects",
     "artist": "PulseNexis",
     "streamPath": "Your Love Comes With Side Effects.mp3",
+    "duration": null,
+    "album": "PulseNexis Collection",
+    "year": 2024,
     "genre": [
       "R&B"
     ]
