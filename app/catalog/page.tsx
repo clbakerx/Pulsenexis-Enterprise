@@ -461,8 +461,8 @@ export default function CatalogPage() {
       )}
 
       {/* Filters */}
-      <section className="max-w-6xl mx-auto px-4 py-6">
-        <div className="grid gap-3 md:grid-cols-12">
+      <section className="max-w-6xl mx-auto px-3 py-4 sm:px-4 sm:py-6">
+        <div className="grid gap-3 sm:gap-4 md:grid-cols-12">
           <div className="md:col-span-6">
             <label htmlFor="catalog-search" className="block text-xs font-medium text-slate-600 mb-1">
               Search
@@ -529,7 +529,7 @@ export default function CatalogPage() {
       {/* Song Grid/List */}
       <main className="max-w-6xl mx-auto px-4 pb-24">
         {view === "grid" ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 gap-4 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 sm:gap-5">
             {paginatedTracks.map((t) => (
               <article key={t.id} className="group rounded-2xl border p-3 hover:shadow-sm transition">
                 <Cover title={t.title} />
