@@ -15,8 +15,13 @@ export default function PulseNexisHome() {
       <header className="sticky top-0 z-40 w-full border-b border-neutral-200 bg-white/90 backdrop-blur-sm">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-3 py-2.5 sm:px-4 sm:py-3 lg:px-8">
           <div className="flex items-center gap-2 sm:gap-3">
-            <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-neutral-900 text-xs font-bold text-white sm:h-8 sm:w-8 sm:text-sm">PN</span>
-            <a href="#" className="text-xs font-semibold tracking-wide sm:text-sm">
+            <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-neutral-900 text-xs font-bold text-white sm:h-8 sm:w-8 sm:text-sm">
+              PN
+            </span>
+            <a
+              href="#"
+              className="text-xs font-semibold tracking-wide sm:text-sm"
+            >
               <span className="hidden sm:inline">HONEY DRIP RECORDS</span>
               <span className="sm:hidden">HONEY DRIP</span>
             </a>
@@ -24,33 +29,125 @@ export default function PulseNexisHome() {
 
           {/* Desktop Links */}
           <ul className="hidden items-center gap-6 text-sm font-medium md:flex">
-            
             <li className="relative group">
-              <button className="inline-flex items-center gap-1 hover:opacity-70" aria-haspopup="true">
-                MORE <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor" className="mt-px"><path d="M5.25 7.5L10 12.25 14.75 7.5"/></svg>
+              <button
+                className="inline-flex items-center gap-1 hover:opacity-70"
+                aria-haspopup="true"
+              >
+                MORE{" "}
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  className="mt-px"
+                >
+                  <path d="M5.25 7.5L10 12.25 14.75 7.5" />
+                </svg>
               </button>
               <div className="invisible absolute right-0 mt-2 w-48 divide-y divide-neutral-100 rounded-xl border border-neutral-200 bg-white p-1 opacity-0 shadow-xl transition-all group-hover:visible group-hover:opacity-100">
-                <Link className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/blueprint-landing">Blueprint</Link>
-                <Link className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/rnb-blueprint">Create</Link>
-                <Link className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/transform">Why You Need This</Link>
-                <Link className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/about">About</Link>
-                <Link className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/contact">Contact</Link>
-                <Link className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/licensing">Licensing</Link>
+                <Link
+                  className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50"
+                  href="/blueprint-landing"
+                >
+                  Blueprint
+                </Link>
+                <Link
+                  className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50"
+                  href="/rnb-blueprint"
+                >
+                  Create
+                </Link>
+                {/* NEW: AI Song Creator in dropdown */}
+                <Link
+                  className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50"
+                  href="/ai"
+                >
+                  AI Song Creator
+                </Link>
+                <Link
+                  className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50"
+                  href="/transform"
+                >
+                  Why You Need This
+                </Link>
+                <Link
+                  className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50"
+                  href="/about"
+                >
+                  About
+                </Link>
+                <Link
+                  className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50"
+                  href="/contact"
+                >
+                  Contact
+                </Link>
+                <Link
+                  className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50"
+                  href="/licensing"
+                >
+                  Licensing
+                </Link>
               </div>
             </li>
           </ul>
 
           {/* Mobile Menu Button */}
           <details className="relative md:hidden">
-            <summary className="list-none cursor-pointer rounded-lg border border-neutral-200 px-2.5 py-1.5 text-xs font-medium sm:rounded-xl sm:px-3 sm:text-sm">Menu</summary>
+            <summary className="list-none cursor-pointer rounded-lg border border-neutral-200 px-2.5 py-1.5 text-xs font-medium sm:rounded-xl sm:px-3 sm:text-sm">
+              Menu
+            </summary>
             <div className="absolute right-0 mt-2 w-56 rounded-xl border border-neutral-200 bg-white p-2 shadow-xl sm:w-64">
-              <Link className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/catalog">Music Catalog</Link>
-              <Link className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/blueprint-landing">Blueprint</Link>
-              <Link className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/rnb-blueprint">Create</Link>
-              <Link className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/transform">Why You Need This</Link>
-              <Link className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/about">About</Link>
-              <Link className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/contact">Contact</Link>
-              <Link className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/licensing">Licensing</Link>
+              <Link
+                className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50"
+                href="/catalog"
+              >
+                Music Catalog
+              </Link>
+              <Link
+                className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50"
+                href="/blueprint-landing"
+              >
+                Blueprint
+              </Link>
+              <Link
+                className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50"
+                href="/rnb-blueprint"
+              >
+                Create
+              </Link>
+              {/* NEW: AI Song Creator in mobile menu */}
+              <Link
+                className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50"
+                href="/ai"
+              >
+                AI Song Creator
+              </Link>
+              <Link
+                className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50"
+                href="/transform"
+              >
+                Why You Need This
+              </Link>
+              <Link
+                className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50"
+                href="/about"
+              >
+                About
+              </Link>
+              <Link
+                className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50"
+                href="/contact"
+              >
+                Contact
+              </Link>
+              <Link
+                className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50"
+                href="/licensing"
+              >
+                Licensing
+              </Link>
             </div>
           </details>
         </nav>
@@ -61,8 +158,12 @@ export default function PulseNexisHome() {
         {/* Left panel (purple card) */}
         <section className="order-2 md:order-1">
           <div className="rounded-2xl bg-[#7b6cd9] p-6 text-white shadow-xl sm:rounded-3xl sm:p-8 lg:p-10">
-            <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl xl:text-6xl">PULSENEXIS</h1>
-            <p className="mt-2 text-sm opacity-90 sm:mt-3 sm:text-base/7">Music Catalog · PulseNexis</p>
+            <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl xl:text-6xl">
+              PULSENEXIS
+            </h1>
+            <p className="mt-2 text-sm opacity-90 sm:mt-3 sm:text-base/7">
+              Music Catalog · PulseNexis
+            </p>
 
             <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap">
               <Link
@@ -72,12 +173,22 @@ export default function PulseNexisHome() {
                 <span className="hidden sm:inline">BROWSE MUSIC CATALOG</span>
                 <span className="sm:hidden">CATALOG</span>
               </Link>
+
               <Link
                 href="/blueprint-landing"
                 className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-yellow-500 to-yellow-600 px-4 py-2.5 text-xs font-semibold text-neutral-900 shadow-lg hover:from-yellow-600 hover:to-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500/30 transition-all duration-200 sm:rounded-2xl sm:px-5 sm:py-3 sm:text-sm"
               >
-                R&B BLUEPRINT
+                R&amp;B BLUEPRINT
               </Link>
+
+              {/* NEW: AI Song Creator button */}
+              <Link
+                href="/ai"
+                className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-indigo-500 to-blue-600 px-4 py-2.5 text-xs font-semibold text-white shadow-lg hover:from-indigo-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/40 transition-all duration-200 sm:rounded-2xl sm:px-5 sm:py-3 sm:text-sm"
+              >
+                AI SONG CREATOR
+              </Link>
+
               <Link
                 href="/transform"
                 className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 px-4 py-2.5 text-xs font-semibold text-white shadow-lg hover:from-amber-600 hover:to-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-500/30 transition-all duration-200 sm:rounded-2xl sm:px-5 sm:py-3 sm:text-sm"
@@ -85,15 +196,19 @@ export default function PulseNexisHome() {
                 <span className="hidden sm:inline">WHY YOU NEED THIS</span>
                 <span className="sm:hidden">WHY THIS?</span>
               </Link>
+
               <a
                 href="https://promptbase.com/app/rb-album-cover-generator"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-purple-500 to-pink-600 px-4 py-2.5 text-xs font-semibold text-white shadow-lg hover:from-purple-600 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-purple-500/30 transition-all duration-200 sm:rounded-2xl sm:px-5 sm:py-3 sm:text-sm"
               >
-                <span className="hidden sm:inline">R&B ALBUM COVER GENERATOR</span>
+                <span className="hidden sm:inline">
+                  R&amp;B ALBUM COVER GENERATOR
+                </span>
                 <span className="sm:hidden">COVER GEN</span>
               </a>
+
               <a
                 href="https://app.pulsenexis.com"
                 target="_blank"
@@ -103,6 +218,7 @@ export default function PulseNexisHome() {
                 <span className="hidden sm:inline">Join PulseNexis Now</span>
                 <span className="sm:hidden">JOIN NOW</span>
               </a>
+
               <a
                 href="https://fanbase.com/pulsenexis"
                 target="_blank"
@@ -112,6 +228,17 @@ export default function PulseNexisHome() {
               >
                 <span className="hidden sm:inline">Visit us on Fanbase</span>
                 <span className="sm:hidden">FANBASE</span>
+              </a>
+
+              {/* NEW: Join us on YouTube */}
+              <a
+                href="https://www.youtube.com/@pulsenexis"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center rounded-xl border border-white/30 px-4 py-2.5 text-xs font-semibold text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/30 sm:rounded-2xl sm:px-5 sm:py-3 sm:text-sm"
+              >
+                <span className="hidden sm:inline">Join us on YouTube</span>
+                <span className="sm:hidden">YOUTUBE</span>
               </a>
             </div>
           </div>
@@ -130,7 +257,9 @@ export default function PulseNexisHome() {
             />
             {/* Optional caption / watermark */}
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3 text-white sm:p-4">
-              <p className="text-base font-bold tracking-wide drop-shadow sm:text-lg">PULSE NEXIS</p>
+              <p className="text-base font-bold tracking-wide drop-shadow sm:text-lg">
+                PULSE NEXIS
+              </p>
             </div>
           </div>
         </section>
@@ -140,13 +269,33 @@ export default function PulseNexisHome() {
       <footer className="border-t border-neutral-200 mt-auto">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-3 py-6 text-xs text-neutral-600 sm:gap-4 sm:px-4 sm:py-8 sm:text-sm md:flex-row lg:px-8">
           <p className="text-center md:text-left">
-            <span className="hidden sm:inline">© {new Date().getFullYear()} Honey Drip Records · All rights reserved.</span>
-            <span className="sm:hidden">© {new Date().getFullYear()} Honey Drip Records</span>
+            <span className="hidden sm:inline">
+              © {new Date().getFullYear()} Honey Drip Records · All rights
+              reserved.
+            </span>
+            <span className="sm:hidden">
+              © {new Date().getFullYear()} Honey Drip Records
+            </span>
           </p>
           <div className="flex items-center gap-3 sm:gap-5">
-            <Link className="hover:text-neutral-900 transition-colors" href="/terms">Terms</Link>
-            <Link className="hover:text-neutral-900 transition-colors" href="/privacy">Privacy</Link>
-            <Link className="hover:text-neutral-900 transition-colors" href="/support">Support</Link>
+            <Link
+              className="hover:text-neutral-900 transition-colors"
+              href="/terms"
+            >
+              Terms
+            </Link>
+            <Link
+              className="hover:text-neutral-900 transition-colors"
+              href="/privacy"
+            >
+              Privacy
+            </Link>
+            <Link
+              className="hover:text-neutral-900 transition-colors"
+              href="/support"
+            >
+              Support
+            </Link>
           </div>
         </div>
       </footer>
