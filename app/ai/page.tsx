@@ -2,6 +2,15 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import type { FormEvent } from "react";
+
+// If you later return ideas from /api/song-concepts, they should match this.
+type SongIdeaFromApi = {
+  title: string;
+  hookIdea: string;
+  vibe: string;
+  arrangementNotes: string;
+};
 
 type SongIdea = {
   id: number;
@@ -23,6 +32,8 @@ export default function AISongCreatorPage() {
 
   const [loading, setLoading] = useState(false);
   const [ideas, setIdeas] = useState<SongIdea[]>([]);
+  // Track all titles we've ever shown in this session so we can avoid repeats
+  const [usedTitles, setUsedTitles] = useState<string[]>([]);
 
   const presets = [
     {
@@ -49,7 +60,7 @@ export default function AISongCreatorPage() {
       key: "G♭ Major",
       refs: "Babyface, After 7",
     },
-  ];
+  ] as const;
 
   function applyPreset(preset: (typeof presets)[number]) {
     setMood(preset.mood);
@@ -59,57 +70,288 @@ export default function AISongCreatorPage() {
     setRefs(preset.refs);
   }
 
-  async function handleGenerate(e: React.FormEvent<HTMLFormElement>) {
+  function pickRandom<T>(arr: T[]): T {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  function generateLocalIdeas(params: {
+    mood: string;
+    style: string;
+    tempo: number;
+    key: string;
+    refs: string;
+    story: string;
+    usedTitles: string[];
+  }): SongIdea[] {
+    const { mood, style, tempo, key, refs, story, usedTitles } = params;
+
+    const cleanedStory = story.trim();
+    const shortStory =
+      cleanedStory.length > 160
+        ? cleanedStory.slice(0, 157).trimEnd() + "..."
+        : cleanedStory;
+
+    const moodDescriptor = mood.split(",")[0] || mood;
+    const refsShort = refs || "your favorite PulseNexis influences";
+
+    const starts = [
+      "Learning How",
+      "Trying Again",
+      "Running Toward",
+      "Holding On To",
+      "Let Me Prove",
+      "Tonight I Show",
+      "If You Believe",
+      "Nothing Like",
+      "All My Life With",
+      "This Time For",
+      "Reasons To Love",
+      "After The Storm Of",
+    ];
+
+    const middles = [
+      " Your Heart",
+      " Your Love",
+      " What We Are",
+      " This Feeling",
+      " Your Touch",
+      " Our Story",
+      " The Real You",
+      " The Real Us",
+      " This Forever",
+    ];
+
+    const endings = [
+      "",
+      " Tonight",
+      " For Real",
+      " Again",
+      " For Good",
+      " (PulseNexis Draft)",
+      " (Second Chance)",
+    ];
+
+    const safetyTitles: string[] = [];
+
+    const makeTitle = () => {
+      const s = pickRandom(starts);
+      const m = pickRandom(middles);
+      const e = pickRandom(endings);
+      return `${s}${m}${e}`.trim();
+    };
+
+    const uniqueTitles: string[] = [];
+
+    // Try a bunch of random combinations until we get 3 that
+    // we haven't used before in this session.
+    for (let i = 0; i < 20 && uniqueTitles.length < 3; i++) {
+      const candidate = makeTitle();
+
+      if (
+        !uniqueTitles.includes(candidate) &&
+        !usedTitles.includes(candidate)
+      ) {
+        uniqueTitles.push(candidate);
+      } else {
+        safetyTitles.push(candidate);
+      }
+    }
+
+    // If we somehow still don't have 3, pad with any remaining titles
+    while (uniqueTitles.length < 3 && safetyTitles.length > 0) {
+      const candidate = safetyTitles.shift()!;
+      if (!uniqueTitles.includes(candidate)) {
+        uniqueTitles.push(candidate);
+      }
+    }
+
+    // Final extra safety net
+    while (uniqueTitles.length < 3) {
+      uniqueTitles.push(
+        `Untitled PulseNexis ${Date.now().toString().slice(-4)}-${
+          uniqueTitles.length + 1
+        }`
+      );
+    }
+
+    const now = new Date().toLocaleTimeString();
+
+    return uniqueTitles.map((title, idx) => {
+      const hook = (() => {
+        if (idx === 0) {
+          return `“Say my name, trust this change in me / Every heartbeat proves your faith is safe with me.”`;
+        }
+        if (idx === 1) {
+          return `“I’ll spend all night proving I’m the one / Every second, every breath, every beat says you’re my only one.”`;
+        }
+        return `“If this ain’t real, then why does my whole soul sound like you?”`;
+      })();
+
+      const vibe = `${style} in ${key} at ${tempo} BPM — ${moodDescriptor}. Inspired by ${refsShort}. Generated at ${now}.`;
+
+      const structure = (() => {
+        if (idx === 0) {
+          return "Verse 1 (confession & setup) → Pre-chorus (tension) → Big hook with stacked harmonies → Verse 2 (details & promises) → Bridge (emotional breakdown) → Final hook with ad-libs.";
+        }
+        if (idx === 1) {
+          return "Grown-folks arrangement: soft Rhodes + bass intro → drums enter on first hook → second hook adds choir-style backgrounds → bridge lifts the key or adds modulation → final vamp with ad-libs.";
+        }
+        return "Short intro → Hook first (no verse) → half-sung breakdown or spoken moment → full verse → hook out. Built for short-form performance but expandable to a full record.";
+      })();
+
+      return {
+        id: idx + 1,
+        title,
+        hook,
+        vibe,
+        structure,
+      };
+    });
+  }
+
+  async function handleGenerate(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
 
-    // Demo mock — later replace this with a real API call
-    setTimeout(() => {
-      const baseTitle =
-        mood.toLowerCase().includes("heartbreak") ||
-        story.toLowerCase().includes("hurt") ||
-        story.toLowerCase().includes("cheating")
-          ? "Love Has Never Been Like Us (After the Storm)"
-          : "When You Are Mine (PulseNexis Draft)";
+    try {
+      let finalIdeas: SongIdea[] = [];
 
-      const secondTitle =
-        style.toLowerCase().includes("slow") || tempo <= 76
-          ? "All Night To Prove It"
-          : "The Way You Love Me Hits Different";
+      // Try hitting a backend if you wire up /api/song-concepts later
+      try {
+        const res = await fetch("/api/song-concepts", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            mood,
+            style,
+            tempo,
+            key,
+            refs,
+            story,
+            previousTitles: usedTitles,
+          }),
+        });
 
-      const ideasGenerated: SongIdea[] = [
-        {
-          id: 1,
-          title: baseTitle,
-          hook: `“Say my name, fall in love with me / Every heartbeat writes our history.”`,
-          vibe: `${style} in ${key} at ${tempo} BPM — ${mood}. Inspired by ${refs}.`,
-          structure:
-            "Verse 1 (confession & setup) → Pre-chorus (tension) → Big hook with stacked harmonies → Verse 2 (details & promises) → Bridge (emotional breakdown) → Final hook with ad-libs.",
-        },
-        {
-          id: 2,
-          title: secondTitle,
-          hook: `“You took my flaws and turned them into faith / Now every second with you I don’t waste.”`,
-          vibe: `Grown-folks ${style} with modern drums and classic PulseNexis harmonies. Build the arrangement around your story: ${story.slice(
-            0,
-            140
-          )}${story.length > 140 ? "..." : ""}`,
-          structure:
-            "Open with soft Rhodes + bass, no drums. Drop drums on the first hook. Add choir-style backgrounds on the second hook and a key-change or lift on the last chorus.",
-        },
-        {
-          id: 3,
-          title: "Bonus Concept: PulseNexis Sketch",
-          hook: `“If this ain’t real, then why does my soul sound like you?”`,
-          vibe: `Alternate idea focused on ${mood.toLowerCase()} with ${refs} as subtle references, not copies.`,
-          structure:
-            "Short intro → Hook first (no verse) → Spoken or half-sung breakdown → Full verse → Hook out. Perfect for TikTok / short-form performances.",
-        },
-      ];
+        if (res.ok) {
+          const data = (await res.json()) as { ideas?: SongIdeaFromApi[] };
 
-      setIdeas(ideasGenerated);
+          const apiIdeas = (data.ideas ?? []).filter(
+            (idea) =>
+              idea.title &&
+              !usedTitles.includes(idea.title) &&
+              idea.title.trim().length > 0
+          );
+
+          if (apiIdeas.length > 0) {
+            finalIdeas = apiIdeas.slice(0, 3).map((idea, index) => ({
+              id: index + 1,
+              title: idea.title,
+              hook: idea.hookIdea,
+              vibe: idea.vibe,
+              structure: idea.arrangementNotes,
+            }));
+          } else {
+            console.warn(
+              "song-concepts API returned no usable ideas, using local generator instead."
+            );
+          }
+        } else {
+          console.warn(
+            "song-concepts API not available (status",
+            res.status,
+            ") — using local generator instead."
+          );
+        }
+      } catch (apiError) {
+        // If the route doesn't exist or throws, we just fall back.
+        console.warn(
+          "song-concepts API call failed, using local generator instead.",
+          apiError
+        );
+      }
+
+      if (finalIdeas.length === 0) {
+        finalIdeas = generateLocalIdeas({
+          mood,
+          style,
+          tempo,
+          key,
+          refs,
+          story,
+          usedTitles,
+        });
+      }
+
+      setIdeas(finalIdeas);
+      setUsedTitles((prev) => [
+        ...new Set([...prev, ...finalIdeas.map((i) => i.title)]),
+      ]);
+    } catch (err) {
+      console.error("Unexpected error generating ideas:", err);
+      const fallback = generateLocalIdeas({
+        mood,
+        style,
+        tempo,
+        key,
+        refs,
+        story,
+        usedTitles,
+      });
+      setIdeas(fallback);
+      setUsedTitles((prev) => [
+        ...new Set([...prev, ...fallback.map((i) => i.title)]),
+      ]);
+    } finally {
       setLoading(false);
-    }, 900);
+    }
+  }
+
+  function handleExportText() {
+    if (ideas.length === 0) return;
+
+    const lines: string[] = [];
+
+    lines.push("PulseNexis · AI Song Creator Export");
+    lines.push("==================================");
+    lines.push("");
+    lines.push(`Mood: ${mood}`);
+    lines.push(`Style: ${style}`);
+    lines.push(`Tempo (BPM): ${tempo}`);
+    lines.push(`Key: ${key}`);
+    lines.push(`Reference artists / songs: ${refs}`);
+    lines.push("");
+    lines.push("Story / concept");
+    lines.push("---------------");
+    lines.push(story);
+    lines.push("");
+    lines.push("Generated concepts");
+    lines.push("------------------");
+    lines.push("");
+
+    ideas.forEach((idea, idx) => {
+      lines.push(`Concept ${idx + 1}: ${idea.title}`);
+      lines.push("Hook idea:");
+      lines.push(idea.hook);
+      lines.push("");
+      lines.push("Vibe:");
+      lines.push(idea.vibe);
+      lines.push("");
+      lines.push("Arrangement notes:");
+      lines.push(idea.structure);
+      lines.push("");
+      lines.push("------------------------------------------------------------");
+      lines.push("");
+    });
+
+    const blob = new Blob([lines.join("\n")], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "pulsenexis-song-concepts.txt";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   }
 
   return (
@@ -321,9 +563,19 @@ export default function AISongCreatorPage() {
                   PulseNexis song sketches
                 </h2>
               </div>
-              <span className="rounded-full bg-purple-900/60 px-3 py-1 text-[11px] text-purple-100">
-                Drafts · Not final lyrics
-              </span>
+              <div className="flex items-center gap-2">
+                <span className="rounded-full bg-purple-900/60 px-3 py-1 text-[11px] text-purple-100">
+                  Drafts · Not final lyrics
+                </span>
+                <button
+                  type="button"
+                  onClick={handleExportText}
+                  disabled={ideas.length === 0}
+                  className="rounded-full border border-purple-400/60 bg-purple-900/40 px-3 py-1 text-[11px] font-medium text-purple-50 hover:bg-purple-700/60 disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  Export (.txt)
+                </button>
+              </div>
             </div>
 
             {ideas.length === 0 ? (
@@ -354,9 +606,6 @@ export default function AISongCreatorPage() {
                           {idea.vibe}
                         </p>
                       </div>
-                      <button className="rounded-full border border-purple-400/60 bg-purple-900/40 px-3 py-1 text-[11px] font-medium text-purple-50 hover:bg-purple-700/60">
-                        Save idea
-                      </button>
                     </div>
                     <div className="mt-3">
                       <p className="text-[11px] font-semibold uppercase tracking-wide text-purple-200/80">
