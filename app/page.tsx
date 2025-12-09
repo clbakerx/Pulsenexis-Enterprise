@@ -165,7 +165,9 @@ export default function PulseNexisHome() {
               Music Catalog · PulseNexis
             </p>
 
+            {/* BUTTON STACK WITH NEW LICENSING CTA */}
             <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap">
+              {/* Catalog */}
               <Link
                 href="/catalog"
                 className="inline-flex items-center justify-center rounded-xl bg-white px-4 py-2.5 text-xs font-semibold text-neutral-900 shadow-sm hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-neutral-900/20 sm:rounded-2xl sm:px-5 sm:py-3 sm:text-sm"
@@ -174,6 +176,18 @@ export default function PulseNexisHome() {
                 <span className="sm:hidden">CATALOG</span>
               </Link>
 
+              {/* NEW: Licensing hero button */}
+              <Link
+                href="/licensing"
+                className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-emerald-400 to-emerald-500 px-4 py-2.5 text-xs font-semibold text-neutral-900 shadow-lg hover:from-emerald-500 hover:to-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 transition-all duration-200 sm:rounded-2xl sm:px-5 sm:py-3 sm:text-sm"
+              >
+                <span className="hidden sm:inline">
+                  MUSIC LICENSING &amp; PARTNERSHIPS
+                </span>
+                <span className="sm:hidden">LICENSING</span>
+              </Link>
+
+              {/* R&B Blueprint */}
               <Link
                 href="/blueprint-landing"
                 className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-yellow-500 to-yellow-600 px-4 py-2.5 text-xs font-semibold text-neutral-900 shadow-lg hover:from-yellow-600 hover:to-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500/30 transition-all duration-200 sm:rounded-2xl sm:px-5 sm:py-3 sm:text-sm"
@@ -181,7 +195,7 @@ export default function PulseNexisHome() {
                 R&amp;B BLUEPRINT
               </Link>
 
-              {/* NEW: AI Song Creator button */}
+              {/* AI Song Creator */}
               <Link
                 href="/ai"
                 className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-indigo-500 to-blue-600 px-4 py-2.5 text-xs font-semibold text-white shadow-lg hover:from-indigo-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/40 transition-all duration-200 sm:rounded-2xl sm:px-5 sm:py-3 sm:text-sm"
@@ -189,6 +203,7 @@ export default function PulseNexisHome() {
                 AI SONG CREATOR
               </Link>
 
+              {/* Why You Need This */}
               <Link
                 href="/transform"
                 className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 px-4 py-2.5 text-xs font-semibold text-white shadow-lg hover:from-amber-600 hover:to-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-500/30 transition-all duration-200 sm:rounded-2xl sm:px-5 sm:py-3 sm:text-sm"
@@ -197,6 +212,7 @@ export default function PulseNexisHome() {
                 <span className="sm:hidden">WHY THIS?</span>
               </Link>
 
+              {/* External tools */}
               <a
                 href="https://promptbase.com/app/rb-album-cover-generator"
                 target="_blank"
@@ -230,7 +246,7 @@ export default function PulseNexisHome() {
                 <span className="sm:hidden">FANBASE</span>
               </a>
 
-              {/* NEW: Join us on YouTube */}
+              {/* Join us on YouTube */}
               <a
                 href="https://www.youtube.com/@pulsenexis"
                 target="_blank"

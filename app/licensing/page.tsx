@@ -1,238 +1,181 @@
-import Link from "next/link";
+"use client";
 
-export default function LicensingPage() {
+import React from "react";
+
+const BUYER_CTA_HREF = "/jukebox";   // keep for later when jukebox returns
+const ARTIST_CTA_HREF = "/contact";
+const PLANS_HREF = "/plans";
+
+// ✅ TRENDING FROM YOUTUBE (NO JUKEBOX LINKS)
+const FEATURED_TRACKS = [
+  {
+    title: "Snowflakes & Slow Jams",
+    mood: "Winter R&B • Slow jam",
+    useCase: "Holiday reels, romantic shorts, cozy scenes",
+    youtubeUrl: "https://www.youtube.com/watch?v=ud6lLSeTBvY",
+  },
+  {
+    title: "All Night to Prove It",
+    mood: "Late-night R&B • Vibey",
+    useCase: "Date night content, sultry visuals, slow motion",
+    youtubeUrl: "https://www.youtube.com/watch?v=MpLbZCnMrpM",
+  },
+  {
+    title: "Nothing Compares",
+    mood: "Romantic ballad • Classic feel",
+    useCase: "Love stories, wedding content, emotional edits",
+    youtubeUrl: "https://www.youtube.com/watch?v=mJu0Byso1_A",
+  },
+  {
+    title: "Give The World To You",
+    mood: "Big love anthem • Soulful",
+    useCase: "Proposal videos, highlight reels, cinematic moments",
+    youtubeUrl: "https://www.youtube.com/watch?v=a0P9vnLkpSY",
+  },
+];
+
+export default function PulseNexisLicensingLanding() {
   return (
-    <div className="min-h-screen bg-white text-neutral-900">
-      {/* Header */}
-      <header className="sticky top-0 z-40 w-full border-b border-neutral-200 bg-white/80 backdrop-blur">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8">
-          <div className="flex items-center gap-3">
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-neutral-900 text-white">PN</span>
-            <Link href="/" className="text-sm font-semibold tracking-wide">HONEY DRIP RECORDS</Link>
-          </div>
+    <main className="min-h-screen bg-slate-950 text-slate-50">
+      <div className="mx-auto max-w-6xl px-4 pb-20 pt-16">
 
-          <div className="flex items-center gap-4">
-            <Link 
-              href="/" 
-              className="text-sm font-medium text-neutral-600 hover:text-neutral-900 transition-colors"
-            >
-              ← Back to Home
-            </Link>
-          </div>
-        </nav>
-      </header>
+        {/* HERO */}
+        <section className="grid gap-10 md:grid-cols-2 items-center">
+          <div>
+            <h1 className="text-4xl sm:text-5xl font-bold leading-tight">
+              License <span className="text-emerald-400">hit-quality music</span>{" "}
+              — or start <span className="text-emerald-400">selling yours today</span>
+            </h1>
 
-      {/* Main Content */}
-      <main className="mx-auto max-w-4xl px-4 py-12 lg:px-8">
-        <div className="prose prose-neutral prose-lg max-w-none">
-          <h1 className="text-4xl font-bold tracking-tight text-neutral-900 mb-8">Music Licensing</h1>
-          
-          <div className="bg-gradient-to-r from-purple-50 to-amber-50 p-6 rounded-xl border border-neutral-200 mb-8">
-            <p className="text-lg text-neutral-700 leading-relaxed">
-              License high-quality music from PulseNexis for your commercial projects, films, advertisements, 
-              and creative endeavors. Our extensive catalog offers diverse genres and moods to fit any project.
+            <p className="mt-4 text-slate-300 max-w-xl">
+              PulseNexis is the all-in-one licensing and creator platform where
+              artists earn and creators get instant commercial-ready music.
             </p>
+
+            <ul className="mt-6 space-y-2 text-sm text-slate-300">
+              <li>✅ Start licensing from $19</li>
+              <li>✅ No label • No contracts • No gatekeepers</li>
+              <li>✅ Instant downloads with commercial rights</li>
+              <li>✅ Artists get paid automatically</li>
+            </ul>
+
+            <div className="mt-8 flex gap-4 flex-wrap">
+              <a
+                href={PLANS_HREF}
+                className="bg-emerald-500 text-black px-6 py-3 rounded-full font-semibold hover:bg-emerald-400 transition"
+              >
+                License Music
+              </a>
+
+              <a
+                href={ARTIST_CTA_HREF}
+                className="border border-slate-600 px-6 py-3 rounded-full font-semibold hover:border-emerald-400 transition"
+              >
+                Start Selling My Music
+              </a>
+            </div>
           </div>
 
-          <div className="grid gap-8">
-            {/* Licensing Types */}
-            <section>
-              <h2 className="text-2xl font-semibold text-neutral-900 mb-6">Licensing Options</h2>
-              <div className="grid gap-6 md:grid-cols-2">
-                
-                {/* Sync Licensing */}
-                <div className="p-6 border border-neutral-200 rounded-xl">
-                  <h3 className="text-xl font-semibold text-purple-900 mb-3">🎬 Sync Licensing</h3>
-                  <p className="text-neutral-700 mb-4">
-                    Perfect for film, TV, commercials, and video content. Synchronize our music with your visual media.
-                  </p>
-                  <div className="space-y-2 text-sm text-neutral-600">
-                    <p>✓ Film & Television</p>
-                    <p>✓ Commercials & Advertisements</p>
-                    <p>✓ YouTube & Social Media</p>
-                    <p>✓ Corporate Videos</p>
-                  </div>
-                </div>
+          <div className="bg-slate-900 border border-slate-700 rounded-3xl p-6 space-y-3">
+            <div className="flex justify-between bg-slate-800 rounded-xl p-3">
+              <span>Creators • Day 1</span>
+              <span className="text-emerald-300">Find your sound</span>
+            </div>
+            <div className="flex justify-between bg-slate-800 rounded-xl p-3">
+              <span>Creators • Day 7</span>
+              <span className="text-emerald-300">Publish monetized content</span>
+            </div>
+            <div className="flex justify-between bg-slate-800 rounded-xl p-3">
+              <span>Artists • Day 1</span>
+              <span className="text-emerald-300">Upload & set price</span>
+            </div>
+            <div className="flex justify-between bg-slate-800 rounded-xl p-3">
+              <span>Artists • Day 30</span>
+              <span className="text-emerald-300">First royalty payout</span>
+            </div>
+          </div>
+        </section>
 
-                {/* Mechanical Licensing */}
-                <div className="p-6 border border-neutral-200 rounded-xl">
-                  <h3 className="text-xl font-semibold text-purple-900 mb-3">💿 Mechanical Licensing</h3>
-                  <p className="text-neutral-700 mb-4">
-                    License music for reproduction and distribution across physical and digital formats.
-                  </p>
-                  <div className="space-y-2 text-sm text-neutral-600">
-                    <p>✓ Digital Downloads</p>
-                    <p>✓ Streaming Platforms</p>
-                    <p>✓ Physical CDs & Vinyl</p>
-                    <p>✓ Compilation Albums</p>
-                  </div>
-                </div>
+        {/* ✅ TRENDING SECTION — THIS IS WHAT YOU WERE MISSING */}
+        <section className="mt-20">
+          <h2 className="text-2xl font-bold text-center">
+            Trending on PulseNexis
+          </h2>
 
-                {/* Performance Licensing */}
-                <div className="p-6 border border-neutral-200 rounded-xl">
-                  <h3 className="text-xl font-semibold text-purple-900 mb-3">🎤 Performance Licensing</h3>
-                  <p className="text-neutral-700 mb-4">
-                    License for public performances, live events, and broadcast applications.
-                  </p>
-                  <div className="space-y-2 text-sm text-neutral-600">
-                    <p>✓ Live Events & Concerts</p>
-                    <p>✓ Radio & Podcasts</p>
-                    <p>✓ Retail & Hospitality</p>
-                    <p>✓ Public Venues</p>
-                  </div>
-                </div>
+          <p className="mt-2 text-center text-slate-300 text-sm">
+            These are the songs listeners are replaying the most on our YouTube channel right now.
+          </p>
 
-                {/* Custom Licensing */}
-                <div className="p-6 border border-amber-200 bg-amber-50 rounded-xl">
-                  <h3 className="text-xl font-semibold text-amber-900 mb-3">⚡ Custom Licensing</h3>
-                  <p className="text-amber-800 mb-4">
-                    Need something specific? We offer custom licensing solutions tailored to your unique project needs.
-                  </p>
-                  <div className="space-y-2 text-sm text-amber-700">
-                    <p>✓ Exclusive Rights</p>
-                    <p>✓ Territory-Specific</p>
-                    <p>✓ Duration-Based</p>
-                    <p>✓ Usage-Specific</p>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* Pricing Structure */}
-            <section>
-              <h2 className="text-2xl font-semibold text-neutral-900 mb-6">Pricing Structure</h2>
-              <div className="overflow-hidden border border-neutral-200 rounded-xl">
-                <div className="bg-neutral-50 px-6 py-4 border-b border-neutral-200">
-                  <h3 className="text-lg font-semibold text-neutral-900">License Types & Rates</h3>
-                </div>
-                <div className="p-6">
-                  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                    <div className="text-center p-4 border border-neutral-200 rounded-lg">
-                      <h4 className="font-semibold text-neutral-900 mb-2">Standard Sync</h4>
-                      <p className="text-2xl font-bold text-purple-600 mb-2">$299</p>
-                      <p className="text-sm text-neutral-600">Per track, per project</p>
-                    </div>
-                    <div className="text-center p-4 border border-neutral-200 rounded-lg">
-                      <h4 className="font-semibold text-neutral-900 mb-2">Premium Sync</h4>
-                      <p className="text-2xl font-bold text-purple-600 mb-2">$599</p>
-                      <p className="text-sm text-neutral-600">Broadcast & commercial use</p>
-                    </div>
-                    <div className="text-center p-4 border border-neutral-200 rounded-lg">
-                      <h4 className="font-semibold text-neutral-900 mb-2">Exclusive Rights</h4>
-                      <p className="text-2xl font-bold text-purple-600 mb-2">Custom</p>
-                      <p className="text-sm text-neutral-600">Contact for pricing</p>
-                    </div>
-                  </div>
-                  <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                    <p className="text-sm text-blue-800">
-                      💡 <strong>Volume Discounts Available:</strong> Save up to 30% on multi-track licenses and long-term agreements.
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            {FEATURED_TRACKS.map((track) => (
+              <div
+                key={track.title}
+                className="rounded-2xl border border-slate-800 bg-slate-900/80 p-5 flex flex-col gap-3"
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <div>
+                    <h3 className="text-base font-semibold text-slate-50">
+                      {track.title}
+                    </h3>
+                    <p className="text-xs text-slate-300 mt-1">
+                      {track.mood}
                     </p>
                   </div>
-                </div>
-              </div>
-            </section>
 
-            {/* How It Works */}
-            <section>
-              <h2 className="text-2xl font-semibold text-neutral-900 mb-6">How It Works</h2>
-              <div className="grid gap-6 md:grid-cols-4">
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">1</div>
-                  <h3 className="font-semibold text-neutral-900 mb-2">Browse Catalog</h3>
-                  <p className="text-sm text-neutral-600">Explore our music catalog and find the perfect tracks for your project.</p>
+                  <span className="text-[10px] rounded-full border border-emerald-500/60 px-3 py-1 text-emerald-300">
+                    Trending
+                  </span>
                 </div>
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">2</div>
-                  <h3 className="font-semibold text-neutral-900 mb-2">Request Quote</h3>
-                  <p className="text-sm text-neutral-600">Contact us with your project details and licensing requirements.</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">3</div>
-                  <h3 className="font-semibold text-neutral-900 mb-2">Review Agreement</h3>
-                  <p className="text-sm text-neutral-600">We&apos;ll send you a custom licensing agreement for your approval.</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">4</div>
-                  <h3 className="font-semibold text-neutral-900 mb-2">Get Your Music</h3>
-                  <p className="text-sm text-neutral-600">Upon payment, receive high-quality files and usage rights.</p>
-                </div>
-              </div>
-            </section>
 
-            {/* FAQ */}
-            <section>
-              <h2 className="text-2xl font-semibold text-neutral-900 mb-6">Frequently Asked Questions</h2>
-              <div className="space-y-4">
-                <div className="p-6 border border-neutral-200 rounded-xl">
-                  <h3 className="font-semibold text-neutral-900 mb-2">What&apos;s included with a sync license?</h3>
-                  <p className="text-neutral-700">
-                    Sync licenses include the right to synchronize the music with visual content, high-quality audio files 
-                    (WAV/MP3), and detailed usage terms specific to your project scope.
-                  </p>
-                </div>
-                <div className="p-6 border border-neutral-200 rounded-xl">
-                  <h3 className="font-semibold text-neutral-900 mb-2">Can I use licensed music internationally?</h3>
-                  <p className="text-neutral-700">
-                    Yes, our standard licenses include worldwide usage rights. For territory-specific restrictions 
-                    or exclusive regional rights, please contact us for custom licensing options.
-                  </p>
-                </div>
-                <div className="p-6 border border-neutral-200 rounded-xl">
-                  <h3 className="font-semibold text-neutral-900 mb-2">How long does the licensing process take?</h3>
-                  <p className="text-neutral-700">
-                    Standard licensing typically takes 2-3 business days. Rush licensing (24-48 hours) is available 
-                    for an additional fee. Custom agreements may take longer depending on complexity.
-                  </p>
-                </div>
-                <div className="p-6 border border-neutral-200 rounded-xl">
-                  <h3 className="font-semibold text-neutral-900 mb-2">Do you offer stem files or remixing rights?</h3>
-                  <p className="text-neutral-700">
-                    Yes! We can provide stem files and remixing rights for additional licensing fees. 
-                    Contact us to discuss your specific creative needs.
-                  </p>
-                </div>
-              </div>
-            </section>
-
-            {/* Contact CTA */}
-            <section className="text-center">
-              <div className="bg-gradient-to-r from-purple-600 to-amber-500 p-8 rounded-xl text-white">
-                <h2 className="text-2xl font-semibold mb-4">Ready to License Music?</h2>
-                <p className="text-purple-100 mb-6 max-w-2xl mx-auto">
-                  Get started with your licensing request today. Our team is ready to help you find 
-                  the perfect music for your project and provide competitive licensing rates.
+                <p className="text-xs text-slate-400">
+                  Best for: {track.useCase}
                 </p>
-                <div className="flex flex-wrap gap-4 justify-center">
-                  <Link
-                    href="/catalog"
-                    className="inline-flex items-center justify-center rounded-xl bg-white text-purple-600 px-6 py-3 text-sm font-semibold hover:bg-purple-50 transition-colors"
-                  >
-                    Browse Music Catalog
-                  </Link>
+
+                <div className="mt-2 flex flex-wrap gap-3 text-xs">
                   <a
-                    href="mailto:info@pulsenexis.com"
-                    className="inline-flex items-center justify-center rounded-xl border border-white/30 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-colors"
+                    href={track.youtubeUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center rounded-full bg-emerald-500 px-3 py-2 font-semibold text-slate-950 hover:bg-emerald-400 transition"
                   >
-                    Request Licensing Quote
+                    Watch on YouTube
+                  </a>
+
+                  <a
+                    href={PLANS_HREF}
+                    className="inline-flex items-center rounded-full border border-slate-600 px-3 py-2 font-semibold text-slate-200 hover:border-emerald-400 hover:text-emerald-200 transition"
+                  >
+                    License This Style
                   </a>
                 </div>
               </div>
-            </section>
+            ))}
           </div>
-        </div>
-      </main>
+        </section>
 
-      {/* Footer */}
-      <footer className="border-t border-neutral-200 mt-16">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-8 text-sm text-neutral-600 md:flex-row lg:px-8">
-          <p>© {new Date().getFullYear()} Honey Drip Records · All rights reserved.</p>
-          <div className="flex items-center gap-5">
-            <Link className="hover:text-neutral-900" href="/terms">Terms</Link>
-            <Link className="hover:text-neutral-900" href="/privacy">Privacy</Link>
-            <Link className="hover:text-neutral-900" href="/support">Support</Link>
+        {/* PRICING */}
+        <section className="mt-20 text-center">
+          <h2 className="text-2xl font-bold">Simple Pricing</h2>
+
+          <div className="grid md:grid-cols-3 gap-6 mt-8 text-sm">
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+              <h3 className="font-semibold">Starter License</h3>
+              <p className="text-emerald-300 text-xl mt-2">$19</p>
+            </div>
+
+            <div className="bg-slate-900 border border-emerald-500 rounded-2xl p-6 shadow-xl">
+              <h3 className="font-semibold">Business License</h3>
+              <p className="text-emerald-300 text-xl mt-2">$99+</p>
+            </div>
+
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+              <h3 className="font-semibold">Pro Artist</h3>
+              <p className="text-emerald-300 text-xl mt-2">Monthly</p>
+            </div>
           </div>
-        </div>
-      </footer>
-    </div>
+        </section>
+
+      </div>
+    </main>
   );
 }
