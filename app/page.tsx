@@ -23,10 +23,10 @@ export default function PulseNexisHome() {
             <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-neutral-900 text-xs font-bold text-white sm:h-8 sm:w-8 sm:text-sm">
               PN
             </span>
-            <a href="/" className="text-xs font-semibold tracking-wide sm:text-sm">
+            <Link href="/" className="text-xs font-semibold tracking-wide sm:text-sm">
               <span className="hidden sm:inline">HONEY DRIP RECORDS</span>
               <span className="sm:hidden">HONEY DRIP</span>
-            </a>
+            </Link>
           </div>
 
           {/* Desktop Links */}
