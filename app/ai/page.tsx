@@ -86,10 +86,6 @@ export default function AISongCreatorPage() {
     const { mood, style, tempo, key, refs, story, usedTitles } = params;
 
     const cleanedStory = story.trim();
-    const shortStory =
-      cleanedStory.length > 160
-        ? cleanedStory.slice(0, 157).trimEnd() + "..."
-        : cleanedStory;
 
     const moodDescriptor = mood.split(",")[0] || mood;
     const refsShort = refs || "your favorite PulseNexis influences";
