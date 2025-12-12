@@ -83,12 +83,6 @@ export default function AISongCreatorPage() {
     story: string;
     usedTitles: string[];
   }): SongIdea[] {
-    const { mood, style, tempo, key, refs, story, usedTitles } = params;
-
-    const cleanedStory = story.trim();
-
-    const moodDescriptor = mood.split(",")[0] || mood;
-    const refsShort = refs || "your favorite PulseNexis influences";
 
     const starts = [
       "Learning How",
