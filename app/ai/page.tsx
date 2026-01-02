@@ -177,7 +177,7 @@ export default function AISongCreatorPage() {
         return `“If this ain’t real, then why does my whole soul sound like you?”`;
       })();
 
-      const vibe = `${style} in ${key} at ${tempo} BPM — ${moodDescriptor}. Inspired by ${refsShort}. Generated at ${now}.`;
+      const vibe = `${style} in ${key} at ${tempo} BPM — ${mood}. Inspired by ${refsShort}. Generated at ${now}.`;
 
       const structure = (() => {
         if (idx === 0) {
