@@ -1,5 +1,6 @@
 // app/page.tsx
 // Server Component (no "use client" needed)
+// Last updated: Jan 2, 2026
 
 import Link from "next/link";
 import Image from "next/image";
