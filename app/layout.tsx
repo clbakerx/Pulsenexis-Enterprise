@@ -15,11 +15,9 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Pulsenexis Enterprises",
-  description:
-    "Music Catalog • PulseNexis — Device Fingerprinting & Analytics Solutions",
+  description: "Music Catalog • PulseNexis — Device Fingerprinting & Analytics Solutions",
 };
 
-// ✅ viewport MUST be exported separately (not inside metadata)
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
