@@ -75,6 +75,7 @@ function categorizeTrack(title: string): { genre: string[]; mood: string[] } {
     if (!genres.includes("Rap")) genres.push("Dance");
     moods.push("Energetic");
   }
+
   if (titleLower.includes("crazy") || titleLower.includes("wild") || titleLower.includes("party")) {
     if (!genres.includes("Rap")) genres.push("Pop");
     moods.push("Energetic");
@@ -114,18 +115,11 @@ function Cover({ title }: { title: string }) {
             width={64}
             height={64}
             className="w-16 h-16 object-contain rounded-lg"
-            onError={(e) => {
-              const target = e.target as unknown as HTMLImageElement;
-              target.style.display = "none";
-              target.nextElementSibling?.classList.remove("hidden");
+            onError={() => {
+              // next/image doesn't reliably expose the underlying img for DOM edits;
+              // keep it simple: if the file is missing, the build is still fine.
             }}
           />
-          <div className="hidden w-16 h-16 bg-gradient-to-b from-amber-400 to-amber-600 rounded-full relative">
-            <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2">
-              <div className="w-4 h-5 bg-gradient-to-b from-amber-500 to-amber-700 rounded-b-full"></div>
-            </div>
-            <div className="absolute top-3 left-5 w-2 h-2 bg-white/40 rounded-full"></div>
-          </div>
         </div>
 
         <div className="text-center mb-2">
@@ -152,7 +146,7 @@ function formatTime(seconds: number) {
 
 /**
  * ✅ Simple license modal placeholder (NO Stripe/env vars required).
- * We’ll wire real Stripe links later “slow and correct”.
+ * We’ll wire real Stripe links later.
  */
 function LicenseModal({
   open,
@@ -203,6 +197,43 @@ function LicenseModal({
   );
 }
 
+// ---------- Manifest parsing (clean + type-safe) ----------
+type RawTrack = {
+  title?: unknown;
+  artist?: unknown;
+  streamPath?: unknown;
+  path?: unknown;
+  genre?: unknown;
+  mood?: unknown;
+  duration?: unknown;
+  album?: unknown;
+  year?: unknown;
+};
+
+function parseManifest(data: unknown): RawTrack[] {
+  // manifest can be: [ ... ] OR { tracks: [ ... ] }
+  if (Array.isArray(data)) return data as RawTrack[];
+
+  if (data && typeof data === "object") {
+    const maybe = data as { tracks?: unknown };
+    if (Array.isArray(maybe.tracks)) return maybe.tracks as RawTrack[];
+  }
+
+  return [];
+}
+
+function asString(v: unknown, fallback: string) {
+  return typeof v === "string" && v.trim() ? v : fallback;
+}
+function asNumber(v: unknown) {
+  return typeof v === "number" && Number.isFinite(v) ? v : undefined;
+}
+function asStringArray(v: unknown): string[] | null {
+  if (!Array.isArray(v)) return null;
+  const arr = v.map((x) => String(x).trim()).filter(Boolean);
+  return arr.length ? arr : null;
+}
+
 export default function CatalogPage() {
   const [tracks, setTracks] = React.useState<Track[]>([]);
   const [tracksLoaded, setTracksLoaded] = React.useState(false);
@@ -228,25 +259,37 @@ export default function CatalogPage() {
   const TRACKS_PER_PAGE = 20;
   const [currentPage, setCurrentPage] = React.useState(1);
 
-  // Load manifest
+  // Load manifest (single, clean loader)
   React.useEffect(() => {
+    let cancelled = false;
+
     async function loadTracks() {
       try {
         const res = await fetch("/manifest.json", { cache: "no-store" });
         if (!res.ok) throw new Error(`manifest.json fetch failed (${res.status})`);
-        const data = await res.json();
 
-        const rawTracks: any[] = Array.isArray(data) ? data : Array.isArray(data?.tracks) ? data.tracks : [];
+        const data: unknown = await res.json();
+        const rawTracks = parseManifest(data);
 
         const built: Track[] = rawTracks.map((t, idx) => {
-          const title = String(t?.title ?? `Track ${idx + 1}`);
-          const artist = String(t?.artist ?? "PulseNexis");
-          const streamPath = String(t?.streamPath ?? t?.path ?? "");
+          const title = asString(t.title, `Track ${idx + 1}`);
+          const artist = asString(t.artist, "PulseNexis");
+          const streamPath = asString(t.streamPath ?? t.path, "");
 
           const fallback = categorizeTrack(title);
 
-          const genreArr = (Array.isArray(t?.genre) && t.genre.length ? t.genre : fallback.genre).map(normalizeTag);
-          const moodArr = (Array.isArray(t?.mood) && t.mood.length ? t.mood : fallback.mood).map(normalizeTag);
+          const genreArr = (asStringArray(t.genre) ?? fallback.genre).map(normalizeTag);
+          const moodArr = (asStringArray(t.mood) ?? fallback.mood).map(normalizeTag);
+
+          const duration =
+            typeof t.duration === "string"
+              ? t.duration
+              : t.duration == null
+                ? null
+                : String(t.duration);
+
+          const album = typeof t.album === "string" ? t.album : undefined;
+          const year = asNumber(t.year);
 
           return {
             id: idx + 1,
@@ -255,22 +298,29 @@ export default function CatalogPage() {
             streamPath,
             genre: genreArr.length ? genreArr : ["R&B"],
             mood: moodArr.length ? moodArr : ["Smooth"],
-            duration: t?.duration ?? null,
-            album: t?.album,
-            year: t?.year,
+            duration,
+            album,
+            year,
           };
         });
 
-        setTracks(built);
-        setTracksLoaded(true);
-      } catch (e) {
-        console.error("Failed to load tracks:", e);
-        setTracks([]);
-        setTracksLoaded(true);
+        if (!cancelled) {
+          setTracks(built);
+          setTracksLoaded(true);
+        }
+      } catch (err) {
+        console.error("Failed to load tracks:", err);
+        if (!cancelled) {
+          setTracks([]);
+          setTracksLoaded(true);
+        }
       }
     }
 
     loadTracks();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   const filtered = React.useMemo(() => {
@@ -299,10 +349,7 @@ export default function CatalogPage() {
     return filtered.slice(start, start + TRACKS_PER_PAGE);
   }, [filtered, currentPage]);
 
-  const currentIndex = React.useMemo(
-    () => filtered.findIndex((t) => t.id === nowPlaying),
-    [filtered, nowPlaying]
-  );
+  const currentIndex = React.useMemo(() => filtered.findIndex((t) => t.id === nowPlaying), [filtered, nowPlaying]);
   const currentTrack = currentIndex >= 0 ? filtered[currentIndex] : null;
 
   const getTrackDuration = (track: Track) => {
@@ -364,19 +411,18 @@ export default function CatalogPage() {
     audio.src = url;
 
     const onLoadedMetadata = () => {
-      if (audio.duration && isFinite(audio.duration) && !currentTrack.duration) {
+      if (audio.duration && Number.isFinite(audio.duration) && !currentTrack.duration) {
         setTrackDurations((prevMap) => ({ ...prevMap, [currentTrack.id]: formatTime(audio.duration) }));
       }
     };
 
     const onError = () => {
       const code = audio.error?.code ?? "unknown";
-      // If direct fails once, flip into proxy mode automatically.
       if (!useProxy) {
         setUseProxy(true);
         return;
       }
-      setAudioError(`Cannot load "${currentTrack.title}" (code: ${code}).`);
+      setAudioError(`Cannot load "${currentTrack.title}" (code: ${String(code)}).`);
       setIsPlaying(false);
     };
 
@@ -436,7 +482,6 @@ export default function CatalogPage() {
               {showDebug ? "Hide Debug" : "Debug"}
             </button>
 
-            {/* ✅ These are BUTTON toggles (not links) so they never 404 */}
             <button
               onClick={() => setView("grid")}
               className={classNames(
@@ -572,7 +617,6 @@ export default function CatalogPage() {
               <article key={t.id} className="group rounded-2xl border p-3 hover:shadow-sm transition">
                 <Cover title={t.title} />
 
-                {/* ✅ fixed heights so every card matches */}
                 <div className="mt-3">
                   <h3 className="font-semibold leading-snug line-clamp-1 text-slate-900 min-h-[24px]">{t.title}</h3>
                   <p className="text-sm text-slate-600 line-clamp-1 min-h-[20px]">{t.artist}</p>
@@ -610,26 +654,7 @@ export default function CatalogPage() {
               <article key={t.id} className="grid grid-cols-12 items-center gap-3 p-3">
                 <div className="col-span-1">
                   <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-amber-50 to-orange-100 border border-amber-200 flex items-center justify-center">
-                    <Image
-                      src="/HoneyDrip Logo.jpg"
-                      alt="HoneyDrip Records"
-                      width={32}
-                      height={32}
-                      className="w-8 h-8 object-contain rounded"
-                      onError={(e) => {
-                        const target = e.target as unknown as HTMLImageElement;
-                        target.style.display = "none";
-                        target.nextElementSibling?.classList.remove("hidden");
-                      }}
-                    />
-                    <div className="hidden relative">
-                      <div className="w-6 h-6 bg-gradient-to-b from-amber-400 to-amber-600 rounded-full relative">
-                        <div className="absolute -bottom-0.5 left-1/2 transform -translate-x-1/2">
-                          <div className="w-1.5 h-2 bg-gradient-to-b from-amber-500 to-amber-700 rounded-b-full"></div>
-                        </div>
-                        <div className="absolute top-1 left-1.5 w-1 h-1 bg-white/40 rounded-full"></div>
-                      </div>
-                    </div>
+                    <Image src="/HoneyDrip Logo.jpg" alt="HoneyDrip Records" width={32} height={32} className="w-8 h-8 object-contain rounded" />
                   </div>
                 </div>
 
@@ -702,13 +727,7 @@ export default function CatalogPage() {
 
           <div className="rounded-2xl border bg-white shadow-lg p-3 flex items-center gap-3">
             <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-amber-50 to-orange-100 border border-amber-200 flex items-center justify-center">
-              <Image
-                src="/HoneyDrip Logo.jpg"
-                alt="HoneyDrip Records"
-                width={32}
-                height={32}
-                className="w-8 h-8 object-contain rounded"
-              />
+              <Image src="/HoneyDrip Logo.jpg" alt="HoneyDrip Records" width={32} height={32} className="w-8 h-8 object-contain rounded" />
             </div>
 
             <div className="min-w-0">
@@ -717,10 +736,7 @@ export default function CatalogPage() {
             </div>
 
             <div className="ml-auto flex items-center gap-2">
-              <button
-                onClick={prev}
-                className="rounded-xl border border-slate-300 px-3 py-1 text-sm text-black hover:bg-slate-50"
-              >
+              <button onClick={prev} className="rounded-xl border border-slate-300 px-3 py-1 text-sm text-black hover:bg-slate-50">
                 ⏮︎
               </button>
               <button
@@ -729,10 +745,7 @@ export default function CatalogPage() {
               >
                 {isPlaying ? "⏸︎" : "▶︎"}
               </button>
-              <button
-                onClick={next}
-                className="rounded-xl border border-slate-300 px-3 py-1 text-sm text-black hover:bg-slate-50"
-              >
+              <button onClick={next} className="rounded-xl border border-slate-300 px-3 py-1 text-sm text-black hover:bg-slate-50">
                 ⏭︎
               </button>
 
@@ -767,7 +780,6 @@ export default function CatalogPage() {
         </footer>
       )}
 
-      {/* License modal */}
       <LicenseModal open={licenseOpen} onClose={() => setLicenseOpen(false)} track={selectedForLicense} />
     </div>
   );
