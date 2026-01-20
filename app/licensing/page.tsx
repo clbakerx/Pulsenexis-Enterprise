@@ -15,10 +15,10 @@ const FEATURED_TRACKS = [
     youtubeUrl: "https://www.youtube.com/watch?v=ud6lLSeTBvY",
   },
   {
-    title: "All Night to Prove It",
+    title: "How Many Love Songs",
     mood: "Late-night R&B • Vibey",
     useCase: "Date night content, sultry visuals, slow motion",
-    youtubeUrl: "https://www.youtube.com/watch?v=MpLbZCnMrpM",
+    youtubeUrl: "https://youtu.be/pe3Cpap6o7A?si=I_APNL_HP8nTo9Ea",
   },
   {
     title: "Nothing Compares",
@@ -27,10 +27,10 @@ const FEATURED_TRACKS = [
     youtubeUrl: "https://www.youtube.com/watch?v=mJu0Byso1_A",
   },
   {
-    title: "Give The World To You",
+    title: "Right Here in the Moment",
     mood: "Big love anthem • Soulful",
     useCase: "Proposal videos, highlight reels, cinematic moments",
-    youtubeUrl: "https://www.youtube.com/watch?v=a0P9vnLkpSY",
+    youtubeUrl: "https://youtu.be/s93A0aTN03M?si=ghh33KofXKJt7IYA",
   },
 ];
 
@@ -53,7 +53,6 @@ export default function PulseNexisLicensingLanding() {
             </p>
 
             <ul className="mt-6 space-y-2 text-sm text-slate-300">
-              <li>✅ Start licensing from $19</li>
               <li>✅ No label • No contracts • No gatekeepers</li>
               <li>✅ Instant downloads with commercial rights</li>
               <li>✅ Artists get paid automatically</li>
@@ -150,28 +149,6 @@ export default function PulseNexisLicensingLanding() {
                 </div>
               </div>
             ))}
-          </div>
-        </section>
-
-        {/* PRICING */}
-        <section className="mt-20 text-center">
-          <h2 className="text-2xl font-bold">Simple Pricing</h2>
-
-          <div className="grid md:grid-cols-3 gap-6 mt-8 text-sm">
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
-              <h3 className="font-semibold">Starter License</h3>
-              <p className="text-emerald-300 text-xl mt-2">$19</p>
-            </div>
-
-            <div className="bg-slate-900 border border-emerald-500 rounded-2xl p-6 shadow-xl">
-              <h3 className="font-semibold">Business License</h3>
-              <p className="text-emerald-300 text-xl mt-2">$99+</p>
-            </div>
-
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
-              <h3 className="font-semibold">Pro Artist</h3>
-              <p className="text-emerald-300 text-xl mt-2">Monthly</p>
-            </div>
           </div>
         </section>
 
