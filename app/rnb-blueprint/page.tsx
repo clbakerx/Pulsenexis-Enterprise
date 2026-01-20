@@ -1,661 +1,491 @@
+// app/packs/rnb-blueprint/page.tsx
 "use client";
-/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
-"use client";
-import React, { useState, useEffect } from "react";
+
+import * as React from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 
-interface BlueprintData {
-  // Identity Section
+type Preview = {
+  id: string;
   title: string;
-  theme: string;
   mood: string;
-  audience: string;
-  references: string;
-  
-  // Musical Section
-  tempo: string;
+  bpm: number;
   key: string;
-  timeSignature: string;
-  instrumentation: string;
-  
-  // Structure Section
-  structure: string;
-  verseGoal: string;
-  chorusHook: string;
-  bridgeDirection: string;
-  
-  // Vocals Section
-  leadVocalStyle: string;
-  harmonyPlan: string;
-  falsettoMoments: string;
-  adLibs: string;
-  
-  // Production Section
-  vibeReferences: string;
-  mixNotes: string;
-  dynamics: string;
-  
-  // Emotion Section
-  listenerTakeaway: string;
-  emotionalJourney: string;
-}
-
-const initialData: BlueprintData = {
-  title: "",
-  theme: "",
-  mood: "",
-  audience: "",
-  references: "",
-  tempo: "",
-  key: "",
-  timeSignature: "4/4",
-  instrumentation: "",
-  structure: "",
-  verseGoal: "",
-  chorusHook: "",
-  bridgeDirection: "",
-  leadVocalStyle: "",
-  harmonyPlan: "",
-  falsettoMoments: "",
-  adLibs: "",
-  vibeReferences: "",
-  mixNotes: "",
-  dynamics: "",
-  listenerTakeaway: "",
-  emotionalJourney: ""
+  // Put a short mp3 preview here (20–30s)
+  src: string;
 };
 
-export default function RnBBlueprintPage() {
-  const [data, setData] = useState<BlueprintData>(initialData);
-  const [activeSection, setActiveSection] = useState(0);
-  const [isClient, setIsClient] = useState(false);
-  useEffect(() => {
-    setIsClient(true);
-    // Load from localStorage
-    const saved = localStorage.getItem('rnb-blueprint');
-    if (saved) {
-      try {
-        setData(JSON.parse(saved));
-      } catch (e) {
-        console.error('Failed to load saved blueprint');
+const AUDIO_BASE_URL = "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/"; // ← change if needed (must end with /)
+
+const PREVIEWS: Preview[] = [
+  {
+    id: "late-night-drive",
+    title: "Late Night Drive",
+    mood: "Romantic",
+    bpm: 74,
+    key: "A♭",
+    src: `${AUDIO_BASE_URL}previews/late-night-drive-30s.mp3`,
+  },
+  {
+    id: "heart-on-read",
+    title: "Heart On Read",
+    mood: "Smooth",
+    bpm: 76,
+    key: "B♭",
+    src: `${AUDIO_BASE_URL}previews/heart-on-read-30s.mp3`,
+  },
+  {
+    id: "after-hours",
+    title: "After Hours",
+    mood: "Emotional",
+    bpm: 72,
+    key: "C minor",
+    src: `${AUDIO_BASE_URL}previews/after-hours-30s.mp3`,
+  },
+  {
+    id: "pillow-talk",
+    title: "Pillow Talk",
+    mood: "Warm",
+    bpm: 78,
+    key: "F",
+    src: `${AUDIO_BASE_URL}previews/pillow-talk-30s.mp3`,
+  },
+  {
+    id: "midnight-promise",
+    title: "Midnight Promise",
+    mood: "Soulful",
+    bpm: 70,
+    key: "E♭",
+    src: `${AUDIO_BASE_URL}previews/midnight-promise-30s.mp3`,
+  },
+];
+
+function cx(...classes: Array<string | false | null | undefined>) {
+  return classes.filter(Boolean).join(" ");
+}
+
+function Badge({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="inline-flex items-center rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs font-medium text-neutral-700 shadow-sm">
+      {children}
+    </span>
+  );
+}
+
+function SectionTitle({
+  kicker,
+  title,
+  desc,
+}: {
+  kicker?: string;
+  title: string;
+  desc?: string;
+}) {
+  return (
+    <div className="space-y-2">
+      {kicker ? (
+        <div className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
+          {kicker}
+        </div>
+      ) : null}
+      <h2 className="text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
+        {title}
+      </h2>
+      {desc ? <p className="max-w-2xl text-neutral-600">{desc}</p> : null}
+    </div>
+  );
+}
+
+function FeatureItem({ children }: { children: React.ReactNode }) {
+  return (
+    <li className="flex gap-3">
+      <span className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-neutral-900 text-white">
+        ✓
+      </span>
+      <span className="text-neutral-700">{children}</span>
+    </li>
+  );
+}
+
+function PreviewRow({
+  item,
+  isActive,
+  onPlay,
+  onPause,
+  audioRef,
+}: {
+  item: Preview;
+  isActive: boolean;
+  onPlay: () => void;
+  onPause: () => void;
+  audioRef: (el: HTMLAudioElement | null) => void;
+}) {
+  return (
+    <div className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm">
+      <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+        <div className="min-w-0">
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="truncate text-base font-semibold text-neutral-900">
+              {item.title}
+            </div>
+            <Badge>{item.mood}</Badge>
+            <Badge>{item.bpm} BPM</Badge>
+            <Badge>{item.key}</Badge>
+          </div>
+          <div className="mt-1 text-sm text-neutral-600">
+            20–30s preview • grown, warm, and emotional
+          </div>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={isActive ? onPause : onPlay}
+            className={cx(
+              "inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition",
+              isActive
+                ? "bg-neutral-900 text-white hover:opacity-90"
+                : "border border-neutral-300 bg-white text-neutral-900 hover:bg-neutral-50"
+            )}
+          >
+            {isActive ? "Pause" : "Play"}
+          </button>
+        </div>
+      </div>
+
+      <div className="mt-3">
+        <audio
+          ref={audioRef}
+          src={item.src}
+          preload="none"
+          controls
+          className="h-10 w-full"
+          onPlay={onPlay}
+          onPause={onPause}
+        />
+      </div>
+    </div>
+  );
+}
+
+export default function RnBBlueprintPackPage() {
+  const [activeId, setActiveId] = React.useState<string | null>(null);
+  const audioMap = React.useRef<Record<string, HTMLAudioElement | null>>({});
+
+  const stopAllExcept = React.useCallback((keepId: string) => {
+    for (const [id, el] of Object.entries(audioMap.current)) {
+      if (!el) continue;
+      if (id !== keepId) {
+        try {
+          el.pause();
+          el.currentTime = 0;
+        } catch {}
       }
     }
   }, []);
 
-  useEffect(() => {
-    if (isClient) {
-      // Auto-save to localStorage
-      localStorage.setItem('rnb-blueprint', JSON.stringify(data));
-    }
-  }, [data, isClient]);
-
-  // Lead gating state (simple local gate for Print/Download actions)
-  const [leadOpen, setLeadOpen] = useState(false);
-  const [leadUnlocked, setLeadUnlocked] = useState(false);
-  const lead = {
-    unlocked: leadUnlocked,
-    unlock: () => setLeadUnlocked(true),
-  };
-
-  // Catalog picker state
-  const [catalog, setCatalog] = useState<any[]>([]);
-  const [pickerOpen, setPickerOpen] = useState(false);
-
-  const updateField = (field: keyof BlueprintData, value: string) => {
-    setData(prev => ({ ...prev, [field]: value }));
-  };
-
-  const exportBlueprint = () => {
-    const dataStr = JSON.stringify(data, null, 2);
-    const dataBlob = new Blob([dataStr], { type: 'application/json' });
-    const url = URL.createObjectURL(dataBlob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `${data.title || 'untitled'}-blueprint.json`;
-    link.click();
-  };
-
-  const importBlueprint = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
+  const handlePlay = React.useCallback(
+    (id: string) => {
+      stopAllExcept(id);
+      setActiveId(id);
+      const el = audioMap.current[id];
+      if (el) {
         try {
-          const imported = JSON.parse(e.target?.result as string);
-          setData(imported);
-        } catch (error) {
-          alert('Failed to import blueprint file');
+          el.play();
+        } catch {
+          // Autoplay restrictions are common; user can press play on native controls.
         }
-      };
-      reader.readAsText(file);
-    }
-  };
-
-  const clearBlueprint = () => {
-    if (confirm('Are you sure you want to clear all data?')) {
-      setData(initialData);
-    }
-  };
-
-  const printBlueprint = () => {
-    window.print();
-  };
-
-  // gated actions (lead capture)
-  function gated(action: () => void) {
-    if (lead.unlocked) action();
-    else setLeadOpen(true);
-  }
-
-  async function saveToCloud() {
-    try {
-      const res = await fetch('/api/blueprints', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title: data.title, data }),
-      });
-      if (!res.ok) {
-        const err = await res.json().catch(() => null);
-        alert('Save failed: ' + (err?.error || res.statusText));
-      } else {
-        const json = await res.json();
-        alert('Saved to cloud! id: ' + json.id);
       }
-    } catch (e: any) {
-      alert('Save failed: ' + (e?.message || e));
+    },
+    [stopAllExcept]
+  );
+
+  const handlePause = React.useCallback((id: string) => {
+    const el = audioMap.current[id];
+    if (el) {
+      try {
+        el.pause();
+      } catch {}
     }
-  }
-
-  async function loadCatalog() {
-    try {
-      const res = await fetch('/manifest.json');
-      if (!res.ok) throw new Error('Manifest fetch failed');
-      const json = await res.json();
-      const items: any[] = Array.isArray(json) ? json : (json.tracks ?? json);
-      setCatalog(items || []);
-      setPickerOpen(true);
-    } catch (e) {
-      alert('Could not load manifest.json');
-    }
-  }
-
-  function applyFromCatalog(item: any) {
-    updateField('title', item.title || data.title);
-    if (item.tempo) updateField('tempo', String(item.tempo));
-    if (item.genre && Array.isArray(item.genre) && item.genre.length) {
-      updateField('mood', item.genre.includes('R&B') ? 'Romantic, soulful' : item.genre.join(', '));
-    }
-    setPickerOpen(false);
-  }
-
-  const sections = [
-    { id: 0, title: "Identity", icon: "🎯" },
-    { id: 1, title: "Musical", icon: "🎵" },
-    { id: 2, title: "Structure", icon: "🏗️" },
-    { id: 3, title: "Vocals", icon: "🎤" },
-    { id: 4, title: "Production", icon: "🎛️" },
-    { id: 5, title: "Emotion", icon: "💭" }
-  ];
-
-  if (!isClient) {
-    return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center">
-        <div className="text-xl">Loading Blueprint...</div>
-      </div>
-    );
-  }
+    setActiveId((cur) => (cur === id ? null : cur));
+  }, []);
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      {/* Header */}
-      <header className="border-b border-zinc-800 bg-zinc-950/50 print:hidden">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <Link href="/" className="text-sm text-zinc-400 hover:text-yellow-400 transition-colors">
-                ← Back to Home
-              </Link>
-              <div>
-                <h1 className="text-2xl font-bold text-yellow-400">R&B Blueprint</h1>
-                <p className="text-sm text-zinc-400 mt-1">PulseNexis Song Creation Tool</p>
+    <main className="min-h-screen bg-neutral-50">
+      {/* Top container */}
+      <div className="mx-auto w-full max-w-6xl px-4 py-10 md:px-6 md:py-14">
+        {/* HERO */}
+        <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
+          <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
+            <div className="space-y-4">
+              <div className="flex flex-wrap items-center gap-2">
+                <Badge>Fan Favorite</Badge>
+                <Badge>Instant Download</Badge>
+                <Badge>Blueprint Pack</Badge>
+              </div>
+
+              <h1 className="text-3xl font-semibold tracking-tight text-neutral-900 md:text-5xl">
+                R&amp;B Blueprint Pack
+              </h1>
+
+              <p className="text-lg font-semibold text-neutral-800 md:text-xl">
+                Grown &amp; soulful. Ready for love scenes and late-night vibes.
+              </p>
+
+              <p className="max-w-2xl text-neutral-600">
+                A complete R&amp;B creation system for producers, artists, and creators who
+                want emotional, professional-quality records — fast. You’ll get the
+                chords, grooves, vocal structures, and songwriting formulas behind
+                modern soul and classic R&amp;B — without guesswork.
+              </p>
+
+              <ul className="mt-4 grid gap-3 md:grid-cols-2">
+                <FeatureItem>Romantic + smooth tempos</FeatureItem>
+                <FeatureItem>Clean loop points</FeatureItem>
+                <FeatureItem>Best for reels + shorts</FeatureItem>
+                <FeatureItem>3rd &amp; 5th harmony blueprint</FeatureItem>
+              </ul>
+
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <a
+                  href="#previews"
+                  className="inline-flex items-center justify-center rounded-full bg-neutral-900 px-6 py-3 text-sm font-semibold text-white hover:opacity-90"
+                >
+                  Play Preview
+                </a>
+
+                <a
+                  href="#start-order"
+                  className="inline-flex items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-3 text-sm font-semibold text-neutral-900 hover:bg-neutral-50"
+                >
+                  Start Order
+                </a>
+              </div>
+
+              <div className="text-xs text-neutral-500">
+                Tip: Replace preview mp3 links in this file under <span className="font-semibold">PREVIEWS</span>.
               </div>
             </div>
-            <div className="flex gap-3">
-              <button
-                onClick={clearBlueprint}
-                className="px-4 py-2 text-sm border border-zinc-700 rounded-xl hover:bg-zinc-800 transition"
-              >
-                Clear
-              </button>
 
-              <button
-                onClick={async () => {
-                  // open catalog picker
-                  await loadCatalog();
-                }}
-                className="px-4 py-2 text-sm border border-zinc-700 rounded-xl hover:bg-zinc-800 transition"
-              >
-                Import from Catalog
-              </button>
+            {/* Side card */}
+            <div className="w-full md:w-[360px]">
+              <div className="rounded-3xl border border-neutral-200 bg-neutral-50 p-5">
+                <div className="text-sm font-semibold text-neutral-900">
+                  What you’ll create
+                </div>
+                <p className="mt-2 text-sm text-neutral-600">
+                  Finished R&amp;B records with structure, emotion, and a clean modern pocket.
+                </p>
 
-              <label className="px-4 py-2 text-sm border border-zinc-700 rounded-xl hover:bg-zinc-800 transition cursor-pointer">
-                Import JSON
-                <input
-                  type="file"
-                  accept=".json"
-                  onChange={importBlueprint}
-                  className="hidden"
-                />
-              </label>
+                <div className="mt-4 space-y-3">
+                  <div className="rounded-2xl bg-white p-4">
+                    <div className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
+                      Included
+                    </div>
+                    <ul className="mt-2 space-y-2 text-sm text-neutral-700">
+                      <li>• Chord progression blueprints</li>
+                      <li>• Drum groove templates</li>
+                      <li>• Vocal arrangement maps</li>
+                      <li>• Mix starter chains</li>
+                      <li>• Project templates (FL / Logic / Ableton)</li>
+                    </ul>
+                  </div>
 
-              <button
-                onClick={exportBlueprint}
-                className="px-4 py-2 text-sm bg-yellow-400 text-black rounded-xl hover:opacity-90 transition"
-              >
-                Download JSON
-              </button>
-
-              <button
-                onClick={() => gated(() => printBlueprint())}
-                className="px-4 py-2 text-sm bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition"
-              >
-                Print
-              </button>
-
-              <button
-                onClick={async () => await saveToCloud()}
-                className="px-4 py-2 text-sm bg-zinc-800 text-white rounded-xl border border-zinc-700 hover:bg-zinc-900 transition"
-              >
-                Save to Cloud
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <div className="max-w-7xl mx-auto px-6 py-8">
-        <div className="grid lg:grid-cols-4 gap-8">
-          {/* Navigation Sidebar */}
-          <div className="lg:col-span-1 print:hidden">
-            <nav className="sticky top-8">
-              <div className="space-y-2">
-                {sections.map((section) => (
-                  <button
-                    key={section.id}
-                    onClick={() => setActiveSection(section.id)}
-                    className={`w-full text-left px-4 py-3 rounded-xl transition flex items-center gap-3 ${
-                      activeSection === section.id
-                        ? 'bg-yellow-400 text-black font-semibold'
-                        : 'hover:bg-zinc-800 text-zinc-300'
-                    }`}
+                  <a
+                    href="#start-order"
+                    className="inline-flex w-full items-center justify-center rounded-full bg-neutral-900 px-5 py-3 text-sm font-semibold text-white hover:opacity-90"
                   >
-                    <span className="text-lg">{section.icon}</span>
-                    {section.title}
-                  </button>
-                ))}
-              </div>
-            </nav>
-          </div>
+                    Start Order
+                  </a>
 
-          {/* Main Content */}
-          <div className="lg:col-span-3">
-            <motion.div
-              key={activeSection}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              {activeSection === 0 && (
-                <IdentitySection data={data} updateField={updateField} />
-              )}
-              {activeSection === 1 && (
-                <MusicalSection data={data} updateField={updateField} />
-              )}
-              {activeSection === 2 && (
-                <StructureSection data={data} updateField={updateField} />
-              )}
-              {activeSection === 3 && (
-                <VocalsSection data={data} updateField={updateField} />
-              )}
-              {activeSection === 4 && (
-                <ProductionSection data={data} updateField={updateField} />
-              )}
-              {activeSection === 5 && (
-                <EmotionSection data={data} updateField={updateField} />
-              )}
-            </motion.div>
-          </div>
-        </div>
-      </div>
-      {/* Modals and pickers rendered inside the page so state is available */}
-      <LeadModal
-        isOpen={leadOpen}
-        onClose={() => setLeadOpen(false)}
-        onUnlock={() => {
-          lead.unlock();
-          setLeadOpen(false);
-        }}
-      />
+                  {/* Optional: Link back to packs list */}
+                  <Link
+                    href="/packs"
+                    className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-5 py-3 text-sm font-semibold text-neutral-900 hover:bg-neutral-50"
+                  >
+                    Back to Packs
+                  </Link>
 
-      <CatalogPicker
-        isOpen={pickerOpen}
-        catalog={catalog}
-        onClose={() => setPickerOpen(false)}
-        onApply={(item: any) => applyFromCatalog(item)}
-      />
-    </div>
-  );
-}
-
-// Section Components
-function IdentitySection({ data, updateField }: { data: BlueprintData; updateField: (field: keyof BlueprintData, value: string) => void }) {
-  return (
-    <Section title="Song Identity" description="Define the core concept and emotional foundation">
-      <FormField
-        label="Song Title"
-        value={data.title}
-        onChange={(value) => updateField('title', value)}
-        placeholder="e.g., When I Get You Home"
-      />
-      <FormField
-        label="Theme/Concept"
-        value={data.theme}
-        onChange={(value) => updateField('theme', value)}
-        placeholder="e.g., Romantic anticipation, desire, intimate connection"
-        type="textarea"
-      />
-      <FormField
-        label="Mood & Emotion"
-        value={data.mood}
-        onChange={(value) => updateField('mood', value)}
-        placeholder="e.g., Sensual, confident, warm, vulnerable"
-      />
-      <FormField
-        label="Target Audience"
-        value={data.audience}
-        onChange={(value) => updateField('audience', value)}
-        placeholder="e.g., Adults 25-40, R&B/Soul listeners, romantic mood"
-      />
-      <FormField
-        label="Reference Artists/Songs"
-        value={data.references}
-        onChange={(value) => updateField('references', value)}
-        placeholder="e.g., D'Angelo, Solange, Frank Ocean - emotional depth and production style"
-        type="textarea"
-      />
-    </Section>
-  );
-}
-
-function MusicalSection({ data, updateField }: { data: BlueprintData; updateField: (field: keyof BlueprintData, value: string) => void }) {
-  return (
-    <Section title="Musical Foundation" description="Lock in the sonic framework">
-      <div className="grid md:grid-cols-2 gap-6">
-        <FormField
-          label="Tempo (BPM)"
-          value={data.tempo}
-          onChange={(value) => updateField('tempo', value)}
-          placeholder="e.g., 82"
-        />
-        <FormField
-          label="Key/Scale"
-          value={data.key}
-          onChange={(value) => updateField('key', value)}
-          placeholder="e.g., A♭ Major"
-        />
-      </div>
-      <FormField
-        label="Time Signature"
-        value={data.timeSignature}
-        onChange={(value) => updateField('timeSignature', value)}
-        placeholder="e.g., 4/4"
-      />
-      <FormField
-        label="Instrumentation & Sound Palette"
-        value={data.instrumentation}
-        onChange={(value) => updateField('instrumentation', value)}
-        placeholder="e.g., Live bass, vintage keys, soft drums, subtle strings, ambient pads"
-        type="textarea"
-      />
-    </Section>
-  );
-}
-
-function StructureSection({ data, updateField }: { data: BlueprintData; updateField: (field: keyof BlueprintData, value: string) => void }) {
-  return (
-    <Section title="Song Structure" description="Map out the journey and flow">
-      <FormField
-        label="Song Structure"
-        value={data.structure}
-        onChange={(value) => updateField('structure', value)}
-        placeholder="e.g., Intro → Verse → Pre-Chorus → Chorus → Verse → Chorus → Bridge → Final Chorus → Outro"
-        type="textarea"
-      />
-      <FormField
-        label="Verse Goal & Content"
-        value={data.verseGoal}
-        onChange={(value) => updateField('verseGoal', value)}
-        placeholder="e.g., Set scene, build tension, establish narrative voice"
-        type="textarea"
-      />
-      <FormField
-        label="Chorus Hook & Message"
-        value={data.chorusHook}
-        onChange={(value) => updateField('chorusHook', value)}
-        placeholder="e.g., Main emotional payoff, memorable melody, core message"
-        type="textarea"
-      />
-      <FormField
-        label="Bridge Direction"
-        value={data.bridgeDirection}
-        onChange={(value) => updateField('bridgeDirection', value)}
-        placeholder="e.g., New perspective, emotional peak, musical contrast"
-        type="textarea"
-      />
-    </Section>
-  );
-}
-
-function VocalsSection({ data, updateField }: { data: BlueprintData; updateField: (field: keyof BlueprintData, value: string) => void }) {
-  return (
-    <Section title="Vocal Arrangement" description="Plan the vocal layers and harmony">
-      <FormField
-        label="Lead Vocal Style"
-        value={data.leadVocalStyle}
-        onChange={(value) => updateField('leadVocalStyle', value)}
-        placeholder="e.g., Smooth, controlled power, subtle runs, conversational delivery"
-        type="textarea"
-      />
-      <FormField
-        label="Harmony Plan"
-        value={data.harmonyPlan}
-        onChange={(value) => updateField('harmonyPlan', value)}
-        placeholder="e.g., Thirds on chorus, fifths on bridge, unison doubling on hook"
-        type="textarea"
-      />
-      <FormField
-        label="Falsetto Moments"
-        value={data.falsettoMoments}
-        onChange={(value) => updateField('falsettoMoments', value)}
-        placeholder="e.g., Pre-chorus lift, bridge emotional peak, outro ethereal fade"
-      />
-      <FormField
-        label="Ad-libs & Vocal Texture"
-        value={data.adLibs}
-        onChange={(value) => updateField('adLibs', value)}
-        placeholder="e.g., 'Yeah', 'Oh baby', whispered backing, vocal percussion"
-        type="textarea"
-      />
-    </Section>
-  );
-}
-
-function ProductionSection({ data, updateField }: { data: BlueprintData; updateField: (field: keyof BlueprintData, value: string) => void }) {
-  return (
-    <Section title="Production Vision" description="Guide the sonic treatment and mix">
-      <FormField
-        label="Vibe References"
-        value={data.vibeReferences}
-        onChange={(value) => updateField('vibeReferences', value)}
-        placeholder="e.g., Warm analog saturation, vinyl crackle, intimate room sound"
-        type="textarea"
-      />
-      <FormField
-        label="Mix Notes"
-        value={data.mixNotes}
-        onChange={(value) => updateField('mixNotes', value)}
-        placeholder="e.g., Vocals upfront, bass present but controlled, drums punchy but not overpowering"
-        type="textarea"
-      />
-      <FormField
-        label="Dynamics & Energy"
-        value={data.dynamics}
-        onChange={(value) => updateField('dynamics', value)}
-        placeholder="e.g., Verses intimate, chorus opens up, bridge strips down, outro builds then fades"
-        type="textarea"
-      />
-    </Section>
-  );
-}
-
-function EmotionSection({ data, updateField }: { data: BlueprintData; updateField: (field: keyof BlueprintData, value: string) => void }) {
-  return (
-    <Section title="Emotional Impact" description="Define the listener experience">
-      <FormField
-        label="Listener Takeaway"
-        value={data.listenerTakeaway}
-        onChange={(value) => updateField('listenerTakeaway', value)}
-        placeholder="e.g., Feeling of romantic longing, sense of intimate connection, nostalgic warmth"
-        type="textarea"
-      />
-      <FormField
-        label="Emotional Journey"
-        value={data.emotionalJourney}
-        onChange={(value) => updateField('emotionalJourney', value)}
-        placeholder="e.g., Anticipation → Desire → Vulnerability → Confidence → Resolution"
-        type="textarea"
-      />
-    </Section>
-  );
-}
-
-// Utility Components
-function Section({ title, description, children }: { title: string; description: string; children: React.ReactNode }) {
-  return (
-    <div className="bg-zinc-950/60 rounded-2xl border border-zinc-800 p-8">
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold text-yellow-400">{title}</h2>
-        <p className="text-zinc-400 mt-2">{description}</p>
-      </div>
-      <div className="space-y-6">
-        {children}
-      </div>
-    </div>
-  );
-}
-
-function FormField({ 
-  label, 
-  value, 
-  onChange, 
-  placeholder, 
-  type = 'input' 
-}: { 
-  label: string; 
-  value: string; 
-  onChange: (value: string) => void; 
-  placeholder?: string; 
-  type?: 'input' | 'textarea' 
-}) {
-  return (
-    <div>
-      <label className="block text-sm font-medium text-zinc-300 mb-2">
-        {label}
-      </label>
-      {type === 'textarea' ? (
-        <textarea
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          placeholder={placeholder}
-          rows={3}
-          className="w-full px-4 py-3 bg-zinc-900/60 border border-zinc-700 rounded-xl text-white placeholder-zinc-500 focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400 focus:outline-none transition"
-        />
-      ) : (
-        <input
-          type="text"
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          placeholder={placeholder}
-          className="w-full px-4 py-3 bg-zinc-900/60 border border-zinc-700 rounded-xl text-white placeholder-zinc-500 focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400 focus:outline-none transition"
-        />
-      )}
-    </div>
-  );
-}
-
-// Simple Lead capture modal (local only — replace with your CRM/tracking later)
-function LeadModal({ isOpen, onClose, onUnlock }: { isOpen: boolean; onClose: () => void; onUnlock: () => void; }) {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-
-  if (!isOpen) return null;
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
-      <div className="absolute inset-0 bg-black/70" onClick={onClose} />
-      <div className="relative bg-zinc-900 border border-zinc-800 rounded-2xl p-6 w-full max-w-md z-10">
-        <h3 className="text-lg font-bold text-yellow-400">Unlock Downloads</h3>
-        <p className="text-sm text-zinc-300 mt-2">Enter your name and email to unlock printing and downloads.</p>
-        <div className="mt-4 space-y-3">
-          <input placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} className="w-full px-3 py-2 bg-zinc-800 border border-zinc-700 rounded-md" />
-          <input placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-3 py-2 bg-zinc-800 border border-zinc-700 rounded-md" />
-        </div>
-        <div className="mt-4 flex justify-end gap-2">
-          <button onClick={onClose} className="px-4 py-2 rounded-md border border-zinc-700">Cancel</button>
-          <button
-            onClick={() => {
-              // In a real app you would send this to your API/CRM and verify
-              onUnlock();
-            }}
-            className="px-4 py-2 rounded-md bg-yellow-400 text-black font-semibold">
-            Unlock
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// Catalog picker overlay
-function CatalogPicker({ isOpen, catalog, onClose, onApply }: { isOpen: boolean; catalog: any[]; onClose: () => void; onApply: (item: any) => void; }) {
-  if (!isOpen) return null;
-  return (
-    <div className="fixed inset-0 z-40 flex items-center justify-center">
-      <div className="absolute inset-0 bg-black/60" onClick={onClose} />
-      <div className="relative z-50 w-full max-w-3xl bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
-        <div className="flex items-center justify-between">
-          <h3 className="text-lg font-bold text-yellow-400">Import from Catalog</h3>
-          <button onClick={onClose} className="text-sm text-zinc-400">Close</button>
-        </div>
-        <div className="mt-4 grid sm:grid-cols-2 gap-4 max-h-96 overflow-auto">
-          {catalog && catalog.length ? catalog.map((item, idx) => (
-            <div key={idx} className="p-3 border border-zinc-800 rounded-lg bg-zinc-950/30">
-              <div className="flex justify-between items-start">
-                <div>
-                  <div className="font-semibold text-white">{item.title || item.name || `Item ${idx+1}`}</div>
-                  <div className="text-sm text-zinc-400">{item.artist || item.genre || ''}</div>
-                </div>
-                <div className="ml-4">
-                  <button onClick={() => onApply(item)} className="px-3 py-1 bg-yellow-400 text-black rounded-md">Apply</button>
+                  <div className="text-center text-xs text-neutral-500">
+                    Questions?{" "}
+                    <Link className="underline" href="/contact">
+                      Contact us
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
-          )) : (
-            <div className="text-zinc-400">No items found in manifest.json</div>
-          )}
+          </div>
+        </div>
+
+        {/* PREVIEWS */}
+        <div id="previews" className="mt-10 md:mt-14">
+          <SectionTitle
+            kicker="Listen first"
+            title="Audio previews"
+            desc="Hear the vibe before you start. These are short 20–30s clips meant to show the pocket and emotional tone."
+          />
+
+          <div className="mt-6 grid gap-4">
+            {PREVIEWS.map((p) => (
+              <PreviewRow
+                key={p.id}
+                item={p}
+                isActive={activeId === p.id}
+                onPlay={() => handlePlay(p.id)}
+                onPause={() => handlePause(p.id)}
+                audioRef={(el) => {
+                  audioMap.current[p.id] = el;
+                }}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* WHAT'S INSIDE */}
+        <div className="mt-12 md:mt-16">
+          <SectionTitle
+            kicker="Everything you need"
+            title="What’s inside the pack"
+            desc="Built to move fast without losing soul. Use it as a starter kit or a repeatable system for content and releases."
+          />
+
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm">
+              <div className="text-base font-semibold text-neutral-900">🎼 Chord Blueprints</div>
+              <p className="mt-2 text-sm text-neutral-600">
+                Romantic • Smooth • Emotional • Late-Night progressions designed for quick writing.
+              </p>
+            </div>
+
+            <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm">
+              <div className="text-base font-semibold text-neutral-900">🥁 Drum Groove Templates</div>
+              <p className="mt-2 text-sm text-neutral-600">
+                Modern R&amp;B bounce, neo-soul swing, and slow-jam pockets with clean loop points.
+              </p>
+            </div>
+
+            <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm">
+              <div className="text-base font-semibold text-neutral-900">🎙 Vocal Arrangement System</div>
+              <p className="mt-2 text-sm text-neutral-600">
+                3rd &amp; 5th stacks, falsetto-led chorus options, background placement maps, ad-lib structure.
+              </p>
+            </div>
+
+            <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm">
+              <div className="text-base font-semibold text-neutral-900">🧠 Songwriting Framework</div>
+              <p className="mt-2 text-sm text-neutral-600">
+                Verse→Pre→Chorus formulas, emotional arc blueprint, hook crafting rules, bridge impact method.
+              </p>
+            </div>
+
+            <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm">
+              <div className="text-base font-semibold text-neutral-900">🎚 Mix Starter Chains</div>
+              <p className="mt-2 text-sm text-neutral-600">
+                Lead vocal polish chain, drum glue bus, low-end control template to keep it clean.
+              </p>
+            </div>
+
+            <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm">
+              <div className="text-base font-semibold text-neutral-900">🧬 Project Templates</div>
+              <p className="mt-2 text-sm text-neutral-600">
+                FL Studio • Logic • Ableton templates so you can open and start instantly.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* WHO IT'S FOR + HOW IT WORKS */}
+        <div className="mt-12 grid gap-6 md:mt-16 md:grid-cols-2">
+          <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm">
+            <SectionTitle kicker="Built for" title="Who this is for" />
+            <ul className="mt-4 space-y-2 text-neutral-700">
+              <li>✓ R&amp;B producers</li>
+              <li>✓ Independent artists</li>
+              <li>✓ Content creators (reels + shorts)</li>
+              <li>✓ Film / love-scene composers</li>
+              <li>✓ Anyone building an emotional brand</li>
+            </ul>
+          </div>
+
+          <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm">
+            <SectionTitle kicker="Simple process" title="How it works" />
+            <ol className="mt-4 space-y-2 text-neutral-700">
+              <li>1) Download the pack</li>
+              <li>2) Open a template</li>
+              <li>3) Follow the blueprint</li>
+              <li>4) Create real records in hours — not weeks</li>
+            </ol>
+          </div>
+        </div>
+
+        {/* OUTCOME */}
+        <div className="mt-12 rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm md:mt-16 md:p-10">
+          <SectionTitle kicker="The outcome" title="From stuck to finished" />
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            <div className="rounded-2xl border border-neutral-200 bg-neutral-50 p-5">
+              <div className="text-sm font-semibold text-neutral-900">Before</div>
+              <p className="mt-2 text-sm text-neutral-700">
+                Stuck ideas, unfinished sessions, no clear direction, and “almost there” songs.
+              </p>
+            </div>
+            <div className="rounded-2xl border border-neutral-200 bg-neutral-50 p-5">
+              <div className="text-sm font-semibold text-neutral-900">After</div>
+              <p className="mt-2 text-sm text-neutral-700">
+                Complete, emotional R&amp;B records with structure, soul, and clean modern pocket.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* START ORDER */}
+        <div id="start-order" className="mt-12 md:mt-16">
+          <div className="rounded-3xl border border-neutral-200 bg-neutral-900 p-6 text-white shadow-sm md:p-10">
+            <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+              <div className="space-y-2">
+                <div className="text-xs font-semibold uppercase tracking-wider text-white/70">
+                  Ready to build?
+                </div>
+                <h3 className="text-2xl font-semibold tracking-tight md:text-3xl">
+                  Start your R&amp;B Blueprint Pack order
+                </h3>
+                <p className="max-w-2xl text-sm text-white/80">
+                  Instant download after checkout. If you want, you can also request a custom version of
+                  this pack for your exact tempo/key vibe.
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-3 sm:flex-row">
+                {/* OPTION A: If you already have a checkout page */}
+                <Link
+                  href="/checkout?rnb_blueprint_pack=1"
+                  className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-neutral-900 hover:opacity-90"
+                >
+                  Go to Checkout
+                </Link>
+
+                {/* OPTION B: If you use an intake/order form */}
+                <Link
+                  href="/custom-music-kits#intake"
+                  className="inline-flex items-center justify-center rounded-full border border-white/30 bg-transparent px-6 py-3 text-sm font-semibold text-white hover:bg-white/10"
+                >
+                  Start Order Form
+                </Link>
+              </div>
+            </div>
+
+            <div className="mt-6 flex flex-wrap gap-2 text-xs text-white/75">
+              <span className="rounded-full border border-white/20 px-3 py-1">Used in PulseNexis releases</span>
+              <span className="rounded-full border border-white/20 px-3 py-1">Designed by R&amp;B songwriter/producer</span>
+              <span className="rounded-full border border-white/20 px-3 py-1">Lifetime access</span>
+            </div>
+          </div>
+        </div>
+
+        {/* FOOTER NOTE */}
+        <div className="mt-10 text-center text-xs text-neutral-500">
+          © {new Date().getFullYear()} PulseNexis • Honey Drip Records
         </div>
       </div>
-    </div>
+    </main>
   );
 }

@@ -19,6 +19,7 @@ export default function HomePage() {
             PulseNexis tools to build faster—whether you’re a creator, brand, or listener.
           </p>
 
+          {/* Pills row */}
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
               href="/catalog"
@@ -34,8 +35,16 @@ export default function HomePage() {
               Packs
             </Link>
 
+            {/* ✅ NEW Cinema pill */}
             <Link
-              href="/rnb-blueprint"
+              href="/cinema"
+              className="rounded-full bg-black px-5 py-2 text-sm font-semibold text-white hover:opacity-90"
+            >
+              Cinema
+            </Link>
+
+            <Link
+              href="/catalog/packs/rnb-blueprint"
               className="rounded-full bg-blue-500 px-5 py-2 text-sm font-semibold text-white hover:bg-blue-400"
             >
               R&amp;B Blueprint

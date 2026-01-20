@@ -1,2 +1,5 @@
 import { redirect } from "next/navigation";
-export default function CreateRedirect() { redirect("/rnb-blueprint"); }
+
+export default function Page() {
+  redirect("/catalog");
+}

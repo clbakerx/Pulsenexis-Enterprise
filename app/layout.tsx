@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -42,19 +42,40 @@ export default function RootLayout({
             </Link>
 
             <nav className="flex items-center gap-4 text-sm">
-              <Link className="hover:underline" href="/catalog/packs">
-                Packs
-              </Link>
-              <Link className="hover:underline" href="/custom-music-kits">
-                Custom Kits
-              </Link>
-              <Link className="hover:underline" href="/licensing">
-                Licensing
-              </Link>
-              <Link className="hover:underline" href="/support">
-                Support
-              </Link>
-            </nav>
+  <Link className="hover:underline" href="/catalog/packs">
+    Packs
+  </Link>
+
+  <Link
+    href="/cinema"
+    className="inline-flex items-center rounded-full bg-black text-white px-4 py-2 text-sm font-semibold hover:opacity-90"
+  >
+    Cinema
+  </Link>
+
+  <Link className="hover:underline" href="/custom-music-kits">
+    Custom Kits
+  </Link>
+
+  <Link className="hover:underline" href="/licensing">
+    Licensing
+  </Link>
+
+  <span
+    className="inline-flex items-center gap-2 text-slate-500 cursor-not-allowed select-none"
+    aria-disabled="true"
+    title="Coming soon"
+  >
+    Sell My Music
+    <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[11px] text-slate-600">
+      Coming Soon
+    </span>
+  </span>
+
+  <Link className="hover:underline" href="/support">
+    Support
+  </Link>
+</nav>
           </div>
         </header>
 
