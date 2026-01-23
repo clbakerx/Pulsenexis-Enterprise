@@ -1,0 +1,10 @@
+[33m1da9f24[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mlaunch-cleanup[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{Fri Jan 23 05:24:45 2026}: reset: moving to HEAD~1
+[33m2045e03[m[33m ([m[1;31morigin/launch-cleanup[m[33m)[m HEAD@{Tue Jan 20 01:09:10 2026}: commit: Update catalog page
+[33m1da9f24[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mlaunch-cleanup[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{Sun Jan 18 05:05:15 2026}: checkout: moving from main to launch-cleanup
+[33m1da9f24[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mlaunch-cleanup[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{Thu Jan 8 02:41:12 2026}: commit: Update catalog page
+[33m9ec865c[m HEAD@{Wed Jan 7 22:47:05 2026}: commit: Add studio hero image to homepage
+[33me8ca2ae[m HEAD@{Wed Jan 7 20:14:14 2026}: commit: Resolve merge in layout and fix duplicate Metadata import
+[33m55a2422[m HEAD@{Wed Jan 7 20:08:31 2026}: commit: Resolve merge in layout.tsx
+[33m964cb2c[m HEAD@{Wed Jan 7 20:06:52 2026}: commit (merge): Merge branch 'main' of https://github.com/clbakerx/Pulsenexis-Enterprise
+[33m918f12c[m HEAD@{Wed Jan 7 19:56:18 2026}: commit: Save working site state (catalog, custom kits, packs, layout)
+[33m2f6f351[m HEAD@{Wed Jan 7 14:45:41 2026}: clone: from https://github.com/clbakerx/Pulsenexis-Enterprise
