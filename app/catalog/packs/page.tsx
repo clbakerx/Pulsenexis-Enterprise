@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getAllPacks } from "@/lib/packsCatalog";
 
 export const metadata = {
   title: "Packs • PulseNexis",
@@ -8,76 +9,9 @@ export const metadata = {
 // ✅ Universal pack checkout link ($199)
 const PACKS_STRIPE_URL = "https://buy.stripe.com/fZu3cv7En2751uh8lv4ZG0l";
 
-type Pack = {
-  id: string;
-  name: string;
-  tagline: string;
-  description: string;
-  bullets: string[];
-  badge?: string;
-  href: string;
-};
-
-const packs: Pack[] = [
-  {
-    id: "rnb-blueprint",
-    name: "Pulsenexis Blueprint Pack",
-    tagline: "Grown & soulful. Ready for love scenes and late-night vibes.",
-    description:
-      "A polished R&B starter pack with warm chords, smooth bass, and emotional bounce for content that needs heart.",
-    bullets: ["Romantic + smooth tempos", "Clean loop points", "Best for reels + shorts"],
-    badge: "Fan Favorite",
-    href: "/catalog/packs/rnb-blueprint",
-  },
-  {
-    id: "trap-soul",
-    name: "Trap Soul Pack",
-    tagline: "Modern R&B with 808 weight.",
-    description:
-      "Dark-to-warm Trap Soul palette: 808s, airy keys, and tension chords that feel current and cinematic.",
-    bullets: ["808 + ambient texture", "Hook-friendly grooves", "Best for story content"],
-    href: "/catalog/packs/trap-soul",
-  },
-  {
-    id: "smooth-jazz",
-    name: "Smooth Jazz Pack",
-    tagline: "Luxury lounge energy.",
-    description:
-      "Polished jazz chords and clean instrumentation for upscale brand content, lounge scenes, and smooth transitions.",
-    bullets: ["Warm Rhodes + sax vibes", "No harsh drums", "Best for luxury + lifestyle"],
-    href: "/catalog/packs/smooth-jazz",
-  },
-  {
-    id: "dance-pop",
-    name: "Dance Pop Pack",
-    tagline: "Bright. Energetic. Movement-ready.",
-    description:
-      "Upbeat tracks designed for motion content: workouts, ads, product drops, and energetic intros.",
-    bullets: ["High energy", "Clear drops", "Best for product + promo"],
-    href: "/catalog/packs/dance-pop",
-  },
-  {
-    id: "hip-hop-drums",
-    name: "Hip-Hop-Drums Pack",
-    tagline: "Knock, bounce, and pocket.",
-    description:
-      "Hard-hitting drum loops and grooves built to sit under voiceovers, promos, and fast edits.",
-    bullets: ["Punchy drums", "Clean transients", "Best for voiceover content"],
-    href: "/catalog/packs/hip-hop-drums",
-  },
-  {
-    id: "cinematic",
-    name: "Cinematic Pack",
-    tagline: "Big emotion and trailer-style moments.",
-    description:
-      "Cinematic textures, swells, and tension builds for storytelling, documentary vibes, and dramatic reveals.",
-    bullets: ["Builds + swells", "Emotional tension", "Best for trailers + reels"],
-    badge: "New",
-    href: "/catalog/packs/cinematic",
-  },
-];
-
 export default function PacksPage() {
+  const packs = getAllPacks();
+
   return (
     <div className="py-10">
       {/* Header */}
@@ -91,7 +25,7 @@ export default function PacksPage() {
       {/* Grid */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {packs.map((p) => (
-          <div key={p.id} className="relative rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div key={p.slug} className="relative rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
             {p.badge ? (
               <div className="absolute -top-3 left-6">
                 <span className="rounded-full bg-black px-3 py-1 text-xs font-semibold text-white">
@@ -115,13 +49,12 @@ export default function PacksPage() {
 
             <div className="mt-6 flex gap-3">
               <Link
-                href={p.href}
+                href={`/catalog/packs/${p.slug}`}
                 className="inline-flex flex-1 items-center justify-center rounded-full bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-slate-900"
               >
                 View Pack
               </Link>
 
-              {/* ✅ Start Order goes straight to Stripe checkout */}
               <a
                 href={PACKS_STRIPE_URL}
                 target="_blank"
