@@ -47,12 +47,13 @@ export default function TrackCard({
               alt={track.title || "Cover"}
               fill
               className="object-contain rounded-lg"
-              onError={(e) => {
-                const img = e.currentTarget as any;
-                if (img?.src && !img.src.includes("/HoneyDrip%20Logo.jpg")) {
-                  img.src = "/HoneyDrip Logo.jpg";
-                }
-              }}
+              onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+  const img = e.currentTarget;
+
+  // prevent infinite error loop
+  img.onerror = null;
+  img.src = "/HoneyDrip Logo.jpg";
+}}
             />
           </div>
 
