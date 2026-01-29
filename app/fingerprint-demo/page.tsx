@@ -1,5 +1,5 @@
 // app/fingerprint-demo/page.tsx
-import FingerprintDemo from '@/components/FingerprintDemo';
+import FingerprintDemo from '@/app/components/FingerprintDemo';
 import Link from 'next/link';
 
 export default function FingerprintDemoPage() {

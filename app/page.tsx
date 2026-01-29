@@ -28,7 +28,7 @@ export default function HomePage() {
             </Link>
 
             <Link
-              href="/catalog/packs"
+              href="/packs"
               className="rounded-full bg-amber-400 px-5 py-2 text-sm font-semibold text-black hover:bg-amber-300"
             >
               Packs
