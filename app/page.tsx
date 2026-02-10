@@ -51,7 +51,7 @@ export default function HomePage() {
             HONEY DRIP RECORDS
           </div>
 
-          <h1 className="mt-4 text-4xl sm:text-5xl font-extrabold leading-tight">
+          <h1 className="mt-4 text-4xl leading-tight font-extrabold sm:text-5xl">
             License Music Once.
             <br />
             <span className="text-amber-300">Monetize Forever.</span>
@@ -73,15 +73,8 @@ export default function HomePage() {
             <li>✅ Music built for real creators</li>
           </ul>
 
-          {/* Primary buttons */}
+          {/* Primary buttons (removed: Browse Licensable Music + How Licensing Works) */}
           <div className="mt-7 flex flex-wrap gap-3">
-            <Link
-              href="/packs"
-              className="rounded-full bg-amber-400 px-6 py-3 text-sm font-semibold text-black hover:bg-amber-300"
-            >
-              Browse Licensable Music
-            </Link>
-
             <Link
               href="/shorts"
               className="rounded-full bg-white/15 px-6 py-3 text-sm font-semibold text-white hover:bg-white/20"
@@ -91,17 +84,9 @@ export default function HomePage() {
               </span>
               Shorts &amp; Jingles
             </Link>
-
-            {/* ✅ fixed: this should go to /licensing */}
-            <Link
-              href="/licensing"
-              className="rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10"
-            >
-              How Licensing Works
-            </Link>
           </div>
 
-          {/* De-emphasize extras */}
+          {/* Extras row (removed: Support) */}
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
               href="/catalog"
@@ -111,17 +96,17 @@ export default function HomePage() {
             </Link>
 
             <Link
+              href="/catalog/packs?genre=jazz"
+              className="rounded-full bg-emerald-500 px-5 py-2 text-sm font-semibold text-white hover:bg-emerald-400"
+            >
+              Jazz Packs
+            </Link>
+
+            <Link
               href="/trademark"
               className="rounded-full bg-neutral-900 px-5 py-2 text-sm font-semibold text-white hover:opacity-90"
             >
               Trademark Showcase
-            </Link>
-
-            <Link
-              href="/support"
-              className="rounded-full bg-white/15 px-5 py-2 text-sm font-semibold text-white hover:bg-white/20"
-            >
-              Support
             </Link>
           </div>
 
@@ -148,7 +133,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ✅ STEP 2: USE-CASE FIRST SECTION */}
+      {/* STEP 2: USE-CASE FIRST SECTION */}
       <section className="mt-12">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
@@ -171,7 +156,7 @@ export default function HomePage() {
             <Link
               key={c.title}
               href={c.href}
-              className="group rounded-2xl border bg-white p-5 hover:shadow-sm transition"
+              className="group rounded-2xl border bg-white p-5 transition hover:shadow-sm"
             >
               <div className="flex items-start justify-between gap-3">
                 <div>

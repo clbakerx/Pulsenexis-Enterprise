@@ -1,23 +1,21 @@
 "use client";
 
 import * as React from "react";
-import { useParams } from "next/navigation";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 
 type Sample = {
   id: string;
   title: string;
-  demoUrl: string; // full mp3 URL (no building/guessing)
+  demoUrl: string;
 };
 
 type CinemaKit = {
   title: string;
-  subtitle?: string; // kit-specific theme line (optional)
-  payUrl?: string;
+  subtitle?: string;
   samples: Sample[];
 };
 
-const CINEMA_PAYLINK_URL = "https://buy.stripe.com/fZu14n0bVeTR7SF45f4ZG0t";
 const CINEMA_PRICE_LABEL = "$169 cinema bundle";
 const BUY_BUTTON_LABEL = "Buy — $169";
 
@@ -51,7 +49,17 @@ function chunk<T>(arr: T[], size: number) {
   return out;
 }
 
-// ✅ The ONLY place you edit songs for Vol 1–4
+// Single, consistent slug key generator (for metadata)
+function slugify(input: string) {
+  return (input || "")
+    .trim()
+    .toLowerCase()
+    .replace(/['"]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+// ✅ The ONLY place you edit kits & demo URLs
 const CINEMA_KITS: Record<string, CinemaKit> = {
   "cinematic-reveal-toolkit-vol1": {
     title: "Cinematic Reveal Toolkit Vol. 1",
@@ -202,14 +210,14 @@ const CINEMA_KITS: Record<string, CinemaKit> = {
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Containment-Breach/Containment%20Breach%20(Ver_2)60secSample.mp3",
       },
       {
-        id: "no-safe-exstraction",
-        title: "No Safe Exstraction",
+        id: "no-safe-extraction",
+        title: "No Safe Extraction",
         demoUrl:
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/No-Safe-Extraction/No%20Safe%20Extraction_60secSample.mp3",
       },
       {
-        id: "no-safe-exstraction-v2",
-        title: "No Safe Exstraction V2",
+        id: "no-safe-extraction-v2",
+        title: "No Safe Extraction V2",
         demoUrl:
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/No-Safe-Extraction/No%20Safe%20Extraction%20(Ver_2)_60secSample.mp3",
       },
@@ -265,20 +273,13 @@ const CINEMA_KITS: Record<string, CinemaKit> = {
         id: "silent-before-the-strike-v2",
         title: "Silent Before the Strike V2",
         demoUrl:
-          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Silent-Before-the-Strike/Silent%20Before%20the%20Strike%20(Ver_2)60secSample.mp3",
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Silent-Before-the-strike/Silent%20Before%20the%20Strike%20(Ver_2)60secSample.mp3",
       },
-      
     ],
   },
 };
 
-function StatPill({
-  label,
-  value,
-}: {
-  label: string;
-  value: string | number;
-}) {
+function StatPill({ label, value }: { label: string; value: string | number }) {
   return (
     <div className="rounded-2xl border border-neutral-200 bg-white px-4 py-3 shadow-sm">
       <div className="text-[11px] font-semibold uppercase tracking-wider text-neutral-500">
@@ -289,29 +290,36 @@ function StatPill({
   );
 }
 
+function getSlugFromParams(params: ReturnType<typeof useParams>): string {
+  const raw = (params as unknown as { slug?: string | string[] })?.slug;
+  if (Array.isArray(raw)) return raw[0] || "";
+  return raw || "";
+}
+
 export default function CinemaKitPage() {
   const params = useParams();
 
-  const rawSlug = (() => {
-    const s = (params as any)?.slug;
-    if (Array.isArray(s)) return s[0] || "";
-    return (s as string) || "";
-  })();
+  const slug = React.useMemo(() => normalizeSlug(getSlugFromParams(params)), [params]);
 
-  const slug = normalizeSlug(rawSlug);
-
-  const kitBySlug = React.useMemo(() => {
-    const map: Record<string, CinemaKit> = {};
-    for (const [key, kit] of Object.entries(CINEMA_KITS)) {
-      map[normalizeSlug(key)] = kit;
+  const kit = React.useMemo(() => {
+    const normalizedMap: Record<string, CinemaKit> = {};
+    for (const [key, val] of Object.entries(CINEMA_KITS)) {
+      normalizedMap[normalizeSlug(key)] = val;
     }
-    return map;
-  }, []);
+    return normalizedMap[slug];
+  }, [slug]);
 
-  const kit = kitBySlug[slug];
+  const availableSlugs = React.useMemo(
+    () => Object.keys(CINEMA_KITS).map((k) => normalizeSlug(k)),
+    []
+  );
 
   const audioRef = React.useRef<Record<string, HTMLAudioElement>>({});
   const [activeKey, setActiveKey] = React.useState<string | null>(null);
+
+  const [note, setNote] = React.useState("");
+  const [busy, setBusy] = React.useState(false);
+  const [errorMsg, setErrorMsg] = React.useState<string | null>(null);
 
   const stopAllExcept = React.useCallback((keepKey: string) => {
     for (const [key, el] of Object.entries(audioRef.current)) {
@@ -321,7 +329,7 @@ export default function CinemaKitPage() {
           el.pause();
           el.currentTime = 0;
         } catch {
-          // noop
+          // ignore
         }
       }
     }
@@ -338,11 +346,11 @@ export default function CinemaKitPage() {
       try {
         el.load();
       } catch {
-        // noop
+        // ignore
       }
 
       el.play().catch(() => {
-        // ignore gesture/autoplay rejections
+        // ignore
       });
     },
     [stopAllExcept]
@@ -354,15 +362,44 @@ export default function CinemaKitPage() {
       try {
         el.pause();
       } catch {
-        // noop
+        // ignore
       }
     }
     setActiveKey((cur) => (cur === key ? null : cur));
   }, []);
 
-  const availableSlugs = React.useMemo(() => {
-    return Object.keys(CINEMA_KITS).map((k) => normalizeSlug(k));
-  }, []);
+  const checkoutCinema = React.useCallback(async () => {
+    if (!kit) return;
+
+    try {
+      setErrorMsg(null);
+      setBusy(true);
+
+      const res = await fetch("/api/checkout/cinema", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          kit: kit.title, // human title
+          productId: slug, // slug id (recommended)
+          note: note.trim(),
+        }),
+      });
+
+      const data = (await res.json()) as { url?: string; error?: string };
+
+      if (!res.ok || !data.url) {
+        throw new Error(data.error || "Checkout failed.");
+      }
+
+      window.location.href = data.url;
+    } catch (e: unknown) {
+      const msg =
+        e instanceof Error ? e.message : typeof e === "string" ? e : "Checkout failed.";
+      setErrorMsg(msg);
+    } finally {
+      setBusy(false);
+    }
+  }, [kit, note, slug]);
 
   if (!kit) {
     return (
@@ -376,9 +413,7 @@ export default function CinemaKitPage() {
           </Link>
 
           <div className="mt-8 rounded-3xl border border-neutral-200 bg-neutral-50 p-6">
-            <h1 className="text-2xl font-semibold text-neutral-900">
-              Kit not found
-            </h1>
+            <h1 className="text-2xl font-semibold text-neutral-900">Kit not found</h1>
             <p className="mt-2 text-sm text-neutral-600">
               This cinema kit slug does not exist:{" "}
               <span className="font-mono">{slug || "(missing)"}</span>
@@ -396,11 +431,7 @@ export default function CinemaKitPage() {
     );
   }
 
-  const payUrl = kit.payUrl || CINEMA_PAYLINK_URL;
-
-  const bundlePairs = React.useMemo(() => {
-    return chunk(kit.samples ?? [], 2);
-  }, [kit.samples]);
+  const bundlePairs = React.useMemo(() => chunk(kit.samples ?? [], 2), [kit.samples]);
 
   const sampleCount = kit.samples?.length ?? 0;
   const bundleCount = bundlePairs.length;
@@ -420,15 +451,7 @@ export default function CinemaKitPage() {
           >
             ← Back to Cinema
           </Link>
-
-          <a
-            href={payUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-full bg-neutral-900 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90"
-          >
-            {BUY_BUTTON_LABEL}
-          </a>
+          <div />
         </div>
 
         {/* Hero */}
@@ -466,16 +489,39 @@ export default function CinemaKitPage() {
                   <StatPill label="Samples" value={sampleCount} />
                   <StatPill label="Per Card" value="2 tracks" />
                 </div>
+
+                {/* Checkout note */}
+                <div className="mt-6 rounded-2xl border border-neutral-200 bg-white p-4">
+                  <label className="block text-[11px] font-semibold uppercase tracking-wider text-neutral-500">
+                    Checkout note (optional)
+                  </label>
+                  <input
+                    value={note}
+                    onChange={(e) => setNote(e.target.value)}
+                    placeholder='Example: "Bundle 2" or "Vol 2 for IG ads"'
+                    className="mt-2 w-full rounded-xl border border-neutral-300 px-3 py-2 text-sm outline-none focus:border-neutral-500"
+                  />
+                  <p className="mt-2 text-[11px] text-neutral-500">
+                    <span className="font-semibold text-neutral-700">Important:</span> To
+                    ensure proper product delivery, please enter your{" "}
+                    <span className="font-semibold text-neutral-700">bundle selection</span>{" "}
+                    (example: <span className="font-mono">Bundle 2</span> or{" "}
+                    <span className="font-mono">Vol 2</span>). This note is sent to Stripe
+                    with your order.
+                  </p>
+                </div>
+
+                {errorMsg ? <p className="mt-3 text-sm text-red-600">{errorMsg}</p> : null}
               </div>
 
+              {/* Sidebar info only */}
               <div className="w-full md:max-w-sm">
                 <div className="rounded-3xl border border-neutral-200 bg-white p-5 shadow-sm">
                   <div className="text-sm font-semibold text-neutral-900">
                     License this bundle
                   </div>
                   <p className="mt-1 text-sm text-neutral-600">
-                    One-time purchase. Built for film, trailers, TV, and branded
-                    visuals.
+                    One-time purchase. Built for film, trailers, TV, and branded visuals.
                   </p>
 
                   <div className="mt-4 grid gap-2">
@@ -492,46 +538,22 @@ export default function CinemaKitPage() {
                       <span className="text-neutral-700">Film • Trailer • TV</span>
                     </div>
                   </div>
-
-                  <a
-                    href={payUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-neutral-900 px-4 py-2.5 text-sm font-semibold text-white hover:opacity-90"
-                  >
-                    Buy Cinema Bundle — $169
-                  </a>
-
-                  <div className="mt-2 text-center text-[11px] text-neutral-500">
-                    Secure checkout • Film & trailer ready
-                  </div>
                 </div>
               </div>
             </div>
           </div>
         </header>
 
-        {/* Instructions */}
-        <div className="mt-8 flex flex-col gap-2 rounded-3xl border border-neutral-200 bg-white p-5 shadow-sm md:flex-row md:items-center md:justify-between">
-          <div className="min-w-0">
-            <div className="text-sm font-semibold text-neutral-900">Stream Previews</div>
-            <p className="mt-1 text-sm text-neutral-600">
-              Each card contains <span className="font-semibold">2 samples</span>. Only
-              one preview plays at a time.
-            </p>
-          </div>
-
-          <a
-            href={payUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex shrink-0 items-center justify-center rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-semibold text-neutral-800 hover:bg-neutral-50"
-          >
-            Buy this bundle
-          </a>
+        {/* Stream previews bar */}
+        <div className="mt-8 rounded-3xl border border-neutral-200 bg-white p-5 shadow-sm">
+          <div className="text-sm font-semibold text-neutral-900">Stream Previews</div>
+          <p className="mt-1 text-sm text-neutral-600">
+            Each card contains <span className="font-semibold">2 samples</span>. Only one
+            preview plays at a time.
+          </p>
         </div>
 
-        {/* Empty state */}
+        {/* Cards */}
         {sampleCount === 0 ? (
           <div className="mt-8 rounded-3xl border border-neutral-200 bg-neutral-50 p-6 text-sm text-neutral-700">
             No samples added yet for this kit.
@@ -542,33 +564,42 @@ export default function CinemaKitPage() {
               const bundleId = `b${idx + 1}`;
               const bundleName = `Bundle ${idx + 1}`;
 
+              // A stable "which bundle they clicked" identifier (goes into the note automatically)
+              const bundleSelection = `${bundleName}`;
+
+              const checkoutThisBundle = async () => {
+                // Auto-append selection if they didn't type anything
+                const current = note.trim();
+                const nextNote =
+                  current.length > 0 ? `${current} | ${bundleSelection}` : bundleSelection;
+                setNote(nextNote);
+                await checkoutCinema();
+              };
+
               return (
                 <div
                   key={bundleId}
                   className="rounded-3xl border border-neutral-200 bg-white shadow-sm"
                 >
                   <div className="p-5">
-                    {/* Card header */}
                     <div className="flex items-start justify-between gap-4">
                       <div className="min-w-0">
-                        {/* ✅ Bundle title now includes the 2 track names */}
                         <div className="text-sm font-semibold leading-5 text-neutral-900">
                           {bundleName} — {pair.map((s) => s.title).join(" + ")}
                         </div>
-
                         <div className="mt-1 text-xs text-neutral-500">
                           Film & Trailer Ready • 2-track bundle • {CINEMA_PRICE_LABEL}
                         </div>
                       </div>
 
-                      <a
-                        href={payUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="shrink-0 rounded-full bg-neutral-900 px-4 py-1.5 text-xs font-semibold text-white hover:opacity-90"
+                      <button
+                        type="button"
+                        onClick={checkoutThisBundle}
+                        disabled={busy}
+                        className="shrink-0 rounded-full bg-neutral-900 px-4 py-1.5 text-xs font-semibold text-white hover:opacity-90 disabled:opacity-50"
                       >
-                        {BUY_BUTTON_LABEL}
-                      </a>
+                        {busy ? "Opening…" : BUY_BUTTON_LABEL}
+                      </button>
                     </div>
 
                     <div className="mt-4 text-xs font-semibold uppercase tracking-wider text-neutral-500">
@@ -597,7 +628,9 @@ export default function CinemaKitPage() {
 
                             <button
                               type="button"
-                              onClick={() => (isActive ? handlePause(key) : handlePlay(key))}
+                              onClick={() =>
+                                isActive ? handlePause(key) : handlePlay(key)
+                              }
                               className={cx(
                                 "shrink-0 rounded-full px-4 py-1.5 text-xs font-semibold",
                                 isActive
@@ -616,7 +649,9 @@ export default function CinemaKitPage() {
                                 else delete audioRef.current[key];
                               }}
                               preload="none"
-                              onEnded={() => setActiveKey((cur) => (cur === key ? null : cur))}
+                              onEnded={() =>
+                                setActiveKey((cur) => (cur === key ? null : cur))
+                              }
                               onError={() => console.error("Audio failed:", src)}
                             >
                               <source src={src} type="audio/mpeg" />
@@ -624,25 +659,17 @@ export default function CinemaKitPage() {
                           </div>
                         );
                       })}
-
-                      {/* Optional: if odd number of samples, show a friendly filler */}
-                      {pair.length === 1 ? (
-                        <div className="rounded-2xl border border-dashed border-neutral-200 bg-white px-4 py-3 text-xs text-neutral-500">
-                          Add one more sample to complete this bundle.
-                        </div>
-                      ) : null}
                     </div>
 
-                    {/* Card footer CTA */}
                     <div className="mt-5">
-                      <a
-                        href={payUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex w-full items-center justify-center rounded-full bg-neutral-900 px-4 py-2.5 text-xs font-semibold text-white hover:opacity-90"
+                      <button
+                        type="button"
+                        onClick={checkoutThisBundle}
+                        disabled={busy}
+                        className="inline-flex w-full items-center justify-center rounded-full bg-neutral-900 px-4 py-2.5 text-xs font-semibold text-white hover:opacity-90 disabled:opacity-50"
                       >
-                        Buy Cinema Bundle — $169
-                      </a>
+                        {busy ? "Opening Checkout…" : "Buy Cinema Bundle — $169"}
+                      </button>
 
                       <div className="mt-2 text-center text-[11px] text-neutral-500">
                         One-time license • Film & trailer ready

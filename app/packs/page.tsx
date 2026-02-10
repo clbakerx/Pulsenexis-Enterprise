@@ -91,7 +91,8 @@ const PACKS: PackCard[] = [
     slug: "smooth-jazz",
     title: "Smooth Jazz Pack",
     subtitle: "Fan Favorite",
-    description: "Luxury lounge energy for premium brand content & classy transitions.",
+    description:
+      "Luxury lounge energy for premium brand content & classy transitions.",
     priceLabel: BUNDLE_PRICE_LABEL,
     tracks: [
       {
@@ -112,13 +113,20 @@ const PACKS: PackCard[] = [
         demoUrl:
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/Smooth-Jazz-Pack/City-LightsVelvet/samples/City-Lights-Velvet-16Bar.mp3",
       },
+      {
+        id: "velvet-afterglow",
+        title: "Velvet Afterglow",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Velvet-Afterglow/Velvet%20Afterglow_32secSample.mp3",
+      },
     ],
   },
   {
     slug: "dance-pop",
     title: "Dance Pop Pack",
     subtitle: "Upbeat",
-    description: "Bright, energetic tracks designed for motion content and product drops.",
+    description:
+      "Bright, energetic tracks designed for motion content and product drops.",
     priceLabel: BUNDLE_PRICE_LABEL,
     tracks: [
       {
@@ -138,6 +146,12 @@ const PACKS: PackCard[] = [
         title: "Drop City",
         demoUrl:
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/Dance-Pop-Pack/Drop-City/samples/Drop-City-16Bar.mp3",
+      },
+      {
+        id: "pulse-lights",
+        title: "Pulse Lights",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Pulse-Lights/Pulse%20Lights%20(Ver_2)30secSample.mp3",
       },
     ],
   },
@@ -166,6 +180,12 @@ const PACKS: PackCard[] = [
         demoUrl:
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/Hip-Hop-Drums-Pack/After-the-Noise/samples/After-the-Noise-16Bar.mp3",
       },
+      {
+        id: "snare-cinema",
+        title: "Snare Cinema",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Snare-Cinema/Snare%20Cinema%20(Ver_2)30secSample.mp3",
+      },
     ],
   },
   {
@@ -193,6 +213,12 @@ const PACKS: PackCard[] = [
         demoUrl:
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/Cinematic-Pack/Reveal-Moment/samples/Reveal-Moment-16Bar.mp3",
       },
+      {
+        id: "slow-reveal",
+        title: "Slow Reveal",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Slow-Reveal/Slow%20Reveal_30secSample.mp3",
+      },
     ],
   },
 ];
@@ -201,13 +227,10 @@ function cx(...classes: Array<string | false | null | undefined>) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function PacksDebutPage() {
-  // One audio at a time (global)
+export default function PacksPage() {
   const audioRef = React.useRef<Record<string, HTMLAudioElement | null>>({});
   const [activeKey, setActiveKey] = React.useState<string | null>(null);
 
-  // Optional checkout note (global for the order)
-  const [note, setNote] = React.useState("");
   const [busySlug, setBusySlug] = React.useState<string | null>(null);
   const [errorMsg, setErrorMsg] = React.useState<string | null>(null);
 
@@ -248,67 +271,42 @@ export default function PacksDebutPage() {
     setActiveKey((cur) => (cur === key ? null : cur));
   }, []);
 
-  const checkoutPack = React.useCallback(
-    async (packSlug: string) => {
-      setErrorMsg(null);
-      setBusySlug(packSlug);
+  const checkoutPack = React.useCallback(async (packSlug: string) => {
+    setErrorMsg(null);
+    setBusySlug(packSlug);
 
-      const safeNote = note.trim().slice(0, 200);
+    try {
+      const res = await fetch("/api/checkout/packs", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ packSlug }),
+      });
 
-      try {
-        const res = await fetch("/api/checkout/packs", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ packSlug, note: safeNote }),
-        });
+      const data = (await res.json()) as { url?: string; error?: string };
 
-        const data = (await res.json()) as { url?: string; error?: string };
-
-        if (!res.ok || !data.url) {
-          throw new Error(data.error || "Checkout failed.");
-        }
-
-        window.location.href = data.url;
-      } catch (e: any) {
-        setErrorMsg(e?.message || "Checkout failed.");
-      } finally {
-        setBusySlug(null);
+      if (!res.ok || !data.url) {
+        throw new Error(data.error || "Checkout failed.");
       }
-    },
-    [note]
-  );
+
+      window.location.href = data.url;
+    } catch (e: any) {
+      setErrorMsg(e?.message || "Checkout failed.");
+    } finally {
+      setBusySlug(null);
+    }
+  }, []);
 
   return (
     <main className="pn-page pn-packs min-h-screen bg-white">
       <div className="mx-auto max-w-6xl px-4 py-10">
-        <header className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div className="min-w-0">
-            <h1 className="text-3xl font-semibold text-neutral-900">Packs</h1>
-            <p className="mt-2 text-sm text-neutral-600">
-              Pick a pack below. Add an optional note, then checkout.
-            </p>
-            {errorMsg ? (
-              <p className="mt-2 text-sm text-red-600">{errorMsg}</p>
-            ) : null}
-          </div>
-
-          {/* Optional note (kept out of the cards; clean + consistent) */}
-          <div className="w-full sm:w-[360px]">
-            <label className="block text-[11px] font-semibold text-neutral-700">
-              Optional checkout note
-            </label>
-            <input
-              value={note}
-              onChange={(e) => setNote(e.target.value)}
-              placeholder='Example: "Buying Trap Soul Pack for IG ads"'
-              maxLength={200}
-              className="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-2 text-sm outline-none focus:border-neutral-500"
-            />
-            <div className="mt-1 flex items-center justify-between text-[11px] text-neutral-500">
-              <span>This note is attached to your order.</span>
-              <span>{note.trim().length}/200</span>
-            </div>
-          </div>
+        <header className="mb-8">
+          <h1 className="text-3xl font-semibold text-neutral-900">Packs</h1>
+          <p className="mt-2 text-sm text-neutral-600">
+            Pick a pack below, then checkout.
+          </p>
+          {errorMsg ? (
+            <p className="mt-2 text-sm text-red-600">{errorMsg}</p>
+          ) : null}
         </header>
 
         <section className="grid gap-6 md:grid-cols-2">
@@ -357,7 +355,9 @@ export default function PacksDebutPage() {
 
                           <button
                             type="button"
-                            onClick={() => (isActive ? handlePause(key) : handlePlay(key))}
+                            onClick={() =>
+                              isActive ? handlePause(key) : handlePlay(key)
+                            }
                             className={cx(
                               "shrink-0 rounded-full px-4 py-1.5 text-xs font-semibold",
                               isActive
@@ -373,8 +373,12 @@ export default function PacksDebutPage() {
                               audioRef.current[key] = el;
                             }}
                             preload="none"
-                            onEnded={() => setActiveKey((cur) => (cur === key ? null : cur))}
-                            onError={() => console.error("Audio failed:", t.demoUrl)}
+                            onEnded={() =>
+                              setActiveKey((cur) => (cur === key ? null : cur))
+                            }
+                            onError={() =>
+                              console.error("Audio failed:", t.demoUrl)
+                            }
                           >
                             <source src={t.demoUrl} type="audio/mpeg" />
                           </audio>
@@ -383,19 +387,21 @@ export default function PacksDebutPage() {
                     })}
                   </div>
 
-                  {/* BUY BUTTON */}
                   <div className="mt-4">
                     <button
                       type="button"
-                      data-cta="buy"
                       disabled={busySlug === pack.slug}
                       onClick={() => checkoutPack(pack.slug)}
                       className={cx(
                         "inline-flex w-full items-center justify-center rounded-full px-4 py-2 text-xs font-semibold text-white",
-                        busySlug === pack.slug ? "bg-neutral-400" : "bg-neutral-900 hover:opacity-90"
+                        busySlug === pack.slug
+                          ? "bg-neutral-400"
+                          : "bg-neutral-900 hover:opacity-90"
                       )}
                     >
-                      {busySlug === pack.slug ? "Opening Checkout…" : `Buy ${pack.title} — $199`}
+                      {busySlug === pack.slug
+                        ? "Opening Checkout…"
+                        : `Buy ${pack.title} — $199`}
                     </button>
                   </div>
                 </div>

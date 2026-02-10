@@ -163,6 +163,54 @@ const SHORTS_BUNDLES: ShortsBundle[] = [
     },
   ],
 },
+{
+  title: "Love Sessions EP 10",
+  tag: "Shorts Bundle",
+  samples: [
+    {
+      name: "Love Sessions EP 10 – Street-Minded",
+      previewUrl:
+        "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Shorts/Love-Sessions-EP_10/Love%20Sessions%20EP_10_30secSample.mp3",
+    },
+    {
+      name: "Love Sessions EP 10 V-2 – Street-Minded",
+      previewUrl:
+        "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Shorts/Love-Sessions-EP_10/Love%20Sessions%20EP_10(V2)30secSample.mp3",
+    },
+  ],
+},
+{
+  title: "Love Sessions EP 11",
+  tag: "Shorts Bundle",
+  samples: [
+    {
+      name: "Love Sessions EP 11 – Street-Minded",
+      previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Shorts/Love%20Sessions%20EP.11/Love%20Sessions%20EP.11_30secSample.mp3",
+    },
+    {
+      name: "Love Sessions EP 11 V-2 – Street-Minded",
+      previewUrl:
+        "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Shorts/Love%20Sessions%20EP.11/Love%20Sessions%20EP.11(V2)30secSample.mp3",
+    },
+  ],
+},
+{
+  title: "Love Sessions EP 12",
+  tag: "Shorts Bundle",
+  samples: [
+    {
+      name: "Love Sessions EP_12– Street-Minded",
+      previewUrl:
+      " https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Shorts/Love%20Sessions%20EP_12/Love%20Sessions%20EP_12_30secSample.mp3",
+    },
+    {
+      name: "Love Sessions EP_12 V-2 – Street-Minded",
+      previewUrl:
+        " https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Shorts/Love%20Sessions%20EP_12/Love%20Sessions%20EP_12(V2)_30secSample.mp3",
+    },
+  ],
+},
 ];
 
 export default function ShortsPage() {

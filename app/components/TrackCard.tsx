@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import React from "react";
+import { SINGLE_SONG_PRICE } from "@/lib/pricing";
 
 type Track = {
   title: string;
@@ -48,12 +49,12 @@ export default function TrackCard({
               fill
               className="object-contain rounded-lg"
               onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
-  const img = e.currentTarget;
+                const img = e.currentTarget;
 
-  // prevent infinite error loop
-  img.onerror = null;
-  img.src = "/HoneyDrip Logo.jpg";
-}}
+                // prevent infinite error loop
+                img.onerror = null;
+                img.src = "/HoneyDrip Logo.jpg";
+              }}
             />
           </div>
 
@@ -102,8 +103,10 @@ export default function TrackCard({
               type="button"
               className="inline-flex items-center justify-center rounded-full bg-black px-4 py-2 text-[13px] font-semibold text-white hover:bg-slate-900"
               onClick={() => onLicense?.(track)}
+              aria-label={`License ${track.title} for $${SINGLE_SONG_PRICE}`}
+              title={`License for $${SINGLE_SONG_PRICE}`}
             >
-              License
+              License • ${SINGLE_SONG_PRICE}
             </button>
           </div>
         </div>

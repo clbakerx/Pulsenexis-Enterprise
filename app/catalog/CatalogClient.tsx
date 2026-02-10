@@ -142,7 +142,7 @@ export default function CatalogClient() {
             <h1 className="text-2xl font-semibold text-neutral-900">PulseNexis Catalog</h1>
             <p className="text-sm text-neutral-600">
               Each song includes the <span className="font-semibold">Complete Bundle</span>: Loops + Stems + Samples
-              (MP3 &amp; WAV) — <span className="font-semibold">$100</span>
+              (MP3 &amp; WAV) — <span className="font-semibold">$49</span>
             </p>
           </div>
 
@@ -204,7 +204,7 @@ export default function CatalogClient() {
                     HONEY DRIP RECORDS • CARD {cardNumber}
                   </div>
                   <div className="mt-3 text-sm text-neutral-600">
-                    Preview tracks, then add the <span className="font-semibold">Complete Bundle ($100)</span>.
+                    Preview tracks, then add the <span className="font-semibold">Complete Bundle ($49)</span>.
                   </div>
                 </div>
 

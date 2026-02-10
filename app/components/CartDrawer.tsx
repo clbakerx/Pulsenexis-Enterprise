@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { useCart } from "@/app/catalog/providers";
+import { COMPLETE_BUNDLE_PRICE } from "@/lib/pricing";
 
 function clampQty(n: unknown) {
   const v = Number(n);
@@ -25,7 +26,10 @@ export function CartDrawer({
     [items]
   );
 
-  const total = React.useMemo(() => bundleCount * 100, [bundleCount]);
+  const total = React.useMemo(
+    () => bundleCount * COMPLETE_BUNDLE_PRICE,
+    [bundleCount]
+  );
 
   const checkout = React.useCallback(async () => {
     if (loading) return;
@@ -69,8 +73,6 @@ export function CartDrawer({
     } catch (e) {
       setErr(e instanceof Error ? e.message : "Checkout error");
     } finally {
-      // If redirect happens, this won't matter.
-      // If redirect fails (blocked / bad URL), this prevents “stuck loading”.
       setLoading(false);
     }
   }, [items, loading, onClose]);
@@ -104,7 +106,7 @@ export function CartDrawer({
 
         <div className="mt-4 rounded-2xl border bg-slate-50 p-3">
           <div className="text-sm font-semibold text-slate-900">
-            Complete Bundle — $100 / song
+            Complete Bundle — ${COMPLETE_BUNDLE_PRICE} / song
           </div>
           <div className="mt-1 text-xs text-slate-700">
             Includes: Loops + Stems + Samples (MP3 & WAV)

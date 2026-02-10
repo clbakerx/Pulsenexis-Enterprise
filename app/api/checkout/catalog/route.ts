@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
+import { COMPLETE_BUNDLE_PRICE_CENTS } from "@/lib/pricing";
 
 export const runtime = "nodejs";
 
@@ -28,7 +29,7 @@ const UNIT_AMOUNT: Record<Deliverable, number> = {
   loops: 2900,
   samples: 4900,
   stems: 6900,
-  complete: 10000,
+  complete: COMPLETE_BUNDLE_PRICE_CENTS, // ✅ was 10000
 };
 
 function isDeliverable(v: unknown): v is Deliverable {
