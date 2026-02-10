@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ConsentBanner from "./components/ConsentBanner";
-
+import { TrafficMeter } from "./components/TrafficMeter";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   description: "Music Catalog • PulseNexis — Device Fingerprinting & Analytics Solutions",
 };
 
-export const viewport = {
+export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -42,23 +42,28 @@ export default function RootLayout({
               <span>PulseNexis</span>
             </Link>
 
-            <nav className="flex items-center gap-4 text-sm">
-              <Link className="hover:underline" href="/packs">
-                Packs
-              </Link>
-              <Link className="hover:underline" href="/cinema">
-                Cinema
-              </Link>
-              <Link className="hover:underline" href="/licensing">
-                Licensing
-              </Link>
-              <Link className="hover:underline" href="/support">
-                Support
-              </Link>
-              <Link className="hover:underline" href="/pulsenexis-download">
-              PulseNexis Download™
-              </Link>
-            </nav>
+            <div className="flex items-center gap-4">
+              <nav className="flex items-center gap-4 text-sm">
+                <Link className="hover:underline" href="/packs">
+                  Packs
+                </Link>
+                <Link className="hover:underline" href="/cinema">
+                  Cinema
+                </Link>
+                <Link className="hover:underline" href="/licensing">
+                  Licensing
+                </Link>
+                <Link className="hover:underline" href="/support">
+                  Support
+                </Link>
+                <Link className="hover:underline" href="/pulsenexis-download">
+                  PulseNexis Download™
+                </Link>
+              </nav>
+
+              {/* Subtle live traffic badge */}
+              <TrafficMeter />
+            </div>
           </div>
         </header>
 
