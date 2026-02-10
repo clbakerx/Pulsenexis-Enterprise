@@ -9,7 +9,7 @@ export default function TermsPage() {
   return (
     <main className="prose prose-indigo mx-auto max-w-3xl px-4 py-12">
       <h1>Terms & Licensing</h1>
-      <p><strong>Last updated:</strong> {new Date().getFullYear()}-10-26</p>
+      <p><strong>Last updated:</strong> {new Date().getFullYear()}-1-26</p>
 
       <h2>License Grant</h2>
       <p>

@@ -24,14 +24,17 @@ body {
 
 /* Improved mobile touch targets */
 @media (max-width: 768px) {
-  button, a, [role="button"] {
+  button,
+  a,
+  [role="button"] {
     min-height: 44px;
     min-width: 44px;
   }
 }
 
 /* Prevent horizontal scrolling on small screens */
-html, body {
+html,
+body {
   overflow-x: hidden;
   width: 100%;
 }
@@ -64,4 +67,19 @@ html, body {
     padding-left: 2rem;
     padding-right: 2rem;
   }
+}
+
+/* =========================================================
+   PulseNexis rule: hide BUY CTAs that are OUTSIDE cards
+   Only applies on Packs/Cinema pages
+   Requirements:
+   - <main className="pn-page pn-packs"> (or pn-cinema / pn-cinema-detail)
+   - card wrapper uses class "pn-card"
+   - buy buttons/links use attribute: data-cta="buy"
+   ========================================================= */
+
+.pn-packs [data-cta="buy"]:not(.pn-card [data-cta="buy"]),
+.pn-cinema [data-cta="buy"]:not(.pn-card [data-cta="buy"]),
+.pn-cinema-detail [data-cta="buy"]:not(.pn-card [data-cta="buy"]) {
+  display: none !important;
 }

@@ -1,0 +1,54 @@
+import { NextResponse } from "next/server";
+import { Resend } from "resend";
+
+export const runtime = "nodejs"; // ensure Node runtime (not edge)
+
+/**
+ * Toggle this endpoint with an env var:
+ * - Disabled by default everywhere
+ * - Enable only when needed by setting:
+ *   EMAIL_TEST_ENABLED=true
+ */
+export async function POST(_req: Request) {
+  // ✅ Hard OFF unless explicitly enabled
+  if (process.env.EMAIL_TEST_ENABLED !== "true") {
+    return NextResponse.json(
+      { success: false, error: "Email test endpoint is disabled." },
+      { status: 403 }
+    );
+  }
+
+  try {
+    const apiKey = process.env.RESEND_API_KEY;
+
+    // ✅ Prevent crash if env var isn't set
+    if (!apiKey) {
+      return NextResponse.json(
+        {
+          success: false,
+          error:
+            "RESEND_API_KEY is missing. Add it in Vercel Project Settings → Environment Variables and in .env.local for local dev.",
+        },
+        { status: 500 }
+      );
+    }
+
+    const resend = new Resend(apiKey);
+
+    const data = await resend.emails.send({
+      from: "PulseNexis <onboarding@resend.dev>", // OK for testing; later use your verified domain
+      to: ["clbakerx@gmail.com"],
+      subject: "PulseNexis Email Test ✅",
+      html: "<h2>Resend is working ✅</h2><p>This confirms your email system is live.</p>",
+    });
+
+    return NextResponse.json({ success: true, data });
+  } catch (err: unknown) {
+    const message =
+      err instanceof Error ? err.message : typeof err === "string" ? err : "Unknown error";
+
+    console.error("Resend POST /api/email/test failed:", err);
+
+    return NextResponse.json({ success: false, error: message }, { status: 500 });
+  }
+}

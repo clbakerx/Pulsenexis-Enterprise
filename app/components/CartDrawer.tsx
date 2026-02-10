@@ -25,7 +25,7 @@ export function CartDrawer({
     [items]
   );
 
-  const total = bundleCount * 100;
+  const total = React.useMemo(() => bundleCount * 100, [bundleCount]);
 
   const checkout = React.useCallback(async () => {
     if (loading) return;
@@ -36,10 +36,9 @@ export function CartDrawer({
     try {
       if (items.length === 0) throw new Error("Your cart is empty.");
 
-      // ✅ $100 per song bundle rows
       const cart = items.map((it) => ({
         title: it.title,
-        deliverable: it.deliverable, // "complete"
+        deliverable: it.deliverable, // e.g. "complete"
         qty: clampQty(it.qty),
         trackId: it.trackId,
         packSlug: it.packSlug ?? "",
@@ -51,15 +50,27 @@ export function CartDrawer({
         body: JSON.stringify({ cart }),
       });
 
-      const data = (await res.json().catch(() => ({}))) as any;
+      const data: any = await res.json().catch(() => ({}));
 
-      if (!res.ok) throw new Error(data?.error || "Checkout failed.");
-      if (!data?.url) throw new Error("Checkout session missing URL.");
+      if (!res.ok) {
+        const msg =
+          typeof data?.error === "string" && data.error.trim()
+            ? data.error
+            : "Checkout failed.";
+        throw new Error(msg);
+      }
+
+      if (!data?.url || typeof data.url !== "string") {
+        throw new Error("Checkout session missing URL.");
+      }
 
       onClose();
       window.location.assign(data.url);
     } catch (e) {
       setErr(e instanceof Error ? e.message : "Checkout error");
+    } finally {
+      // If redirect happens, this won't matter.
+      // If redirect fails (blocked / bad URL), this prevents “stuck loading”.
       setLoading(false);
     }
   }, [items, loading, onClose]);
@@ -74,7 +85,7 @@ export function CartDrawer({
         onClick={onClose}
       />
 
-      <div className="absolute right-0 top-0 h-full w-[min(92vw,420px)] bg-white p-4 shadow-xl flex flex-col">
+      <div className="absolute right-0 top-0 flex h-full w-[min(92vw,420px)] flex-col bg-white p-4 shadow-xl">
         <div className="flex items-start justify-between gap-4">
           <div>
             <div className="text-lg font-semibold">Cart</div>
@@ -100,7 +111,7 @@ export function CartDrawer({
           </div>
         </div>
 
-        <div className="mt-4 flex-1 overflow-auto space-y-3">
+        <div className="mt-4 flex-1 space-y-3 overflow-auto">
           {items.length === 0 ? (
             <div className="text-sm text-slate-600">Your cart is empty.</div>
           ) : (

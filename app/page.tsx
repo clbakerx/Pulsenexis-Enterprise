@@ -1,10 +1,49 @@
 import Link from "next/link";
 import Image from "next/image";
 
+const USE_CASES = [
+  {
+    title: "YouTube & Shorts",
+    desc: "Fast hooks, emotional beds, clean mixes.",
+    href: "/shorts",
+    badge: "Most popular",
+  },
+  {
+    title: "Instagram / TikTok Reels",
+    desc: "Punchy vibes that fit 9:16 edits.",
+    href: "/shorts",
+    badge: "9:16 ready",
+  },
+  {
+    title: "Weddings & Love Stories",
+    desc: "Romantic, cinematic, heartfelt moments.",
+    href: "/packs",
+    badge: "Romance",
+  },
+  {
+    title: "Film & Cinematic",
+    desc: "Big emotion for trailers & scenes.",
+    href: "/cinema",
+    badge: "Cinematic",
+  },
+  {
+    title: "Ads & Brand Content",
+    desc: "Commercial-ready tracks for campaigns.",
+    href: "/packs",
+    badge: "Commercial",
+  },
+  {
+    title: "Podcasts & Voiceover",
+    desc: "Supportive beds that don’t fight dialogue.",
+    href: "/packs",
+    badge: "Clean",
+  },
+];
+
 export default function HomePage() {
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
-      {/* HERO */}
+      {/* HERO — Step 1: Locked Buyer Path */}
       <section className="grid gap-8 lg:grid-cols-2 lg:items-center">
         {/* LEFT */}
         <div className="rounded-3xl bg-gradient-to-br from-violet-500 to-indigo-600 p-10 text-white shadow-sm">
@@ -12,58 +51,83 @@ export default function HomePage() {
             HONEY DRIP RECORDS
           </div>
 
-          <h1 className="mt-4 text-5xl font-extrabold leading-tight">PULSENEXIS</h1>
+          <h1 className="mt-4 text-4xl sm:text-5xl font-extrabold leading-tight">
+            License Music Once.
+            <br />
+            <span className="text-amber-300">Monetize Forever.</span>
+          </h1>
 
           <p className="mt-4 max-w-xl text-base/7 opacity-90">
-            Discover original R&amp;B + Soul music, explore licensing-ready packs, and use
-            PulseNexis tools to build faster—whether you’re a creator, brand, or listener.
+            PulseNexis provides{" "}
+            <span className="font-semibold text-white">perpetual</span>,{" "}
+            <span className="font-semibold text-white">creator-safe</span> music
+            licenses for YouTube, films, ads, weddings, and brand content — with{" "}
+            <span className="font-semibold text-white">no renewals</span> and{" "}
+            <span className="font-semibold text-white">no Content ID claims</span>.
           </p>
 
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Link
-              href="/catalog"
-              className="rounded-full bg-white px-5 py-2 text-sm font-semibold text-black hover:bg-white/90"
-            >
-              Browse Music Catalog
-            </Link>
+          <ul className="mt-6 space-y-2 text-sm opacity-95">
+            <li>✅ Perpetual license (no expiration)</li>
+            <li>✅ Monetization allowed (within tier scope)</li>
+            <li>✅ No Content ID / copyright stress</li>
+            <li>✅ Music built for real creators</li>
+          </ul>
 
+          {/* Primary buttons */}
+          <div className="mt-7 flex flex-wrap gap-3">
             <Link
               href="/packs"
-              className="rounded-full bg-amber-400 px-5 py-2 text-sm font-semibold text-black hover:bg-amber-300"
+              className="rounded-full bg-amber-400 px-6 py-3 text-sm font-semibold text-black hover:bg-amber-300"
             >
-              Packs
+              Browse Licensable Music
             </Link>
 
             <Link
-              href="/rnb-blueprint"
-              className="rounded-full bg-blue-500 px-5 py-2 text-sm font-semibold text-white hover:bg-blue-400"
+              href="/shorts"
+              className="rounded-full bg-white/15 px-6 py-3 text-sm font-semibold text-white hover:bg-white/20"
             >
-              R&amp;B Blueprint
+              <span className="mr-2 inline-flex items-center rounded-full bg-amber-400 px-2 py-0.5 text-[11px] font-bold text-black">
+                NEW
+              </span>
+              Shorts &amp; Jingles
             </Link>
 
+            {/* ✅ fixed: this should go to /licensing */}
             <Link
-              href="/ai"
-              className="rounded-full bg-fuchsia-500 px-5 py-2 text-sm font-semibold text-white hover:bg-fuchsia-400"
+              href="/licensing"
+              className="rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10"
             >
-              AI Song Creator
+              How Licensing Works
             </Link>
           </div>
 
+          {/* De-emphasize extras */}
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
-              href="/licensing"
-              className="rounded-full border border-white/30 px-5 py-2 text-sm font-semibold text-white hover:bg-white/10"
+              href="/catalog"
+              className="rounded-full bg-white/15 px-5 py-2 text-sm font-semibold text-white hover:bg-white/20"
             >
-              How It Works (Licensing)
+              Browse Catalog
+            </Link>
+
+            <Link
+              href="/trademark"
+              className="rounded-full bg-neutral-900 px-5 py-2 text-sm font-semibold text-white hover:opacity-90"
+            >
+              Trademark Showcase
             </Link>
 
             <Link
               href="/support"
-              className="rounded-full border border-white/30 px-5 py-2 text-sm font-semibold text-white hover:bg-white/10"
+              className="rounded-full bg-white/15 px-5 py-2 text-sm font-semibold text-white hover:bg-white/20"
             >
               Support
             </Link>
           </div>
+
+          <p className="mt-4 text-xs opacity-90">
+            License once • Use forever • Keep monetizing
+          </p>
         </div>
 
         {/* RIGHT (IMAGE HERO) */}
@@ -79,7 +143,69 @@ export default function HomePage() {
           </div>
 
           <div className="absolute bottom-4 left-4 rounded-xl bg-black/60 px-3 py-2 text-sm text-white">
-            PulseNexis • Studio Sessions
+            Perpetual licenses • Creator-safe music
+          </div>
+        </div>
+      </section>
+
+      {/* ✅ STEP 2: USE-CASE FIRST SECTION */}
+      <section className="mt-12">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <h2 className="text-2xl font-bold">Find music for your project</h2>
+            <p className="mt-1 text-sm text-neutral-600">
+              Choose a use-case to see the best-fit licenses and packs.
+            </p>
+          </div>
+
+          <Link
+            href="/packs"
+            className="inline-flex w-fit items-center rounded-full border border-neutral-300 bg-white px-5 py-2 text-sm font-semibold text-neutral-900 hover:bg-neutral-50"
+          >
+            View all packs
+          </Link>
+        </div>
+
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {USE_CASES.map((c) => (
+            <Link
+              key={c.title}
+              href={c.href}
+              className="group rounded-2xl border bg-white p-5 hover:shadow-sm transition"
+            >
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <div className="text-sm font-semibold">{c.title}</div>
+                  <p className="mt-2 text-sm opacity-80">{c.desc}</p>
+                </div>
+
+                <span className="shrink-0 rounded-full bg-neutral-100 px-3 py-1 text-xs font-semibold text-neutral-700">
+                  {c.badge}
+                </span>
+              </div>
+
+              <div className="mt-4 text-sm font-semibold text-indigo-600 group-hover:text-indigo-700">
+                Browse →
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        <div className="mt-6 rounded-2xl border bg-white p-5">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <div className="text-sm font-semibold">Not sure which one you need?</div>
+              <p className="mt-1 text-sm opacity-80">
+                Start with Packs — it’s the fastest path to licensing.
+              </p>
+            </div>
+
+            <Link
+              href="/packs"
+              className="inline-flex w-fit items-center rounded-full bg-indigo-600 px-5 py-2 text-sm font-semibold text-white hover:bg-indigo-500"
+            >
+              Browse Packs
+            </Link>
           </div>
         </div>
       </section>
@@ -89,24 +215,24 @@ export default function HomePage() {
         <div className="rounded-2xl border bg-white p-5">
           <div className="text-sm font-semibold">1) Browse</div>
           <p className="mt-2 text-sm opacity-80">
-            Explore the catalog and find the vibe you need—hooks, moods, and ready-to-use
-            tracks.
+            Browse licensable packs and tracks built for creators—fast, emotional,
+            and ready for content.
           </p>
         </div>
 
         <div className="rounded-2xl border bg-white p-5">
-          <div className="text-sm font-semibold">2) Pick a Pack</div>
+          <div className="text-sm font-semibold">2) Pick a License</div>
           <p className="mt-2 text-sm opacity-80">
-            Grab licensing-ready packs built for creators who need speed: content, ads,
-            promos, and more.
+            Choose the tier that matches your project scope (YouTube, ads, client
+            work, brand campaigns, and more).
           </p>
         </div>
 
         <div className="rounded-2xl border bg-white p-5">
-          <div className="text-sm font-semibold">3) License</div>
+          <div className="text-sm font-semibold">3) Publish &amp; Monetize</div>
           <p className="mt-2 text-sm opacity-80">
-            Choose the right license tier, checkout, and you’re cleared to use it based on
-            the terms.
+            Checkout once and publish confidently—your license doesn’t expire,
+            and you can keep monetizing.
           </p>
         </div>
       </section>

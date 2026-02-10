@@ -4,36 +4,668 @@ import * as React from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 
+type Sample = {
+  id: string;
+  title: string;
+  demoUrl: string; // full mp3 URL (no building/guessing)
+};
+
+type CinemaKit = {
+  title: string;
+  subtitle?: string; // kit-specific theme line (optional)
+  payUrl?: string;
+  samples: Sample[];
+};
+
+const CINEMA_PAYLINK_URL = "https://buy.stripe.com/fZu14n0bVeTR7SF45f4ZG0t";
+const CINEMA_PRICE_LABEL = "$169 cinema bundle";
+const BUY_BUTTON_LABEL = "Buy — $169";
+
+const CINEMA_BUNDLE_DESCRIPTION_TITLE = "Cinema Bundle – Film & Trailer Music";
+const CINEMA_BUNDLE_DESCRIPTION =
+  "Professionally crafted cinematic music bundles designed for film, trailers, TV, and branded visual content. Includes cinematic-ready cues with clean endings, tension builds, and flexible usage for visual storytelling.";
+
+function safeDecodeURIComponent(value: string) {
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    return value;
+  }
+}
+
+function normalizeSlug(input: string) {
+  const s = safeDecodeURIComponent((input ?? "").trim());
+  return s
+    .toLowerCase()
+    .replace(/^\/+|\/+$/g, "")
+    .replace(/\s+/g, "-");
+}
+
+function cx(...classes: Array<string | false | null | undefined>) {
+  return classes.filter(Boolean).join(" ");
+}
+
+function chunk<T>(arr: T[], size: number) {
+  const out: T[][] = [];
+  for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
+  return out;
+}
+
+// ✅ The ONLY place you edit songs for Vol 1–4
+const CINEMA_KITS: Record<string, CinemaKit> = {
+  "cinematic-reveal-toolkit-vol1": {
+    title: "Cinematic Reveal Toolkit Vol. 1",
+    samples: [
+      {
+        id: "titan-build",
+        title: "Titan Build",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Titan%20Build/Titan%20Build_Sample_2.mp3",
+      },
+      {
+        id: "tension-pulse",
+        title: "Tension Pulse",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Tension-Pulse/Tension-Pulse-30sample_2.mp3",
+      },
+      {
+        id: "neon-trailer",
+        title: "Neon Trailer",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Neon%20Trailer/Neon-Trailer-Sample_2.mp3",
+      },
+      {
+        id: "midnight-lift",
+        title: "Midnight Lift",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Midnight%20Lift/Midnight%20Lift_Sample_2.mp3",
+      },
+      {
+        id: "halo-reveal",
+        title: "Halo Reveal",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Halo-Reveal/Halo-Reveal_30Second.mp3",
+      },
+      {
+        id: "gravity-rise",
+        title: "Gravity Rise",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Gravity-Rise/Gravity%20Rise%20%E2%80%94%2060sec.mp3",
+      },
+      {
+        id: "final-horizon",
+        title: "Final Horizon",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Final%20Horizon/Final%20Horizon_Sample_2.mp3",
+      },
+      {
+        id: "climax-stinger",
+        title: "Climax Stinger",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Climax%20Stinger/Climax%20Stinger_Sample_1.mp3",
+      },
+    ],
+  },
+
+  "cinematic-reveal-toolkit-vol2": {
+    title: "Cinematic Reveal Toolkit Vol. 2",
+    subtitle: "Built for Sci-Fi, Thriller, and Suspense theatrical themes.",
+    samples: [
+      {
+        id: "event-horizon-protocol",
+        title: "Event Horizon Protocol",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Event-Horizon-Protocol/Event%20Horizon%20Protocol_60secSample.mp3",
+      },
+      {
+        id: "event-horizon-protocolv2",
+        title: "Event Horizon Protocol v2",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Event-Horizon-Protocol/Event%20Horizon%20Protocol%20(Ver_2)60secSample.mp3",
+      },
+      {
+        id: "neural-lockdown",
+        title: "Neural Lockdown",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Neural-Lockdown/Neural%20Lockdown_60secSample.mp3",
+      },
+      {
+        id: "neural-lockdownv2",
+        title: "Neural Lockdown V2",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Neural-Lockdown/Neural%20Lockdown%20(Ver_2)60secSample.mp3",
+      },
+      {
+        id: "dark-matter-rising",
+        title: "Dark Matter Rising",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Dark-Matter-Rising/Dark%20Matter%20Rising_60secSample.mp3",
+      },
+      {
+        id: "dark-matter-rising-v2",
+        title: "Dark Matter Rising V2",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Dark-Matter-Rising/Dark%20Matter%20Rising%20(Ver_2)60secSample.mp3",
+      },
+      {
+        id: "red-signal-from-orion",
+        title: "Red Signal From Orion",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Red-Signal-From-Orion/Red%20Signal%20From%20Orion_60secSample.mp3",
+      },
+      {
+        id: "red-signal-from-orion-v2",
+        title: "Red Signal From Orion V2",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Red-Signal-From-Orion/Red%20Signal%20From%20Orion%20(Ver_2)60secSample.mp3",
+      },
+    ],
+  },
+
+  "cinematic-reveal-toolkit-vol3": {
+    title: "Cinematic Reveal Toolkit Vol. 3",
+    samples: [
+      {
+        id: "synthetic-heartbeat",
+        title: "Synthetic Heartbeat",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Synthetic-Heartbeat/Synthetic%20Heartbeat_60secSample.mp3",
+      },
+      {
+        id: "synthetic-heartbeat-v2",
+        title: "Synthetic Heartbeat V2",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Synthetic-Heartbeat/Synthetic%20Heartbeat%20(Ver_2)60secSample.mp3",
+      },
+      {
+        id: "blacksite-countdown",
+        title: "Blacksite Countdown",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Blacksite-Countdown/Blacksite%20Countdown_60secSample.mp3",
+      },
+      {
+        id: "blacksite-countdown-v2",
+        title: "Blacksite Countdown V2",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Blacksite-Countdown/Blacksite%20Countdown%20(Ver_2)60secSample.mp3",
+      },
+      {
+        id: "containment-breach",
+        title: "Containment Breach",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Containment-Breach/Containment%20Breach_60secSample.mp3",
+      },
+      {
+        id: "containment-breach-v2",
+        title: "Containment Breach V2",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Containment-Breach/Containment%20Breach%20(Ver_2)60secSample.mp3",
+      },
+      {
+        id: "no-safe-exstraction",
+        title: "No Safe Exstraction",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/No-Safe-Extraction/No%20Safe%20Extraction_60secSample.mp3",
+      },
+      {
+        id: "no-safe-exstraction-v2",
+        title: "No Safe Exstraction V2",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/No-Safe-Extraction/No%20Safe%20Extraction%20(Ver_2)_60secSample.mp3",
+      },
+    ],
+  },
+
+  "cinematic-reveal-toolkit-vol4": {
+    title: "Cinematic Reveal Toolkit Vol. 4",
+    samples: [
+      {
+        id: "velocity-of-fear",
+        title: "Velocity of Fear",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Velocity-of-Fear/Velocity%20of%20Fear_60secSample.mp3",
+      },
+      {
+        id: "velocity-of-fear-v2",
+        title: "Velocity of Fear V2",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Velocity-of-Fear/Velocity%20of%20Fear%20(Ver_2)60secSample.mp3",
+      },
+      {
+        id: "trigger-point-zero",
+        title: "Trigger Point Zero",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Trigger-Point-Zero/Trigger%20Point%20Zero_60secSample.mp3",
+      },
+      {
+        id: "trigger-point-zero-v2",
+        title: "Trigger Point Zero V2",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Trigger-Point-Zero/Trigger%20Point%20Zero%20(Ver_2)60secSample.mp3",
+      },
+      {
+        id: "after-the-firestorm",
+        title: "After the Firestorm",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/After-the-Firestorm/After%20the%20Firestorm_60secSample.mp3",
+      },
+      {
+        id: "after-the-firestorm-v2",
+        title: "After the Firestorm V2",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/After-the-Firestorm/After%20the%20Firestorm%20(Ver_2)60secSample.mp3",
+      },
+      {
+        id: "silent-before-the-strike",
+        title: "Silent Before the Strike",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Silent-Before-the-Strike/Silent%20Before%20the%20Strike_60secSample.mp3",
+      },
+      {
+        id: "silent-before-the-strike-v2",
+        title: "Silent Before the Strike V2",
+        demoUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Silent-Before-the-Strike/Silent%20Before%20the%20Strike%20(Ver_2)60secSample.mp3",
+      },
+      
+    ],
+  },
+};
+
+function StatPill({
+  label,
+  value,
+}: {
+  label: string;
+  value: string | number;
+}) {
+  return (
+    <div className="rounded-2xl border border-neutral-200 bg-white px-4 py-3 shadow-sm">
+      <div className="text-[11px] font-semibold uppercase tracking-wider text-neutral-500">
+        {label}
+      </div>
+      <div className="mt-1 text-sm font-semibold text-neutral-900">{value}</div>
+    </div>
+  );
+}
+
 export default function CinemaKitPage() {
   const params = useParams();
-  const slug = (params?.slug as string) ?? "";
+
+  const rawSlug = (() => {
+    const s = (params as any)?.slug;
+    if (Array.isArray(s)) return s[0] || "";
+    return (s as string) || "";
+  })();
+
+  const slug = normalizeSlug(rawSlug);
+
+  const kitBySlug = React.useMemo(() => {
+    const map: Record<string, CinemaKit> = {};
+    for (const [key, kit] of Object.entries(CINEMA_KITS)) {
+      map[normalizeSlug(key)] = kit;
+    }
+    return map;
+  }, []);
+
+  const kit = kitBySlug[slug];
+
+  const audioRef = React.useRef<Record<string, HTMLAudioElement>>({});
+  const [activeKey, setActiveKey] = React.useState<string | null>(null);
+
+  const stopAllExcept = React.useCallback((keepKey: string) => {
+    for (const [key, el] of Object.entries(audioRef.current)) {
+      if (!el) continue;
+      if (key !== keepKey) {
+        try {
+          el.pause();
+          el.currentTime = 0;
+        } catch {
+          // noop
+        }
+      }
+    }
+  }, []);
+
+  const handlePlay = React.useCallback(
+    (key: string) => {
+      stopAllExcept(key);
+      setActiveKey(key);
+
+      const el = audioRef.current[key];
+      if (!el) return;
+
+      try {
+        el.load();
+      } catch {
+        // noop
+      }
+
+      el.play().catch(() => {
+        // ignore gesture/autoplay rejections
+      });
+    },
+    [stopAllExcept]
+  );
+
+  const handlePause = React.useCallback((key: string) => {
+    const el = audioRef.current[key];
+    if (el) {
+      try {
+        el.pause();
+      } catch {
+        // noop
+      }
+    }
+    setActiveKey((cur) => (cur === key ? null : cur));
+  }, []);
+
+  const availableSlugs = React.useMemo(() => {
+    return Object.keys(CINEMA_KITS).map((k) => normalizeSlug(k));
+  }, []);
+
+  if (!kit) {
+    return (
+      <main className="min-h-screen bg-white">
+        <div className="mx-auto max-w-4xl px-4 py-10">
+          <Link
+            href="/cinema"
+            className="text-sm font-semibold text-neutral-700 hover:underline"
+          >
+            ← Back to Cinema
+          </Link>
+
+          <div className="mt-8 rounded-3xl border border-neutral-200 bg-neutral-50 p-6">
+            <h1 className="text-2xl font-semibold text-neutral-900">
+              Kit not found
+            </h1>
+            <p className="mt-2 text-sm text-neutral-600">
+              This cinema kit slug does not exist:{" "}
+              <span className="font-mono">{slug || "(missing)"}</span>
+            </p>
+
+            <div className="mt-5 rounded-2xl border border-neutral-200 bg-white p-4 text-sm text-neutral-700">
+              <div className="font-semibold text-neutral-900">Available slugs</div>
+              <div className="mt-1 font-mono text-xs text-neutral-600">
+                {availableSlugs.join(", ")}
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  const payUrl = kit.payUrl || CINEMA_PAYLINK_URL;
+
+  const bundlePairs = React.useMemo(() => {
+    return chunk(kit.samples ?? [], 2);
+  }, [kit.samples]);
+
+  const sampleCount = kit.samples?.length ?? 0;
+  const bundleCount = bundlePairs.length;
+
+  const pageThemeLine =
+    kit.subtitle?.trim() ||
+    "Cinematic-ready cues with tension builds, clean endings, and trailer-forward energy.";
 
   return (
     <main className="min-h-screen bg-white">
-      <div className="mx-auto max-w-4xl px-4 py-10">
-        <Link
-          href="/cinema"
-          className="text-sm font-semibold text-neutral-700 hover:underline"
-        >
-          ← Back to Cinema
-        </Link>
+      <div className="mx-auto max-w-6xl px-4 py-10">
+        {/* Top nav */}
+        <div className="flex items-center justify-between gap-3">
+          <Link
+            href="/cinema"
+            className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-semibold text-neutral-700 shadow-sm hover:bg-neutral-50"
+          >
+            ← Back to Cinema
+          </Link>
 
-        <h1 className="mt-6 text-3xl font-semibold text-neutral-900">
-          {slug.replaceAll("-", " ")}
-        </h1>
+          <a
+            href={payUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center rounded-full bg-neutral-900 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90"
+          >
+            {BUY_BUTTON_LABEL}
+          </a>
+        </div>
 
-        <p className="mt-3 text-sm text-neutral-600">
-          This is the kit page for <span className="font-semibold">{slug}</span>. Add kit tracks,
-          previews, and checkout wiring here.
-        </p>
+        {/* Hero */}
+        <header className="mt-8 overflow-hidden rounded-3xl border border-neutral-200 bg-gradient-to-b from-neutral-50 to-white">
+          <div className="p-6 md:p-8">
+            <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+              <div className="min-w-0">
+                <div className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs font-semibold text-neutral-700 shadow-sm">
+                  <span className="h-1.5 w-1.5 rounded-full bg-neutral-900" />
+                  {CINEMA_PRICE_LABEL}
+                </div>
 
-        <div className="mt-8 rounded-2xl border border-neutral-200 bg-neutral-50 p-5">
-          <div className="text-sm font-semibold text-neutral-900">Next steps</div>
-          <ul className="mt-2 space-y-2 text-sm text-neutral-700">
-            <li>• Add track list + preview audio (FileDN)</li>
-            <li>• Add “License / Buy” actions (either per-kit pricing or per-track)</li>
-            <li>• If you want Cinema to also use the $100 per-song bundle, we can reuse the same cart system</li>
-          </ul>
+                <h1 className="mt-4 text-3xl font-semibold tracking-tight text-neutral-900 md:text-4xl">
+                  {kit.title}
+                </h1>
+
+                <p className="mt-3 max-w-2xl text-sm leading-6 text-neutral-600">
+                  <span className="font-semibold text-neutral-900">
+                    {CINEMA_BUNDLE_DESCRIPTION_TITLE}:
+                  </span>{" "}
+                  {CINEMA_BUNDLE_DESCRIPTION}
+                </p>
+
+                <div className="mt-4 rounded-2xl border border-neutral-200 bg-white p-4">
+                  <div className="text-[11px] font-semibold uppercase tracking-wider text-neutral-500">
+                    Page Theme
+                  </div>
+                  <div className="mt-1 text-sm font-semibold text-neutral-900">
+                    {pageThemeLine}
+                  </div>
+                </div>
+
+                <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                  <StatPill label="Bundles" value={bundleCount || 0} />
+                  <StatPill label="Samples" value={sampleCount} />
+                  <StatPill label="Per Card" value="2 tracks" />
+                </div>
+              </div>
+
+              <div className="w-full md:max-w-sm">
+                <div className="rounded-3xl border border-neutral-200 bg-white p-5 shadow-sm">
+                  <div className="text-sm font-semibold text-neutral-900">
+                    License this bundle
+                  </div>
+                  <p className="mt-1 text-sm text-neutral-600">
+                    One-time purchase. Built for film, trailers, TV, and branded
+                    visuals.
+                  </p>
+
+                  <div className="mt-4 grid gap-2">
+                    <div className="flex items-center justify-between rounded-2xl border border-neutral-200 bg-neutral-50 px-4 py-3 text-sm">
+                      <span className="font-semibold text-neutral-900">Price</span>
+                      <span className="font-semibold text-neutral-900">$169</span>
+                    </div>
+                    <div className="flex items-center justify-between rounded-2xl border border-neutral-200 bg-neutral-50 px-4 py-3 text-sm">
+                      <span className="font-semibold text-neutral-900">Delivery</span>
+                      <span className="text-neutral-700">Instant access</span>
+                    </div>
+                    <div className="flex items-center justify-between rounded-2xl border border-neutral-200 bg-neutral-50 px-4 py-3 text-sm">
+                      <span className="font-semibold text-neutral-900">Use cases</span>
+                      <span className="text-neutral-700">Film • Trailer • TV</span>
+                    </div>
+                  </div>
+
+                  <a
+                    href={payUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-neutral-900 px-4 py-2.5 text-sm font-semibold text-white hover:opacity-90"
+                  >
+                    Buy Cinema Bundle — $169
+                  </a>
+
+                  <div className="mt-2 text-center text-[11px] text-neutral-500">
+                    Secure checkout • Film & trailer ready
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        {/* Instructions */}
+        <div className="mt-8 flex flex-col gap-2 rounded-3xl border border-neutral-200 bg-white p-5 shadow-sm md:flex-row md:items-center md:justify-between">
+          <div className="min-w-0">
+            <div className="text-sm font-semibold text-neutral-900">Stream Previews</div>
+            <p className="mt-1 text-sm text-neutral-600">
+              Each card contains <span className="font-semibold">2 samples</span>. Only
+              one preview plays at a time.
+            </p>
+          </div>
+
+          <a
+            href={payUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex shrink-0 items-center justify-center rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-semibold text-neutral-800 hover:bg-neutral-50"
+          >
+            Buy this bundle
+          </a>
+        </div>
+
+        {/* Empty state */}
+        {sampleCount === 0 ? (
+          <div className="mt-8 rounded-3xl border border-neutral-200 bg-neutral-50 p-6 text-sm text-neutral-700">
+            No samples added yet for this kit.
+          </div>
+        ) : (
+          <section className="mt-8 grid gap-6 md:grid-cols-2">
+            {bundlePairs.map((pair, idx) => {
+              const bundleId = `b${idx + 1}`;
+              const bundleName = `Bundle ${idx + 1}`;
+
+              return (
+                <div
+                  key={bundleId}
+                  className="rounded-3xl border border-neutral-200 bg-white shadow-sm"
+                >
+                  <div className="p-5">
+                    {/* Card header */}
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="min-w-0">
+                        {/* ✅ Bundle title now includes the 2 track names */}
+                        <div className="text-sm font-semibold leading-5 text-neutral-900">
+                          {bundleName} — {pair.map((s) => s.title).join(" + ")}
+                        </div>
+
+                        <div className="mt-1 text-xs text-neutral-500">
+                          Film & Trailer Ready • 2-track bundle • {CINEMA_PRICE_LABEL}
+                        </div>
+                      </div>
+
+                      <a
+                        href={payUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="shrink-0 rounded-full bg-neutral-900 px-4 py-1.5 text-xs font-semibold text-white hover:opacity-90"
+                      >
+                        {BUY_BUTTON_LABEL}
+                      </a>
+                    </div>
+
+                    <div className="mt-4 text-xs font-semibold uppercase tracking-wider text-neutral-500">
+                      Demo Samples
+                    </div>
+
+                    <div className="mt-3 grid gap-3">
+                      {pair.map((s) => {
+                        const key = `${slug}:${bundleId}:${s.id}`;
+                        const isActive = activeKey === key;
+                        const src = (s.demoUrl || "").trim();
+
+                        return (
+                          <div
+                            key={s.id}
+                            className="flex items-center justify-between gap-3 rounded-2xl border border-neutral-200 bg-neutral-50 px-4 py-3"
+                          >
+                            <div className="min-w-0">
+                              <div className="truncate text-sm font-semibold text-neutral-900">
+                                {s.title}
+                              </div>
+                              <div className="mt-0.5 text-[11px] text-neutral-500">
+                                streaming preview • FileDN
+                              </div>
+                            </div>
+
+                            <button
+                              type="button"
+                              onClick={() => (isActive ? handlePause(key) : handlePlay(key))}
+                              className={cx(
+                                "shrink-0 rounded-full px-4 py-1.5 text-xs font-semibold",
+                                isActive
+                                  ? "bg-neutral-900 text-white hover:opacity-90"
+                                  : "border border-neutral-300 bg-white text-neutral-700 hover:bg-neutral-50"
+                              )}
+                              disabled={!src}
+                              title={!src ? "Missing audio URL" : undefined}
+                            >
+                              {isActive ? "Pause" : "Play"}
+                            </button>
+
+                            <audio
+                              ref={(el) => {
+                                if (el) audioRef.current[key] = el;
+                                else delete audioRef.current[key];
+                              }}
+                              preload="none"
+                              onEnded={() => setActiveKey((cur) => (cur === key ? null : cur))}
+                              onError={() => console.error("Audio failed:", src)}
+                            >
+                              <source src={src} type="audio/mpeg" />
+                            </audio>
+                          </div>
+                        );
+                      })}
+
+                      {/* Optional: if odd number of samples, show a friendly filler */}
+                      {pair.length === 1 ? (
+                        <div className="rounded-2xl border border-dashed border-neutral-200 bg-white px-4 py-3 text-xs text-neutral-500">
+                          Add one more sample to complete this bundle.
+                        </div>
+                      ) : null}
+                    </div>
+
+                    {/* Card footer CTA */}
+                    <div className="mt-5">
+                      <a
+                        href={payUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex w-full items-center justify-center rounded-full bg-neutral-900 px-4 py-2.5 text-xs font-semibold text-white hover:opacity-90"
+                      >
+                        Buy Cinema Bundle — $169
+                      </a>
+
+                      <div className="mt-2 text-center text-[11px] text-neutral-500">
+                        One-time license • Film & trailer ready
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </section>
+        )}
+
+        {/* Footer */}
+        <div className="mt-12 rounded-3xl border border-neutral-200 bg-neutral-50 p-6 text-center">
+          <div className="text-sm font-semibold text-neutral-900">
+            Need a custom trailer cue?
+          </div>
+          <div className="mt-1 text-sm text-neutral-600">
+            Contact PulseNexis for custom cinematic kits, alt versions, and stems.
+          </div>
+          <div className="mt-4 text-xs text-neutral-500">
+            © {new Date().getFullYear()} PulseNexis • Honey Drip Records
+          </div>
         </div>
       </div>
     </main>
