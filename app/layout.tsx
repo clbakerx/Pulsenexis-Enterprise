@@ -3,6 +3,8 @@ import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ConsentBanner from "./components/ConsentBanner";
+
+// ✅ FIX: TrafficMeter is a NAMED export in your file, so import it with braces
 import { TrafficMeter } from "./components/TrafficMeter";
 
 const geistSans = Geist({
@@ -42,6 +44,7 @@ export default function RootLayout({
               <span>PulseNexis</span>
             </Link>
 
+            {/* Right side: nav + subtle traffic meter */}
             <div className="flex items-center gap-4">
               <nav className="flex items-center gap-4 text-sm">
                 <Link className="hover:underline" href="/packs">
@@ -61,8 +64,10 @@ export default function RootLayout({
                 </Link>
               </nav>
 
-              {/* Subtle live traffic badge */}
-              <TrafficMeter />
+              {/* Hide on small screens so header stays clean */}
+              <div className="hidden sm:block">
+                <TrafficMeter />
+              </div>
             </div>
           </div>
         </header>

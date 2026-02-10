@@ -4,12 +4,12 @@ import * as React from "react";
 
 function getVid() {
   const key = "pn_vid";
-  let v = localStorage.getItem(key);
-  if (!v) {
+  let v = typeof window !== "undefined" ? localStorage.getItem(key) : null;
+  if (!v && typeof window !== "undefined") {
     v = crypto.randomUUID();
     localStorage.setItem(key, v);
   }
-  return v;
+  return v ?? "anonymous";
 }
 
 export function TrafficMeter() {
@@ -31,8 +31,8 @@ export function TrafficMeter() {
         () => null
       );
       if (!res?.ok) return;
-      const data = await res.json();
-      setOnline(typeof data.online === "number" ? data.online : null);
+      const data = await res.json().catch(() => ({}));
+      setOnline(typeof data?.online === "number" ? data.online : null);
     };
 
     ping();
@@ -48,11 +48,13 @@ export function TrafficMeter() {
   }, []);
 
   return (
-    <div className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs bg-white/80 backdrop-blur">
+    <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-3 py-1 text-xs text-slate-500 bg-white/40 backdrop-blur">
       <span className="h-2 w-2 rounded-full bg-emerald-500" />
-      <span className="font-semibold">
-        {online === null ? "—" : online} online
-      </span>
+      <span className="font-semibold">{online === null ? "—" : online}</span>
+      <span className="text-slate-500">online</span>
     </div>
   );
 }
+
+// ✅ ALSO export default so either import style works
+export default TrafficMeter;
