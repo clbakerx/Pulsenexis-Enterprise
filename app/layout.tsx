@@ -4,8 +4,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ConsentBanner from "./components/ConsentBanner";
 
-// ✅ FIX: TrafficMeter is a NAMED export in your file, so import it with braces
-import { TrafficMeter } from "./components/TrafficMeter";
+// ✅ FIX: TrafficMeter is a DEFAULT export in your file, so import WITHOUT braces
+import TrafficMeter from "./components/TrafficMeter";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,7 +19,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Pulsenexis Enterprises",
-  description: "Music Catalog • PulseNexis — Device Fingerprinting & Analytics Solutions",
+  description:
+    "Music Catalog • PulseNexis — Device Fingerprinting & Analytics Solutions",
 };
 
 export const viewport: Viewport = {
@@ -34,7 +35,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {/* Global header */}
         <header className="border-b bg-white">
           <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
             <Link href="/" className="flex items-center gap-2 font-semibold">
@@ -44,7 +44,6 @@ export default function RootLayout({
               <span>PulseNexis</span>
             </Link>
 
-            {/* Right side: nav + subtle traffic meter */}
             <div className="flex items-center gap-4">
               <nav className="flex items-center gap-4 text-sm">
                 <Link className="hover:underline" href="/packs">
@@ -64,7 +63,6 @@ export default function RootLayout({
                 </Link>
               </nav>
 
-              {/* Hide on small screens so header stays clean */}
               <div className="hidden sm:block">
                 <TrafficMeter />
               </div>
@@ -72,10 +70,8 @@ export default function RootLayout({
           </div>
         </header>
 
-        {/* Page content */}
         <main className="mx-auto max-w-6xl px-4 py-6">{children}</main>
 
-        {/* Footer bits */}
         <ConsentBanner />
       </body>
     </html>

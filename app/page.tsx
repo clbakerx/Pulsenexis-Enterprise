@@ -40,6 +40,25 @@ const USE_CASES = [
   },
 ];
 
+// 🔥 Add featured tracks here (landing pages, not Stripe links)
+const HOT_RIGHT_NOW = [
+  {
+    title: "Bring the Snow (Slide We Ride)",
+    desc: "Smooth, late-night R&B built for motion, confidence, and intimate moments.",
+    href: "/bring-the-snow",
+    badge: "Hot right now",
+    bestFor: "Drive scenes • Lifestyle • Romantic visuals",
+  },
+  // Add more later:
+  // {
+  //   title: "Another Track Title",
+  //   desc: "One-sentence promise that sells the vibe.",
+  //   href: "/another-track",
+  //   badge: "New drop",
+  //   bestFor: "Reels • Shorts • Ads",
+  // },
+];
+
 export default function HomePage() {
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
@@ -73,7 +92,7 @@ export default function HomePage() {
             <li>✅ Music built for real creators</li>
           </ul>
 
-          {/* Primary buttons (removed: Browse Licensable Music + How Licensing Works) */}
+          {/* Primary buttons */}
           <div className="mt-7 flex flex-wrap gap-3">
             <Link
               href="/shorts"
@@ -86,7 +105,7 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {/* Extras row (removed: Support) */}
+          {/* Extras row */}
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
               href="/catalog"
@@ -130,6 +149,71 @@ export default function HomePage() {
           <div className="absolute bottom-4 left-4 rounded-xl bg-black/60 px-3 py-2 text-sm text-white">
             Perpetual licenses • Creator-safe music
           </div>
+        </div>
+      </section>
+
+      {/* 🔥 HOT RIGHT NOW (new) */}
+      <section className="mt-12">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <div className="text-sm font-semibold text-neutral-800">
+              🔥 Hot Right Now on PulseNexis
+            </div>
+            <h2 className="mt-2 text-2xl font-bold">
+              Start with the tracks creators are feeling this week
+            </h2>
+            <p className="mt-1 text-sm text-neutral-600">
+              Quick entry points that lead to focused song pages (preview → buy in seconds).
+            </p>
+          </div>
+
+          <Link
+            href="/catalog"
+            className="inline-flex w-fit items-center rounded-full border border-neutral-300 bg-white px-5 py-2 text-sm font-semibold text-neutral-900 hover:bg-neutral-50"
+          >
+            View full catalog
+          </Link>
+        </div>
+
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {HOT_RIGHT_NOW.map((t) => (
+            <div key={t.title} className="rounded-2xl border bg-white p-5">
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <div className="text-sm font-semibold">{t.title}</div>
+                  <p className="mt-2 text-sm opacity-80">{t.desc}</p>
+                </div>
+
+                <span className="shrink-0 rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-800">
+                  {t.badge}
+                </span>
+              </div>
+
+              <p className="mt-3 text-xs text-neutral-600">
+                <span className="font-semibold">Best for:</span> {t.bestFor}
+              </p>
+
+              <div className="mt-4 flex gap-3">
+                <Link
+                  href={t.href}
+                  className="inline-flex flex-1 items-center justify-center rounded-full border border-neutral-300 bg-white px-4 py-2 text-sm font-semibold text-neutral-900 hover:bg-neutral-50"
+                >
+                  View Track →
+                </Link>
+
+                <Link
+                  href={`${t.href}#buy`}
+                  className="inline-flex flex-1 items-center justify-center rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-500"
+                >
+                  Buy Now
+                </Link>
+              </div>
+
+              <p className="mt-3 text-xs opacity-70">
+                Secure checkout via Stripe • Instant access after purchase
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 

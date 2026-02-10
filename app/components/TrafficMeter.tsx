@@ -2,59 +2,71 @@
 
 import * as React from "react";
 
-function getVid() {
-  const key = "pn_vid";
-  let v = typeof window !== "undefined" ? localStorage.getItem(key) : null;
-  if (!v && typeof window !== "undefined") {
-    v = crypto.randomUUID();
-    localStorage.setItem(key, v);
+type Traffic = { online: number; today: number };
+
+function getOrCreateSid() {
+  const key = "pn_sid";
+  try {
+    let sid = localStorage.getItem(key);
+    if (!sid) {
+      sid =
+        crypto?.randomUUID?.() ??
+        `sid_${Math.random().toString(16).slice(2)}_${Date.now()}`;
+      localStorage.setItem(key, sid);
+    }
+    return sid;
+  } catch {
+    return `sid_${Math.random().toString(16).slice(2)}_${Date.now()}`;
   }
-  return v ?? "anonymous";
 }
 
-export function TrafficMeter() {
-  const [online, setOnline] = React.useState<number | null>(null);
+export default function TrafficMeter() {
+  const [data, setData] = React.useState<Traffic>({ online: 0, today: 0 });
 
   React.useEffect(() => {
-    const vid = getVid();
+    const sid = getOrCreateSid();
+    let alive = true;
 
-    const ping = async () => {
-      await fetch("/api/traffic", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ vid }),
-      }).catch(() => {});
-    };
+    async function tick() {
+      try {
+        await fetch(`/api/traffic?ts=${Date.now()}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          cache: "no-store",
+          body: JSON.stringify({ sid }),
+        });
 
-    const pull = async () => {
-      const res = await fetch("/api/traffic", { cache: "no-store" }).catch(
-        () => null
-      );
-      if (!res?.ok) return;
-      const data = await res.json().catch(() => ({}));
-      setOnline(typeof data?.online === "number" ? data.online : null);
-    };
+        const res = await fetch(`/api/traffic?ts=${Date.now()}`, {
+          cache: "no-store",
+        });
 
-    ping();
-    pull();
+        const json = (await res.json()) as Partial<Traffic>;
+        if (!alive) return;
 
-    const pingTimer = setInterval(ping, 25000);
-    const pullTimer = setInterval(pull, 15000);
+        setData({
+          online: Number(json?.online ?? 0),
+          today: Number(json?.today ?? 0),
+        });
+      } catch {
+        // ignore
+      }
+    }
+
+    tick();
+    const id = window.setInterval(tick, 15000);
 
     return () => {
-      clearInterval(pingTimer);
-      clearInterval(pullTimer);
+      alive = false;
+      window.clearInterval(id);
     };
   }, []);
 
   return (
-    <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-3 py-1 text-xs text-slate-500 bg-white/40 backdrop-blur">
+    <div className="inline-flex items-center gap-2 rounded-full border bg-white px-3 py-1 text-xs text-slate-700 shadow-sm">
       <span className="h-2 w-2 rounded-full bg-emerald-500" />
-      <span className="font-semibold">{online === null ? "—" : online}</span>
-      <span className="text-slate-500">online</span>
+      <span className="font-medium">{data.online} online</span>
+      <span className="text-slate-400">•</span>
+      <span className="text-slate-600">{data.today} today</span>
     </div>
   );
 }
-
-// ✅ ALSO export default so either import style works
-export default TrafficMeter;

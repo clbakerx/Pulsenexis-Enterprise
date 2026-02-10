@@ -2,75 +2,118 @@ import { NextResponse } from "next/server";
 import { createClient } from "redis";
 
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic"; // avoid Next caching
 
-const REDIS_URL = process.env.REDIS_URL;
-if (!REDIS_URL) {
-  throw new Error("Missing REDIS_URL (check Vercel Redis connection/env vars)");
-}
+const REDIS_URL =
+  process.env.REDIS_URL ||
+  process.env.STORAGE_URL ||
+  process.env.UPSTASH_REDIS_REST_URL; // (fallback if you ever switch)
 
-// Cache the client across hot reloads
-declare global {
-  // eslint-disable-next-line no-var
-  var __pnRedis: ReturnType<typeof createClient> | undefined;
-}
+let client: ReturnType<typeof createClient> | null = null;
 
-const redis =
-  global.__pnRedis ??
-  createClient({
-    url: REDIS_URL,
-  });
-
-global.__pnRedis = redis;
-
-async function ensureConnected() {
-  if (!redis.isOpen) await redis.connect();
-}
-
-const ONLINE_WINDOW_SECONDS = 5 * 60; // 5 minutes
-const ONLINE_KEY = "traffic:online:zset";
-
-function todayKey() {
-  const d = new Date();
-  const yyyy = d.getUTCFullYear();
-  const mm = String(d.getUTCMonth() + 1).padStart(2, "0");
-  const dd = String(d.getUTCDate()).padStart(2, "0");
-  return `traffic:today:set:${yyyy}-${mm}-${dd}`;
-}
-
-export async function POST(req: Request) {
-  await ensureConnected();
-
-  const { vid } = (await req.json().catch(() => ({}))) as { vid?: string };
-  if (!vid || typeof vid !== "string") {
-    return NextResponse.json({ error: "Missing vid" }, { status: 400 });
+async function redis() {
+  if (!REDIS_URL) {
+    throw new Error(
+      "Missing Redis URL. Set REDIS_URL or STORAGE_URL in your environment variables."
+    );
   }
-
-  const now = Date.now();
-  const cutoff = now - ONLINE_WINDOW_SECONDS * 1000;
-
-  // Mark visitor online (zset score = timestamp)
-  await redis.zAdd(ONLINE_KEY, [{ score: now, value: vid }]);
-
-  // Keep zset tidy
-  await redis.zRemRangeByScore(ONLINE_KEY, 0, cutoff);
-
-  // Daily uniques
-  const tKey = todayKey();
-  await redis.sAdd(tKey, vid);
-  await redis.expire(tKey, 2 * 24 * 60 * 60); // 2 days buffer
-
-  return NextResponse.json({ ok: true });
+  if (!client) {
+    client = createClient({ url: REDIS_URL });
+    client.on("error", (e) => console.error("Redis error:", e));
+    await client.connect();
+  }
+  return client;
 }
 
+function dayKey(d = new Date()) {
+  const y = d.getUTCFullYear();
+  const m = String(d.getUTCMonth() + 1).padStart(2, "0");
+  const day = String(d.getUTCDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
+}
+
+// Keys
+const ONLINE_ZSET = "traffic:online"; // ZSET sid -> lastSeenMs
+const TODAY_SET_PREFIX = "traffic:today:sids:"; // SET of sids per day
+const TODAY_COUNT_PREFIX = "traffic:today:count:"; // optional counter
+
+const ONLINE_WINDOW_MS = 60_000; // "online" = seen in last 60s
+
+// GET => returns { online, today }
 export async function GET() {
-  await ensureConnected();
+  try {
+    const r = await redis();
+    const now = Date.now();
+    const cutoff = now - ONLINE_WINDOW_MS;
 
-  const now = Date.now();
-  const cutoff = now - ONLINE_WINDOW_SECONDS * 1000;
+    // prune old sessions
+    await r.zRemRangeByScore(ONLINE_ZSET, 0, cutoff);
 
-  await redis.zRemRangeByScore(ONLINE_KEY, 0, cutoff);
-  const online = await redis.zCard(ONLINE_KEY);
-  const today = await redis.sCard(todayKey());
+    const online = await r.zCard(ONLINE_ZSET);
 
-  return NextResponse.json({ online, today });
+    const dk = dayKey();
+    const todaySetKey = `${TODAY_SET_PREFIX}${dk}`;
+    const today = await r.sCard(todaySetKey);
+
+    return NextResponse.json(
+      { online, today },
+      {
+        headers: {
+          "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
+        },
+      }
+    );
+  } catch (err: any) {
+    return NextResponse.json(
+      { error: err?.message ?? "traffic error" },
+      { status: 500 }
+    );
+  }
+}
+
+// POST => ping { sid } (updates online + counts unique sid for today)
+export async function POST(req: Request) {
+  try {
+    const r = await redis();
+    const body = await req.json().catch(() => null);
+    const sid = typeof body?.sid === "string" ? body.sid : "";
+
+    if (!sid || sid.length < 8 || sid.length > 80) {
+      return NextResponse.json({ error: "Invalid sid" }, { status: 400 });
+    }
+
+    const now = Date.now();
+    const dk = dayKey();
+    const todaySetKey = `${TODAY_SET_PREFIX}${dk}`;
+
+    // Update "online now"
+    await r.zAdd(ONLINE_ZSET, [{ score: now, value: sid }]);
+
+    // Track unique visits for the day (by sid)
+    const added = await r.sAdd(todaySetKey, sid);
+
+    // Expire daily set after ~3 days so Redis stays clean
+    await r.expire(todaySetKey, 60 * 60 * 24 * 3);
+
+    // (Optional) if you want a simple counter too:
+    if (added === 1) {
+      const countKey = `${TODAY_COUNT_PREFIX}${dk}`;
+      await r.incr(countKey);
+      await r.expire(countKey, 60 * 60 * 24 * 3);
+    }
+
+    return NextResponse.json(
+      { ok: true },
+      {
+        headers: {
+          "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
+        },
+      }
+    );
+  } catch (err: any) {
+    return NextResponse.json(
+      { error: err?.message ?? "traffic error" },
+      { status: 500 }
+    );
+  }
 }
