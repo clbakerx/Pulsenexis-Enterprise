@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useCart } from "@/app/catalog/providers";
+import { useCart } from "@/app/providers";
 import { COMPLETE_BUNDLE_PRICE } from "@/lib/pricing";
 
 function clampQty(n: unknown) {

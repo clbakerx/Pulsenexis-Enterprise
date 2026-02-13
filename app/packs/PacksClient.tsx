@@ -9,13 +9,13 @@ import { PACK_BUNDLE_PRICE, PACK_BUNDLE_STRIPE_LINK } from "@/lib/pricing";
 
 type Genre = "jazz" | "rnb" | "soul";
 
-function buildStripeUrl(baseUrl: string, params: Record<string, string>) {
+function withQuery(baseUrl: string, params: Record<string, string>) {
   try {
     const u = new URL(baseUrl);
     for (const [k, v] of Object.entries(params)) u.searchParams.set(k, v);
     return u.toString();
   } catch {
-    return baseUrl;
+    return baseUrl; // if Stripe url is missing/invalid, don't crash the page
   }
 }
 
@@ -53,21 +53,33 @@ export default function PacksClient() {
           { label: "License Terms", href: "/licensing", variant: "outline" },
           { label: "Back Home", href: "/", variant: "ghost" },
         ]}
-        footnote="Preview → Buy → Done. We removed extra routes to keep this stable."
+        footnote="Preview → Buy → Done. We removed extra links to keep this stable."
       />
 
       {/* Filters */}
       <div className="mt-8 flex flex-wrap gap-2">
-        <Link href="/packs" className="rounded-full border bg-white px-4 py-2 text-sm font-semibold">
+        <Link
+          href="/packs"
+          className="rounded-full border bg-white px-4 py-2 text-sm font-semibold"
+        >
           All
         </Link>
-        <Link href="/packs?genre=jazz" className="rounded-full border bg-white px-4 py-2 text-sm font-semibold">
+        <Link
+          href="/packs?genre=jazz"
+          className="rounded-full border bg-white px-4 py-2 text-sm font-semibold"
+        >
           Jazz
         </Link>
-        <Link href="/packs?genre=rnb" className="rounded-full border bg-white px-4 py-2 text-sm font-semibold">
+        <Link
+          href="/packs?genre=rnb"
+          className="rounded-full border bg-white px-4 py-2 text-sm font-semibold"
+        >
           R&amp;B
         </Link>
-        <Link href="/packs?genre=soul" className="rounded-full border bg-white px-4 py-2 text-sm font-semibold">
+        <Link
+          href="/packs?genre=soul"
+          className="rounded-full border bg-white px-4 py-2 text-sm font-semibold"
+        >
           Soul
         </Link>
       </div>
@@ -75,7 +87,9 @@ export default function PacksClient() {
       <div id="packs" className="mt-10 space-y-16">
         {showJazz && <PackGrid label="Jazz Packs" packs={jazzPacks} refPrefix="jazz" />}
         {showRnb && <PackGrid label="R&B Packs" packs={rnbPacks} refPrefix="rnb" />}
-        {showSoul && soulPacks.length > 0 && <PackGrid label="Soul Packs" packs={soulPacks} refPrefix="soul" />}
+        {showSoul && soulPacks.length > 0 && (
+          <PackGrid label="Soul Packs" packs={soulPacks} refPrefix="soul" />
+        )}
       </div>
 
       {/* Global bundle CTA */}
@@ -126,13 +140,19 @@ function PackGrid({
         {packs.map((pack) => {
           const samples = (pack.tracks ?? []).slice(0, 2);
 
-          const stripeUrl = buildStripeUrl(PACK_BUNDLE_STRIPE_LINK, {
+          // ✅ IMPORTANT: Stripe links must be <a>, not <Link>
+          const checkoutUrl = withQuery(PACK_BUNDLE_STRIPE_LINK, {
             client_reference_id: `packs_${refPrefix}_${pack.slug}`,
           });
 
           return (
-            <div key={pack.slug} className="overflow-hidden rounded-3xl border bg-white p-5 shadow-sm">
-              <div className="text-xs font-semibold uppercase opacity-60">{pack.genre.toUpperCase()}</div>
+            <div
+              key={pack.slug}
+              className="overflow-hidden rounded-3xl border bg-white p-5 shadow-sm"
+            >
+              <div className="text-xs font-semibold uppercase opacity-60">
+                {pack.genre.toUpperCase()}
+              </div>
 
               <div className="mt-1 text-lg font-extrabold">{pack.title}</div>
               <p className="mt-1 text-sm opacity-70">{pack.description}</p>
@@ -145,6 +165,7 @@ function PackGrid({
                 </div>
               )}
 
+              {/* Two previews */}
               <div className="mt-4 grid gap-3">
                 {samples.map((t) => (
                   <div key={t.id} className="rounded-2xl border p-3">
@@ -160,9 +181,10 @@ function PackGrid({
                 ))}
               </div>
 
+              {/* One CTA */}
               <div className="mt-4">
                 <a
-                  href={stripeUrl}
+                  href={checkoutUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block w-full rounded-full bg-black px-4 py-2 text-center text-sm font-semibold text-white hover:opacity-90"
