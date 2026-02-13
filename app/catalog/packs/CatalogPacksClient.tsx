@@ -1,6 +1,7 @@
 "use client";
 
-import { PACKS } from "./packs/packs";
+import { PACKS } from "./packs";
+
 import { PACK_BUNDLE_PRICE, PACK_BUNDLE_STRIPE_LINK } from "@/lib/pricing";
 
 export default function CatalogPacksClient() {
