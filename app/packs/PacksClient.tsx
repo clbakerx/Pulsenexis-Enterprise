@@ -1,68 +1,193 @@
 "use client";
 
 import Link from "next/link";
-import { getPackBySlug, buildFileDNUrl } from "@/data/packs";
+import { useSearchParams } from "next/navigation";
 
-export default function PackClient({ slug }: { slug: string }) {
-  const pack = getPackBySlug(slug);
+import TopHero from "@/app/components/TopHero";
+import { PACKS } from "@/app/catalog/packs/packs";
+import { PACK_BUNDLE_PRICE, PACK_BUNDLE_STRIPE_LINK } from "@/lib/pricing";
 
-  if (!pack) {
-    return (
-      <main className="mx-auto max-w-3xl px-4 py-10">
-        <h1 className="text-2xl font-bold">Pack not found</h1>
-        <p className="mt-2 text-neutral-600">
-          No pack matches slug: <span className="font-mono">{slug}</span>
-        </p>
-        <Link className="mt-6 inline-block underline" href="/packs">
-          Back to packs
-        </Link>
-      </main>
-    );
+
+
+function chunk<T>(arr: T[], size: number) {
+  const out: T[][] = [];
+  for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
+  return out;
+}
+
+function withQuery(baseUrl: string, params: Record<string, string>) {
+  try {
+    const u = new URL(baseUrl);
+    for (const [k, v] of Object.entries(params)) u.searchParams.set(k, v);
+    return u.toString();
+  } catch {
+    return baseUrl;
   }
+}
 
-  const tracks = pack.tracks ?? [];
-  const folder = pack.packFolder ?? "";
+const STRIPE_PACK_BUNDLE_LINK = "https://buy.stripe.com/00wbJ19MvdPN3Cp1X74ZG0w";
+
+export default function PacksClient() {
+  const sp = useSearchParams();
+  const genre = (sp.get("genre") ?? "").toLowerCase();
+
+  const jazzPacks = PACKS.filter((p) => p.genre === "jazz");
+  const rnbPacks = PACKS.filter((p) => p.genre === "rnb");
+  const soulPacks = PACKS.filter((p) => p.genre === "soul");
+
+  const showJazz = !genre || genre === "jazz";
+  const showRnb = !genre || genre === "rnb";
+  const showSoul = !genre || genre === "soul";
 
   return (
-    <main className="mx-auto max-w-4xl px-4 py-10">
-      <Link href="/packs" className="text-sm underline text-neutral-600">
-        ← Back to packs
-      </Link>
+    <main className="mx-auto max-w-6xl px-4 py-10">
+      <TopHero
+        eyebrow="PULSENEXIS • PACKS"
+        titlePre="Music built for "
+        titleHighlight="Shorts"
+        titlePost=", Reels & Brands"
+        descriptionLines={[
+          "Loop-ready, creator-safe packs optimized for TikTok, Instagram Reels, and YouTube Shorts.",
+          "Designed to support text overlays and voiceovers.",
+        ]}
+        bullets={[
+          "Loop-first • edit-safe",
+          "Monetization allowed",
+          "No Content ID claims",
+          "One-time purchase • Perpetual license",
+        ]}
+        buttons={[
+          { label: "Choose a bundle", href: "#bundles", variant: "primary" },
+          { label: "View License Terms", href: "/licensing", variant: "outline" },
+          { label: "Back Home", href: "/", variant: "ghost" },
+        ]}
+        footnote="Pick a bundle below • Checkout opens in a new tab • No renewals • No Content ID"
+      />
 
-      <h1 className="mt-2 text-4xl font-extrabold tracking-tight">{pack.title}</h1>
-      <p className="mt-2 max-w-2xl text-sm text-neutral-600">
-        {pack.shortDescription}
-      </p>
+      {/* quick filters */}
+      <div className="mt-8 flex flex-wrap gap-2">
+        <Link href="/packs" className="rounded-full border bg-white px-4 py-2 text-sm font-semibold">
+          All
+        </Link>
+        <Link href="/packs?genre=jazz" className="rounded-full border bg-white px-4 py-2 text-sm font-semibold">
+          Jazz
+        </Link>
+        <Link href="/packs?genre=rnb" className="rounded-full border bg-white px-4 py-2 text-sm font-semibold">
+          R&amp;B
+        </Link>
+        <Link href="/packs?genre=soul" className="rounded-full border bg-white px-4 py-2 text-sm font-semibold">
+          Soul
+        </Link>
+      </div>
 
-      <section className="mt-10">
-        <h2 className="text-lg font-bold">Samples</h2>
-
-        {tracks.length === 0 ? (
-          <div className="mt-4 rounded-2xl border border-neutral-200 bg-neutral-50 p-4 text-sm">
-            No samples added yet.
-          </div>
-        ) : (
-          <div className="mt-5 space-y-4">
-            {tracks.map((t) => {
-              // ✅ This was your bug: buildFileUrl doesn't exist.
-              // ✅ Use the function you actually import: buildFileDNUrl
-              const src = buildFileDNUrl(folder, t.file);
-
-              return (
-                <div key={t.id} className="rounded-2xl border border-neutral-200 p-4">
-                  <div className="text-sm font-semibold">{t.title}</div>
-
-                  <audio className="mt-2 w-full" controls preload="none">
-                    <source src={src} type="audio/mpeg" />
-                  </audio>
-
-                  <div className="mt-2 break-all text-xs text-neutral-500">{src}</div>
-                </div>
-              );
-            })}
-          </div>
+      <div id="bundles" className="mt-12 space-y-16">
+        {showJazz && (
+          <GenreSection
+            label="Jazz Packs"
+            subtitle="Pick a pack below, then checkout."
+            packs={jazzPacks}
+            clientRefPrefix="pulsenexis_jazz"
+          />
         )}
-      </section>
+        {showRnb && (
+          <GenreSection
+            label="R&B Packs"
+            subtitle="Grown & soulful packs for creators."
+            packs={rnbPacks}
+            clientRefPrefix="pulsenexis_rnb"
+          />
+        )}
+        {showSoul && soulPacks.length > 0 && (
+          <GenreSection
+            label="Soul Packs"
+            subtitle="Warm, classic, emotional foundations."
+            packs={soulPacks}
+            clientRefPrefix="pulsenexis_soul"
+          />
+        )}
+      </div>
     </main>
+  );
+}
+
+function GenreSection({
+  label,
+  subtitle,
+  packs,
+  clientRefPrefix,
+}: {
+  label: string;
+  subtitle: string;
+  packs: {
+    slug: string;
+    title: string;
+    description: string;
+    bpmRange?: string;
+    mood?: string;
+    tracks: { id: string; title: string; previewUrl?: string }[];
+  }[];
+  clientRefPrefix: string;
+}) {
+  if (!packs.length) return null;
+
+  return (
+    <section>
+      <div className="mb-6">
+        <h2 className="text-4xl font-extrabold">{label}</h2>
+        <p className="mt-2 text-sm opacity-80">{subtitle}</p>
+      </div>
+
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {packs.flatMap((pack) => {
+          const pairs = chunk(pack.tracks ?? [], 2);
+
+          return pairs.map((pair, idx) => {
+            const checkoutUrl = withQuery(STRIPE_PACK_BUNDLE_LINK, {
+              client_reference_id: `${clientRefPrefix}_${pack.slug}_${idx}`,
+            });
+
+            return (
+              <div key={`${pack.slug}-${idx}`} className="overflow-hidden rounded-3xl border bg-white p-5 shadow-sm">
+                <div>
+                  <div className="text-xs font-semibold uppercase opacity-60">
+                    {label.replace(" Packs", "")} Pack
+                  </div>
+                  <div className="mt-1 text-lg font-extrabold">{pack.title}</div>
+                  <p className="mt-1 text-sm opacity-70">{pack.description}</p>
+                </div>
+
+                <div className="mt-4 grid gap-3">
+                  {pair.map((t) => (
+                    <div key={t.id} className="overflow-hidden rounded-2xl border p-3">
+                      <div className="truncate text-sm font-semibold">{t.title}</div>
+                      {t.previewUrl ? (
+                        <div className="mt-2 w-full">
+                          <audio controls preload="none" className="h-8 w-full">
+                            <source src={t.previewUrl} type="audio/mpeg" />
+                          </audio>
+                        </div>
+                      ) : (
+                        <div className="mt-2 text-xs opacity-60">No preview</div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-4">
+                  <a
+                    href={checkoutUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full rounded-full bg-black px-4 py-2 text-center text-sm font-semibold text-white hover:opacity-90"
+                  >
+                    Buy Bundle — ${PACK_BUNDLE_PRICE}
+                  </a>
+                </div>
+              </div>
+            );
+          });
+        })}
+      </div>
+    </section>
   );
 }

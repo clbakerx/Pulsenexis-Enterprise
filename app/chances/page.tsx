@@ -1,28 +1,25 @@
-// app/bring-the-snow/page.tsx
+// app/chances/page.tsx
 
 export const metadata = {
-  title: "Bring the Snow (Slide We Ride) | PulseNexis",
+  title: "Chances | PulseNexis",
   description:
-    "Smooth R&B • Late-Night Drive • Intimate & Confident. Preview and buy instantly via Stripe.",
+    "Smooth R&B • Hopeful & heartfelt • Grown romance. Preview and buy instantly via Stripe.",
 };
 
-const STRIPE_LINK = "https://buy.stripe.com/eVqcN5gaTeTR1uh8lv4ZG0z";
-const PREVIEW_MP3 =
-  "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Bring-The-Snow/Bring-the-Snow(Slide%20We%20Ride)Sample.mp3";
+const STRIPE_LINK = "https://buy.stripe.com/6oU00j1fZ275a0NgS14ZG0B";
+const PREVIEW_MP3 = "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Chances/Chances_30secSample.mp3";
 
-export default function BringTheSnowPage() {
+export default function ChancesPage() {
   return (
     <main style={{ maxWidth: 820, margin: "0 auto", padding: "32px 18px" }}>
       <header style={{ marginBottom: 18 }}>
-        <h1 style={{ fontSize: 34, lineHeight: 1.1, margin: 0 }}>
-          Bring the Snow (Slide We Ride)
-        </h1>
+        <h1 style={{ fontSize: 34, lineHeight: 1.1, margin: 0 }}>Chances</h1>
         <p style={{ marginTop: 10, opacity: 0.8 }}>
-          Smooth R&amp;B • Late-Night Drive • Intimate &amp; Confident
+          Smooth R&amp;B • Hopeful &amp; heartfelt • Grown romance
         </p>
       </header>
 
-      {/* BUY SECTION (anchor target for /bring-the-snow#buy) */}
+      {/* BUY SECTION (anchor target for /chances#buy) */}
       <section
         id="buy"
         style={{
@@ -30,11 +27,11 @@ export default function BringTheSnowPage() {
           borderRadius: 18,
           padding: 16,
           marginBottom: 22,
-          scrollMarginTop: 90, // helps if you have a sticky header
+          scrollMarginTop: 90,
         }}
       >
         <div style={{ fontWeight: 600, marginBottom: 10 }}>
-          🎧 Preview the glide that sets the mood
+          🎧 Preview the record that feels like a fresh start
         </div>
 
         <audio
@@ -67,12 +64,11 @@ export default function BringTheSnowPage() {
       </section>
 
       <section style={{ marginBottom: 18 }}>
-        <h2 style={{ fontSize: 20, marginBottom: 8 }}>Music made for movement</h2>
+        <h2 style={{ fontSize: 20, marginBottom: 8 }}>A grown second chance</h2>
         <p style={{ opacity: 0.85, lineHeight: 1.55 }}>
-          Bring the Snow (Slide We Ride) is a smooth, grown R&amp;B record built
-          for late-night motion and quiet confidence. It plays when the city
-          lights blur past the windshield and the moment doesn’t need explaining.
-          Nothing forced. Nothing rushed. It just rides.
+          Chances is for the love that’s been tested — and still shows up. It’s
+          smooth, romantic R&amp;B with that “let’s do this right” energy: calm,
+          confident, and honest enough to heal what was shaky.
         </p>
       </section>
 
@@ -81,21 +77,21 @@ export default function BringTheSnowPage() {
           Why creators use this track
         </h2>
         <ul style={{ opacity: 0.85, lineHeight: 1.7 }}>
-          <li>Confident male lead with a relaxed, grown presence</li>
-          <li>Smooth pacing that supports visuals and dialogue</li>
-          <li>Luxurious late-night energy without overpowering the scene</li>
-          <li>Easy to place under edits, montages, or transitions</li>
+          <li>Warm emotional tone that supports love-forward visuals</li>
+          <li>Steady groove that won’t overpower your scene</li>
+          <li>Clean structure that cuts well for reels and shorts</li>
+          <li>Feels romantic without being cheesy</li>
         </ul>
       </section>
 
       <section style={{ marginBottom: 22 }}>
         <h2 style={{ fontSize: 20, marginBottom: 8 }}>Perfect for</h2>
         <ul style={{ opacity: 0.85, lineHeight: 1.7 }}>
-          <li>Late-night drive scenes</li>
-          <li>Romantic or sensual visuals</li>
-          <li>Lifestyle &amp; luxury content</li>
-          <li>Short films, reels, and edits</li>
-          <li>Podcast intros or transitions</li>
+          <li>Couples content &amp; relationship stories</li>
+          <li>Engagement, wedding, and anniversary edits</li>
+          <li>Brand/lifestyle reels with warmth</li>
+          <li>Short films, montages, and recap videos</li>
+          <li>Creator intros and transitions</li>
         </ul>
       </section>
 
@@ -109,13 +105,12 @@ export default function BringTheSnowPage() {
       >
         <h2 style={{ fontSize: 18, marginTop: 0 }}>Similar Vibes</h2>
         <p style={{ opacity: 0.8, marginTop: 6 }}>
-          These pair perfectly if you want the same late-night energy:
+          Keep the grown romance going with:
         </p>
 
         <div style={{ display: "grid", gap: 12 }}>
-          {/* Until you create more song pages, point these to your homepage “Hot Right Now” area */}
           <a
-            href="/#hot"
+            href="/bring-the-snow"
             style={{
               border: "1px solid rgba(0,0,0,0.12)",
               borderRadius: 16,
@@ -124,9 +119,9 @@ export default function BringTheSnowPage() {
               display: "block",
             }}
           >
-            <div style={{ fontWeight: 700 }}>Late-Night Ride R&amp;B</div>
+            <div style={{ fontWeight: 700 }}>Bring the Snow (Slide We Ride)</div>
             <div style={{ fontSize: 13, opacity: 0.75, marginTop: 4 }}>
-              Explore what’s hot right now →
+              Late-night glide energy →
             </div>
           </a>
 
@@ -140,13 +135,12 @@ export default function BringTheSnowPage() {
               display: "block",
             }}
           >
-            <div style={{ fontWeight: 700 }}>Grown &amp; Confident Soul</div>
+            <div style={{ fontWeight: 700 }}>Hot Right Now</div>
             <div style={{ fontSize: 13, opacity: 0.75, marginTop: 4 }}>
               Explore featured tracks →
             </div>
           </a>
 
-          {/* Optional third card */}
           <a
             href="/catalog"
             style={{

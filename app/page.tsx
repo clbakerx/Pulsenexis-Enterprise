@@ -3,6 +3,12 @@ import Image from "next/image";
 
 const USE_CASES = [
   {
+    title: "Gaming Audio (NEW)",
+    desc: "Modular stems, loop-ready systems, engine-friendly exports.",
+    href: "/gaming-audio",
+    badge: "NEW",
+  },
+  {
     title: "YouTube & Shorts",
     desc: "Fast hooks, emotional beds, clean mixes.",
     href: "/shorts",
@@ -23,7 +29,7 @@ const USE_CASES = [
   {
     title: "Film & Cinematic",
     desc: "Big emotion for trailers & scenes.",
-    href: "/cinema",
+    href: "/packs",
     badge: "Cinematic",
   },
   {
@@ -40,7 +46,7 @@ const USE_CASES = [
   },
 ];
 
-// 🔥 Add featured tracks here (landing pages, not Stripe links)
+// 🔥 Featured track landing pages (NOT Stripe links)
 const HOT_RIGHT_NOW = [
   {
     title: "Bring the Snow (Slide We Ride)",
@@ -49,20 +55,29 @@ const HOT_RIGHT_NOW = [
     badge: "Hot right now",
     bestFor: "Drive scenes • Lifestyle • Romantic visuals",
   },
-  // Add more later:
-  // {
-  //   title: "Another Track Title",
-  //   desc: "One-sentence promise that sells the vibe.",
-  //   href: "/another-track",
-  //   badge: "New drop",
-  //   bestFor: "Reels • Shorts • Ads",
-  // },
+  {
+    title: "Right in the Middle",
+    desc: "Smooth, late-night R&B built for motion, confidence, and intimate moments.",
+    href: "/right-in-the-middle",
+    badge: "Hot right now",
+    bestFor: "Drive scenes • Lifestyle • Romantic visuals",
+  },
+  {
+    title: "Chances",
+    desc: "Smooth, late-night R&B built for motion, confidence, and intimate moments.",
+    href: "/chances",
+    badge: "Hot right now",
+    bestFor: "Drive scenes • Lifestyle • Romantic visuals",
+  },
 ];
+
+// Gumroad direct link (clean)
+const GUMROAD_NEON_SYNDICATE = "https://cushy.gumroad.com/l/hwrbq";
 
 export default function HomePage() {
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
-      {/* HERO — Step 1: Locked Buyer Path */}
+      {/* HERO — Locked Buyer Path */}
       <section className="grid gap-8 lg:grid-cols-2 lg:items-center">
         {/* LEFT */}
         <div className="rounded-3xl bg-gradient-to-br from-violet-500 to-indigo-600 p-10 text-white shadow-sm">
@@ -70,7 +85,7 @@ export default function HomePage() {
             HONEY DRIP RECORDS
           </div>
 
-          <h1 className="mt-4 text-4xl leading-tight font-extrabold sm:text-5xl">
+          <h1 className="mt-4 text-4xl font-extrabold leading-tight sm:text-5xl">
             License Music Once.
             <br />
             <span className="text-amber-300">Monetize Forever.</span>
@@ -80,27 +95,43 @@ export default function HomePage() {
             PulseNexis provides{" "}
             <span className="font-semibold text-white">perpetual</span>,{" "}
             <span className="font-semibold text-white">creator-safe</span> music
-            licenses for YouTube, films, ads, weddings, and brand content — with{" "}
-            <span className="font-semibold text-white">no renewals</span> and{" "}
-            <span className="font-semibold text-white">no Content ID claims</span>.
+            licenses for YouTube, films, ads, weddings, brand content — and now{" "}
+            <span className="font-semibold text-white">gaming audio systems</span>{" "}
+            with modular stems and clean loop points.
           </p>
 
           <ul className="mt-6 space-y-2 text-sm opacity-95">
             <li>✅ Perpetual license (no expiration)</li>
             <li>✅ Monetization allowed (within tier scope)</li>
             <li>✅ No Content ID / copyright stress</li>
-            <li>✅ Music built for real creators</li>
+            <li>✅ Clean deliverables for real creators</li>
           </ul>
 
           {/* Primary buttons */}
           <div className="mt-7 flex flex-wrap gap-3">
             <Link
-              href="/shorts"
+              href="/gaming-audio"
               className="rounded-full bg-white/15 px-6 py-3 text-sm font-semibold text-white hover:bg-white/20"
             >
               <span className="mr-2 inline-flex items-center rounded-full bg-amber-400 px-2 py-0.5 text-[11px] font-bold text-black">
                 NEW
               </span>
+              🎮 Explore Gaming Audio
+            </Link>
+
+            <a
+              href={GUMROAD_NEON_SYNDICATE}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full border border-white/25 bg-black/10 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10"
+            >
+              🛒 Buy Neon Syndicate Vol. 1
+            </a>
+
+            <Link
+              href="/shorts"
+              className="rounded-full bg-white/15 px-6 py-3 text-sm font-semibold text-white hover:bg-white/20"
+            >
               Shorts &amp; Jingles
             </Link>
           </div>
@@ -115,10 +146,10 @@ export default function HomePage() {
             </Link>
 
             <Link
-              href="/catalog/packs?genre=jazz"
+              href="/packs"
               className="rounded-full bg-emerald-500 px-5 py-2 text-sm font-semibold text-white hover:bg-emerald-400"
             >
-              Jazz Packs
+              Packs
             </Link>
 
             <Link
@@ -147,12 +178,12 @@ export default function HomePage() {
           </div>
 
           <div className="absolute bottom-4 left-4 rounded-xl bg-black/60 px-3 py-2 text-sm text-white">
-            Perpetual licenses • Creator-safe music
+            Perpetual licenses • Creator-safe music • Gaming audio systems
           </div>
         </div>
       </section>
 
-      {/* 🔥 HOT RIGHT NOW (new) */}
+      {/* 🔥 HOT RIGHT NOW */}
       <section className="mt-12">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
@@ -163,7 +194,7 @@ export default function HomePage() {
               Start with the tracks creators are feeling this week
             </h2>
             <p className="mt-1 text-sm text-neutral-600">
-              Quick entry points that lead to focused song pages (preview → buy in seconds).
+              Focused song pages (preview → buy fast).
             </p>
           </div>
 
@@ -217,13 +248,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* STEP 2: USE-CASE FIRST SECTION */}
+      {/* STEP 2: USE-CASE FIRST */}
       <section className="mt-12">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <h2 className="text-2xl font-bold">Find music for your project</h2>
             <p className="mt-1 text-sm text-neutral-600">
-              Choose a use-case to see the best-fit licenses and packs.
+              Choose a use-case to see the best-fit options.
             </p>
           </div>
 
@@ -263,7 +294,7 @@ export default function HomePage() {
         <div className="mt-6 rounded-2xl border bg-white p-5">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <div className="text-sm font-semibold">Not sure which one you need?</div>
+              <div className="text-sm font-semibold">Not sure where to start?</div>
               <p className="mt-1 text-sm opacity-80">
                 Start with Packs — it’s the fastest path to licensing.
               </p>
@@ -290,10 +321,10 @@ export default function HomePage() {
         </div>
 
         <div className="rounded-2xl border bg-white p-5">
-          <div className="text-sm font-semibold">2) Pick a License</div>
+          <div className="text-sm font-semibold">2) Choose Your Use</div>
           <p className="mt-2 text-sm opacity-80">
-            Choose the tier that matches your project scope (YouTube, ads, client
-            work, brand campaigns, and more).
+            Pick what you’re building (Shorts, brands, weddings, podcasts, games),
+            and grab the best-fit product.
           </p>
         </div>
 

@@ -176,7 +176,7 @@ function cx(...classes: Array<string | false | null | undefined>) {
 
 function Badge({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs font-medium text-neutral-700 shadow-sm">
+    <span className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-medium text-white/85">
       {children}
     </span>
   );
@@ -214,6 +214,84 @@ function SectionTitle({
       </h2>
       {desc ? <p className="max-w-3xl text-neutral-600">{desc}</p> : null}
     </div>
+  );
+}
+
+/** -----------------------------
+ * Uniform Top Hero (screenshot style)
+ * ------------------------------ */
+function TopHero({
+  eyebrow,
+  highlightWord,
+  descriptionLines,
+  bullets,
+  primaryLabel,
+  primaryHref,
+  secondaryHref,
+  tertiaryHref,
+  footnote,
+}: {
+  eyebrow: string;
+  highlightWord: string; // the yellow word (e.g., "Packs" / "Cinema" / "Shorts")
+  descriptionLines: string[];
+  bullets: string[];
+  primaryLabel: string;
+  primaryHref: string;
+  secondaryHref: string;
+  tertiaryHref: string;
+  footnote: string;
+}) {
+  return (
+    <section className="rounded-[28px] border border-black/10 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 px-10 py-12 text-white shadow-sm">
+      <div className="text-xs font-semibold tracking-widest text-white/70">
+        {eyebrow}
+      </div>
+
+      <h1 className="mt-4 text-5xl font-extrabold leading-tight">
+        Music built for{" "}
+        <span className="text-amber-400">{highlightWord}</span>, Reels &amp; Brands
+      </h1>
+
+      <div className="mt-5 max-w-2xl space-y-1 text-sm leading-relaxed text-white/75">
+        {descriptionLines.map((line) => (
+          <p key={line}>{line}</p>
+        ))}
+      </div>
+
+      <ul className="mt-6 space-y-2 text-sm text-white/80">
+        {bullets.map((b) => (
+          <li key={b} className="flex items-center gap-2">
+            <span className="text-emerald-400">✅</span>
+            <span>{b}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div className="mt-8 flex flex-wrap items-center gap-3">
+        <a
+          href={primaryHref}
+          className="inline-flex items-center justify-center rounded-full bg-amber-400 px-6 py-3 text-sm font-bold text-black hover:opacity-95"
+        >
+          {primaryLabel}
+        </a>
+
+        <Link
+          href={secondaryHref}
+          className="inline-flex items-center justify-center rounded-full border border-white/25 bg-transparent px-6 py-3 text-sm font-semibold text-white hover:bg-white/10"
+        >
+          View License Terms
+        </Link>
+
+        <Link
+          href={tertiaryHref}
+          className="inline-flex items-center justify-center rounded-full bg-white/10 px-6 py-3 text-sm font-semibold text-white hover:bg-white/15"
+        >
+          Back Home
+        </Link>
+      </div>
+
+      <div className="mt-4 text-xs text-white/55">{footnote}</div>
+    </section>
   );
 }
 
@@ -333,97 +411,32 @@ export default function PackSlugPage() {
           <span className="text-neutral-700">{pack.name}</span>
         </div>
 
-        {/* Hero */}
-        <section className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
-          <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
-            <div className="space-y-4">
-              <div className="flex flex-wrap items-center gap-2">
-                {pack.badge ? <Badge>{pack.badge}</Badge> : null}
-                <Badge>{pack.name}</Badge>
-              </div>
+        {/* ✅ Uniform top hero (screenshot style) */}
+        <TopHero
+          eyebrow="PULSENEXIS • PACKS"
+          highlightWord={pack.name}
+          descriptionLines={[
+            pack.tagline,
+            pack.description,
+          ]}
+          bullets={[
+            ...pack.bullets,
+            "Monetization allowed",
+            "No Content ID claims",
+            "One-time purchase • Perpetual license",
+          ]}
+          primaryLabel="Play Previews"
+          primaryHref="#previews"
+          secondaryHref="/licensing"
+          tertiaryHref="/"
+          footnote={
+            nowPlaying
+              ? `Now playing: ${nowPlaying.title}`
+              : "Pick a preview below • No renewals • No Content ID"
+          }
+        />
 
-              <h1 className="text-3xl font-semibold tracking-tight text-neutral-900 md:text-5xl">
-                {pack.tagline}
-              </h1>
-
-              <p className="max-w-2xl text-neutral-600">{pack.description}</p>
-
-              <ul className="mt-4 space-y-3">
-                {pack.bullets.map((b) => (
-                  <CheckItem key={b}>{b}</CheckItem>
-                ))}
-              </ul>
-
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <a
-                  href="#previews"
-                  className="inline-flex items-center justify-center rounded-full bg-neutral-900 px-6 py-3 text-sm font-semibold text-white hover:opacity-90"
-                >
-                  Play Previews
-                </a>
-
-                <a
-                  href="#start-order"
-                  className="inline-flex items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-3 text-sm font-semibold text-neutral-900 hover:bg-neutral-50"
-                >
-                  Start Order
-                </a>
-              </div>
-
-              {nowPlaying ? (
-                <div className="text-xs text-neutral-500">
-                  Now playing:{" "}
-                  <span className="font-semibold text-neutral-900">{nowPlaying.title}</span>
-                </div>
-              ) : (
-                <div className="text-xs text-neutral-500">
-                  Preview links are stored inside <span className="font-semibold">PACKS</span>.
-                </div>
-              )}
-            </div>
-
-            {/* Sidebar */}
-            <aside className="w-full md:w-[380px]">
-              <div className="rounded-3xl border border-neutral-200 bg-neutral-50 p-5">
-                <div className="text-sm font-semibold text-neutral-900">What you get</div>
-                <p className="mt-2 text-sm text-neutral-600">
-                  A repeatable system to create emotional, content-ready music fast.
-                </p>
-
-                <div className="mt-4 space-y-3">
-                  <div className="rounded-2xl bg-white p-4">
-                    <div className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
-                      Included
-                    </div>
-                    <ul className="mt-2 space-y-2 text-sm text-neutral-700">
-                      <li>• Chord progression blueprints</li>
-                      <li>• Drum groove templates</li>
-                      <li>• Vocal arrangement maps (3rd/5th)</li>
-                      <li>• Mix starter chains</li>
-                      <li>• Project templates (FL / Logic / Ableton)</li>
-                    </ul>
-                  </div>
-
-                  <a
-                    href="#start-order"
-                    className="inline-flex w-full items-center justify-center rounded-full bg-neutral-900 px-5 py-3 text-sm font-semibold text-white hover:opacity-90"
-                  >
-                    Start Order
-                  </a>
-
-                  <Link
-                    href="/packs"
-                    className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-5 py-3 text-sm font-semibold text-neutral-900 hover:bg-neutral-50"
-                  >
-                    Back to Packs
-                  </Link>
-                </div>
-              </div>
-            </aside>
-          </div>
-        </section>
-
-        {/* Previews */}
+        {/* Everything below remains the same */}
         <section id="previews" className="mt-10 md:mt-14">
           <SectionTitle
             kicker="Listen first"
@@ -449,9 +462,15 @@ export default function PackSlugPage() {
                         <div className="truncate text-base font-semibold text-neutral-900">
                           {p.title}
                         </div>
-                        <Badge>{p.mood}</Badge>
-                        <Badge>{p.bpm} BPM</Badge>
-                        <Badge>{p.key}</Badge>
+                        <span className="inline-flex items-center rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs font-medium text-neutral-700 shadow-sm">
+                          {p.mood}
+                        </span>
+                        <span className="inline-flex items-center rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs font-medium text-neutral-700 shadow-sm">
+                          {p.bpm} BPM
+                        </span>
+                        <span className="inline-flex items-center rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs font-medium text-neutral-700 shadow-sm">
+                          {p.key}
+                        </span>
                       </div>
                       <div className="mt-1 text-sm text-neutral-600">
                         preview • loop-clean • content-ready

@@ -11,7 +11,7 @@ type ShortsBundle = { title: string; tag: string; samples: BundleSample[] };
 
 const DELIVERABLES = [
   { title: "30s Main", desc: "All-purpose Shorts background." },
-  { title: "12s Loop", desc: "Seamless loop for text + VO." },
+  { title: "10s Loop", desc: "Seamless loop for text + VO." },
   {
     title: "Stems",
     desc: "Full stems included for custom edits (melody, chords, bass, drums, FX).",

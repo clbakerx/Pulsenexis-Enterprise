@@ -1,28 +1,27 @@
-// app/bring-the-snow/page.tsx
+// app/right-in-the-middle/page.tsx
 
 export const metadata = {
-  title: "Bring the Snow (Slide We Ride) | PulseNexis",
+  title: "Right in the Middle | PulseNexis",
   description:
-    "Smooth R&B • Late-Night Drive • Intimate & Confident. Preview and buy instantly via Stripe.",
+    "Smooth R&B • Grown & emotional • Late-night tension. Preview and buy instantly via Stripe.",
 };
 
-const STRIPE_LINK = "https://buy.stripe.com/eVqcN5gaTeTR1uh8lv4ZG0z";
-const PREVIEW_MP3 =
-  "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Bring-The-Snow/Bring-the-Snow(Slide%20We%20Ride)Sample.mp3";
+const STRIPE_LINK = "https://buy.stripe.com/bJebJ19Mv7rpgpb59j4ZG0A";
+const PREVIEW_MP3 = "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Right-in-the-Middle/Right%20in%20the%20Middle_30secSample.mp3";
 
-export default function BringTheSnowPage() {
+export default function RightInTheMiddlePage() {
   return (
     <main style={{ maxWidth: 820, margin: "0 auto", padding: "32px 18px" }}>
       <header style={{ marginBottom: 18 }}>
         <h1 style={{ fontSize: 34, lineHeight: 1.1, margin: 0 }}>
-          Bring the Snow (Slide We Ride)
+          Right in the Middle
         </h1>
         <p style={{ marginTop: 10, opacity: 0.8 }}>
-          Smooth R&amp;B • Late-Night Drive • Intimate &amp; Confident
+          Smooth R&amp;B • Grown &amp; emotional • Late-night tension
         </p>
       </header>
 
-      {/* BUY SECTION (anchor target for /bring-the-snow#buy) */}
+      {/* BUY SECTION (anchor target for /right-in-the-middle#buy) */}
       <section
         id="buy"
         style={{
@@ -30,11 +29,11 @@ export default function BringTheSnowPage() {
           borderRadius: 18,
           padding: 16,
           marginBottom: 22,
-          scrollMarginTop: 90, // helps if you have a sticky header
+          scrollMarginTop: 90,
         }}
       >
         <div style={{ fontWeight: 600, marginBottom: 10 }}>
-          🎧 Preview the glide that sets the mood
+          🎧 Preview the moment you can’t ignore
         </div>
 
         <audio
@@ -67,12 +66,12 @@ export default function BringTheSnowPage() {
       </section>
 
       <section style={{ marginBottom: 18 }}>
-        <h2 style={{ fontSize: 20, marginBottom: 8 }}>Music made for movement</h2>
+        <h2 style={{ fontSize: 20, marginBottom: 8 }}>The feeling</h2>
         <p style={{ opacity: 0.85, lineHeight: 1.55 }}>
-          Bring the Snow (Slide We Ride) is a smooth, grown R&amp;B record built
-          for late-night motion and quiet confidence. It plays when the city
-          lights blur past the windshield and the moment doesn’t need explaining.
-          Nothing forced. Nothing rushed. It just rides.
+          Right in the Middle lives in that space where love isn’t over — but it
+          isn’t safe either. It’s grown, honest R&amp;B for the moments when
+          you’re trying to keep it together while your heart is pulling you back
+          toward what you still want.
         </p>
       </section>
 
@@ -81,21 +80,21 @@ export default function BringTheSnowPage() {
           Why creators use this track
         </h2>
         <ul style={{ opacity: 0.85, lineHeight: 1.7 }}>
-          <li>Confident male lead with a relaxed, grown presence</li>
-          <li>Smooth pacing that supports visuals and dialogue</li>
-          <li>Luxurious late-night energy without overpowering the scene</li>
-          <li>Easy to place under edits, montages, or transitions</li>
+          <li>Emotion-forward tone that supports narrative visuals</li>
+          <li>Strong pocket that sits under dialogue and VO</li>
+          <li>Clean pacing for edits, transitions, and montages</li>
+          <li>Modern grown R&amp;B without feeling “busy”</li>
         </ul>
       </section>
 
       <section style={{ marginBottom: 22 }}>
         <h2 style={{ fontSize: 20, marginBottom: 8 }}>Perfect for</h2>
         <ul style={{ opacity: 0.85, lineHeight: 1.7 }}>
-          <li>Late-night drive scenes</li>
-          <li>Romantic or sensual visuals</li>
-          <li>Lifestyle &amp; luxury content</li>
-          <li>Short films, reels, and edits</li>
-          <li>Podcast intros or transitions</li>
+          <li>Relationship stories &amp; emotional reels</li>
+          <li>Late-night scenes / “what are we?” moments</li>
+          <li>Short films, edits, and dramatic transitions</li>
+          <li>Brand storytelling with a human feel</li>
+          <li>Podcast intros or moody underscoring</li>
         </ul>
       </section>
 
@@ -109,13 +108,12 @@ export default function BringTheSnowPage() {
       >
         <h2 style={{ fontSize: 18, marginTop: 0 }}>Similar Vibes</h2>
         <p style={{ opacity: 0.8, marginTop: 6 }}>
-          These pair perfectly if you want the same late-night energy:
+          If you like this lane, these pair perfectly:
         </p>
 
         <div style={{ display: "grid", gap: 12 }}>
-          {/* Until you create more song pages, point these to your homepage “Hot Right Now” area */}
           <a
-            href="/#hot"
+            href="/bring-the-snow"
             style={{
               border: "1px solid rgba(0,0,0,0.12)",
               borderRadius: 16,
@@ -124,9 +122,9 @@ export default function BringTheSnowPage() {
               display: "block",
             }}
           >
-            <div style={{ fontWeight: 700 }}>Late-Night Ride R&amp;B</div>
+            <div style={{ fontWeight: 700 }}>Bring the Snow (Slide We Ride)</div>
             <div style={{ fontSize: 13, opacity: 0.75, marginTop: 4 }}>
-              Explore what’s hot right now →
+              Smooth, late-night motion →
             </div>
           </a>
 
@@ -140,13 +138,12 @@ export default function BringTheSnowPage() {
               display: "block",
             }}
           >
-            <div style={{ fontWeight: 700 }}>Grown &amp; Confident Soul</div>
+            <div style={{ fontWeight: 700 }}>Hot Right Now</div>
             <div style={{ fontSize: 13, opacity: 0.75, marginTop: 4 }}>
               Explore featured tracks →
             </div>
           </a>
 
-          {/* Optional third card */}
           <a
             href="/catalog"
             style={{
