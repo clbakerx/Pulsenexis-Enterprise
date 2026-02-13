@@ -91,6 +91,19 @@ export default function PacksClient() {
           <PackGrid label="Soul Packs" packs={soulPacks} refPrefix="soul" />
         )}
       </div>
+
+      {/* Optional: a single global bundle CTA at bottom */}
+      <div className="mt-16 rounded-3xl border bg-white p-6 text-center">
+        <div className="text-sm opacity-70">Want everything?</div>
+        <a
+          href={PACK_BUNDLE_STRIPE_LINK}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 inline-flex rounded-full bg-black px-6 py-3 text-sm font-semibold text-white hover:opacity-90"
+        >
+          Buy Packs Bundle — ${PACK_BUNDLE_PRICE}
+        </a>
+      </div>
     </main>
   );
 }
@@ -119,7 +132,7 @@ function PackGrid({
       <div className="mb-6">
         <h2 className="text-4xl font-extrabold">{label}</h2>
         <p className="mt-2 text-sm opacity-80">
-          Each pack shows 2 previews and one buy button — locked down for stability.
+          Two previews per pack + one buy button. Locked down for stability.
         </p>
       </div>
 
@@ -151,7 +164,7 @@ function PackGrid({
                 </div>
               )}
 
-              {/* ✅ Two previews only */}
+              {/* Two previews */}
               <div className="mt-4 grid gap-3">
                 {samples.map((t) => (
                   <div key={t.id} className="rounded-2xl border p-3">
@@ -165,15 +178,9 @@ function PackGrid({
                     )}
                   </div>
                 ))}
-
-                {samples.length < 2 && (
-                  <div className="text-xs opacity-60">
-                    Add at least 2 tracks in PACKS for this pack so it always shows two previews.
-                  </div>
-                )}
               </div>
 
-              {/* ✅ Single CTA only */}
+              {/* One CTA */}
               <div className="mt-4">
                 <a
                   href={checkoutUrl}
