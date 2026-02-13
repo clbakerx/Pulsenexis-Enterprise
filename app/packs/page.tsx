@@ -1,11 +1,10 @@
-// app/packs/page.tsx
-import { Suspense } from "react";
-import PacksClient from "./PacksClient";
+import PacksView from "./PacksView";
 
-export default function Page() {
-  return (
-    <Suspense fallback={<div className="p-6">Loading packs…</div>}>
-      <PacksClient />
-    </Suspense>
-  );
+export default function PacksPage({
+  searchParams,
+}: {
+  searchParams?: { genre?: string };
+}) {
+  const genre = (searchParams?.genre ?? "").toLowerCase();
+  return <PacksView genre={genre} />;
 }
