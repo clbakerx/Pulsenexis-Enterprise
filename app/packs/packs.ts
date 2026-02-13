@@ -1,7 +1,7 @@
 export type PackTrack = {
   id: string;
   title: string;
-  previewUrl: string; // REQUIRED (no more optional)
+  previewUrl: string; // required
 };
 
 export type Pack = {
@@ -11,10 +11,7 @@ export type Pack = {
   genre: "rnb" | "soul" | "jazz";
   bpmRange?: string;
   mood?: string;
-
-  // ✅ RULE: every pack must have at least 2 samples
   tracks: PackTrack[];
-
 };
 
 export const PACKS: Pack[] = [
@@ -52,6 +49,7 @@ export const PACKS: Pack[] = [
       },
     ],
   },
+
   {
     slug: "rnb-blueprint",
     title: "R&B Blueprint Pack",
@@ -74,6 +72,7 @@ export const PACKS: Pack[] = [
       },
     ],
   },
+
   {
     slug: "trap-soul",
     title: "Trap Soul Pack",
@@ -94,6 +93,73 @@ export const PACKS: Pack[] = [
         title: "Drip In The Air",
         previewUrl:
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/Trap-Soul-Pack/Drip-in-the-Air/samples/Drip-in-the-Air-16Bar.mp3",
+      },
+    ],
+  },
+    {
+    slug: "jazz-starter-test",
+    title: "Jazz Starter (TEST)",
+    description: "Test pack to confirm deploy + rendering is working.",
+    genre: "jazz",
+    bpmRange: "80–90",
+    mood: "Test • Smooth • Clean",
+    tracks: [
+      {
+        id: "jst-01",
+        title: "Test Preview A",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Jazz/Life-Finally-Smiles/Life%20Finally%20Smiles_30secSample.mp3",
+      },
+      {
+        id: "jst-02",
+        title: "Test Preview B",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Jazz/Love-Dont-Leave-Me/Love%20Don't%20Leave%20Me_30secSample.mp3",
+      },
+    ],
+  },
+  {
+    slug: "rnb-starter-test",
+    title: "R&B Starter (TEST)",
+    description: "Test R&B pack to confirm filtering + rendering works.",
+    genre: "rnb",
+    bpmRange: "72–78",
+    mood: "Grown • Smooth • Test",
+    tracks: [
+      {
+        id: "rnbt-01",
+        title: "Late Night Drive (Preview)",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/R-%26-B-Blueprint-Pack/Late-Night-Drive/samples/Late-Night-Drive-16Bar.mp3",
+      },
+      {
+        id: "rnbt-02",
+        title: "Heart On Read (Preview)",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/R-%26-B-Blueprint-Pack/Heart-on-Read/samples/Heart-on-Read-16Bar.mp3",
+      },
+    ],
+  },
+
+  {
+    slug: "soul-starter-test",
+    title: "Soul Starter (TEST)",
+    description: "Test Soul pack to confirm the Soul filter + section works.",
+    genre: "soul",
+    bpmRange: "78–92",
+    mood: "Soulful • Warm • Test",
+    tracks: [
+      {
+        id: "soult-01",
+        title: "Soul Preview A",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Jazz/Life-Finally-Smiles/Life%20Finally%20Smiles_30secSample.mp3",
+      },
+      {
+        id: "soult-02",
+        title: "Soul Preview B",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Jazz/Love-Dont-Leave-Me/Love%20Don't%20Leave%20Me_30secSample.mp3",
       },
     ],
   },
