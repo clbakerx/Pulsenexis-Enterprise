@@ -46,7 +46,6 @@ const USE_CASES = [
   },
 ];
 
-// 🔥 Featured track landing pages (NOT Stripe links)
 const HOT_RIGHT_NOW = [
   {
     title: "Bring the Snow (Slide We Ride)",
@@ -57,27 +56,24 @@ const HOT_RIGHT_NOW = [
   },
   {
     title: "Right in the Middle",
-    desc: "Smooth, late-night R&B built for motion, confidence, and intimate moments.",
+    desc: "A steady, grown groove for conversation scenes, reflection, and emotional cutaways.",
     href: "/right-in-the-middle",
     badge: "Hot right now",
-    bestFor: "Drive scenes • Lifestyle • Romantic visuals",
+    bestFor: "Talk scenes • Documentary • Slow motion b-roll",
   },
   {
     title: "Chances",
-    desc: "Smooth, late-night R&B built for motion, confidence, and intimate moments.",
+    desc: "Warm, hopeful late-night energy—perfect for love stories and comeback moments.",
     href: "/chances",
     badge: "Hot right now",
-    bestFor: "Drive scenes • Lifestyle • Romantic visuals",
+    bestFor: "Romantic visuals • Vlogs • Storytelling",
   },
 ];
-
-// Gumroad direct link (clean)
-const GUMROAD_NEON_SYNDICATE = "https://cushyc.gumroad.com/l/hwrbq?_gl=1*ywt3j6*_ga*MTI3MzEyOTMwNC4xNzcwOTEyNzM3*_ga_6LJN6D94N6*czE3NzEwMDk4NDEkbzQkZzAkdDE3NzEwMDk4NDEkajYwJGwwJGgw";
 
 export default function HomePage() {
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
-      {/* HERO — Locked Buyer Path */}
+      {/* HERO */}
       <section className="grid gap-8 lg:grid-cols-2 lg:items-center">
         {/* LEFT */}
         <div className="rounded-3xl bg-gradient-to-br from-violet-500 to-indigo-600 p-10 text-white shadow-sm">
@@ -92,12 +88,12 @@ export default function HomePage() {
           </h1>
 
           <p className="mt-4 max-w-xl text-base/7 opacity-90">
-            PulseNexis provides{" "}
+            PulseNexis delivers{" "}
             <span className="font-semibold text-white">perpetual</span>,{" "}
             <span className="font-semibold text-white">creator-safe</span> music
-            licenses for YouTube, films, ads, weddings, brand content — and now{" "}
-            <span className="font-semibold text-white">gaming audio systems</span>{" "}
-            with modular stems and clean loop points.
+            licensing for YouTube, film, weddings, ads, brands — and now{" "}
+            <span className="font-semibold text-white">Gaming Audio Systems</span>{" "}
+            with loop-ready structure and modular stems.
           </p>
 
           <ul className="mt-6 space-y-2 text-sm opacity-95">
@@ -119,42 +115,33 @@ export default function HomePage() {
               🎮 Explore Gaming Audio
             </Link>
 
-            <a
-              href=/gaming-audio --- IGNORE ---
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-full border border-white/25 bg-black/10 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10"
-            >
-              🛒 Buy Neon Syndicate Vol. 1
-            </a>
-
             <Link
               href="/shorts"
               className="rounded-full bg-white/15 px-6 py-3 text-sm font-semibold text-white hover:bg-white/20"
             >
               Shorts &amp; Jingles
             </Link>
-          </div>
-
-          {/* Extras row */}
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Link
-              href="/catalog"
-              className="rounded-full bg-white/15 px-5 py-2 text-sm font-semibold text-white hover:bg-white/20"
-            >
-              Browse Catalog
-            </Link>
 
             <Link
               href="/packs"
-              className="rounded-full bg-emerald-500 px-5 py-2 text-sm font-semibold text-white hover:bg-emerald-400"
+              className="rounded-full bg-emerald-500 px-6 py-3 text-sm font-semibold text-white hover:bg-emerald-400"
             >
-              Packs
+              Browse Packs
+            </Link>
+          </div>
+
+          {/* Extras row (✅ Catalog removed, ✅ nesting fixed) */}
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link
+              href="/licensing"
+              className="rounded-full bg-neutral-900 px-5 py-2 text-sm font-semibold text-white hover:opacity-90"
+            >
+              Licensing
             </Link>
 
             <Link
               href="/trademark"
-              className="rounded-full bg-neutral-900 px-5 py-2 text-sm font-semibold text-white hover:opacity-90"
+              className="rounded-full bg-black/30 px-5 py-2 text-sm font-semibold text-white hover:bg-black/40"
             >
               Trademark Showcase
             </Link>
@@ -183,8 +170,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 🔥 HOT RIGHT NOW */}
-      <section className="mt-12">
+      {/* HOT RIGHT NOW */}
+      <section className="mt-12" id="hot">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <div className="text-sm font-semibold text-neutral-800">
@@ -194,10 +181,11 @@ export default function HomePage() {
               Start with the tracks creators are feeling this week
             </h2>
             <p className="mt-1 text-sm text-neutral-600">
-              Focused song pages (preview → buy fast).
+              Focused track pages (preview → buy fast).
             </p>
           </div>
 
+          {/* NOTE: This is NOT hero. If you want, I can remove this too. */}
           <Link
             href="/catalog"
             className="inline-flex w-fit items-center rounded-full border border-neutral-300 bg-white px-5 py-2 text-sm font-semibold text-neutral-900 hover:bg-neutral-50"
@@ -248,7 +236,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* STEP 2: USE-CASE FIRST */}
+      {/* USE CASES */}
       <section className="mt-12">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
@@ -310,7 +298,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* INFO SECTION */}
+      {/* INFO */}
       <section className="mt-10 grid gap-4 lg:grid-cols-3">
         <div className="rounded-2xl border bg-white p-5">
           <div className="text-sm font-semibold">1) Browse</div>
