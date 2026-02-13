@@ -1,278 +1,185 @@
 "use client";
 
-import * as React from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
-import { useCart } from "./providers";
-import { CartDrawer } from "../components/CartDrawer";
-import { TRACKS, type Track } from "./tracks";
+import TopHero from "@/app/components/TopHero";
+import { PACKS } from "@/app/catalog/packs/packs";
+import { PACK_BUNDLE_PRICE, PACK_BUNDLE_STRIPE_LINK } from "@/lib/pricing";
 
-const AUDIO_BASE_URL = "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/";
+type Genre = "jazz" | "rnb" | "soul";
 
-function chunk<T>(arr: T[], size: number) {
-  const out: T[][] = [];
-  for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
-  return out;
+function withQuery(baseUrl: string, params: Record<string, string>) {
+  try {
+    const u = new URL(baseUrl);
+    for (const [k, v] of Object.entries(params)) u.searchParams.set(k, v);
+    return u.toString();
+  } catch {
+    return baseUrl;
+  }
 }
 
-/**
- * Accepts:
- *  - full URL -> returned as-is
- *  - filename or relative path -> encoded per segment and appended to AUDIO_BASE_URL
- * Prevents double-encoding if you already included %20 etc.
- */
-function normalizeSrc(src?: string) {
-  if (!src) return "";
-  const s = src.trim();
-  if (!s) return "";
+export default function PacksClient() {
+  const sp = useSearchParams();
+  const genre = (sp.get("genre") ?? "").toLowerCase() as Genre | "";
 
-  if (s.startsWith("http://") || s.startsWith("https://")) return s;
+  const jazzPacks = PACKS.filter((p) => p.genre === "jazz");
+  const rnbPacks = PACKS.filter((p) => p.genre === "rnb");
+  const soulPacks = PACKS.filter((p) => p.genre === "soul");
 
-  const clean = s.startsWith("/") ? s.slice(1) : s;
-
-  const encoded = clean
-    .split("/")
-    .map((seg) => {
-      try {
-        return encodeURIComponent(decodeURIComponent(seg));
-      } catch {
-        return encodeURIComponent(seg);
-      }
-    })
-    .join("/");
-
-  return `${AUDIO_BASE_URL}${encoded}`;
-}
-
-export default function CatalogClient() {
-  const { items, addItem } = useCart();
-  const [cartOpen, setCartOpen] = React.useState(false);
-
-  // Group tracks into cards of 4 tracks each
-  const cards = React.useMemo(() => chunk(TRACKS, 4), []);
-  const CARDS_PER_PAGE = 4;
-
-  const searchParams = useSearchParams();
-  const router = useRouter();
-
-  const pageParam = Number(searchParams.get("page") ?? "1");
-  const page = Number.isFinite(pageParam) && pageParam > 0 ? pageParam : 1;
-
-  const totalPages = Math.max(1, Math.ceil(cards.length / CARDS_PER_PAGE));
-  const safePage = Math.min(page, totalPages);
-
-  const start = (safePage - 1) * CARDS_PER_PAGE;
-  const end = start + CARDS_PER_PAGE;
-  const visibleCards = React.useMemo(() => cards.slice(start, end), [cards, start, end]);
-
-  const goPage = React.useCallback(
-    (p: number) => {
-      const next = Math.min(Math.max(1, p), totalPages);
-      router.push(`/catalog?page=${next}`);
-    },
-    [router, totalPages]
-  );
-
-  // Playback
-  const audioRef = React.useRef<HTMLAudioElement | null>(null);
-  const [nowPlayingId, setNowPlayingId] = React.useState<string | null>(null);
-
-  const stopAudio = React.useCallback(() => {
-    const a = audioRef.current;
-    if (a) {
-      a.pause();
-      a.currentTime = 0;
-    }
-    audioRef.current = null;
-    setNowPlayingId(null);
-  }, []);
-
-  const playPreview = React.useCallback(
-    (t: Track) => {
-      const src = normalizeSrc(t.previewSrc);
-      if (!src) return;
-
-      if (nowPlayingId === t.id) {
-        stopAudio();
-        return;
-      }
-
-      stopAudio();
-
-      const a = new Audio(src);
-      audioRef.current = a;
-      setNowPlayingId(t.id);
-
-      a.play().catch(() => setNowPlayingId(null));
-      a.onended = () => setNowPlayingId(null);
-    },
-    [nowPlayingId, stopAudio]
-  );
-
-  React.useEffect(() => {
-    return () => stopAudio();
-  }, [stopAudio]);
-
-  const addBundle = React.useCallback(
-    (t: Track) => {
-      addItem(
-        {
-          key: `${t.id}:complete`,
-          trackId: t.id,
-          title: t.title,
-          artist: t.artist ?? "PulseNexis",
-          deliverable: "complete",
-          label: "Complete Bundle (Loops + Stems + Samples MP3/WAV)",
-        },
-        1
-      );
-
-      setCartOpen(true);
-    },
-    [addItem]
-  );
-
-  const cartCount = React.useMemo(() => items.length, [items]);
+  const showJazz = !genre || genre === "jazz";
+  const showRnb = !genre || genre === "rnb";
+  const showSoul = !genre || genre === "soul";
 
   return (
-    <div className="min-h-screen bg-white">
-      <div className="border-b border-neutral-200">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-6">
-          <div>
-            <h1 className="text-2xl font-semibold text-neutral-900">PulseNexis Catalog</h1>
-            <p className="text-sm text-neutral-600">
-              Each song includes the <span className="font-semibold">Complete Bundle</span>: Loops + Stems + Samples
-              (MP3 &amp; WAV) — <span className="font-semibold">$49</span>
-            </p>
-          </div>
+    <main className="mx-auto max-w-6xl px-4 py-10">
+      <TopHero
+        eyebrow="PULSENEXIS • PACKS"
+        titlePre="Creator-safe "
+        titleHighlight="music packs"
+        titlePost=" that sell"
+        descriptionLines={[
+          "Two quick previews per pack. One clean buy button. No broken routes.",
+          "License once • monetize forever.",
+        ]}
+        bullets={[
+          "Perpetual license",
+          "Monetization allowed",
+          "No Content ID claims",
+          "Clean WAV/MP3 deliverables",
+        ]}
+        buttons={[
+          { label: "Jump to packs", href: "#packs", variant: "primary" },
+          { label: "License Terms", href: "/licensing", variant: "outline" },
+          { label: "Back Home", href: "/", variant: "ghost" },
+        ]}
+        footnote="Preview → Buy → Done. We removed extra links to keep this stable."
+      />
 
-          <button
-            onClick={() => setCartOpen(true)}
-            className="rounded-full border border-neutral-200 px-4 py-2 text-sm font-semibold text-neutral-700 hover:bg-neutral-50"
-          >
-            Cart ({cartCount})
-          </button>
-        </div>
+      {/* Filters */}
+      <div className="mt-8 flex flex-wrap gap-2">
+        <Link href="/packs" className="rounded-full border bg-white px-4 py-2 text-sm font-semibold">
+          All
+        </Link>
+        <Link href="/packs?genre=jazz" className="rounded-full border bg-white px-4 py-2 text-sm font-semibold">
+          Jazz
+        </Link>
+        <Link href="/packs?genre=rnb" className="rounded-full border bg-white px-4 py-2 text-sm font-semibold">
+          R&amp;B
+        </Link>
+        <Link href="/packs?genre=soul" className="rounded-full border bg-white px-4 py-2 text-sm font-semibold">
+          Soul
+        </Link>
       </div>
 
-      <div className="mx-auto max-w-6xl px-4 pt-6">
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <div className="text-sm text-neutral-600">
-            Page <span className="font-semibold text-neutral-900">{safePage}</span> of{" "}
-            <span className="font-semibold text-neutral-900">{totalPages}</span>
-          </div>
-
-          <div className="flex gap-2">
-            <button
-              onClick={() => goPage(safePage - 1)}
-              disabled={safePage <= 1}
-              className={[
-                "rounded-full border px-4 py-2 text-sm font-semibold",
-                safePage <= 1
-                  ? "cursor-not-allowed border-neutral-200 text-neutral-400 opacity-60"
-                  : "border-neutral-200 text-neutral-700 hover:bg-neutral-50",
-              ].join(" ")}
-            >
-              Prev
-            </button>
-
-            <button
-              onClick={() => goPage(safePage + 1)}
-              disabled={safePage >= totalPages}
-              className={[
-                "rounded-full border px-4 py-2 text-sm font-semibold",
-                safePage >= totalPages
-                  ? "cursor-not-allowed border-neutral-200 text-neutral-400 opacity-60"
-                  : "border-neutral-200 text-neutral-700 hover:bg-neutral-50",
-              ].join(" ")}
-            >
-              Next
-            </button>
-          </div>
-        </div>
+      <div id="packs" className="mt-10 space-y-16">
+        {showJazz && <PackGrid label="Jazz Packs" packs={jazzPacks} refPrefix="jazz" />}
+        {showRnb && <PackGrid label="R&B Packs" packs={rnbPacks} refPrefix="rnb" />}
+        {showSoul && soulPacks.length > 0 && <PackGrid label="Soul Packs" packs={soulPacks} refPrefix="soul" />}
       </div>
 
-      <div className="mx-auto max-w-6xl px-4 py-6">
-        <div className="grid gap-6 md:grid-cols-2">
-          {visibleCards.map((group, idx) => {
-            const cardNumber = start + idx + 1;
+      {/* Single global bundle CTA */}
+      <div className="mt-16 rounded-3xl border bg-white p-6 text-center">
+        <div className="text-sm opacity-70">Want everything?</div>
+        <a
+          href={PACK_BUNDLE_STRIPE_LINK}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 inline-flex rounded-full bg-black px-6 py-3 text-sm font-semibold text-white hover:opacity-90"
+        >
+          Buy Packs Bundle — ${PACK_BUNDLE_PRICE}
+        </a>
+      </div>
+    </main>
+  );
+}
 
-            return (
-              <div key={`${safePage}-${idx}`} className="rounded-3xl border border-neutral-200 bg-white shadow-sm">
-                <div className="border-b border-neutral-200 p-6">
-                  <div className="inline-flex items-center rounded-full bg-neutral-100 px-3 py-1 text-xs font-semibold text-neutral-700">
-                    HONEY DRIP RECORDS • CARD {cardNumber}
-                  </div>
-                  <div className="mt-3 text-sm text-neutral-600">
-                    Preview tracks, then add the <span className="font-semibold">Complete Bundle ($49)</span>.
-                  </div>
+function PackGrid({
+  label,
+  packs,
+  refPrefix,
+}: {
+  label: string;
+  packs: {
+    slug: string;
+    title: string;
+    description: string;
+    genre: "rnb" | "soul" | "jazz";
+    bpmRange?: string;
+    mood?: string;
+    tracks: { id: string; title: string; previewUrl?: string }[];
+  }[];
+  refPrefix: string;
+}) {
+  if (!packs.length) return null;
+
+  return (
+    <section>
+      <div className="mb-6">
+        <h2 className="text-4xl font-extrabold">{label}</h2>
+        <p className="mt-2 text-sm opacity-80">
+          Two previews per pack + one buy button. Locked down for stability.
+        </p>
+      </div>
+
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {packs.map((pack) => {
+          const samples = (pack.tracks ?? []).slice(0, 2);
+
+          const checkoutUrl = withQuery(PACK_BUNDLE_STRIPE_LINK, {
+            client_reference_id: `packs_${refPrefix}_${pack.slug}`,
+          });
+
+          return (
+            <div key={pack.slug} className="overflow-hidden rounded-3xl border bg-white p-5 shadow-sm">
+              <div className="text-xs font-semibold uppercase opacity-60">{pack.genre.toUpperCase()}</div>
+
+              <div className="mt-1 text-lg font-extrabold">{pack.title}</div>
+              <p className="mt-1 text-sm opacity-70">{pack.description}</p>
+
+              {(pack.mood || pack.bpmRange) && (
+                <div className="mt-2 text-xs opacity-60">
+                  {pack.mood ? <span>{pack.mood}</span> : null}
+                  {pack.mood && pack.bpmRange ? <span> • </span> : null}
+                  {pack.bpmRange ? <span>{pack.bpmRange} BPM</span> : null}
                 </div>
+              )}
 
-                <div className="space-y-3 p-6">
-                  {group.map((t) => {
-                    const resolved = normalizeSrc(t.previewSrc);
-                    const playable = Boolean(resolved);
-                    const inCart = items.some((x) => x.key === `${t.id}:complete`);
-
-                    return (
-                      <div
-                        key={t.id}
-                        className="flex items-center justify-between gap-3 rounded-2xl border border-neutral-200 p-4"
-                      >
-                        <div className="min-w-0">
-                          <div className="truncate text-sm font-semibold text-neutral-900">{t.title}</div>
-                          <div className="truncate text-xs text-neutral-600">
-                            {(t.artist ?? "PulseNexis") +
-                              (t.mood ? ` · ${t.mood}` : "") +
-                              (t.bpm ? ` · ${t.bpm} BPM` : "") +
-                              (t.key ? ` · ${t.key}` : "")}
-                          </div>
-
-                          {!playable && (
-                            <div className="mt-1 text-[11px] text-amber-600">
-                              Missing previewSrc — add a FileDN URL or filename to enable playback
-                            </div>
-                          )}
-                        </div>
-
-                        <div className="flex items-center gap-2">
-                          <button
-                            onClick={() => playPreview(t)}
-                            disabled={!playable}
-                            className={[
-                              "rounded-full border px-3 py-2 text-xs font-semibold",
-                              playable
-                                ? "border-neutral-200 text-neutral-700 hover:bg-neutral-50"
-                                : "cursor-not-allowed border-neutral-200 text-neutral-400 opacity-60",
-                            ].join(" ")}
-                          >
-                            {nowPlayingId === t.id ? "Pause" : "Play"}
-                          </button>
-
-                          <button
-                            onClick={() => addBundle(t)}
-                            disabled={inCart}
-                            className={[
-                              "rounded-full px-3 py-2 text-xs font-semibold",
-                              inCart ? "cursor-not-allowed bg-neutral-200 text-neutral-500" : "bg-black text-white hover:bg-neutral-900",
-                            ].join(" ")}
-                          >
-                            {inCart ? "Added" : "Add Bundle"}
-                          </button>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                <div className="px-6 pb-6" />
+              {/* Two previews */}
+              <div className="mt-4 grid gap-3">
+                {samples.map((t) => (
+                  <div key={t.id} className="rounded-2xl border p-3">
+                    <div className="truncate text-sm font-semibold">{t.title}</div>
+                    {t.previewUrl ? (
+                      <audio controls preload="none" className="mt-2 h-8 w-full">
+                        <source src={t.previewUrl} type="audio/mpeg" />
+                      </audio>
+                    ) : (
+                      <div className="mt-2 text-xs opacity-60">No preview</div>
+                    )}
+                  </div>
+                ))}
               </div>
-            );
-          })}
-        </div>
-      </div>
 
-      <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
-    </div>
+              {/* One CTA */}
+              <div className="mt-4">
+                <a
+                  href={checkoutUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full rounded-full bg-black px-4 py-2 text-center text-sm font-semibold text-white hover:opacity-90"
+                >
+                  Buy Bundle — ${PACK_BUNDLE_PRICE}
+                </a>
+
+                <div className="mt-2 text-center text-[11px] opacity-70">
+                  Secure checkout via Stripe • Instant access after purchase
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
   );
 }
