@@ -1,7 +1,7 @@
 export type PackTrack = {
   id: string;
   title: string;
-  previewUrl?: string;
+  previewUrl: string; // REQUIRED (no more optional)
 };
 
 export type Pack = {
@@ -11,7 +11,9 @@ export type Pack = {
   genre: "rnb" | "soul" | "jazz";
   bpmRange?: string;
   mood?: string;
-  tracks: PackTrack[];
+
+  // ✅ RULE: every pack must have at least 2 samples
+  tracks: [PackTrack, PackTrack, ...PackTrack[]];
 };
 
 export const PACKS: Pack[] = [
@@ -34,30 +36,6 @@ export const PACKS: Pack[] = [
         title: "Life Finally Smiles V2",
         previewUrl:
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Jazz/Life-Finally-Smiles/Life-Finally-Smiles-(Ver_2)_30secSample.mp3",
-      },
-      {
-        id: "jn-03",
-        title: "In The Space Between",
-        previewUrl:
-          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Jazz/In-The-Space-Between/In%20the%20Space%20Between_30secSample.mp3",
-      },
-      {
-        id: "jn-04",
-        title: "In The Space Between V2",
-        previewUrl:
-          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Jazz/In-The-Space-Between/In%20the%20Space%20Between%20(V2)_30secSample.mp3",
-      },
-      {
-        id: "jn-05",
-        title: "After the Applause",
-        previewUrl:
-          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Jazz/After-The-Applause/After%20the%20Applause_30secSample.mp3",
-      },
-      {
-        id: "jn-06",
-        title: "After the Applause V2",
-        previewUrl:
-          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Jazz/After-The-Applause/After%20the%20Applause%20(V2)30secSample.mp3",
       },
     ],
   },
@@ -82,18 +60,6 @@ export const PACKS: Pack[] = [
         previewUrl:
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/R%26B-Blueprint-Pack/Heart-on-Read/samples/Heart-on-Read-16Bar.mp3",
       },
-      {
-        id: "after-hours",
-        title: "After Hours",
-        previewUrl:
-          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/R%26B-Blueprint-Pack/After-Hours/samples/After-Hours-16Bar.mp3",
-      },
-      {
-        id: "pillow-talk",
-        title: "Pillow Talk",
-        previewUrl:
-          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/R%26B-Blueprint-Pack/Pillow-Talk/samples/Pillow-Talk-16Bar.mp3",
-      },
     ],
   },
 
@@ -117,18 +83,6 @@ export const PACKS: Pack[] = [
         title: "Drip In The Air",
         previewUrl:
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/Trap-Soul-Pack/Drip-in-the-Air/samples/Drip-in-the-Air-16Bar.mp3",
-      },
-      {
-        id: "tension-love",
-        title: "Tension Love",
-        previewUrl:
-          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Catalog/Tension-Love/samples/Tension-Love-16Bar.mp3",
-      },
-      {
-        id: "hook-season",
-        title: "Hook Season",
-        previewUrl:
-          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/Trap-Soul-Pack/Hook-Season/samples/Hook-Season-16Bar.mp3",
       },
     ],
   },

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { PACKS } from "../packs";
 
+
 export default function PackDetailPage({
   params,
 }: {
