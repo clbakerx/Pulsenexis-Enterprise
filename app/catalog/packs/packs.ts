@@ -52,13 +52,13 @@ export const PACKS: Pack[] = [
         id: "late-night-drive",
         title: "Late Night Drive",
         previewUrl:
-          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/R%26B-Blueprint-Pack/Late-Night-Drive/samples/Late-Night-Drive-16Bar.mp3",
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/R-%26-B-Blueprint-Pack/Late-Night-Drive/samples/Late-Night-Drive-16Bar.mp3",
       },
       {
         id: "heart-on-read",
         title: "Heart On Read",
         previewUrl:
-          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/R%26B-Blueprint-Pack/Heart-on-Read/samples/Heart-on-Read-16Bar.mp3",
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/R-%26-B-Blueprint-Pack/Heart-on-Read/samples/Heart-on-Read-16Bar.mp3",
       },
     ],
   },

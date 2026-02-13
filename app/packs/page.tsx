@@ -3,7 +3,7 @@ import PacksClient from "./PacksClient";
 
 export default function Page() {
   return (
-    <Suspense fallback={<div className="p-6">Loading packs…</div>}>
+    <Suspense fallback={null}>
       <PacksClient />
     </Suspense>
   );
