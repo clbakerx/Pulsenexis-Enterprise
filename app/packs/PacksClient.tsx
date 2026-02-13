@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
 import TopHero from "@/app/components/TopHero";
-import { PACKS } from "./packs";
+import { PACKS } from "./packs"; // <-- if your packs file lives elsewhere, change this path
 import { PACK_BUNDLE_PRICE, PACK_BUNDLE_STRIPE_LINK } from "@/lib/pricing";
 
 type Genre = "jazz" | "rnb" | "soul";
@@ -15,17 +15,36 @@ function withQuery(baseUrl: string, params: Record<string, string>) {
     for (const [k, v] of Object.entries(params)) u.searchParams.set(k, v);
     return u.toString();
   } catch {
-    return baseUrl; // if Stripe url is missing/invalid, don't crash the page
+    return baseUrl; // don’t crash if the Stripe URL isn’t a full https URL
   }
 }
 
+type PackTrack = {
+  id: string;
+  title: string;
+  previewUrl: string; // ✅ required
+};
+
+type Pack = {
+  slug: string;
+  title: string;
+  description: string;
+  genre: Genre;
+  bpmRange?: string;
+  mood?: string;
+  tracks: PackTrack[]; // we will slice(0,2) at render
+};
+
 export default function PacksClient() {
   const sp = useSearchParams();
-  const genre = (sp.get("genre") ?? "").toLowerCase() as Genre | "";
+  const genreParam = (sp.get("genre") ?? "").toLowerCase();
+  const genre = (genreParam === "jazz" || genreParam === "rnb" || genreParam === "soul"
+    ? (genreParam as Genre)
+    : "") as Genre | "";
 
-  const jazzPacks = PACKS.filter((p) => p.genre === "jazz");
-  const rnbPacks = PACKS.filter((p) => p.genre === "rnb");
-  const soulPacks = PACKS.filter((p) => p.genre === "soul");
+  const jazzPacks = (PACKS as Pack[]).filter((p) => p.genre === "jazz");
+  const rnbPacks = (PACKS as Pack[]).filter((p) => p.genre === "rnb");
+  const soulPacks = (PACKS as Pack[]).filter((p) => p.genre === "soul");
 
   const showJazz = !genre || genre === "jazz";
   const showRnb = !genre || genre === "rnb";
@@ -84,6 +103,7 @@ export default function PacksClient() {
         </Link>
       </div>
 
+      {/* Packs */}
       <div id="packs" className="mt-10 space-y-16">
         {showJazz && <PackGrid label="Jazz Packs" packs={jazzPacks} refPrefix="jazz" />}
         {showRnb && <PackGrid label="R&B Packs" packs={rnbPacks} refPrefix="rnb" />}
@@ -114,15 +134,7 @@ function PackGrid({
   refPrefix,
 }: {
   label: string;
-  packs: {
-    slug: string;
-    title: string;
-    description: string;
-    genre: "rnb" | "soul" | "jazz";
-    bpmRange?: string;
-    mood?: string;
-    tracks: { id: string; title: string; previewUrl?: string }[];
-  }[];
+  packs: Pack[];
   refPrefix: string;
 }) {
   if (!packs.length) return null;
@@ -140,7 +152,6 @@ function PackGrid({
         {packs.map((pack) => {
           const samples = (pack.tracks ?? []).slice(0, 2);
 
-          // ✅ IMPORTANT: Stripe links must be <a>, not <Link>
           const checkoutUrl = withQuery(PACK_BUNDLE_STRIPE_LINK, {
             client_reference_id: `packs_${refPrefix}_${pack.slug}`,
           });
@@ -165,20 +176,23 @@ function PackGrid({
                 </div>
               )}
 
-              {/* Two previews */}
-              <div className="mt-4 grid gap-3">
+              {/* Previews (2 max) */}
+              <div className="mt-4 space-y-3">
                 {samples.map((t) => (
-                  <div key={t.id} className="rounded-2xl border p-3">
-                    <div className="truncate text-sm font-semibold">{t.title}</div>
-                    {t.previewUrl ? (
-                      <audio controls preload="none" className="mt-2 h-8 w-full">
-                        <source src={t.previewUrl} type="audio/mpeg" />
-                      </audio>
-                    ) : (
-                      <div className="mt-2 text-xs opacity-60">No preview</div>
-                    )}
+                  <div key={t.id} className="rounded-2xl border bg-white p-3">
+                    <div className="mb-2 text-sm font-semibold">{t.title}</div>
+                    <audio controls preload="none" className="w-full">
+                      <source src={t.previewUrl} type="audio/mpeg" />
+                      Your browser does not support the audio element.
+                    </audio>
                   </div>
                 ))}
+
+                {samples.length < 2 && (
+                  <div className="text-xs opacity-60">
+                    This pack needs at least 2 tracks in <code>packs.ts</code> to show two previews.
+                  </div>
+                )}
               </div>
 
               {/* One CTA */}

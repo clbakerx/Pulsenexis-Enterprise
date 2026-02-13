@@ -1,3 +1,4 @@
+// app/packs/page.tsx
 import { Suspense } from "react";
 import PacksClient from "./PacksClient";
 

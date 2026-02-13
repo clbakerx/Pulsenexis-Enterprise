@@ -13,7 +13,8 @@ export type Pack = {
   mood?: string;
 
   // ✅ RULE: every pack must have at least 2 samples
-  tracks: [PackTrack, PackTrack, ...PackTrack[]];
+  tracks: PackTrack[];
+
 };
 
 export const PACKS: Pack[] = [
@@ -51,7 +52,6 @@ export const PACKS: Pack[] = [
       },
     ],
   },
-
   {
     slug: "rnb-blueprint",
     title: "R&B Blueprint Pack",
@@ -74,7 +74,6 @@ export const PACKS: Pack[] = [
       },
     ],
   },
-
   {
     slug: "trap-soul",
     title: "Trap Soul Pack",
