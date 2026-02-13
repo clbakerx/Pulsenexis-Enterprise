@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
 import TopHero from "@/app/components/TopHero";
-import { PACKS } from "@/app/catalog/packs/packs";
+import { PACKS } from "./packs";
 import { PACK_BUNDLE_PRICE, PACK_BUNDLE_STRIPE_LINK } from "@/lib/pricing";
 
 type Genre = "jazz" | "rnb" | "soul";
@@ -58,28 +58,16 @@ export default function PacksClient() {
 
       {/* Filters */}
       <div className="mt-8 flex flex-wrap gap-2">
-        <Link
-          href="/packs"
-          className="rounded-full border bg-white px-4 py-2 text-sm font-semibold"
-        >
+        <Link href="/packs" className="rounded-full border bg-white px-4 py-2 text-sm font-semibold">
           All
         </Link>
-        <Link
-          href="/packs?genre=jazz"
-          className="rounded-full border bg-white px-4 py-2 text-sm font-semibold"
-        >
+        <Link href="/packs?genre=jazz" className="rounded-full border bg-white px-4 py-2 text-sm font-semibold">
           Jazz
         </Link>
-        <Link
-          href="/packs?genre=rnb"
-          className="rounded-full border bg-white px-4 py-2 text-sm font-semibold"
-        >
+        <Link href="/packs?genre=rnb" className="rounded-full border bg-white px-4 py-2 text-sm font-semibold">
           R&amp;B
         </Link>
-        <Link
-          href="/packs?genre=soul"
-          className="rounded-full border bg-white px-4 py-2 text-sm font-semibold"
-        >
+        <Link href="/packs?genre=soul" className="rounded-full border bg-white px-4 py-2 text-sm font-semibold">
           Soul
         </Link>
       </div>
@@ -87,12 +75,10 @@ export default function PacksClient() {
       <div id="packs" className="mt-10 space-y-16">
         {showJazz && <PackGrid label="Jazz Packs" packs={jazzPacks} refPrefix="jazz" />}
         {showRnb && <PackGrid label="R&B Packs" packs={rnbPacks} refPrefix="rnb" />}
-        {showSoul && soulPacks.length > 0 && (
-          <PackGrid label="Soul Packs" packs={soulPacks} refPrefix="soul" />
-        )}
+        {showSoul && soulPacks.length > 0 && <PackGrid label="Soul Packs" packs={soulPacks} refPrefix="soul" />}
       </div>
 
-      {/* Optional: a single global bundle CTA at bottom */}
+      {/* Global bundle CTA */}
       <div className="mt-16 rounded-3xl border bg-white p-6 text-center">
         <div className="text-sm opacity-70">Want everything?</div>
         <a
@@ -145,14 +131,8 @@ function PackGrid({
           });
 
           return (
-            <div
-              key={pack.slug}
-              className="overflow-hidden rounded-3xl border bg-white p-5 shadow-sm"
-            >
-              <div className="text-xs font-semibold uppercase opacity-60">
-                {pack.genre.toUpperCase()}
-              </div>
-
+            <div key={pack.slug} className="overflow-hidden rounded-3xl border bg-white p-5 shadow-sm">
+              <div className="text-xs font-semibold uppercase opacity-60">{pack.genre.toUpperCase()}</div>
               <div className="mt-1 text-lg font-extrabold">{pack.title}</div>
               <p className="mt-1 text-sm opacity-70">{pack.description}</p>
 
@@ -164,7 +144,6 @@ function PackGrid({
                 </div>
               )}
 
-              {/* Two previews */}
               <div className="mt-4 grid gap-3">
                 {samples.map((t) => (
                   <div key={t.id} className="rounded-2xl border p-3">
@@ -180,7 +159,6 @@ function PackGrid({
                 ))}
               </div>
 
-              {/* One CTA */}
               <div className="mt-4">
                 <a
                   href={checkoutUrl}
@@ -190,7 +168,6 @@ function PackGrid({
                 >
                   Buy Bundle — ${PACK_BUNDLE_PRICE}
                 </a>
-
                 <div className="mt-2 text-center text-[11px] opacity-70">
                   Secure checkout via Stripe • Instant access after purchase
                 </div>
