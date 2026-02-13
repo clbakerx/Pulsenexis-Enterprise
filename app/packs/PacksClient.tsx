@@ -9,7 +9,7 @@ import { PACK_BUNDLE_PRICE, PACK_BUNDLE_STRIPE_LINK } from "@/lib/pricing";
 
 type Genre = "jazz" | "rnb" | "soul";
 
-function withQuery(baseUrl: string, params: Record<string, string>) {
+function buildStripeUrl(baseUrl: string, params: Record<string, string>) {
   try {
     const u = new URL(baseUrl);
     for (const [k, v] of Object.entries(params)) u.searchParams.set(k, v);
@@ -53,7 +53,7 @@ export default function PacksClient() {
           { label: "License Terms", href: "/licensing", variant: "outline" },
           { label: "Back Home", href: "/", variant: "ghost" },
         ]}
-        footnote="Preview → Buy → Done. We removed extra links to keep this stable."
+        footnote="Preview → Buy → Done. We removed extra routes to keep this stable."
       />
 
       {/* Filters */}
@@ -126,13 +126,14 @@ function PackGrid({
         {packs.map((pack) => {
           const samples = (pack.tracks ?? []).slice(0, 2);
 
-          const checkoutUrl = withQuery(PACK_BUNDLE_STRIPE_LINK, {
+          const stripeUrl = buildStripeUrl(PACK_BUNDLE_STRIPE_LINK, {
             client_reference_id: `packs_${refPrefix}_${pack.slug}`,
           });
 
           return (
             <div key={pack.slug} className="overflow-hidden rounded-3xl border bg-white p-5 shadow-sm">
               <div className="text-xs font-semibold uppercase opacity-60">{pack.genre.toUpperCase()}</div>
+
               <div className="mt-1 text-lg font-extrabold">{pack.title}</div>
               <p className="mt-1 text-sm opacity-70">{pack.description}</p>
 
@@ -161,13 +162,14 @@ function PackGrid({
 
               <div className="mt-4">
                 <a
-                  href={checkoutUrl}
+                  href={stripeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block w-full rounded-full bg-black px-4 py-2 text-center text-sm font-semibold text-white hover:opacity-90"
                 >
                   Buy Bundle — ${PACK_BUNDLE_PRICE}
                 </a>
+
                 <div className="mt-2 text-center text-[11px] opacity-70">
                   Secure checkout via Stripe • Instant access after purchase
                 </div>
