@@ -72,7 +72,7 @@ const HOT_RIGHT_NOW = [
 ];
 
 // Gumroad direct link (clean)
-const GUMROAD_NEON_SYNDICATE = "https://cushy.gumroad.com/l/hwrbq";
+const GUMROAD_NEON_SYNDICATE = "https://cushyc.gumroad.com/l/hwrbq?_gl=1*ywt3j6*_ga*MTI3MzEyOTMwNC4xNzcwOTEyNzM3*_ga_6LJN6D94N6*czE3NzEwMDk4NDEkbzQkZzAkdDE3NzEwMDk4NDEkajYwJGwwJGgw";
 
 export default function HomePage() {
   return (
@@ -120,7 +120,7 @@ export default function HomePage() {
             </Link>
 
             <a
-              href={GUMROAD_NEON_SYNDICATE}
+              href=/gaming-audio --- IGNORE ---
               target="_blank"
               rel="noreferrer"
               className="rounded-full border border-white/25 bg-black/10 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10"

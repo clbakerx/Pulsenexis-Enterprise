@@ -3,9 +3,10 @@ import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ConsentBanner from "./components/ConsentBanner";
-
-// ✅ FIX: TrafficMeter is a DEFAULT export in your file, so import WITHOUT braces
 import TrafficMeter from "./components/TrafficMeter";
+
+// ✅ FIX
+import { CartProvider } from "./providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,44 +36,46 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <header className="border-b bg-white">
-          <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-            <Link href="/" className="flex items-center gap-2 font-semibold">
-              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border text-sm">
-                PN
-              </span>
-              <span>PulseNexis</span>
-            </Link>
+        <CartProvider>
+          <header className="border-b bg-white">
+            <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+              <Link href="/" className="flex items-center gap-2 font-semibold">
+                <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border text-sm">
+                  PN
+                </span>
+                <span>PulseNexis</span>
+              </Link>
 
-            <div className="flex items-center gap-4">
-              <nav className="flex items-center gap-4 text-sm">
-                <Link className="hover:underline" href="/packs">
-                  Packs
-                </Link>
-                <Link className="hover:underline" href="/cinema">
-                  Cinema
-                </Link>
-                <Link className="hover:underline" href="/licensing">
-                  Licensing
-                </Link>
-                <Link className="hover:underline" href="/support">
-                  Support
-                </Link>
-                <Link className="hover:underline" href="/pulsenexis-download">
-                  PulseNexis Download™
-                </Link>
-              </nav>
+              <div className="flex items-center gap-4">
+                <nav className="flex items-center gap-4 text-sm">
+                  <Link className="hover:underline" href="/packs">
+                    Packs
+                  </Link>
+                  <Link className="hover:underline" href="/cinema">
+                    Cinema
+                  </Link>
+                  <Link className="hover:underline" href="/licensing">
+                    Licensing
+                  </Link>
+                  <Link className="hover:underline" href="/support">
+                    Support
+                  </Link>
+                  <Link className="hover:underline" href="/pulsenexis-download">
+                    PulseNexis Download™
+                  </Link>
+                </nav>
 
-              <div className="hidden sm:block">
-                <TrafficMeter />
+                <div className="hidden sm:block">
+                  <TrafficMeter />
+                </div>
               </div>
             </div>
-          </div>
-        </header>
+          </header>
 
-        <main className="mx-auto max-w-6xl px-4 py-6">{children}</main>
+          <main className="mx-auto max-w-6xl px-4 py-6">{children}</main>
 
-        <ConsentBanner />
+          <ConsentBanner />
+        </CartProvider>
       </body>
     </html>
   );
