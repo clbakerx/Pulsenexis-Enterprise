@@ -96,7 +96,8 @@ export const PACKS: Pack[] = [
       },
     ],
   },
-    {
+
+  {
     slug: "jn",
     title: "Jazz Nights",
     description: "Test pack to confirm deploy + rendering is working.",
@@ -118,6 +119,7 @@ export const PACKS: Pack[] = [
       },
     ],
   },
+
   {
     slug: "rnb-pack",
     title: "R&B Pack",
@@ -162,14 +164,6 @@ export const PACKS: Pack[] = [
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Lead%20The%20Way.mp3",
       },
       {
-    slug: "soul-pack",
-    title: "Soul Pack",
-    description: "Soul inspired selections to elevate your content.",
-    genre: "soul",
-    bpmRange: "78–92",
-    mood: "Soulful • Warm • Test",
-    tracks: [
-      {
         id: "soul-03",
         title: "If It’s Real",
         previewUrl:
@@ -183,3 +177,4 @@ export const PACKS: Pack[] = [
       },
     ],
   },
+];
