@@ -102,12 +102,12 @@ export const PACKS: Pack[] = [
 
   // ✅ Keep it if you want, but don’t name it the same as your real pack
   {
-    slug: "jazz-test-pack",
-    title: "Jazz Starter (TEST)",
-    description: "Test pack to confirm deploy + rendering is working.",
+    slug: "jazz-pack-two",
+    title: "Jazz Pack Two",
+    description: "Jazz cuts to elevate your content.",
     genre: "jazz",
     bpmRange: "80–90",
-    mood: "Test • Smooth • Clean",
+    mood: "Jazz • Smooth • Clean",
     tracks: [
       {
         id: "in-the-space-between",
