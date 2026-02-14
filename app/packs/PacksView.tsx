@@ -18,6 +18,7 @@ function withQuery(baseUrl: string, params: Record<string, string>) {
 }
 
 export default function PacksView({ genre }: { genre?: Genre }) {
+const g = genre; // Genre | undefined
 
   const jazzPacks = PACKS.filter((p) => p.genre === "jazz");
   const rnbPacks = PACKS.filter((p) => p.genre === "rnb");
