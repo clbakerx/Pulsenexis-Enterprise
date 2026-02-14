@@ -1,14 +1,21 @@
 export type PackTrack = {
+  /** Unique stable key (slug format). Not shown to users. */
   id: string;
+  /** Shown to users as the song name. */
   title: string;
-  previewUrl: string; // required
+  /** Full URL to the audio preview. */
+  previewUrl: string;
 };
 
+export type Genre = "rnb" | "soul" | "jazz";
+
 export type Pack = {
+  /** Unique pack key used for routes like /packs/<slug> */
   slug: string;
+  /** Shown to users as the pack name */
   title: string;
   description: string;
-  genre: "rnb" | "soul" | "jazz";
+  genre: Genre;
   bpmRange?: string;
   mood?: string;
   tracks: PackTrack[];
@@ -24,13 +31,13 @@ export const PACKS: Pack[] = [
     mood: "Late-night • Lounge • Warm",
     tracks: [
       {
-        id: "jn-01",
+        id: "life-finally-smiles",
         title: "Life Finally Smiles",
         previewUrl:
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Jazz/Life-Finally-Smiles/Life%20Finally%20Smiles_30secSample.mp3",
       },
       {
-        id: "jn-02",
+        id: "life-finally-smiles-v2",
         title: "Life Finally Smiles V2",
         previewUrl:
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Jazz/Life-Finally-Smiles/Life-Finally-Smiles-(Ver_2)_30secSample.mp3",
@@ -98,29 +105,6 @@ export const PACKS: Pack[] = [
   },
 
   {
-    slug: "jn",
-    title: "Jazz Nights",
-    description: "Test pack to confirm deploy + rendering is working.",
-    genre: "jazz",
-    bpmRange: "80–90",
-    mood: "Test • Smooth • Clean",
-    tracks: [
-      {
-        id: "jn-05",
-        title: "Jazz Nights",
-        previewUrl:
-          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Jazz/Life-Finally-Smiles/Life%20Finally%20Smiles_30secSample.mp3",
-      },
-      {
-        id: "jst-02",
-        title: "Jazz Nights",
-        previewUrl:
-          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Jazz/Love-Dont-Leave-Me/Love%20Don't%20Leave%20Me_30secSample.mp3",
-      },
-    ],
-  },
-
-  {
     slug: "rnb-pack",
     title: "R&B Pack",
     description: "R&B selections to elevate your content.",
@@ -129,13 +113,13 @@ export const PACKS: Pack[] = [
     mood: "Grown • Smooth • Warm",
     tracks: [
       {
-        id: "rnb-01",
+        id: "pillow-talk",
         title: "Pillow Talk",
         previewUrl:
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/R-%26-B-Blueprint-Pack/Pillow-Talk/samples/Pillow-Talk-16Bar.mp3",
       },
       {
-        id: "rnbt-02",
+        id: "after-hours",
         title: "After Hours",
         previewUrl:
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/R-%26-B-Blueprint-Pack/After-Hours/samples/After-Hours-16Bar.mp3",
@@ -152,25 +136,25 @@ export const PACKS: Pack[] = [
     mood: "Soulful • Warm • Test",
     tracks: [
       {
-        id: "soul-01",
+        id: "something-new",
         title: "Something New",
         previewUrl:
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Something%20New.mp3",
       },
       {
-        id: "soult-02",
+        id: "lead-the-way",
         title: "Lead The Way",
         previewUrl:
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Lead%20The%20Way.mp3",
       },
       {
-        id: "soul-03",
+        id: "if-its-real",
         title: "If It’s Real",
         previewUrl:
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/IF%20IT'S%20REAL.mp3",
       },
       {
-        id: "soult-04",
+        id: "how-many-love-songs",
         title: "How Many Love Songs",
         previewUrl:
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/How%20Many%20Love%20Songs.mp3",
