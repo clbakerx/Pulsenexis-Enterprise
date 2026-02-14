@@ -161,6 +161,26 @@ export const PACKS: Pack[] = [
         previewUrl:
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Lead%20The%20Way.mp3",
       },
+      {
+    slug: "soul-pack",
+    title: "Soul Pack",
+    description: "Soul inspired selections to elevate your content.",
+    genre: "soul",
+    bpmRange: "78–92",
+    mood: "Soulful • Warm • Test",
+    tracks: [
+      {
+        id: "soul-03",
+        title: "If It’s Real",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/IF%20IT'S%20REAL.mp3",
+      },
+      {
+        id: "soult-04",
+        title: "How Many Love Songs",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/How%20Many%20Love%20Songs.mp3",
+      },
     ],
   },
 ];
