@@ -289,10 +289,10 @@ export default function HomePage() {
             </div>
 
             <Link
-              href="/packs"
+              href="/singles"
               className="inline-flex w-fit items-center rounded-full bg-indigo-600 px-5 py-2 text-sm font-semibold text-white hover:bg-indigo-500"
             >
-              Browse Packs
+              Browse Singles
             </Link>
           </div>
         </div>
@@ -303,7 +303,7 @@ export default function HomePage() {
         <div className="rounded-2xl border bg-white p-5">
           <div className="text-sm font-semibold">1) Browse</div>
           <p className="mt-2 text-sm opacity-80">
-            Browse licensable packs and tracks built for creators—fast, emotional,
+            Browse licensable singles and tracks built for creators—fast, emotional,
             and ready for content.
           </p>
         </div>

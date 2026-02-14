@@ -12,9 +12,12 @@ type TopHeroProps = {
   titlePre: string; // "Music built for "
   titleHighlight: string; // "Shorts"
   titlePost: string; // ", Reels & Brands"
-  descriptionLines: string[]; // 1–2 lines under the title
-  bullets: string[]; // the ✅ bullet list
-  buttons: HeroButton[]; // 2–3 buttons
+
+  // ✅ Make these optional so pages can't crash TopHero
+  descriptionLines?: string[]; // 1–2 lines under the title
+  bullets?: string[]; // the ✅ bullet list
+  buttons?: HeroButton[]; // 2–3 buttons
+
   footnote?: string; // small line under buttons
 };
 
@@ -23,9 +26,9 @@ export default function TopHero({
   titlePre,
   titleHighlight,
   titlePost,
-  descriptionLines,
-  bullets,
-  buttons,
+  descriptionLines = [],
+  bullets = [],
+  buttons = [],
   footnote = "Pick a bundle below • Checkout opens in a new tab • No renewals • No Content ID",
 }: TopHeroProps) {
   return (
@@ -40,57 +43,67 @@ export default function TopHero({
         {titlePost}
       </h1>
 
-      <div className="mt-5 max-w-2xl space-y-1 text-sm leading-relaxed text-white/75">
-        {descriptionLines.map((line) => (
-          <p key={line}>{line}</p>
-        ))}
-      </div>
+      {/* Description */}
+      {descriptionLines.length > 0 ? (
+        <div className="mt-5 max-w-2xl space-y-1 text-sm leading-relaxed text-white/75">
+          {descriptionLines.map((line) => (
+            <p key={line}>{line}</p>
+          ))}
+        </div>
+      ) : null}
 
-      <ul className="mt-6 space-y-2 text-sm text-white/80">
-        {bullets.map((b) => (
-          <li key={b} className="flex items-center gap-2">
-            <span className="text-emerald-400">✅</span>
-            <span>{b}</span>
-          </li>
-        ))}
-      </ul>
+      {/* Bullets */}
+      {bullets.length > 0 ? (
+        <ul className="mt-6 space-y-2 text-sm text-white/80">
+          {bullets.map((b) => (
+            <li key={b} className="flex items-center gap-2">
+              <span className="text-emerald-400">✅</span>
+              <span>{b}</span>
+            </li>
+          ))}
+        </ul>
+      ) : null}
 
-      <div className="mt-8 flex flex-wrap items-center gap-3">
-        {buttons.map((btn) => {
-          const base =
-            "inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition";
-          const variants: Record<string, string> = {
-            primary: "bg-amber-400 text-black hover:opacity-95",
-            outline:
-              "border border-white/25 bg-transparent text-white hover:bg-white/10",
-            ghost: "bg-white/10 text-white hover:bg-white/15",
-          };
-          const cls = `${base} ${variants[btn.variant ?? "outline"]}`;
+      {/* Buttons */}
+      {buttons.length > 0 ? (
+        <div className="mt-8 flex flex-wrap items-center gap-3">
+          {buttons.map((btn) => {
+            const base =
+              "inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition";
+            const variants: Record<string, string> = {
+              primary: "bg-amber-400 text-black hover:opacity-95",
+              outline:
+                "border border-white/25 bg-transparent text-white hover:bg-white/10",
+              ghost: "bg-white/10 text-white hover:bg-white/15",
+            };
+            const cls = `${base} ${variants[btn.variant ?? "outline"]}`;
 
-          // external link (Stripe, etc.)
-          if (btn.external) {
+            // external link (Stripe, etc.)
+            if (btn.external) {
+              return (
+                <a
+                  key={btn.label}
+                  href={btn.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={cls}
+                >
+                  {btn.label}
+                </a>
+              );
+            }
+
             return (
-              <a
-                key={btn.label}
-                href={btn.href}
-                target="_blank"
-                rel="noreferrer"
-                className={cls}
-              >
+              <Link key={btn.label} href={btn.href} className={cls}>
                 {btn.label}
-              </a>
+              </Link>
             );
-          }
+          })}
+        </div>
+      ) : null}
 
-          return (
-            <Link key={btn.label} href={btn.href} className={cls}>
-              {btn.label}
-            </Link>
-          );
-        })}
-      </div>
-
-      <div className="mt-4 text-xs text-white/55">{footnote}</div>
+      {/* Footnote */}
+      {footnote ? <div className="mt-4 text-xs text-white/55">{footnote}</div> : null}
     </section>
   );
 }
