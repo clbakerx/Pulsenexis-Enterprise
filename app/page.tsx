@@ -187,7 +187,7 @@ export default function HomePage() {
 
           {/* NOTE: This is NOT hero. If you want, I can remove this too. */}
           <Link
-            href="/catalog"
+            href="/shorts"
             className="inline-flex w-fit items-center rounded-full border border-neutral-300 bg-white px-5 py-2 text-sm font-semibold text-neutral-900 hover:bg-neutral-50"
           >
             View full catalog
