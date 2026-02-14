@@ -36,13 +36,13 @@ export const PACKS: Pack[] = [
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Jazz/Life-Finally-Smiles/Life-Finally-Smiles-(Ver_2)_30secSample.mp3",
       },
       {
-        id: "jn-03",
+        id: "love-dont-leave-me",
         title: "Love Dont Leave Me",
         previewUrl:
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Jazz/Love-Dont-Leave-Me/Love%20Don't%20Leave%20Me_30secSample.mp3",
       },
       {
-        id: "jn-04",
+        id: "love-dont-leave-me-v2",
         title: "Love Dont Leave Me V2",
         previewUrl:
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Jazz/Love-Dont-Leave-Me/Love%20Don't%20Leave%20Me%20(V2)_30secSample.mp3",
