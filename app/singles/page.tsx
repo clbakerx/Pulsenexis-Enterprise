@@ -94,6 +94,33 @@ const SINGLES: SingleTrack[] = [
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Mike%20Dreams.mp3",
   },
+  {
+    id: "be my mrs clause",
+    title: "Be My Mrs Clause",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Be%20My%20Mrs%20Clause.mp3",
+  },
+  {
+    id: "red nose tryna look into your windows",
+    title: "Red Nose Tryna Look Into Your Windows",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Red%20Nose%20Tryna%20Look%20Into%20Your%20Windows.mp3",
+  },
+  {
+    id: "red means run",
+    title: "Red Means Run",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Red%20Means%20Run.mp3",
+  },
 ];
 
 export default function SinglesPage() {
