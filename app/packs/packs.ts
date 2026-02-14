@@ -1,10 +1,7 @@
 export type PackTrack = {
-  // Internal unique key (slug format). Not displayed to users.
-  id: string;
-  // Display name (this is what should show on the site)
-  title: string;
-  // Full URL to preview audio
-  previewUrl: string;
+  id: string;        // internal unique key
+  title: string;     // what shows on the site
+  previewUrl: string; // full URL to preview audio
 };
 
 export type Pack = {
@@ -100,7 +97,6 @@ export const PACKS: Pack[] = [
     ],
   },
 
-  // ✅ Keep it if you want, but don’t name it the same as your real pack
   {
     slug: "jazz-pack-two",
     title: "Jazz Pack Two",
@@ -120,6 +116,29 @@ export const PACKS: Pack[] = [
         title: "In The Space Between V2",
         previewUrl:
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Jazz/In-The-Space-Between/In%20the%20Space%20Between%20(V2)_30secSample.mp3",
+      },
+    ],
+  },
+
+  {
+    slug: "jazz-nights-3",
+    title: "Jazz Nights 3",
+    description: "Smooth late-night jazz textures with intimate lounge energy.",
+    genre: "jazz",
+    bpmRange: "70–92",
+    mood: "Late-night • Lounge • Warm",
+    tracks: [
+      {
+        id: "quiet-confidence",
+        title: "Quiet Confidence",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Jazz/Quiet-Confidence/Quiet%20Confidence_30secSample.mp3",
+      },
+      {
+        id: "quiet-confidence-v2",
+        title: "Quiet Confidence V2",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Jazz/Quiet-Confidence/Quiet%20Confidence%20(V2)_30secSample.mp3",
       },
     ],
   },
@@ -147,51 +166,51 @@ export const PACKS: Pack[] = [
     ],
   },
 
- // Soul Pack 1 (2 songs)
-{
-  slug: "soul-pack-1",
-  title: "Soul Pack",
-  description: "Soul inspired selections to elevate your content.",
-  genre: "soul",
-  bpmRange: "78–92",
-  mood: "Soulful • Warm • Test",
-  tracks: [
-    {
-      id: "something-new",
-      title: "Something New",
-      previewUrl:
-        "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Something%20New.mp3",
-    },
-    {
-      id: "lead-the-way",
-      title: "Lead The Way",
-      previewUrl:
-        "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Lead%20The%20Way.mp3",
-    },
-  ],
-},
+  // Soul Pack 1 (2 songs)
+  {
+    slug: "soul-pack-1",
+    title: "Soul Pack",
+    description: "Soul inspired selections to elevate your content.",
+    genre: "soul",
+    bpmRange: "78–92",
+    mood: "Soulful • Warm • Test",
+    tracks: [
+      {
+        id: "something-new",
+        title: "Something New",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Something%20New.mp3",
+      },
+      {
+        id: "lead-the-way",
+        title: "Lead The Way",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Lead%20The%20Way.mp3",
+      },
+    ],
+  },
 
-// Soul Pack 2 (2 songs)
-{
-  slug: "soul-pack-2",
-  title: "Soul Pack",
-  description: "Soul inspired selections to elevate your content.",
-  genre: "soul",
-  bpmRange: "78–92",
-  mood: "Soulful • Warm • Test",
-  tracks: [
-    {
-      id: "if-its-real",
-      title: "If It’s Real",
-      previewUrl:
-        "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/IF%20IT%27S%20REAL.mp3",
-    },
-    {
-      id: "how-many-love-songs",
-      title: "How Many Love Songs",
-      previewUrl:
-        "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/How%20Many%20Love%20Songs.mp3",
-    },
-  ],
-},
+  // Soul Pack 2 (2 songs)
+  {
+    slug: "soul-pack-2",
+    title: "Soul Pack",
+    description: "Soul inspired selections to elevate your content.",
+    genre: "soul",
+    bpmRange: "78–92",
+    mood: "Soulful • Warm • Test",
+    tracks: [
+      {
+        id: "if-its-real",
+        title: "If It’s Real",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/IF%20IT%27S%20REAL.mp3",
+      },
+      {
+        id: "how-many-love-songs",
+        title: "How Many Love Songs",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/How%20Many%20Love%20Songs.mp3",
+      },
+    ],
+  },
 ];
