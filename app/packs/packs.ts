@@ -1,6 +1,6 @@
 export type PackTrack = {
-  id: string;        // internal unique key
-  title: string;     // what shows on the site
+  id: string; // internal unique key
+  title: string; // what shows on the site
   previewUrl: string; // full URL to preview audio
 };
 
@@ -166,10 +166,9 @@ export const PACKS: Pack[] = [
     ],
   },
 
-  // Soul Pack 1 (2 songs)
   {
     slug: "soul-pack-1",
-    title: "Soul Pack",
+    title: "Soul Pack 1",
     description: "Soul inspired selections to elevate your content.",
     genre: "soul",
     bpmRange: "78–92",
@@ -190,10 +189,9 @@ export const PACKS: Pack[] = [
     ],
   },
 
-  // Soul Pack 2 (2 songs)
   {
     slug: "soul-pack-2",
-    title: "Soul Pack",
+    title: "Soul Pack 2",
     description: "Soul inspired selections to elevate your content.",
     genre: "soul",
     bpmRange: "78–92",
@@ -210,6 +208,29 @@ export const PACKS: Pack[] = [
         title: "How Many Love Songs",
         previewUrl:
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/How%20Many%20Love%20Songs.mp3",
+      },
+    ],
+  },
+
+  {
+    slug: "soul-pack-3",
+    title: "Soul Pack 3",
+    description: "Soul inspired selections to elevate your content.",
+    genre: "soul",
+    bpmRange: "78–92",
+    mood: "Soulful • Warm • Test",
+    tracks: [
+      {
+        id: "silhouette",
+        title: "Silhouette",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Catalog/Silhouette/SilhouetteV2_30secSample.mp3",
+      },
+      {
+        id: "nothing-falls-through",
+        title: "Nothing Falls Through",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Catalog/Nothing-Falls-Through/Nothing%20Falls%20Through_60Sec.mp3",
       },
     ],
   },
