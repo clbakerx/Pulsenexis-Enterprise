@@ -17,16 +17,16 @@ function withQuery(baseUrl: string, params: Record<string, string>) {
   }
 }
 
-export default function PacksView({ genre }: { genre: Genre }) {
-  const g = (genre ?? "").toLowerCase() as Genre;
+export default function PacksView({ genre }: { genre?: Genre }) {
 
   const jazzPacks = PACKS.filter((p) => p.genre === "jazz");
   const rnbPacks = PACKS.filter((p) => p.genre === "rnb");
   const soulPacks = PACKS.filter((p) => p.genre === "soul");
 
-  const showJazz = !g || g === "jazz";
-  const showRnb = !g || g === "rnb";
-  const showSoul = !g || g === "soul";
+
+const showJazz = !g || g === "jazz";
+const showRnb  = !g || g === "rnb";
+const showSoul = !g || g === "soul";
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
