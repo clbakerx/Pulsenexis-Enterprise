@@ -1,21 +1,17 @@
 export type PackTrack = {
-  /** Unique stable key (slug format). Not shown to users. */
+  // Internal unique key (slug format). Not displayed to users.
   id: string;
-  /** Shown to users as the song name. */
+  // Display name (this is what should show on the site)
   title: string;
-  /** Full URL to the audio preview. */
+  // Full URL to preview audio
   previewUrl: string;
 };
 
-export type Genre = "rnb" | "soul" | "jazz";
-
 export type Pack = {
-  /** Unique pack key used for routes like /packs/<slug> */
   slug: string;
-  /** Shown to users as the pack name */
   title: string;
   description: string;
-  genre: Genre;
+  genre: "rnb" | "soul" | "jazz";
   bpmRange?: string;
   mood?: string;
   tracks: PackTrack[];
@@ -104,6 +100,30 @@ export const PACKS: Pack[] = [
     ],
   },
 
+  // ✅ Keep it if you want, but don’t name it the same as your real pack
+  {
+    slug: "jazz-test-pack",
+    title: "Jazz Starter (TEST)",
+    description: "Test pack to confirm deploy + rendering is working.",
+    genre: "jazz",
+    bpmRange: "80–90",
+    mood: "Test • Smooth • Clean",
+    tracks: [
+      {
+        id: "in-the-space-between",
+        title: "In The Space Between",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Jazz/In-The-Space-Between/In%20the%20Space%20Between_30secSample.mp3",
+      },
+      {
+        id: "in-the-space-between-v2",
+        title: "In The Space Between V2",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Jazz/In-The-Space-Between/In%20the%20Space%20Between%20(V2)_30secSample.mp3",
+      },
+    ],
+  },
+
   {
     slug: "rnb-pack",
     title: "R&B Pack",
@@ -138,20 +158,17 @@ export const PACKS: Pack[] = [
       {
         id: "something-new",
         title: "Something New",
-        previewUrl:
-          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Something%20New.mp3",
+        previewUrl: "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Something%20New.mp3",
       },
       {
         id: "lead-the-way",
         title: "Lead The Way",
-        previewUrl:
-          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Lead%20The%20Way.mp3",
+        previewUrl: "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Lead%20The%20Way.mp3",
       },
       {
         id: "if-its-real",
         title: "If It’s Real",
-        previewUrl:
-          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/IF%20IT'S%20REAL.mp3",
+        previewUrl: "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/IF%20IT'S%20REAL.mp3",
       },
       {
         id: "how-many-love-songs",
