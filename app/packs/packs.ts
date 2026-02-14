@@ -147,35 +147,51 @@ export const PACKS: Pack[] = [
     ],
   },
 
-  {
-    slug: "soul-pack",
-    title: "Soul Pack",
-    description: "Soul inspired selections to elevate your content.",
-    genre: "soul",
-    bpmRange: "78–92",
-    mood: "Soulful • Warm • Test",
-    tracks: [
-      {
-        id: "something-new",
-        title: "Something New",
-        previewUrl: "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Something%20New.mp3",
-      },
-      {
-        id: "lead-the-way",
-        title: "Lead The Way",
-        previewUrl: "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Lead%20The%20Way.mp3",
-      },
-      {
-        id: "if-its-real",
-        title: "If It’s Real",
-        previewUrl: "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/IF%20IT'S%20REAL.mp3",
-      },
-      {
-        id: "how-many-love-songs",
-        title: "How Many Love Songs",
-        previewUrl:
-          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/How%20Many%20Love%20Songs.mp3",
-      },
-    ],
-  },
+ // Soul Pack 1 (2 songs)
+{
+  slug: "soul-pack-1",
+  title: "Soul Pack",
+  description: "Soul inspired selections to elevate your content.",
+  genre: "soul",
+  bpmRange: "78–92",
+  mood: "Soulful • Warm • Test",
+  tracks: [
+    {
+      id: "something-new",
+      title: "Something New",
+      previewUrl:
+        "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Something%20New.mp3",
+    },
+    {
+      id: "lead-the-way",
+      title: "Lead The Way",
+      previewUrl:
+        "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Lead%20The%20Way.mp3",
+    },
+  ],
+},
+
+// Soul Pack 2 (2 songs)
+{
+  slug: "soul-pack-2",
+  title: "Soul Pack",
+  description: "Soul inspired selections to elevate your content.",
+  genre: "soul",
+  bpmRange: "78–92",
+  mood: "Soulful • Warm • Test",
+  tracks: [
+    {
+      id: "if-its-real",
+      title: "If It’s Real",
+      previewUrl:
+        "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/IF%20IT%27S%20REAL.mp3",
+    },
+    {
+      id: "how-many-love-songs",
+      title: "How Many Love Songs",
+      previewUrl:
+        "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/How%20Many%20Love%20Songs.mp3",
+    },
+  ],
+},
 ];
