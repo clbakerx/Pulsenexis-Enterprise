@@ -142,7 +142,7 @@ export default function ChancesPage() {
           </a>
 
           <a
-            href="/catalog"
+            href="/singles"
             style={{
               border: "1px solid rgba(0,0,0,0.12)",
               borderRadius: 16,
@@ -151,7 +151,7 @@ export default function ChancesPage() {
               display: "block",
             }}
           >
-            <div style={{ fontWeight: 700 }}>Browse the Catalog</div>
+            <div style={{ fontWeight: 700 }}>Browse the Singles</div>
             <div style={{ fontSize: 13, opacity: 0.75, marginTop: 4 }}>
               Find more tracks for your project →
             </div>
