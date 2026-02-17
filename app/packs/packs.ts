@@ -234,4 +234,27 @@ export const PACKS: Pack[] = [
       },
     ],
   },
+
+  {
+    slug: "soul-pack-4",
+    title: "Soul Pack 4",
+    description: "Soul inspired selections to elevate your content.",
+    genre: "soul",
+    bpmRange: "78–92",
+    mood: "Soulful • Warm • Test",
+    tracks: [
+      {
+        id: "weekday-lover",
+        title: "Weekday-Lover",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/Weekday-Lover/Weekday-Lover_30secSample.mp3",
+      },
+      {
+        id: "weekday-lover-v2",
+        title: "Weekday-Lover V2",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/Weekday-Lover/Weekday-Lover(V2)_30secSample.mp3",
+      },
+    ],
+  },
 ];
