@@ -1,18 +1,18 @@
 export type PackTrack = {
-  id: string; // internal unique key
-  title: string; // what shows on the site
-  previewUrl: string; // full URL to preview audio
-};
+  id: string
+  title: string
+  previewUrl: string
+}
 
 export type Pack = {
-  slug: string;
-  title: string;
-  description: string;
-  genre: "rnb" | "soul" | "jazz";
-  bpmRange?: string;
-  mood?: string;
-  tracks: PackTrack[];
-};
+  slug: string
+  title: string
+  description: string
+  genre: "rnb" | "soul" | "jazz"
+  bpmRange?: string
+  mood?: string
+  tracks: PackTrack[]
+}
 
 export const PACKS: Pack[] = [
   {
@@ -49,7 +49,6 @@ export const PACKS: Pack[] = [
       },
     ],
   },
-
   {
     slug: "rnb-blueprint",
     title: "R&B Blueprint Pack",
@@ -72,7 +71,6 @@ export const PACKS: Pack[] = [
       },
     ],
   },
-
   {
     slug: "trap-soul",
     title: "Trap Soul Pack",
@@ -96,7 +94,6 @@ export const PACKS: Pack[] = [
       },
     ],
   },
-
   {
     slug: "jazz-pack-two",
     title: "Jazz Pack Two",
@@ -119,7 +116,6 @@ export const PACKS: Pack[] = [
       },
     ],
   },
-
   {
     slug: "jazz-nights-3",
     title: "Jazz Nights 3",
@@ -142,7 +138,6 @@ export const PACKS: Pack[] = [
       },
     ],
   },
-
   {
     slug: "rnb-pack",
     title: "R&B Pack",
@@ -165,7 +160,6 @@ export const PACKS: Pack[] = [
       },
     ],
   },
-
   {
     slug: "soul-pack-1",
     title: "Soul Pack 1",
@@ -188,7 +182,6 @@ export const PACKS: Pack[] = [
       },
     ],
   },
-
   {
     slug: "soul-pack-2",
     title: "Soul Pack 2",
@@ -211,7 +204,6 @@ export const PACKS: Pack[] = [
       },
     ],
   },
-
   {
     slug: "soul-pack-3",
     title: "Soul Pack 3",
@@ -254,7 +246,9 @@ export const PACKS: Pack[] = [
         previewUrl:
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/Weekday-Lover/Weekday-Lover(V2)_30secSample.mp3",
       },
-      {
+    ],
+  },
+  {
     slug: "soul-pack-5",
     title: "Soul Pack 5",
     description: "Soul inspired selections to elevate your content.",
@@ -276,4 +270,4 @@ export const PACKS: Pack[] = [
       },
     ],
   },
-];
+]
