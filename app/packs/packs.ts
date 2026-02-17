@@ -270,4 +270,26 @@ export const PACKS: Pack[] = [
       },
     ],
   },
+  {
+    slug: "soul-pack-6",
+    title: "Soul Pack 6",
+    description: "Soul inspired selections to elevate your content.",
+    genre: "soul",
+    bpmRange: "78–92",
+    mood: "Soulful • Warm • Test",
+    tracks: [
+      {
+        id: "but-this-ones-real",
+        title: "But This One's Real",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/But-This-Ones-Real/But-This-One's-Real_30secSample.mp3",
+      },
+      {
+        id: "but-this-ones-real-v2",
+        title: "But This One's Real V2",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/But-This-Ones-Real/But-This-One's-Real(V2)30secSample.mp3",
+      },
+    ],
+  },
 ]
