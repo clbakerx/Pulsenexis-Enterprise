@@ -234,7 +234,6 @@ export const PACKS: Pack[] = [
       },
     ],
   },
-
   {
     slug: "soul-pack-4",
     title: "Soul Pack 4",
@@ -254,6 +253,26 @@ export const PACKS: Pack[] = [
         title: "Weekday-Lover V2",
         previewUrl:
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/Weekday-Lover/Weekday-Lover(V2)_30secSample.mp3",
+      },
+      {
+    slug: "soul-pack-5",
+    title: "Soul Pack 5",
+    description: "Soul inspired selections to elevate your content.",
+    genre: "soul",
+    bpmRange: "78–92",
+    mood: "Soulful • Warm • Test",
+    tracks: [
+      {
+        id: "another-silly-love-song",
+        title: "Another Silly Love Song",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/Another-Silly-Love-Song/Another%20Silly%20Love%20Song_30secSample.mp3",
+      },
+      {
+        id: "another-silly-love-song-v2",
+        title: "Another Silly Love Song V2",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/Another-Silly-Love-Song/Another%20Silly%20Love%20Song_V2_30secSample.mp3",
       },
     ],
   },
