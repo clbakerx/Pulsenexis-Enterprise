@@ -49,6 +49,7 @@ export const PACKS: Pack[] = [
       },
     ],
   },
+
   {
     slug: "rnb-blueprint",
     title: "R&B Blueprint Pack",
@@ -71,6 +72,7 @@ export const PACKS: Pack[] = [
       },
     ],
   },
+
   {
     slug: "trap-soul",
     title: "Trap Soul Pack",
@@ -94,6 +96,7 @@ export const PACKS: Pack[] = [
       },
     ],
   },
+
   {
     slug: "jazz-pack-two",
     title: "Jazz Pack Two",
@@ -116,6 +119,7 @@ export const PACKS: Pack[] = [
       },
     ],
   },
+
   {
     slug: "jazz-nights-3",
     title: "Jazz Nights 3",
@@ -138,6 +142,7 @@ export const PACKS: Pack[] = [
       },
     ],
   },
+
   {
     slug: "rnb-pack",
     title: "R&B Pack",
@@ -160,6 +165,7 @@ export const PACKS: Pack[] = [
       },
     ],
   },
+
   {
     slug: "soul-pack-1",
     title: "Soul Pack 1",
@@ -182,6 +188,7 @@ export const PACKS: Pack[] = [
       },
     ],
   },
+
   {
     slug: "soul-pack-2",
     title: "Soul Pack 2",
@@ -204,6 +211,7 @@ export const PACKS: Pack[] = [
       },
     ],
   },
+
   {
     slug: "soul-pack-3",
     title: "Soul Pack 3",
@@ -226,6 +234,7 @@ export const PACKS: Pack[] = [
       },
     ],
   },
+
   {
     slug: "soul-pack-4",
     title: "Soul Pack 4",
@@ -248,6 +257,7 @@ export const PACKS: Pack[] = [
       },
     ],
   },
+
   {
     slug: "soul-pack-5",
     title: "Soul Pack 5",
@@ -270,6 +280,7 @@ export const PACKS: Pack[] = [
       },
     ],
   },
+
   {
     slug: "soul-pack-6",
     title: "Soul Pack 6",
@@ -289,6 +300,29 @@ export const PACKS: Pack[] = [
         title: "But This One's Real V2",
         previewUrl:
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/But-This-Ones-Real/But-This-One's-Real(V2)30secSample.mp3",
+      },
+    ],
+  },
+
+  {
+    slug: "soul-pack-7",
+    title: "Soul Pack 7",
+    description: "Soul inspired selections to elevate your content.",
+    genre: "soul",
+    bpmRange: "78–92",
+    mood: "Soulful • Warm • Test",
+    tracks: [
+      {
+        id: "nothing-falls-through",
+        title: "Nothing Falls Through",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/Nothing-Falls-Through/Nothing-Falls-Through_60Sec.mp3",
+      },
+      {
+        id: "nothing-falls-through-v2",
+        title: "Nothing Falls Through V2",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/Nothing-Falls-Through/Nothing-Falls-Through30secSampleV2.mp3",
       },
     ],
   },

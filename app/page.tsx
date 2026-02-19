@@ -106,7 +106,7 @@ export default function HomePage() {
           {/* Primary buttons */}
           <div className="mt-7 flex flex-wrap gap-3">
             <Link
-              href="/gaming-audio"
+              href="/games"
               className="rounded-full bg-white/15 px-6 py-3 text-sm font-semibold text-white hover:bg-white/20"
             >
               <span className="mr-2 inline-flex items-center rounded-full bg-amber-400 px-2 py-0.5 text-[11px] font-bold text-black">
