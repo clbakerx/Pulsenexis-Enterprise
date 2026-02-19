@@ -324,6 +324,26 @@ export const PACKS: Pack[] = [
         previewUrl:
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/Nothing-Falls-Through/Nothing-Falls-Through30secSampleV2.mp3",
       },
+      {
+    slug: "soul-pack-8",
+    title: "Soul Pack 8",
+    description: "Soul inspired selections to elevate your content.",
+    genre: "soul",
+    bpmRange: "78–92",
+    mood: "Soulful • Warm • Test",
+    tracks: [
+      {
+        id: "december",
+        title: "December",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/December/DecemberSample.mp3",
+      },
+      {
+        id: "december-v2",
+        title: "December V2",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/December/DecemberV2Sample.mp3",
+      },
     ],
   },
 ]
