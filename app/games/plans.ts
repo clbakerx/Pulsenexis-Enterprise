@@ -97,8 +97,10 @@ export const PLANS: GamePlan[] = [
     description:
       "Evolving motifs and time-bending textures structured for loopable systems and cut-scene flow.",
     bgUrl:
-      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Games/Sonic%20Temporality/Sonic-Temporality_600.png",
-    badge: "COMING SOON",
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Games/Sonic-Tempularity/Sonic_Tempularity_600.png",
+    demoUrl:
+        "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Games/Sonic-Tempularity/Sonic-Tempularity30secSample.mp3",
+      badge: "COMING SOON",
     roadmapTitle: "Checkout Coming Soon",
     roadmapText: "Stripe checkout will be connected here soon.",
   },
