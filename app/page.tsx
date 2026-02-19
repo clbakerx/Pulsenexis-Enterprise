@@ -5,7 +5,7 @@ const USE_CASES = [
   {
     title: "Gaming Audio (NEW)",
     desc: "Modular stems, loop-ready systems, engine-friendly exports.",
-    href: "/gaming-audio",
+    href: "/games",
     badge: "NEW",
   },
   {
