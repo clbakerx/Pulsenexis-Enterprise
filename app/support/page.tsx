@@ -15,7 +15,7 @@ const faqs = [
   },
   {
     q: "Can I use a song on YouTube or Instagram?",
-    a: 'Yes, if your license tier includes social usage. Please add "Music by PulseNexis" in your credits and include the license ID in your video description.',
+    a: "Yes, Please credit “Music by PulseNexis” in your video description. Your purchase confirmation email serves as proof of license.",
   },
   {
     q: "Do you offer refunds?",
