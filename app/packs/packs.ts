@@ -349,4 +349,27 @@ export const PACKS: Pack[] = [
       },
     ],
   },
+
+  {
+    slug: "soul-pack-9",
+    title: "Soul Pack 9",
+    description: "Soul inspired selections to elevate your content.",
+    genre: "soul",
+    bpmRange: "78–92",
+    mood: "Soulful • Warm • Test",
+    tracks: [
+      {
+        id: "loves-gonna-need",
+        title: "Loves Gonna Need",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/Loves-Gonna-Need/Love%E2%80%99s-Gonna-NeedSample.mp3",
+      },
+      {
+        id: "loves-gonna-need-v2",
+        title: "Loves Gonna Need V2",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/Loves-Gonna-Need/Love%E2%80%99s-Gonna-Need_(V2)Sample.mp3",
+      },
+    ],
+  },
 ];
