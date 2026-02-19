@@ -1,18 +1,18 @@
 export type PackTrack = {
-  id: string
-  title: string
-  previewUrl: string
-}
+  id: string;
+  title: string;
+  previewUrl: string;
+};
 
 export type Pack = {
-  slug: string
-  title: string
-  description: string
-  genre: "rnb" | "soul" | "jazz"
-  bpmRange?: string
-  mood?: string
-  tracks: PackTrack[]
-}
+  slug: string;
+  title: string;
+  description: string;
+  genre: "rnb" | "soul" | "jazz";
+  bpmRange?: string;
+  mood?: string;
+  tracks: PackTrack[];
+};
 
 export const PACKS: Pack[] = [
   {
@@ -324,7 +324,10 @@ export const PACKS: Pack[] = [
         previewUrl:
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/Nothing-Falls-Through/Nothing-Falls-Through30secSampleV2.mp3",
       },
-      {
+    ],
+  },
+
+  {
     slug: "soul-pack-8",
     title: "Soul Pack 8",
     description: "Soul inspired selections to elevate your content.",
@@ -346,4 +349,4 @@ export const PACKS: Pack[] = [
       },
     ],
   },
-]
+];
