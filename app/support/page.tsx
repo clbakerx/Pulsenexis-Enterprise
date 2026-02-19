@@ -15,7 +15,7 @@ const faqs = [
   },
   {
     q: "Can I use a song on YouTube or Instagram?",
-    a: "Yes, if your license tier includes social usage. Please add \"Music by PulseNexis\" in your credits and include the license ID in your video description.",
+    a: 'Yes, if your license tier includes social usage. Please add "Music by PulseNexis" in your credits and include the license ID in your video description.',
   },
   {
     q: "Do you offer refunds?",
@@ -31,10 +31,12 @@ function FAQItem({ q, a }: { q: string; a: string }) {
   return (
     <details className="group rounded-2xl border p-4 hover:shadow-sm">
       <summary className="cursor-pointer list-none text-lg font-semibold">
-        <span className="mr-2 inline-block transition-transform group-open:rotate-90">▸</span>
+        <span className="mr-2 inline-block transition-transform group-open:rotate-90">
+          ▸
+        </span>
         {q}
       </summary>
-      <div className="mt-2 text-base text-gray-700 leading-relaxed">{a}</div>
+      <div className="mt-2 text-base leading-relaxed text-gray-700">{a}</div>
     </details>
   );
 }
@@ -44,22 +46,41 @@ export default function SupportPage() {
     <main className="mx-auto max-w-5xl px-4 py-12">
       <section className="mb-12 grid gap-6 rounded-3xl bg-gradient-to-br from-indigo-600 via-violet-600 to-fuchsia-600 p-8 text-white md:grid-cols-2">
         <div>
-          <h1 className="text-4xl font-black tracking-tight">PulseNexis Support</h1>
+          <h1 className="text-4xl font-black tracking-tight">
+            PulseNexis Support
+          </h1>
           <p className="mt-3 text-lg opacity-90">
-            Stuck on something? Browse quick answers or reach out—real humans, fast replies.
+            {"Stuck on something? Browse quick answers or reach out—real humans, fast replies."}
           </p>
+
           <div className="mt-6 flex flex-wrap gap-3">
-            <Link href="/contact" className="rounded-xl bg-white/10 px-4 py-2 font-semibold backdrop-blur transition hover:bg-white/20">Contact Us</Link>
-            <Link href="/terms" className="rounded-xl bg-white/10 px-4 py-2 font-semibold backdrop-blur transition hover:bg-white/20">Terms</Link>
-            <Link href="/privacy" className="rounded-xl bg-white/10 px-4 py-2 font-semibold backdrop-blur transition hover:bg-white/20">Privacy</Link>
+            <Link
+              href="/contact"
+              className="rounded-xl bg-white/10 px-4 py-2 font-semibold backdrop-blur transition hover:bg-white/20"
+            >
+              Contact Us
+            </Link>
+            <Link
+              href="/terms"
+              className="rounded-xl bg-white/10 px-4 py-2 font-semibold backdrop-blur transition hover:bg-white/20"
+            >
+              Terms
+            </Link>
+            <Link
+              href="/privacy"
+              className="rounded-xl bg-white/10 px-4 py-2 font-semibold backdrop-blur transition hover:bg-white/20"
+            >
+              Privacy
+            </Link>
           </div>
         </div>
+
         <div className="rounded-2xl bg-white/10 p-6">
           <ul className="grid grid-cols-2 gap-3 text-sm opacity-95">
-            <li>• 24–48 hr email response</li>
-            <li>• License lookups</li>
-            <li>• File re‑delivery</li>
-            <li>• Billing questions</li>
+            <li>{"• 24–48 hr email response"}</li>
+            <li>{"• License lookups"}</li>
+            <li>{"• File re-delivery"}</li>
+            <li>{"• Billing questions"}</li>
           </ul>
         </div>
       </section>
@@ -72,8 +93,6 @@ export default function SupportPage() {
           ))}
         </div>
       </section>
-
-
     </main>
   );
 }
