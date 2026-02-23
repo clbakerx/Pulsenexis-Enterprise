@@ -83,7 +83,7 @@ export const PLANS: GamePlan[] = [
     bgUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Games/No-More-Creation/No_More_Creation_600.png",
     demoUrl:
-      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Games/No-More-Creation/No-More-Creation-Sample.mp3",
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Games/No-More-Creation/No-More-CreationSample.mp3",
     stripeUrl: STRIPE_ALL,
     badge: "NEW",
     roadmapTitle: "Buy Now",
