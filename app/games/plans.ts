@@ -30,12 +30,14 @@ export const PLANS: GamePlan[] = [
       "Modular, loop-ready music systems built for futuristic worlds — clean loop points, intensity layers, and engine-friendly exports.",
     bgUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Games/NeonSyndicate/NeonSyndicate_600.png",
-    demoUrl:
-      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Games/NeonSyndicate/NeonSydicate_Demo.mp3",
+
+    // public/demos/NeonSyndicate_Demo.mp3
+    demoUrl: "/demos/NeonSyndicate_Demo.mp3",
+
     gumroadUrl:
       "https://cushyc.gumroad.com/l/hwrbq?_gl=1*1wykmoo*_ga*MTI3MzEyOTMwNC4xNzcwOTEyNzM3*_ga_6LJN6D94N6*czE3NzA5MzA0NTYkbzIkZzEkdDE3NzA5MzA1NjgkajMyJGwwJGgw",
     badge: "NEW",
-    roadmapTitle: "Vol. 2 Coming Soon",
+    roadmapTitle: "Buy Now",
     roadmapText: "Expanding the Neon Syndicate universe with new intensity layers.",
   },
 
@@ -48,8 +50,10 @@ export const PLANS: GamePlan[] = [
       "Loop-ready, layered game music built for clean loop points and engine-friendly use.",
     bgUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Games/Is-It-In-You/Isitinyou_600.png",
-    demoUrl:
-      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Games/Is-It-In-You/Is%20It%20In%20You%20(V2)Sample.mp3",
+
+    // public/demos/Is It In You (V2)Sample.mp3
+    demoUrl: "/demos/Is%20It%20In%20You%20(V2)Sample.mp3",
+
     stripeUrl: STRIPE_ALL,
     badge: "NEW",
     roadmapTitle: "Buy Now",
@@ -65,8 +69,10 @@ export const PLANS: GamePlan[] = [
       "Dark-to-driven cinematic energy with a loop-first structure for gameplay pacing.",
     bgUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Games/Midnight-Pursuit/Midnight_Pursuit_600.png",
-    demoUrl:
-      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Games/Midnight-Pursuit/Midnight_Pursuit_Sample.mp3",
+
+    // public/demos/Midnight Pursuit_Sample.mp3
+    demoUrl: "/demos/Midnight%20Pursuit_Sample.mp3",
+
     stripeUrl: STRIPE_ALL,
     badge: "NEW",
     roadmapTitle: "Buy Now",
@@ -82,8 +88,10 @@ export const PLANS: GamePlan[] = [
       "Tension-forward textures built for missions, menus, and moody scene transitions.",
     bgUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Games/No-More-Creation/No_More_Creation_600.png",
-    demoUrl:
-      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Games/No-More-Creation/No-More-CreationSample.mp3",
+
+    // public/demos/No-More-Creation-Sample.mp3
+    demoUrl: "/demos/No-More-Creation-Sample.mp3",
+
     stripeUrl: STRIPE_ALL,
     badge: "NEW",
     roadmapTitle: "Buy Now",
@@ -99,8 +107,10 @@ export const PLANS: GamePlan[] = [
       "Full-strength themes with layered intensity potential—built for Unity/Unreal pipelines.",
     bgUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Games/None-Reduced/None_Reduced_600.png",
-    demoUrl:
-      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Games/None-Reduced/None-ReducedSample.mp3",
+
+    // public/demos/None-ReducedSample.mp3
+    demoUrl: "/demos/None-ReducedSample.mp3",
+
     stripeUrl: STRIPE_ALL,
     badge: "NEW",
     roadmapTitle: "Buy Now",
@@ -116,8 +126,10 @@ export const PLANS: GamePlan[] = [
       "Evolving motifs and time-bending textures structured for loopable systems and cut-scene flow.",
     bgUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Games/Sonic-Tempularity/Sonic_Tempularity_600.png",
-    demoUrl:
-      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Games/Sonic-Tempularity/Sonic-Tempularity30secSample.mp3",
+
+    // public/demos/Sonic-Tempurality30secSample.mp3
+    demoUrl: "/demos/Sonic-Tempurality30secSample.mp3",
+
     stripeUrl: STRIPE_ALL,
     badge: "NEW",
     roadmapTitle: "Buy Now",
