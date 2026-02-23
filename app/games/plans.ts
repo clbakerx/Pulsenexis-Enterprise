@@ -119,7 +119,7 @@ export const PLANS: GamePlan[] = [
     demoUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Games/Sonic-Tempularity/Sonic-Tempularity30secSample.mp3",
     stripeUrl: STRIPE_ALL,
-    badge: "COMING SOON",
+    badge: "NEW",
     roadmapTitle: "Buy Now",
     roadmapText: "Instant checkout via Stripe.",
   },
