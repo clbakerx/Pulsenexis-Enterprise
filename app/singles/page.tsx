@@ -139,6 +139,15 @@ const SINGLES: SingleTrack[] = [
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/A-Love-That%27s-True/A-Love-That's-TrueV2Sample.mp3",
   },
+  {
+    id: "right-here-with-you",
+    title: "Right Here With You",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Right-Here-With-You/Right-Here-With-You_Sample.mp3",
+  },
 ];
 
 export default function SinglesPage() {
