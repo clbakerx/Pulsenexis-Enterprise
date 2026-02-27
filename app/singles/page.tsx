@@ -121,14 +121,15 @@ const SINGLES: SingleTrack[] = [
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Red%20Means%20Run.mp3",
   },
+  
   {
-    id: "a-love-thats-true",
-    title: "A Love That's True",
+    id: "cant-stay-away",
+    title: "Can't Stay Away",
     subtitle: "Song Preview",
     priceLabel: "$3.99",
     buyUrl: DEFAULT_BUY_URL,
     previewUrl:
-      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/A-Love-That%27s-True/A-Love-That's-TrueV2Sample.mp3",
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Cant-Stay-Away/Can%E2%80%99t-Stay-Away_Sample.mp3",
   },
 ];
 
