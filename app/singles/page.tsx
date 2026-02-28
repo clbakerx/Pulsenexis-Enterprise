@@ -157,6 +157,24 @@ const SINGLES: SingleTrack[] = [
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Perfect-Choice/Perfect-Choice-(Remix).mp3",
   },
+  {
+    id: "winter-white",
+    title: "Winter White",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Winter-White/Winter-While-Sample.mp3",
+  },
+  {
+    id: "all-of-me",
+    title: "All of Me",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/All-Of-Me/All%20of%20Me_Sample.mp3",
+  },
 ];
 
 export default function SinglesPage() {
