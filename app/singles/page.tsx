@@ -148,6 +148,15 @@ const SINGLES: SingleTrack[] = [
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Right-Here-With-You/Right-Here-With-You_Sample.mp3",
   },
+  {
+    id: "perfect-choice",
+    title: "Perfect Choice",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Perfect-Choice/Perfect-Choice-(Remix).mp3",
+  },
 ];
 
 export default function SinglesPage() {
