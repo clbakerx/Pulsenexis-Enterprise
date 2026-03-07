@@ -49,7 +49,6 @@ export const PACKS: Pack[] = [
       },
     ],
   },
-
   {
     slug: "rnb-blueprint",
     title: "R&B Blueprint Pack",
@@ -72,7 +71,6 @@ export const PACKS: Pack[] = [
       },
     ],
   },
-
   {
     slug: "trap-soul",
     title: "Trap Soul Pack",
@@ -96,7 +94,6 @@ export const PACKS: Pack[] = [
       },
     ],
   },
-
   {
     slug: "jazz-pack-two",
     title: "Jazz Pack Two",
@@ -119,7 +116,6 @@ export const PACKS: Pack[] = [
       },
     ],
   },
-
   {
     slug: "jazz-nights-3",
     title: "Jazz Nights 3",
@@ -142,7 +138,6 @@ export const PACKS: Pack[] = [
       },
     ],
   },
-
   {
     slug: "rnb-pack",
     title: "R&B Pack",
@@ -165,7 +160,6 @@ export const PACKS: Pack[] = [
       },
     ],
   },
-
   {
     slug: "soul-pack-1",
     title: "Soul Pack 1",
@@ -188,7 +182,6 @@ export const PACKS: Pack[] = [
       },
     ],
   },
-
   {
     slug: "soul-pack-2",
     title: "Soul Pack 2",
@@ -211,7 +204,6 @@ export const PACKS: Pack[] = [
       },
     ],
   },
-
   {
     slug: "soul-pack-3",
     title: "Soul Pack 3",
@@ -234,7 +226,6 @@ export const PACKS: Pack[] = [
       },
     ],
   },
-
   {
     slug: "soul-pack-4",
     title: "Soul Pack 4",
@@ -257,7 +248,6 @@ export const PACKS: Pack[] = [
       },
     ],
   },
-
   {
     slug: "soul-pack-5",
     title: "Soul Pack 5",
@@ -280,7 +270,6 @@ export const PACKS: Pack[] = [
       },
     ],
   },
-
   {
     slug: "soul-pack-6",
     title: "Soul Pack 6",
@@ -303,7 +292,6 @@ export const PACKS: Pack[] = [
       },
     ],
   },
-
   {
     slug: "soul-pack-7",
     title: "Soul Pack 7",
@@ -326,7 +314,6 @@ export const PACKS: Pack[] = [
       },
     ],
   },
-
   {
     slug: "soul-pack-8",
     title: "Soul Pack 8",
@@ -349,7 +336,6 @@ export const PACKS: Pack[] = [
       },
     ],
   },
-
   {
     slug: "soul-pack-9",
     title: "Soul Pack 9",
@@ -369,6 +355,72 @@ export const PACKS: Pack[] = [
         title: "Loves Gonna Need V2",
         previewUrl:
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/Loves-Gonna-Need/Love%E2%80%99s-Gonna-Need_(V2)Sample.mp3",
+      },
+    ],
+  },
+  {
+    slug: "soul-pack-10",
+    title: "Soul Pack 10",
+    description: "Soul inspired selections to elevate your content.",
+    genre: "soul",
+    bpmRange: "78–92",
+    mood: "Soulful • Warm • Test",
+    tracks: [
+      {
+        id: "incredible-love",
+        title: "Incredible Love",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/Incedible-Love/Incredible%20Love_Sample.mp3",
+      },
+      {
+        id: "incredible-love-v2",
+        title: "Incredible Love V2",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/Incedible-Love/Incredible%20LoveV2_Sample.mp3",
+      },
+    ],
+  },
+  {
+    slug: "soul-pack-11",
+    title: "Soul Pack 11",
+    description: "Soul inspired selections to elevate your content.",
+    genre: "soul",
+    bpmRange: "78–92",
+    mood: "Soulful • Warm • Test",
+    tracks: [
+      {
+        id: "leave-it-to-me",
+        title: "Leave it to Me",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/Leave-it-to-Me/Leave%20it%20to%20Me_Sample.mp3",
+      },
+      {
+        id: "leave-it-to-me-v2",
+        title: "Leave it to Me V2",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/Leave-it-to-Me/Leave%20it%20to%20Me_V2_Sample.mp3",
+      },
+    ],
+  },
+  {
+    slug: "soul-pack-12",
+    title: "Soul Pack 12",
+    description: "Soul inspired selections to elevate your content.",
+    genre: "soul",
+    bpmRange: "78–92",
+    mood: "Soulful • Warm • Test",
+    tracks: [
+      {
+        id: "the-truth-of-your-love",
+        title: "The Truth of Your Love",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/The-Truth-of-Your-Love/The%20Truth%20of%20Your%20Love_Sample.mp3",
+      },
+      {
+        id: "the-truth-of-your-love-v2",
+        title: "The Truth of Your Love V2",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/The-Truth-of-Your-Love/The%20Truth%20of%20Your%20Love_V2_Sample.mp3",
       },
     ],
   },
