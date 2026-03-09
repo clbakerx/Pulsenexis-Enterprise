@@ -228,7 +228,7 @@ export default function HomePage() {
 
       {/* PLANS */}
       <section className="mt-14" id="plans">
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+        <div className="flex flex-col gap-2">
           <div>
             <div className="text-sm font-semibold text-neutral-800">
               Pricing &amp; Plans
@@ -240,13 +240,6 @@ export default function HomePage() {
               Buy one license fast without changing the rest of your current PulseNexis workflow.
             </p>
           </div>
-
-          <Link
-            href="/plans"
-            className="inline-flex w-fit items-center rounded-full border border-neutral-300 bg-white px-5 py-2 text-sm font-semibold text-neutral-900 hover:bg-neutral-50"
-          >
-            View full plans page
-          </Link>
         </div>
 
         <div className="mt-6 grid gap-4 lg:grid-cols-3">
@@ -254,7 +247,9 @@ export default function HomePage() {
             <div
               key={plan.name}
               className={`relative rounded-2xl border bg-white p-6 ${
-                plan.popular ? "border-violet-300 shadow-lg ring-1 ring-violet-200" : "border-neutral-200"
+                plan.popular
+                  ? "border-violet-300 shadow-lg ring-1 ring-violet-200"
+                  : "border-neutral-200"
               }`}
             >
               {plan.popular && (
