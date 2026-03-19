@@ -95,7 +95,7 @@ const SINGLES: SingleTrack[] = [
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Mike%20Dreams.mp3",
   },
   {
-    id: "be my mrs clause",
+    id: "be-my-mrs-clause",
     title: "Be My Mrs Clause",
     subtitle: "Song Preview",
     priceLabel: "$3.99",
@@ -104,7 +104,7 @@ const SINGLES: SingleTrack[] = [
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Be%20My%20Mrs%20Clause.mp3",
   },
   {
-    id: "red nose tryna look into your windows",
+    id: "red-nose-tryna-look-into-your-windows",
     title: "Red Nose Tryna Look Into Your Windows",
     subtitle: "Song Preview",
     priceLabel: "$3.99",
@@ -113,7 +113,7 @@ const SINGLES: SingleTrack[] = [
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Red%20Nose%20Tryna%20Look%20Into%20Your%20Windows.mp3",
   },
   {
-    id: "red means run",
+    id: "red-means-run",
     title: "Red Means Run",
     subtitle: "Song Preview",
     priceLabel: "$3.99",
@@ -128,7 +128,7 @@ const SINGLES: SingleTrack[] = [
     priceLabel: "$3.99",
     buyUrl: DEFAULT_BUY_URL,
     previewUrl:
-      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Heart-Gets-in-the-Way/Heart%20Get's%20in%20the%20Way.mp3",
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Heart-Gets-in-the-Way/Heart%20Get%27s%20in%20the%20Way.mp3",
   },
   {
     id: "cant-stay-away",
@@ -139,7 +139,7 @@ const SINGLES: SingleTrack[] = [
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Cant-Stay-Away/Can%E2%80%99t-Stay-Away_Sample.mp3",
   },
-
+  {
     id: "sensational",
     title: "Sensational",
     subtitle: "Song Preview",
@@ -155,7 +155,7 @@ const SINGLES: SingleTrack[] = [
     priceLabel: "$3.99",
     buyUrl: DEFAULT_BUY_URL,
     previewUrl:
-      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/A-Love-That%27s-True/A-Love-That's-TrueV2Sample.mp3",
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/A-Love-That%27s-True/A-Love-That%27s-TrueV2Sample.mp3",
   },
   {
     id: "right-here-with-you",
