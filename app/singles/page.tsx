@@ -122,6 +122,15 @@ const SINGLES: SingleTrack[] = [
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Red%20Means%20Run.mp3",
   },
   {
+    id: "heart-gets-in-the-way",
+    title: "Heart Gets in the Way",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Heart-Gets-in-the-Way/Heart%20Get's%20in%20the%20Way.mp3",
+  },
+  {
     id: "cant-stay-away",
     title: "Can't Stay Away",
     subtitle: "Song Preview",
