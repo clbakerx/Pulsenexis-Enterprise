@@ -193,6 +193,15 @@ const SINGLES: SingleTrack[] = [
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/All-Of-Me/All%20of%20Me_Sample.mp3",
   },
+  {
+    id: "last-night",
+    title: "Last Night",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Last-Night/Last%20Night%20.mp3",
+  },
 ];
 
 export default function SinglesPage() {
