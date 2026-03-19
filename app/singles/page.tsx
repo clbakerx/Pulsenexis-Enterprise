@@ -139,6 +139,15 @@ const SINGLES: SingleTrack[] = [
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Cant-Stay-Away/Can%E2%80%99t-Stay-Away_Sample.mp3",
   },
+
+    id: "sensational",
+    title: "Sensational",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Sensational/Sensational_V2.mp3",
+  },
   {
     id: "a-love-thats-true",
     title: "A Love That's True",
