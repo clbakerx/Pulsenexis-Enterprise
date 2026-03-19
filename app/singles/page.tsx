@@ -202,6 +202,15 @@ const SINGLES: SingleTrack[] = [
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Last-Night/Last%20Night%20.mp3",
   },
+  {
+    id: "breaks-my-heart",
+    title: "Breaks My Heart",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Breaking-My-Heart/Breaks%20My%20Heart.mp3",
+  },
 ];
 
 export default function SinglesPage() {
