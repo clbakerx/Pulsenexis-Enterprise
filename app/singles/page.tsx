@@ -128,7 +128,7 @@ const SINGLES: SingleTrack[] = [
     priceLabel: "$3.99",
     buyUrl: DEFAULT_BUY_URL,
     previewUrl:
-      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Heart-Gets-in-the-Way/Heart%20Get%27s%20in%20the%20Way.mp3",
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Heart-Gets-in-the-Way/Heart%20Gets%20in%20the%20Way.mp3",
   },
   {
     id: "cant-stay-away",
