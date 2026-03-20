@@ -221,8 +221,6 @@ const SINGLES: SingleTrack[] = [
     "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Forward/Forward%20(No%20Looking%20Back)_Sample.mp3",
 },
 ];
-  
-];
 export default function SinglesPage() {
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
