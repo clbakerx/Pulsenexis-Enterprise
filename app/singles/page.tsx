@@ -229,6 +229,15 @@ const SINGLES: SingleTrack[] = [
   previewUrl:
     "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Built-Different/Built%20Different_Sample.mp3",
 },
+{
+  id: "release-me",
+  title: "Release Me",
+  subtitle: "Song Preview",
+  priceLabel: "$3.99",
+  buyUrl: DEFAULT_BUY_URL,
+  previewUrl:
+    "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Release-Me/Release%20Me_Sample.mp3",
+},
 ];
 
 export default function SinglesPage() {
