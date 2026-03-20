@@ -194,33 +194,34 @@ const SINGLES: SingleTrack[] = [
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/All-Of-Me/All%20of%20Me_Sample.mp3",
   },
   {
-  id: "last-night",
-  title: "Last Night",
-  subtitle: "Song Preview",
-  priceLabel: "$3.99",
-  buyUrl: DEFAULT_BUY_URL,
-  previewUrl:
-    "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Last-Night/Last%20Night%20.mp3",
-},
-{
-  id: "breaks-my-heart",
-  title: "Breaks My Heart",
-  subtitle: "Song Preview",
-  priceLabel: "$3.99",
-  buyUrl: DEFAULT_BUY_URL,
-  previewUrl:
-    "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Breaking-My-Heart/Breaks%20My%20Heart.mp3",
-},
-{
-  id: "forward-no-looking-back",
-  title: "Forward (No Looking Back)",
-  subtitle: "Song Preview",
-  priceLabel: "$3.99",
-  buyUrl: DEFAULT_BUY_URL,
-  previewUrl:
-    "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Forward/Forward%20(No%20Looking%20Back)_Sample.mp3",
-},
+    id: "last-night",
+    title: "Last Night",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Last-Night/Last%20Night%20.mp3",
+  },
+  {
+    id: "breaks-my-heart",
+    title: "Breaks My Heart",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Breaking-My-Heart/Breaks%20My%20Heart.mp3",
+  },
+  {
+    id: "forward-no-looking-back",
+    title: "Forward (No Looking Back)",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Forward/Forward%20(No%20Looking%20Back)_Sample.mp3",
+  },
 ];
+
 export default function SinglesPage() {
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
