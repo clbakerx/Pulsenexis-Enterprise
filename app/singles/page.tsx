@@ -220,6 +220,15 @@ const SINGLES: SingleTrack[] = [
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Forward/Forward%20(No%20Looking%20Back)_Sample.mp3",
   },
+  {
+  id: "built-different",
+  title: "Built Different",
+  subtitle: "Song Preview",
+  priceLabel: "$3.99",
+  buyUrl: DEFAULT_BUY_URL,
+  previewUrl:
+    "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Built-Different/Built%20Different_Sample.mp3",
+},
 ];
 
 export default function SinglesPage() {
