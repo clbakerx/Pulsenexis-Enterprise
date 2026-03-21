@@ -265,6 +265,15 @@ const SINGLES: SingleTrack[] = [
   previewUrl:
     "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Under-the-Moonlight/Under%20the%20Moonlight_V2_Sample.mp3",
 },
+{
+  id: "extraordinary",
+  title: "Extraordinary",
+  subtitle: "Song Preview",
+  priceLabel: "$3.99",
+  buyUrl: DEFAULT_BUY_URL,
+  previewUrl:
+    "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Extraordinary-Love/Extraordinary%20Love_Sample.mp3",
+},
 ];
 
 export default function SinglesPage() {
