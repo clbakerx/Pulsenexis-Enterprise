@@ -137,7 +137,7 @@ const SINGLES: SingleTrack[] = [
     priceLabel: "$3.99",
     buyUrl: DEFAULT_BUY_URL,
     previewUrl:
-      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Cant-Stay-Away/Can't-Stay-Away_Sample.mp3",
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Cant-Stay-Away/Can%27t-Stay-Away_Sample.mp3",
   },
   {
     id: "sensational",
@@ -300,8 +300,9 @@ const SINGLES: SingleTrack[] = [
     buyUrl: DEFAULT_BUY_URL,
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Wouldnt-Want-To/Wouldnt-Want-To_Sample.mp3",
-},
+  },
 ];
+
 export default function SinglesPage() {
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
@@ -344,6 +345,7 @@ export default function SinglesPage() {
             >
               License Terms
             </Link>
+
             <Link
               href="/packs"
               className="inline-flex w-fit items-center rounded-full border border-neutral-300 bg-white px-5 py-2 text-sm font-semibold text-neutral-900 hover:bg-neutral-50"
@@ -375,7 +377,12 @@ export default function SinglesPage() {
               </div>
 
               <div className="mt-5">
-                <audio controls preload="none" className="w-full">
+                <audio
+                  controls
+                  preload="none"
+                  className="w-full"
+                  onError={() => console.log("Audio failed:", s.title, s.previewUrl)}
+                >
                   <source src={s.previewUrl} type="audio/mpeg" />
                   Your browser does not support the audio element.
                 </audio>
