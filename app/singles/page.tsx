@@ -301,15 +301,6 @@ const SINGLES: SingleTrack[] = [
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Wouldnt-Want-To/Wouldnt-Want-To_Sample.mp3",
   },
-  {
-    id: "48-hours",
-    title: "48 Hours",
-    subtitle: "Song Preview",
-    priceLabel: "$3.99",
-    buyUrl: DEFAULT_BUY_URL,
-    previewUrl:
-      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/48-Hours/48-Hours_V2_Sample.mp3",
-  },
 ];
 
 export default function SinglesPage() {
@@ -386,12 +377,7 @@ export default function SinglesPage() {
               </div>
 
               <div className="mt-5">
-                <audio
-                  controls
-                  preload="none"
-                  className="w-full"
-                  onError={() => console.log("Audio failed:", s.title, s.previewUrl)}
-                >
+                <audio controls preload="none" className="w-full">
                   <source src={s.previewUrl} type="audio/mpeg" />
                   Your browser does not support the audio element.
                 </audio>
