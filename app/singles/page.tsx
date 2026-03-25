@@ -299,8 +299,8 @@ const SINGLES: SingleTrack[] = [
     priceLabel: "$3.99",
     buyUrl: DEFAULT_BUY_URL,
     previewUrl:
-      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Wouldn%27t-Want-To/Wouldn%27t%20Want%20To_Sample.mp3",
-  },
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Wouldnt-Want-To/Wouldnt-Want-To_Sample.mp3",
+},
 ];
 export default function SinglesPage() {
   return (
