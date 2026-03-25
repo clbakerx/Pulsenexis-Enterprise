@@ -283,6 +283,15 @@ const SINGLES: SingleTrack[] = [
   previewUrl:
     "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Clean-Air/Clean%20Air_Sample.mp3",
 },
+{
+  id: "another-moment",
+  title: "Another Moment",
+  subtitle: "Song Preview",
+  priceLabel: "$3.99",
+  buyUrl: DEFAULT_BUY_URL,
+  previewUrl:
+    "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Another-Moment/Another%20Moment_V2_Short.mp3",
+},
 ];
 
 export default function SinglesPage() {
