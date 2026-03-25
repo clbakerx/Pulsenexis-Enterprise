@@ -290,7 +290,7 @@ const SINGLES: SingleTrack[] = [
   priceLabel: "$3.99",
   buyUrl: DEFAULT_BUY_URL,
   previewUrl:
-    "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Another-Moment/Another%20Moment_V2_Short.mp3",
+    "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Another-Moment/Another%20Moment_V2_Sample.mp3",
 },
 ];
 
