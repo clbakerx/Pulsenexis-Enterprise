@@ -292,6 +292,15 @@ const SINGLES: SingleTrack[] = [
   previewUrl:
     "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Another-Moment/Another%20Moment_V2_Sample.mp3",
 },
+{
+  id: "wouldnt-want-to",
+  title: "Wouldn't Want To",
+  subtitle: "Song Preview",
+  priceLabel: "$3.99",
+  buyUrl: DEFAULT_BUY_URL,
+  previewUrl:
+    "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Wouldn%E2%80%99t-Want-To/Wouldn%E2%80%99t%20Want%20To_Sample.mp3",
+},
 ];
 
 export default function SinglesPage() {
