@@ -299,7 +299,7 @@ const SINGLES: SingleTrack[] = [
     priceLabel: "$3.99",
     buyUrl: DEFAULT_BUY_URL,
     previewUrl:
-      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Wouldn%E2%80%99t-Want-To/Wouldn%E2%80%99t-Want-To_Sample.mp3",
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Wouldn%E2%80%99t-Want-To/Wouldnt-Want-To_Sample.mp3",
   },
 ];
 
