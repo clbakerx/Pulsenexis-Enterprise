@@ -137,7 +137,7 @@ const SINGLES: SingleTrack[] = [
     priceLabel: "$3.99",
     buyUrl: DEFAULT_BUY_URL,
     previewUrl:
-      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Cant-Stay-Away/Can%E2%80%99t-Stay-Away_Sample.mp3",
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Cant-Stay-Away/Can't-Stay-Away_Sample.mp3",
   },
   {
     id: "sensational",
@@ -182,7 +182,7 @@ const SINGLES: SingleTrack[] = [
     priceLabel: "$3.99",
     buyUrl: DEFAULT_BUY_URL,
     previewUrl:
-      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Winter-White/Winter-While-Sample.mp3",
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Winter-White/Winter-White-Sample.mp3",
   },
   {
     id: "all-of-me",
@@ -200,7 +200,7 @@ const SINGLES: SingleTrack[] = [
     priceLabel: "$3.99",
     buyUrl: DEFAULT_BUY_URL,
     previewUrl:
-      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Last-Night/Last%20Night%20.mp3",
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Last-Night/Last%20Night.mp3",
   },
   {
     id: "breaks-my-heart",
@@ -221,86 +221,86 @@ const SINGLES: SingleTrack[] = [
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Forward/Forward%20(No%20Looking%20Back)_Sample.mp3",
   },
   {
-  id: "built-different",
-  title: "Built Different",
-  subtitle: "Song Preview",
-  priceLabel: "$3.99",
-  buyUrl: DEFAULT_BUY_URL,
-  previewUrl:
-    "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Built-Different/Built%20Different_Sample.mp3",
-},
-{
-  id: "release-me",
-  title: "Release Me",
-  subtitle: "Song Preview",
-  priceLabel: "$3.99",
-  buyUrl: DEFAULT_BUY_URL,
-  previewUrl:
-    "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Release-Me/Release%20Me_Sample.mp3",
-},
-{
-  id: "emotionally",
-  title: "Emotionally",
-  subtitle: "Song Preview",
-  priceLabel: "$3.99",
-  buyUrl: DEFAULT_BUY_URL,
-  previewUrl:
-    "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Emotionally/Emotionally_Sample.mp3",
-},
-{
-  id: "soapbox-attention",
-  title: "Soapbox Attention",
-  subtitle: "Song Preview",
-  priceLabel: "$3.99",
-  buyUrl: DEFAULT_BUY_URL,
-  previewUrl:
-    "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Soapbox-Attention/Soapbox%20Attention_Sample.mp3",
-},
-{
-  id: "under-the-moonlight",
-  title: "Under the Moonlight",
-  subtitle: "Song Preview",
-  priceLabel: "$3.99",
-  buyUrl: DEFAULT_BUY_URL,
-  previewUrl:
-    "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Under-the-Moonlight/Under%20the%20Moonlight_V2_Sample.mp3",
-},
-{
-  id: "extraordinary",
-  title: "Extraordinary",
-  subtitle: "Song Preview",
-  priceLabel: "$3.99",
-  buyUrl: DEFAULT_BUY_URL,
-  previewUrl:
-    "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Extraordinary-Love/Extraordinary%20Love_Sample.mp3",
-},
-{
-  id: "clean-air",
-  title: "Clean Air",
-  subtitle: "Song Preview",
-  priceLabel: "$3.99",
-  buyUrl: DEFAULT_BUY_URL,
-  previewUrl:
-    "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Clean-Air/Clean%20Air_Sample.mp3",
-},
-{
-  id: "another-moment",
-  title: "Another Moment",
-  subtitle: "Song Preview",
-  priceLabel: "$3.99",
-  buyUrl: DEFAULT_BUY_URL,
-  previewUrl:
-    "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Another-Moment/Another%20Moment_V2_Sample.mp3",
-},
-{
-  id: "wouldnt-want-to",
-  title: "Wouldn't Want To",
-  subtitle: "Song Preview",
-  priceLabel: "$3.99",
-  buyUrl: DEFAULT_BUY_URL,
-  previewUrl:
-    "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Wouldn%E2%80%99t-Want-To/Wouldn%E2%80%99t%20Want%20To_Sample.mp3",
-},
+    id: "built-different",
+    title: "Built Different",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Built-Different/Built%20Different_Sample.mp3",
+  },
+  {
+    id: "release-me",
+    title: "Release Me",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Release-Me/Release%20Me_Sample.mp3",
+  },
+  {
+    id: "emotionally",
+    title: "Emotionally",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Emotionally/Emotionally_Sample.mp3",
+  },
+  {
+    id: "soapbox-attention",
+    title: "Soapbox Attention",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Soapbox-Attention/Soapbox%20Attention_Sample.mp3",
+  },
+  {
+    id: "under-the-moonlight",
+    title: "Under the Moonlight",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Under-the-Moonlight/Under%20the%20Moonlight_V2_Sample.mp3",
+  },
+  {
+    id: "extraordinary-love",
+    title: "Extraordinary Love",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Extraordinary-Love/Extraordinary%20Love_Sample.mp3",
+  },
+  {
+    id: "clean-air",
+    title: "Clean Air",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Clean-Air/Clean%20Air_Sample.mp3",
+  },
+  {
+    id: "another-moment",
+    title: "Another Moment",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Another-Moment/Another%20Moment_V2_Sample.mp3",
+  },
+  {
+    id: "wouldnt-want-to",
+    title: "Wouldn't Want To",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Wouldn't-Want-To/Wouldn't%20Want%20To_Sample.mp3",
+  },
 ];
 
 export default function SinglesPage() {
@@ -313,7 +313,7 @@ export default function SinglesPage() {
         titlePost=""
         descriptionLines={[
           "Apple-clean cards: one preview, one price, one click.",
-          "Tap play to preview. Buy instantly via Stripe.",
+          "Tap play to preview. Buy securely via Stripe.",
         ]}
         bullets={[
           "One preview per track",
@@ -378,6 +378,7 @@ export default function SinglesPage() {
               <div className="mt-5">
                 <audio controls preload="none" className="w-full">
                   <source src={s.previewUrl} type="audio/mpeg" />
+                  Your browser does not support the audio element.
                 </audio>
               </div>
 
@@ -394,7 +395,7 @@ export default function SinglesPage() {
               </div>
 
               <p className="mt-3 text-xs text-neutral-500">
-                Opens Stripe in a new tab • Instant access after purchase
+                Opens Stripe in a new tab • Access provided after purchase
               </p>
             </article>
           ))}
