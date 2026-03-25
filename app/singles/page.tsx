@@ -292,7 +292,7 @@ const SINGLES: SingleTrack[] = [
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Another-Moment/Another%20Moment_V2_Sample.mp3",
   },
-    {
+  {
     id: "wouldnt-want-to",
     title: "Wouldn't Want To",
     subtitle: "Song Preview",
