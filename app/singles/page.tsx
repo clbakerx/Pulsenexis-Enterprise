@@ -310,6 +310,15 @@ const SINGLES: SingleTrack[] = [
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/48-Hours/48-Hours_V2_Sample.mp3",
   },
+  {
+    id: "this-love-is-relevant",
+    title: "This Love Is Relevant",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/This-Love-Is-Relevant/This-Love-Is-Relevant_Sample.mp3",
+  },
 ];
 
 export default function SinglesPage() {
