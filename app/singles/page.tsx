@@ -330,7 +330,7 @@ const SINGLES: SingleTrack[] = [
   },
   {
     id: "no-distance-between-us",
-    title: "No-Distance-Between-Us",
+    title: "No Distance Between Us",
     subtitle: "Song Preview",
     priceLabel: "$3.99",
     buyUrl: DEFAULT_BUY_URL,
