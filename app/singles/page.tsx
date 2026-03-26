@@ -328,6 +328,15 @@ const SINGLES: SingleTrack[] = [
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Closer-Than-Before/Closer-Than-Before_Sample.mp3",
   },
+  {
+    id: "no-distance-between-us",
+    title: "No-Distance-Between-Us",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/No-Distance-Between-Us_V2/No-Distance-Between-Us_V2_Sample.mp3",
+  },
 ];
 
 export default function SinglesPage() {
