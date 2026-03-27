@@ -346,6 +346,15 @@ const SINGLES: SingleTrack[] = [
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Where-Im-Going/Where-Im-Going_V2_Sample.mp3",
   },
+  {
+    id: "tell-me-you-love-me-again",
+    title: "Tell Me You Love Me Again",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Tell-Me-You-Love-Me-Again/Tell-Me-You-Love-Me-Again_V2.mp3",
+  },
 ];
 
 export default function SinglesPage() {
