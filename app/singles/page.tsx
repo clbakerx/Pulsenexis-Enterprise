@@ -337,6 +337,15 @@ const SINGLES: SingleTrack[] = [
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/No-Distance-Between-Us_V2/No-Distance-Between-Us_V2_Sample.mp3",
   },
+  {
+    id: "where-im-going",
+    title: "Where I'm Going",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Where-Im-Going/Where-Im-Going_V2_Sample.mp3",
+  },
 ];
 
 export default function SinglesPage() {
