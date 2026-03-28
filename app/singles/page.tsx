@@ -364,6 +364,33 @@ const SINGLES: SingleTrack[] = [
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Millionaire/Millionaire_V2_Sample.mp3",
   },
+  {
+    id: "no-doubt",
+    title: "No Doubt",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/No-Doubt/No%20Doubt_Sample.mp3",
+  },
+  {
+    id: "made-for-this",
+    title: "Made For This",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Made-for-this/Made%20For%20This_Sample.mp3",
+  },
+  {
+    id: "all-in",
+    title: "All In",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/All-In/All%20In_Sample.mp3",
+  },
 ];
 
 export default function SinglesPage() {
