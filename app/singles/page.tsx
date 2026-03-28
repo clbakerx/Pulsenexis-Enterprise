@@ -355,6 +355,15 @@ const SINGLES: SingleTrack[] = [
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Tell-Me-You-Love-Me-Again/Tell-Me-You-Love-Me-Again_V2_Sample.mp3",
   },
+  {
+    id: "millionaire",
+    title: "Millionaire",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Millionaire/Millionaire_V2_Sample.mp3",
+  },
 ];
 
 export default function SinglesPage() {
