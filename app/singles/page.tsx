@@ -391,6 +391,15 @@ const SINGLES: SingleTrack[] = [
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/All-In/All%20In_Sample.mp3",
   },
+  {
+    id: "crystal-ball",
+    title: "Crystal Ball",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Crystal-Ball/Crystal%20Ball_Sample.mp3",
+  },
 ];
 
 export default function SinglesPage() {
