@@ -400,6 +400,15 @@ const SINGLES: SingleTrack[] = [
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Crystal-Ball/Crystal%20Ball_Sample.mp3",
   },
+  {
+    id: "where-do-we-go-tonight",
+    title: "Where Do We Go Tonight",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Where-Do-We-Go-Tonight/Where%20Do%20We%20Go%20Tonight_Sample.mp3",
+  },
 ];
 
 export default function SinglesPage() {
