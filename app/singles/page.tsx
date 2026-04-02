@@ -418,6 +418,15 @@ const SINGLES: SingleTrack[] = [
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Nothing-Falls-Through/Nothing-Falls-Through_V2_Short.mp3",
   },
+  {
+    id: "one-love",
+    title: "One Love",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/One-Love/One%20Love_Sample.mp3",
+  },
 ];
 
 export default function SinglesPage() {
