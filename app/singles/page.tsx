@@ -427,6 +427,15 @@ const SINGLES: SingleTrack[] = [
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/One-Love/One%20Love_Sample.mp3",
   },
+  {
+    id: "this-love-aint-temporary",
+    title: "This Love Ain't Temporary",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/This-Love-Aint-Temporary/This-Love-Aint-Temporary_V2_Sample.mp3",
+  },
 ];
 
 export default function SinglesPage() {
