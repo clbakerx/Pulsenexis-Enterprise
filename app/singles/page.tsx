@@ -445,6 +445,15 @@ const SINGLES: SingleTrack[] = [
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Not-Just-For-Tonight/Not%20Just%20For%20Tonight_Sample.mp3",
   },
+  {
+    id: "betrayed-again",
+    title: "Betrayed Again",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Betrayed-Again/Betrayed%20Again_V2_Sample.mp3",
+  },
 ];
 
 export default function SinglesPage() {
