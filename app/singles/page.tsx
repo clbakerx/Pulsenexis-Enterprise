@@ -454,6 +454,15 @@ const SINGLES: SingleTrack[] = [
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Betrayed-Again/Betrayed%20Again_V2_Sample.mp3",
   },
+  {
+    id: "paid-the-price",
+    title: "Paid The Price",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Paid-the-Price/Paid%20the%20Price_Sample.mp3",
+  },
 ];
 
 export default function SinglesPage() {
