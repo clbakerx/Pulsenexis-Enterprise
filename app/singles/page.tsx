@@ -481,6 +481,15 @@ const SINGLES: SingleTrack[] = [
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/No-Halfway-Love/No%20Halfway%20Love_Sample.mp3",
   },
+  {
+    id: "no-halfway-love_v2",
+    title: "No Halfway Love_v2",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/No-Halfway-Love/No%20Halfway%20Love_V2_Sample.mp3",
+  },
 ];
 
 export default function SinglesPage() {
