@@ -463,6 +463,15 @@ const SINGLES: SingleTrack[] = [
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Paid-the-Price/Paid%20the%20Price_Sample.mp3",
   },
+  {
+    id: "never-again",
+    title: "Never Again",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Never-Again/Never%20Again_Sample.mp3",
+  },
 ];
 
 export default function SinglesPage() {
