@@ -273,7 +273,7 @@ const CINEMA_KITS: Record<string, CinemaKit> = {
         id: "silent-before-the-strike-v2",
         title: "Silent Before the Strike V2",
         demoUrl:
-          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Silent-Before-the-strike/Silent%20Before%20the%20Strike%20(Ver_2)60secSample.mp3",
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Cinema/Silent-Before-the-Strike/Silent%20Before%20the%20Strike%20(Ver_2)60secSample.mp3",
       },
     ],
   },
