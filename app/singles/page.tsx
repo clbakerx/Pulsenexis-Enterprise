@@ -490,6 +490,15 @@ const SINGLES: SingleTrack[] = [
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/No-Halfway-Love/No%20Halfway%20Love_V2_Sample.mp3",
   },
+  {
+    id: "movie-of-the-year",
+    title: "Movie of the Year",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Movie-Of-The-Year/Movie%20of%20the%20Year_Sample.mp3",
+  },
 ];
 
 export default function SinglesPage() {
