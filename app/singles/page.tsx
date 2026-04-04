@@ -472,6 +472,15 @@ const SINGLES: SingleTrack[] = [
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Never-Again/Never%20Again_Sample.mp3",
   },
+  {
+    id: "no-halfway-love",
+    title: "No Halfway Love",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/No-Halfway-Love/No%20Halfway%20Love_Sample.mp3",
+  },
 ];
 
 export default function SinglesPage() {
