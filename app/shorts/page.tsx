@@ -95,7 +95,7 @@ const SHORTS_BUNDLES: ShortsBundle[] = [
       {
         name: "Love Sessions EP 05 V-2 – Soft Rhodes",
         previewUrl:
-          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Shorts/Love-Sessions-EP_05/Love%20Sessions%20EP_05%20(V2)_30secSample.mp3",
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Shorts/Love-Sessions-EP_05/Love%20Sessions%20EP_05%20%20(V2)_30secSample.mp3",
       },
     ],
   },
