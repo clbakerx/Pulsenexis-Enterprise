@@ -499,6 +499,15 @@ const SINGLES: SingleTrack[] = [
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Movie-Of-The-Year/Movie%20of%20the%20Year_Sample.mp3",
   },
+  {
+    id: "where-we-need-to-be",
+    title: "Where We Need To Be",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Where-We-Need-To-Be/Where%20We%20Need%20to%20Be_Sample.mp3",
+  },
 ];
 
 export default function SinglesPage() {
