@@ -424,4 +424,26 @@ export const PACKS: Pack[] = [
       },
     ],
   },
+  {
+    slug: "soul-pack-13",
+    title: "Soul Pack 13",
+    description: "Soul inspired selections to elevate your content.",
+    genre: "soul",
+    bpmRange: "78–92",
+    mood: "Soulful • Warm • Test",
+    tracks: [
+      {
+        id: "all-or-nothing-love",
+        title: "All or Nothing Love",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/All-or-Nothing-Love/All%20or%20Nothing%20Love_Sample.mp3",
+      },
+      {
+        id: "all-or-nothing-love-v2",
+        title: "All or Nothing Love V2",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/All-or-Nothing-Love/All%20or%20Nothing%20Love_V2_Sample.mp3",
+      },
+    ],
+  },
 ];
