@@ -508,6 +508,15 @@ const SINGLES: SingleTrack[] = [
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Where-We-Need-To-Be/Where%20We%20Need%20to%20Be_Sample.mp3",
   },
+  {
+    id: "boyfriend",
+    title: "Boyfriend",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Boyfriend/Boyfriend_Sample.mp3",
+  },
 ];
 
 export default function SinglesPage() {
