@@ -517,6 +517,15 @@ const SINGLES: SingleTrack[] = [
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Boyfriend/Boyfriend_Sample.mp3",
   },
+  {
+    id: "no-way-you-win",
+    title: "No Way You Win",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/No-Way-You-Win/No%20Way%20You%20Win_Sample.mp3",
+  },
 ];
 
 export default function SinglesPage() {
