@@ -444,7 +444,9 @@ export const PACKS: Pack[] = [
         previewUrl:
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/All-or-Nothing-Love/All%20or%20Nothing%20Love_V2_Sample.mp3",
       },
-      {
+    ],
+  },
+  {
     slug: "soul-pack-14",
     title: "Soul Pack 14",
     description: "Soul inspired selections to elevate your content.",
