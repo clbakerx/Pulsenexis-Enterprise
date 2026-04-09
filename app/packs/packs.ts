@@ -444,6 +444,26 @@ export const PACKS: Pack[] = [
         previewUrl:
           "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/All-or-Nothing-Love/All%20or%20Nothing%20Love_V2_Sample.mp3",
       },
+      {
+    slug: "soul-pack-14",
+    title: "Soul Pack 14",
+    description: "Soul inspired selections to elevate your content.",
+    genre: "soul",
+    bpmRange: "78–92",
+    mood: "Soulful • Warm • Test",
+    tracks: [
+      {
+        id: "before-you-hear-it-from-him",
+        title: "Before You Hear It From Him",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/Before-You-Hear-It-From-Him/Before%20You%20Hear%20It%20From%20Him_Short.mp3",
+      },
+      {
+        id: "before-you-hear-it-from-him-v2",
+        title: "Before You Hear It From Him V2",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/Before-You-Hear-It-From-Him/Before%20You%20Hear%20it%20From%20Him_V2_Short.mp3",
+      },
     ],
   },
 ];
