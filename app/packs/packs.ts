@@ -468,4 +468,26 @@ export const PACKS: Pack[] = [
       },
     ],
   },
+  {
+    slug: "soul-pack-15",
+    title: "Soul Pack 15",
+    description: "Soul inspired selections to elevate your content.",
+    genre: "soul",
+    bpmRange: "78–92",
+    mood: "Soulful • Warm • Test",
+    tracks: [
+      {
+        id: "borrowed-love",
+        title: "Borrowed Love",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/Borrowed-Love/Borrowed%20Love_Sample.mp3",
+      },
+      {
+        id: "borrowed-love-v2",
+        title: "Borrowed Love V2",
+        previewUrl:
+          "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/Borrowed-Love/Borrowed%20Love_V2_Short.mp3",
+      },
+    ],
+  },
 ];
