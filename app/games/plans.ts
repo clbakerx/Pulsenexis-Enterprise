@@ -128,7 +128,7 @@ export const PLANS: GamePlan[] = [
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Games/Sonic-Tempularity/Sonic_Tempularity_600.png",
 
     // public/demos/Sonic-Tempurality30secSample.mp3
-    demoUrl: "/demos/Sonic-Tempurality30secSample.mp3",
+    demoUrl: "/demos/Sonic-Tempularity30secSample.mp3",
 
     stripeUrl: STRIPE_ALL,
     badge: "NEW",
