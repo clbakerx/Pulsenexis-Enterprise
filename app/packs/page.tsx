@@ -63,21 +63,18 @@ const MORE_PACKS = [
     title: "Romantic Visuals Pack",
     description:
       "Warm, cinematic cuts for love stories, wedding visuals, and intimate reels.",
-    href: "/packs",
     tag: "Romance",
   },
   {
     title: "Reflective Nights Pack",
     description:
       "Late-night emotional textures for monologues, captions, and introspective edits.",
-    href: "/packs",
     tag: "Reflective",
   },
   {
     title: "Story Momentum Pack",
     description:
       "Music for transitions, reveals, emotional payoff, and cinematic pacing.",
-    href: "/packs",
     tag: "Storytelling",
   },
 ];
@@ -203,7 +200,8 @@ export default function PacksPage() {
               </div>
 
               <p className="mt-4 text-xs text-neutral-500">
-                Designed for reels, storytelling content, and monetized creator projects.
+                Designed for reels, storytelling content, and monetized creator
+                projects.
               </p>
             </div>
 
@@ -226,7 +224,8 @@ export default function PacksPage() {
                 <div className="mt-2 text-3xl font-bold">$29</div>
 
                 <p className="mt-2 text-sm text-neutral-300">
-                  Start with the Basic license now. Upgrade anytime as your content grows.
+                  Start with the Basic license now. Upgrade anytime as your
+                  content grows.
                 </p>
               </div>
 
@@ -319,8 +318,8 @@ export default function PacksPage() {
                 {license.name === "Basic"
                   ? "Buy Basic License"
                   : license.name === "Creator"
-                  ? "Get Creator License"
-                  : "Buy Pro License"}
+                    ? "Get Creator License"
+                    : "Buy Pro License"}
               </Link>
             </div>
           ))}
@@ -332,21 +331,26 @@ export default function PacksPage() {
         <div className="rounded-2xl border bg-white p-5">
           <div className="text-sm font-semibold text-neutral-900">1) Preview</div>
           <p className="mt-2 text-sm text-neutral-600">
-            Listen to the featured pack so you know exactly how it feels before you buy.
+            Listen to the featured pack so you know exactly how it feels before
+            you buy.
           </p>
         </div>
 
         <div className="rounded-2xl border bg-white p-5">
-          <div className="text-sm font-semibold text-neutral-900">2) Choose a license</div>
+          <div className="text-sm font-semibold text-neutral-900">
+            2) Choose a license
+          </div>
           <p className="mt-2 text-sm text-neutral-600">
-            Pick the license that matches your current use and upgrade later if needed.
+            Pick the license that matches your current use and upgrade later if
+            needed.
           </p>
         </div>
 
         <div className="rounded-2xl border bg-white p-5">
           <div className="text-sm font-semibold text-neutral-900">3) Publish</div>
           <p className="mt-2 text-sm text-neutral-600">
-            Download your music and start using it in reels, shorts, and monetized content.
+            Download your music and start using it in reels, shorts, and
+            monetized content.
           </p>
         </div>
       </section>
@@ -362,7 +366,7 @@ export default function PacksPage() {
               Build out your catalog over time
             </h2>
             <p className="mt-1 text-sm text-neutral-600">
-              These can become future sellable packs as you expand your product line.
+              
             </p>
           </div>
 
@@ -391,13 +395,6 @@ export default function PacksPage() {
                   {pack.tag}
                 </span>
               </div>
-
-              <Link
-                href={pack.href}
-                className="mt-4 inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-700"
-              >
-                View pack direction →
-              </Link>
             </div>
           ))}
         </div>
@@ -416,8 +413,8 @@ export default function PacksPage() {
             </h2>
 
             <p className="mt-3 text-sm text-neutral-300">
-              Keep your first offer focused, drive traffic to it, and let PulseNexis
-              grow from a music site into a product business.
+              
+              PulseNexis grow from a music site into a product business.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-3">
