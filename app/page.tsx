@@ -231,7 +231,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* PASS 3: FEATURED MONEY BLOCK */}
+      {/* FEATURED MONEY BLOCK */}
       <section className="mt-14">
         <div className="rounded-3xl border bg-white p-8 shadow-sm">
           <div className="grid gap-8 lg:grid-cols-[1.3fr_0.9fr] lg:items-center">
@@ -241,34 +241,56 @@ export default function HomePage() {
               </div>
 
               <h2 className="mt-4 text-3xl font-bold text-neutral-900 sm:text-4xl">
-                Emotional Story Creator Pack Vol. 1
+                Emotional Story Pack Vol. 1
               </h2>
 
               <p className="mt-3 max-w-2xl text-neutral-600">
                 Built for creators making emotional reels, relationship POV edits,
-                reflective storytelling content, and short-form videos that need
-                music with real feeling.
+                and short-form storytelling content that needs real feeling.
               </p>
+
+              <p className="mt-2 text-xs text-neutral-500">
+                Built for creators posting consistent content across reels, shorts,
+                and story-driven formats.
+              </p>
+
+              <div className="mt-5 rounded-2xl border bg-neutral-50 p-4">
+                <div className="mb-2 text-xs font-semibold text-neutral-500">
+                  Listen before you buy
+                </div>
+
+                <audio controls className="w-full">
+                  <source
+                    src="https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/Before-You-Hear-It-From-Him/Before%20You%20Hear%20It%20From%20Him_Short.mp3"
+                    type="audio/mpeg"
+                  />
+                  Your browser does not support the audio element.
+                </audio>
+
+                <p className="mt-2 text-xs text-neutral-500">
+                  Includes 2 emotion-ready signature tracks plus short-form cuts.
+                </p>
+              </div>
 
               <div className="mt-6 grid gap-3 sm:grid-cols-2">
                 <div className="rounded-2xl bg-neutral-50 p-4 text-sm text-neutral-700">
-                  2 emotional music pieces
+                  2 premium emotional tracks
                 </div>
                 <div className="rounded-2xl bg-neutral-50 p-4 text-sm text-neutral-700">
                   15s and 30s creator-ready cuts
                 </div>
                 <div className="rounded-2xl bg-neutral-50 p-4 text-sm text-neutral-700">
-                  Loopable versions for content editing
+                  Loopable versions for editing
                 </div>
                 <div className="rounded-2xl bg-neutral-50 p-4 text-sm text-neutral-700">
-                  Instant download and fast licensing
+                  Instant download + fast licensing
                 </div>
               </div>
 
-              <div className="mt-6 flex flex-wrap gap-3">
+              <div className="mt-7 flex flex-wrap gap-3">
                 <Link
                   href="/packs"
-                  className="rounded-full bg-indigo-600 px-6 py-3 text-sm font-semibold text-white hover:bg-indigo-500"
+                  className="rounded-full bg-indigo-700 px-6 py-3 text-sm font-semibold text-white hover:bg-indigo-600"
                 >
                   Shop This Pack
                 </Link>
@@ -280,6 +302,10 @@ export default function HomePage() {
                   See License Options
                 </Link>
               </div>
+
+              <p className="mt-4 text-xs text-neutral-500">
+                Used for reels, storytelling content, and monetized creator projects.
+              </p>
             </div>
 
             <div className="rounded-3xl bg-neutral-900 p-6 text-white">
@@ -291,16 +317,18 @@ export default function HomePage() {
                 <li>• Relationship POV edits</li>
                 <li>• Emotional storytelling reels</li>
                 <li>• Romantic and breakup content</li>
-                <li>• Reflective shorts and cinematic captions</li>
+                <li>• Reflective shorts and captions</li>
               </ul>
 
               <div className="mt-6 rounded-2xl bg-white/5 p-4">
                 <div className="text-xs uppercase tracking-wide text-neutral-400">
                   Starter pricing
                 </div>
+
                 <div className="mt-2 text-3xl font-bold">$29</div>
+
                 <p className="mt-2 text-sm text-neutral-300">
-                  Start with the Basic license now and upgrade later if your use grows.
+                  Start with the Basic license now. Upgrade anytime as your content grows.
                 </p>
               </div>
 
@@ -314,6 +342,10 @@ export default function HomePage() {
                   Buy Basic License
                 </Link>
               </div>
+
+              <p className="mt-3 text-center text-xs text-neutral-400">
+                Instant access after purchase
+              </p>
             </div>
           </div>
         </div>
