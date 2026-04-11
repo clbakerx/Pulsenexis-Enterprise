@@ -180,7 +180,7 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="mt-6 border-t border-white/20 pt-4">
+          <div className="mt-8 border-t border-white/20 pt-4">
             <div className="text-xs font-semibold uppercase tracking-wide text-white/70">
               More from PulseNexis
             </div>
@@ -231,53 +231,89 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* FEATURED OFFER */}
+      {/* PASS 3: FEATURED MONEY BLOCK */}
       <section className="mt-14">
-        <div className="rounded-3xl border bg-white p-8">
-          <div className="max-w-3xl">
-            <div className="text-sm font-semibold text-indigo-700">
-              Start Here
+        <div className="rounded-3xl border bg-white p-8 shadow-sm">
+          <div className="grid gap-8 lg:grid-cols-[1.3fr_0.9fr] lg:items-center">
+            <div>
+              <div className="inline-flex rounded-full bg-indigo-100 px-3 py-1 text-xs font-semibold text-indigo-700">
+                Featured Pack
+              </div>
+
+              <h2 className="mt-4 text-3xl font-bold text-neutral-900 sm:text-4xl">
+                Emotional Story Creator Pack Vol. 1
+              </h2>
+
+              <p className="mt-3 max-w-2xl text-neutral-600">
+                Built for creators making emotional reels, relationship POV edits,
+                reflective storytelling content, and short-form videos that need
+                music with real feeling.
+              </p>
+
+              <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                <div className="rounded-2xl bg-neutral-50 p-4 text-sm text-neutral-700">
+                  2 emotional music pieces
+                </div>
+                <div className="rounded-2xl bg-neutral-50 p-4 text-sm text-neutral-700">
+                  15s and 30s creator-ready cuts
+                </div>
+                <div className="rounded-2xl bg-neutral-50 p-4 text-sm text-neutral-700">
+                  Loopable versions for content editing
+                </div>
+                <div className="rounded-2xl bg-neutral-50 p-4 text-sm text-neutral-700">
+                  Instant download and fast licensing
+                </div>
+              </div>
+
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link
+                  href="/packs"
+                  className="rounded-full bg-indigo-600 px-6 py-3 text-sm font-semibold text-white hover:bg-indigo-500"
+                >
+                  Shop This Pack
+                </Link>
+
+                <Link
+                  href="#plans"
+                  className="rounded-full border border-neutral-300 bg-white px-6 py-3 text-sm font-semibold text-neutral-900 hover:bg-neutral-50"
+                >
+                  See License Options
+                </Link>
+              </div>
             </div>
 
-            <h2 className="mt-2 text-3xl font-bold text-neutral-900">
-              Music built for emotional content, fast licensing, and real-world use
-            </h2>
-
-            <p className="mt-3 text-neutral-600">
-              PulseNexis is designed for creators, storytellers, brands, and
-              visual artists who need music that feels strong, clears easily,
-              and fits modern content without copyright stress.
-            </p>
-
-            <div className="mt-5 grid gap-3 text-sm text-neutral-700 sm:grid-cols-2">
-              <div className="rounded-2xl bg-neutral-50 p-4">
-                Emotional singles and creator-ready tracks
+            <div className="rounded-3xl bg-neutral-900 p-6 text-white">
+              <div className="text-sm font-semibold text-neutral-300">
+                Best for
               </div>
-              <div className="rounded-2xl bg-neutral-50 p-4">
-                Fast licensing for content and monetized projects
-              </div>
-              <div className="rounded-2xl bg-neutral-50 p-4">
-                Great for reels, shorts, weddings, scenes, and brands
-              </div>
-              <div className="rounded-2xl bg-neutral-50 p-4">
-                Gaming audio systems with loop-ready structure
-              </div>
-            </div>
 
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Link
-                href="/packs"
-                className="rounded-full bg-indigo-600 px-6 py-3 text-sm font-semibold text-white hover:bg-indigo-500"
-              >
-                Explore Packs
-              </Link>
+              <ul className="mt-4 space-y-3 text-sm text-neutral-200">
+                <li>• Relationship POV edits</li>
+                <li>• Emotional storytelling reels</li>
+                <li>• Romantic and breakup content</li>
+                <li>• Reflective shorts and cinematic captions</li>
+              </ul>
 
-              <Link
-                href="#hot"
-                className="rounded-full border border-neutral-300 bg-white px-6 py-3 text-sm font-semibold text-neutral-900 hover:bg-neutral-50"
-              >
-                Hear Hot Tracks
-              </Link>
+              <div className="mt-6 rounded-2xl bg-white/5 p-4">
+                <div className="text-xs uppercase tracking-wide text-neutral-400">
+                  Starter pricing
+                </div>
+                <div className="mt-2 text-3xl font-bold">$29</div>
+                <p className="mt-2 text-sm text-neutral-300">
+                  Start with the Basic license now and upgrade later if your use grows.
+                </p>
+              </div>
+
+              <div className="mt-6">
+                <Link
+                  href="https://buy.stripe.com/7sY28r5wf8vtc8VeJT4ZG0E"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex w-full items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-semibold text-neutral-900 hover:bg-neutral-100"
+                >
+                  Buy Basic License
+                </Link>
+              </div>
             </div>
           </div>
         </div>
