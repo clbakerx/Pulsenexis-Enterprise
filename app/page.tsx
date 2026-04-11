@@ -150,11 +150,11 @@ export default function HomePage() {
             content that needs real feeling.
           </p>
 
-          <ul className="mt-6 space-y-2 text-sm opacity-95">
-            <li>✅ Creator-safe music for modern content</li>
-            <li>✅ Emotional tracks, loops, and clean deliverables</li>
-            <li>✅ Simple licensing with no copyright stress</li>
-            <li>✅ Built for stories, visuals, and monetized use</li>
+          <ul className="mt-6 grid gap-2 text-sm opacity-95 sm:grid-cols-2">
+            <li>✅ Creator-safe music</li>
+            <li>✅ Clean deliverables</li>
+            <li>✅ Simple licensing</li>
+            <li>✅ Monetized use</li>
           </ul>
 
           <div className="mt-7 flex flex-wrap gap-3">
@@ -180,30 +180,36 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Link
-              href="/games"
-              className="rounded-full bg-white/10 px-5 py-2 text-sm font-semibold text-white hover:bg-white/20"
-            >
-              🎮 Gaming Audio
-            </Link>
+          <div className="mt-6 border-t border-white/20 pt-4">
+            <div className="text-xs font-semibold uppercase tracking-wide text-white/70">
+              More from PulseNexis
+            </div>
 
-            <Link
-              href="/licensing"
-              className="rounded-full bg-neutral-900 px-5 py-2 text-sm font-semibold text-white hover:opacity-90"
-            >
-              Licensing
-            </Link>
+            <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-sm">
+              <Link
+                href="/games"
+                className="text-white/85 underline-offset-4 hover:text-white hover:underline"
+              >
+                Gaming Audio
+              </Link>
 
-            <Link
-              href="/trademark"
-              className="rounded-full bg-black/30 px-5 py-2 text-sm font-semibold text-white hover:bg-black/40"
-            >
-              Trademark Showcase
-            </Link>
+              <Link
+                href="/licensing"
+                className="text-white/85 underline-offset-4 hover:text-white hover:underline"
+              >
+                Licensing
+              </Link>
+
+              <Link
+                href="/trademark"
+                className="text-white/85 underline-offset-4 hover:text-white hover:underline"
+              >
+                Trademark Showcase
+              </Link>
+            </div>
           </div>
 
-          <p className="mt-4 text-xs opacity-90">
+          <p className="mt-4 text-xs opacity-80">
             Music for creators • stories • visual moments • monetized content
           </p>
         </div>
@@ -243,7 +249,7 @@ export default function HomePage() {
               and fits modern content without copyright stress.
             </p>
 
-            <div className="mt-5 grid gap-3 sm:grid-cols-2 text-sm text-neutral-700">
+            <div className="mt-5 grid gap-3 text-sm text-neutral-700 sm:grid-cols-2">
               <div className="rounded-2xl bg-neutral-50 p-4">
                 Emotional singles and creator-ready tracks
               </div>
