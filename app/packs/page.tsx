@@ -365,9 +365,6 @@ export default function PacksPage() {
             <h2 className="mt-2 text-2xl font-bold text-neutral-900">
               Build out your catalog over time
             </h2>
-            <p className="mt-1 text-sm text-neutral-600">
-              
-            </p>
           </div>
 
           <Link
@@ -411,11 +408,6 @@ export default function PacksPage() {
             <h2 className="mt-2 text-3xl font-bold">
               Start with one pack, one audience, and one clear buy path
             </h2>
-
-            <p className="mt-3 text-sm text-neutral-300">
-              
-              PulseNexis grow from a music site into a product business.
-            </p>
 
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
