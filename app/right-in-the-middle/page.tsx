@@ -1,5 +1,7 @@
 // app/right-in-the-middle/page.tsx
 
+import Link from "next/link";
+
 export const metadata = {
   title: "Right in the Middle | PulseNexis",
   description:
@@ -7,7 +9,8 @@ export const metadata = {
 };
 
 const STRIPE_LINK = "https://buy.stripe.com/bJebJ19Mv7rpgpb59j4ZG0A";
-const PREVIEW_MP3 = "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Right-in-the-Middle/Right%20in%20the%20Middle_30secSample.mp3";
+const PREVIEW_MP3 =
+  "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Right-in-the-Middle/Right%20in%20the%20Middle_30secSample.mp3";
 
 export default function RightInTheMiddlePage() {
   return (
@@ -21,7 +24,7 @@ export default function RightInTheMiddlePage() {
         </p>
       </header>
 
-      {/* BUY SECTION (anchor target for /right-in-the-middle#buy) */}
+      {/* BUY SECTION */}
       <section
         id="buy"
         style={{
@@ -33,7 +36,7 @@ export default function RightInTheMiddlePage() {
         }}
       >
         <div style={{ fontWeight: 600, marginBottom: 10 }}>
-          🎧 Preview the moment you can’t ignore
+          🎧 Preview the moment you can&apos;t ignore
         </div>
 
         <audio
@@ -55,10 +58,29 @@ export default function RightInTheMiddlePage() {
             border: "1px solid rgba(0,0,0,0.18)",
             fontWeight: 700,
             textDecoration: "none",
+            marginBottom: 10,
           }}
         >
           Buy Now
         </a>
+
+        {/* Make this song your video button */}
+        <Link
+          href="/make-video/right-in-the-middle"
+          style={{
+            display: "block",
+            textAlign: "center",
+            padding: "14px 16px",
+            borderRadius: 16,
+            background: "#7c3aed",
+            color: "#fff",
+            fontWeight: 600,
+            textDecoration: "none",
+            marginBottom: 10,
+          }}
+        >
+          Make this song your video
+        </Link>
 
         <div style={{ marginTop: 10, fontSize: 13, opacity: 0.75 }}>
           Secure Stripe checkout • Instant access after purchase • One-time payment
@@ -68,9 +90,9 @@ export default function RightInTheMiddlePage() {
       <section style={{ marginBottom: 18 }}>
         <h2 style={{ fontSize: 20, marginBottom: 8 }}>The feeling</h2>
         <p style={{ opacity: 0.85, lineHeight: 1.55 }}>
-          Right in the Middle lives in that space where love isn’t over — but it
-          isn’t safe either. It’s grown, honest R&amp;B for the moments when
-          you’re trying to keep it together while your heart is pulling you back
+          Right in the Middle lives in that space where love isn&apos;t over — but it
+          isn&apos;t safe either. It&apos;s grown, honest R&amp;B for the moments when
+          you&apos;re trying to keep it together while your heart is pulling you back
           toward what you still want.
         </p>
       </section>
@@ -83,7 +105,7 @@ export default function RightInTheMiddlePage() {
           <li>Emotion-forward tone that supports narrative visuals</li>
           <li>Strong pocket that sits under dialogue and VO</li>
           <li>Clean pacing for edits, transitions, and montages</li>
-          <li>Modern grown R&amp;B without feeling “busy”</li>
+          <li>Modern grown R&amp;B without feeling &quot;busy&quot;</li>
         </ul>
       </section>
 
@@ -91,7 +113,7 @@ export default function RightInTheMiddlePage() {
         <h2 style={{ fontSize: 20, marginBottom: 8 }}>Perfect for</h2>
         <ul style={{ opacity: 0.85, lineHeight: 1.7 }}>
           <li>Relationship stories &amp; emotional reels</li>
-          <li>Late-night scenes / “what are we?” moments</li>
+          <li>Late-night scenes / &quot;what are we?&quot; moments</li>
           <li>Short films, edits, and dramatic transitions</li>
           <li>Brand storytelling with a human feel</li>
           <li>Podcast intros or moody underscoring</li>
