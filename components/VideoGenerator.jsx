@@ -6,14 +6,13 @@ import { useAuth, useClerk } from "@clerk/nextjs";
 const SONGS = [
   { id: "someone-elses-man", title: "Someone Else's Man", vibe: "Moody • R&B", audioUrl: "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Video-Generator/Somebody%20Else%E2%80%99s%20Man_clip.mp3" },
   { id: "the-only-way-i-be", title: "The Only Way I Be", vibe: "Poetic • Soul", audioUrl: "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Video-Generator/The%20Only%20Way%20I%20Be_clip.mp3" },
-  { id: "home-many-love-songs", title: "Home Many Love Songs", vibe: "Moody • R&B", audioUrl: "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Video-Generator/Home%20Many%20Love%20Songs_clip.mp3" },
-  { id: "all-in", title: "All In", vibe: "Romantic • R&B", audioUrl: "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Video-Generator/Made%20for%20this_clip.mp3" },
+  { id: "home-many-love-songs", title: "How Many Love Songs", vibe: "Moody • R&B", audioUrl: "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Video-Generator/How%20Many%20Love%20Songs_clip.mp3" },
+  { id: "all-in", title: "All In", vibe: "Romantic • R&B", audioUrl: "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Video-Generator/All%20In_clip.mp3" },
   { id: "crystal-ball", title: "Crystal Ball", vibe: "Poetic • Soul", audioUrl: "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Video-Generator/Crystal%20Ball_clip.mp3" },
   { id: "movie of the year", title: "Movie of the Year", vibe: "Moody • R&B", audioUrl: "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Video-Generator/Movie%20of%20the%20Year_clip.mp3" },
-  { id: "no-way-you-win", title: "No Way You Win", vibe: "Moody • R&B", audioUrl: "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Video-Generator/Somebody%20Else%E2%80%99s%20Man_clip.mp3" },
-  { id: "boyfriend", title: "Boyfriend", vibe: "Moody • R&B", audioUrl: "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Video-Generator/Somebody%20Else%E2%80%99s%20Man_clip.mp3" },
-  { id: "where-we-need-to-be", title: "Where We Need To Be", vibe: "Moody • R&B", audioUrl: " https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Where-We-Need-To-Be/Where%20We%20Need%20to%20Be_Sample.mp3” },
-  { id: "too-late", title: "Too Late", vibe: "Moody • R&B", audioUrl: "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Video-Generator/Somebody%20Else%E2%80%99s%20Man_clip.mp3" },
+  { id: “no-way-you-win”, title: “No Way You Win”, vibe: “Moody • R&B”, audioUrl: “https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/No-Way-You-Win/No%20Way%20You%20Win_Sample.mp3” },
+  { id: “boyfriend”, title: “Boyfriend”, vibe: “Moody • R&B”, audioUrl: “https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Boyfriend/Boyfriend_V2_Sample.mp3” },
+  { id: “where-we-need-to-be”, title: “Where We Need To Be”, vibe: “Moody • R&B”, audioUrl: “https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Where-We-Need-To-Be/Where%20We%20Need%20to%20Be_Sample.mp3” },
 ];
 
 export default function VideoGenerator() {
