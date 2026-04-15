@@ -99,6 +99,27 @@ export default function StudioPage() {
         </Link>
       </div>
 
+      {/* Demo video */}
+      <div style={{ maxWidth: 420, margin: "2.5rem auto 0", padding: "0 1.5rem", textAlign: "center" }}>
+        <div style={{ fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "#5a5560", marginBottom: "0.75rem" }}>
+          Example output
+        </div>
+        <video
+          src="/demos/Leave-it-to-Me.mp4"
+          autoPlay
+          loop
+          controls
+          playsInline
+          style={{
+            width: "100%",
+            borderRadius: 20,
+            border: "0.5px solid #2a2535",
+            background: "#0f0d18",
+            display: "block",
+          }}
+        />
+      </div>
+
       {/* Video Generator */}
       <VideoGenerator />
 
