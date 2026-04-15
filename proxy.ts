@@ -4,7 +4,8 @@ const isProtected = createRouteMatcher(["/studio/videos(.*)"]);
 
 const isPublicApi = createRouteMatcher([
   "/api/generate-video(.*)",
-  "/api/stripe-webhook(.*)",
+  "/api/webhooks(.*)",
+  "/api/checkout(.*)",
   "/api/traffic(.*)",
   "/api/video-status(.*)",
 ]);

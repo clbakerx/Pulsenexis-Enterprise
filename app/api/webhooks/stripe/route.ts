@@ -61,7 +61,7 @@ export async function POST(req: Request) {
           if (user) {
             await supabaseAdmin
               .from("users")
-              .update({ credits: user.credits + creditsToAdd })
+              .update({ credits: (user.credits ?? 0) + creditsToAdd })
               .eq("id", user.id);
 
             console.log("Added " + creditsToAdd + " credit(s) to user " + clerkUserId);

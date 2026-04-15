@@ -23,6 +23,8 @@ export default function VideoGenerator() {
   const [loading, setLoading] = useState(false);
   const [credits, setCredits] = useState(null); // null = not yet fetched
   const [purchaseSuccess, setPurchaseSuccess] = useState(false);
+  const [pendingGenerate, setPendingGenerate] = useState(false);
+  const [creditsStillPending, setCreditsStillPending] = useState(false);
 
   // Fetch credits whenever the user signs in
   useEffect(() => {
@@ -32,6 +34,14 @@ export default function VideoGenerator() {
       .then((d) => setCredits(d.credits ?? 0))
       .catch(() => setCredits(0));
   }, [isSignedIn]);
+
+  // Auto-generate after sign-in if the user had clicked Generate while logged out
+  useEffect(() => {
+    if (isSignedIn && pendingGenerate && !loading) {
+      setPendingGenerate(false);
+      handleGenerate();
+    }
+  }, [isSignedIn, pendingGenerate]);
 
   // Handle ?purchased=true redirect from Stripe
   useEffect(() => {
@@ -48,11 +58,19 @@ export default function VideoGenerator() {
           .then((d) => {
             if ((d.credits ?? 0) > 0) {
               setCredits(d.credits);
+              setCreditsStillPending(false);
               clearInterval(poll);
             }
           });
-      }, 2000);
-      setTimeout(() => clearInterval(poll), 20000); // stop after 20s
+      }, 3000);
+      setTimeout(() => {
+        clearInterval(poll);
+        // If credits still haven't appeared, show a manual refresh prompt
+        setCredits((c) => {
+          if ((c ?? 0) === 0) setCreditsStillPending(true);
+          return c;
+        });
+      }, 90000); // 90s timeout
     }
   }, []);
 
@@ -65,6 +83,7 @@ export default function VideoGenerator() {
 
     // Auth gate
     if (!isSignedIn) {
+      setPendingGenerate(true);
       openSignIn({ redirectUrl: "/studio" });
       return;
     }
@@ -156,9 +175,35 @@ export default function VideoGenerator() {
           Upload a photo and we'll create a personalized music video with your face powered by AI.
         </p>
 
-        {purchaseSuccess && (
+        {purchaseSuccess && !creditsStillPending && (
           <div className="mt-4 rounded-2xl border border-violet-500/30 bg-violet-500/10 px-4 py-3 text-sm text-violet-300">
             Payment received! Your credits are being applied — this takes just a moment.
+          </div>
+        )}
+
+        {creditsStillPending && (
+          <div className="mt-4 rounded-2xl border border-yellow-500/30 bg-yellow-500/10 px-4 py-3 text-sm text-yellow-300">
+            Credits are taking longer than expected.{" "}
+            <button
+              className="underline underline-offset-2 hover:text-yellow-200"
+              onClick={() =>
+                fetch("/api/studio/credits")
+                  .then((r) => r.json())
+                  .then((d) => {
+                    if ((d.credits ?? 0) > 0) {
+                      setCredits(d.credits);
+                      setCreditsStillPending(false);
+                    }
+                  })
+              }
+            >
+              Tap to refresh
+            </button>{" "}
+            or{" "}
+            <a href="/support" className="underline underline-offset-2 hover:text-yellow-200">
+              contact support
+            </a>
+            .
           </div>
         )}
 
