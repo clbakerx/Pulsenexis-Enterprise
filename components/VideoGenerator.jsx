@@ -118,8 +118,8 @@ export default function VideoGenerator() {
       const videoId = createData.id;
       let finalVideoUrl = "";
 
-      for (let i = 0; i < 80; i++) {
-        await new Promise((resolve) => setTimeout(resolve, 3000));
+      for (let i = 0; i < 150; i++) {
+        await new Promise((resolve) => setTimeout(resolve, 5000));
 
         const pollRes = await fetch(`/api/generate-video?id=${videoId}`, { cache: "no-store" });
         const pollData = await pollRes.json();
@@ -128,10 +128,11 @@ export default function VideoGenerator() {
         if (pollData.status === "done" && pollData.resultUrl) { finalVideoUrl = pollData.resultUrl; break; }
         if (pollData.status === "error") throw new Error("Video generation failed.");
 
-        setStatus(`Rendering video... (${i + 1})`);
+        const elapsed = Math.round(((i + 1) * 5) / 60);
+        setStatus(`Rendering video... (~${elapsed} min elapsed)`);
       }
 
-      if (!finalVideoUrl) throw new Error("Video generation timed out.");
+      if (!finalVideoUrl) throw new Error("Video generation timed out after 12 minutes.");
 
       // Save video + decrement credit
       const completeRes = await fetch("/api/studio/complete", {
