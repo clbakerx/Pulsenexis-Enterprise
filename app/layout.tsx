@@ -4,15 +4,12 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ConsentBanner from "./components/ConsentBanner";
 import TrafficMeter from "./components/TrafficMeter";
-
-// ✅ FIX
 import { CartProvider } from "./providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
-
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
@@ -45,7 +42,6 @@ export default function RootLayout({
                 </span>
                 <span>PulseNexis</span>
               </Link>
-
               <div className="flex items-center gap-4">
                 <nav className="flex items-center gap-4 text-sm">
                   <Link className="hover:underline" href="/packs">
@@ -63,17 +59,20 @@ export default function RootLayout({
                   <Link className="hover:underline" href="/pulsenexis-download">
                     PulseNexis Download™
                   </Link>
+                  <Link
+                    href="/studio"
+                    className="rounded-full bg-violet-600 px-4 py-1.5 text-white hover:bg-violet-700 transition-colors"
+                  >
+                    🎬 Studio
+                  </Link>
                 </nav>
-
                 <div className="hidden sm:block">
                   <TrafficMeter />
                 </div>
               </div>
             </div>
           </header>
-
           <main className="mx-auto max-w-6xl px-4 py-6">{children}</main>
-
           <ConsentBanner />
         </CartProvider>
       </body>

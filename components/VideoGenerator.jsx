@@ -1,10 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+const STORAGE_KEY = "pn_studio_unlocked";
 
 const SONGS = [
-  { id: "someone-elses-man", title: "Someone Else's Man" },
-  { id: "the-only-way-i-be", title: "The Only Way I Be", vibe: "Poetic • Soul", audioUrl: "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/The-Only-Way-I-Be/The%20Only%20Way%20I%20Be_clip.mp3" },
+  { id: "someone-elses-man", title: "Someone Else's Man", vibe: "Moody • R&B", audioUrl: "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Video-Generator/Somebody%20Else%E2%80%99s%20Man_clip.mp3" },
+  { id: "the-only-way-i-be", title: "The Only Way I Be", vibe: "Poetic • Soul", audioUrl: "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Video-Generator/The%20Only%20Way%20I%20Be_clip.mp3" },
+  { id: "home-many-love-songs", title: "Home Many Love Songs", vibe: "Moody • R&B", audioUrl: "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Video-Generator/Home%20Many%20Love%20Songs_clip.mp3" },
+  { id: "all-in", title: "All In", vibe: "Romantic • R&B", audioUrl: "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Video-Generator/Made%20for%20this_clip.mp3" },
+  { id: "crystal-ball", title: "Crystal Ball", vibe: "Poetic • Soul", audioUrl: "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Video-Generator/Crystal%20Ball_clip.mp3" },
+  { id: "movie of the year", title: "Movie of the Year", vibe: "Moody • R&B", audioUrl: "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Video-Generator/Movie%20of%20the%20Year_clip.mp3" },
 ];
 
 export default function VideoGenerator() {
@@ -13,6 +19,24 @@ export default function VideoGenerator() {
   const [status, setStatus] = useState("");
   const [videoUrl, setVideoUrl] = useState("");
   const [loading, setLoading] = useState(false);
+  const [unlocked, setUnlocked] = useState(false);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const fromStripe = params.get("purchased") === "true";
+    const stored = localStorage.getItem(STORAGE_KEY) === "true";
+
+    if (fromStripe) {
+      localStorage.setItem(STORAGE_KEY, "true");
+      setUnlocked(true);
+      // Clean up the URL param without a page reload
+      const url = new URL(window.location.href);
+      url.searchParams.delete("purchased");
+      window.history.replaceState({}, "", url.toString());
+    } else if (stored) {
+      setUnlocked(true);
+    }
+  }, []);
 
   async function handleGenerate() {
     if (!file) {
@@ -25,18 +49,29 @@ export default function VideoGenerator() {
       return;
     }
 
+    const song = SONGS.find((s) => s.id === selectedSongId);
+    if (!song) {
+      setStatus("Selected song not found.");
+      return;
+    }
+
     try {
       setLoading(true);
       setStatus("Creating your video...");
       setVideoUrl("");
 
-      const formData = new FormData();
-      formData.append("photo", file);
-      formData.append("songId", selectedSongId);
+      // Convert file to base64 as the API expects
+      const imageBase64 = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
 
       const createRes = await fetch("/api/generate-video", {
         method: "POST",
-        body: formData,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ imageBase64, audioUrl: song.audioUrl }),
       });
 
       const createData = await createRes.json();
@@ -45,13 +80,13 @@ export default function VideoGenerator() {
         throw new Error(createData.error || "Failed to start video generation.");
       }
 
-      const videoId = createData.videoId;
+      const videoId = createData.id;
 
       let finalVideoUrl = "";
-      for (let i = 0; i < 40; i++) {
+      for (let i = 0; i < 80; i++) {
         await new Promise((resolve) => setTimeout(resolve, 3000));
 
-        const pollRes = await fetch(`/api/generate-video?videoId=${videoId}`, {
+        const pollRes = await fetch(`/api/generate-video?id=${videoId}`, {
           cache: "no-store",
         });
 
@@ -61,12 +96,12 @@ export default function VideoGenerator() {
           throw new Error(pollData.error || "Failed while checking video status.");
         }
 
-        if (pollData.status === "completed" && pollData.videoUrl) {
-          finalVideoUrl = pollData.videoUrl;
+        if (pollData.status === "done" && pollData.resultUrl) {
+          finalVideoUrl = pollData.resultUrl;
           break;
         }
 
-        if (pollData.status === "failed" || pollData.status === "error") {
+        if (pollData.status === "error") {
           throw new Error("Video generation failed.");
         }
 
@@ -160,14 +195,44 @@ export default function VideoGenerator() {
           </div>
 
           <div>
-            <button
-              type="button"
-              onClick={handleGenerate}
-              disabled={loading}
-              className="w-full rounded-2xl bg-violet-600 px-6 py-4 text-base font-semibold text-white transition hover:bg-violet-500 disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              {loading ? "Generating..." : "Generate My Video"}
-            </button>
+            {unlocked ? (
+              <button
+                type="button"
+                onClick={handleGenerate}
+                disabled={loading}
+                className="w-full rounded-2xl bg-violet-600 px-6 py-4 text-base font-semibold text-white transition hover:bg-violet-500 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                {loading ? "Generating..." : "Generate My Video"}
+              </button>
+            ) : (
+              <a
+                href="/studio/checkout"
+                className="flex w-full items-center justify-center gap-2 rounded-2xl bg-white/5 border border-white/10 px-6 py-4 text-base font-semibold text-white/50 cursor-not-allowed select-none"
+                onClick={(e) => e.preventDefault()}
+              >
+                <svg className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fillRule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clipRule="evenodd" />
+                </svg>
+                Generate My Video
+              </a>
+            )}
+            <p className="mt-3 text-center text-sm text-white/40">
+              {unlocked ? (
+                <>
+                  Need more credits?{" "}
+                  <a href="/studio/checkout" className="text-violet-400 underline underline-offset-2 hover:text-violet-300">
+                    Purchase here →
+                  </a>
+                </>
+              ) : (
+                <>
+                  Purchase credits to unlock video generation.{" "}
+                  <a href="/studio/checkout" className="text-violet-400 underline underline-offset-2 hover:text-violet-300">
+                    Buy credits →
+                  </a>
+                </>
+              )}
+            </p>
           </div>
 
           {status ? (

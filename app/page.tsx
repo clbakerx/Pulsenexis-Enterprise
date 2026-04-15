@@ -214,7 +214,15 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="relative w-full overflow-hidden rounded-3xl border bg-white">
+        <div className="flex flex-col gap-3">
+          <div className="rounded-2xl bg-gradient-to-r from-violet-600 to-indigo-500 px-5 py-3 text-center text-sm font-bold tracking-wide text-white shadow-sm">
+            Your Photo My Music — AI Video Creator{" "}
+            <Link href="/studio" className="underline underline-offset-2 hover:opacity-80">
+              Visit the Studio
+            </Link>
+          </div>
+
+          <div className="relative w-full overflow-hidden rounded-3xl border bg-white">
           <div className="relative aspect-[16/9] w-full">
             <Image
               src="/hero-studio.jpg"
@@ -228,6 +236,7 @@ export default function HomePage() {
           <div className="absolute bottom-4 left-4 rounded-xl bg-black/60 px-3 py-2 text-sm text-white">
             Creator-safe music packs • emotional singles • cinematic audio
           </div>
+        </div>
         </div>
       </section>
 
