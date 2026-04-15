@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useAuth, useClerk } from "@clerk/nextjs";
 
 const SONGS = [
   { id: "someone-elses-man", title: "Someone Else's Man", vibe: "Moody • R&B", audioUrl: "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Video-Generator/Somebody%20Else%E2%80%99s%20Man_clip.mp3" },
@@ -12,26 +13,65 @@ const SONGS = [
 ];
 
 export default function VideoGenerator() {
+  const { isSignedIn } = useAuth();
+  const { openSignIn } = useClerk();
+
   const [file, setFile] = useState(null);
   const [selectedSongId, setSelectedSongId] = useState("");
   const [status, setStatus] = useState("");
   const [videoUrl, setVideoUrl] = useState("");
   const [loading, setLoading] = useState(false);
+  const [credits, setCredits] = useState(null); // null = not yet fetched
+  const [purchaseSuccess, setPurchaseSuccess] = useState(false);
+
+  // Fetch credits whenever the user signs in
+  useEffect(() => {
+    if (!isSignedIn) { setCredits(null); return; }
+    fetch("/api/studio/credits")
+      .then((r) => r.json())
+      .then((d) => setCredits(d.credits ?? 0))
+      .catch(() => setCredits(0));
+  }, [isSignedIn]);
+
+  // Handle ?purchased=true redirect from Stripe
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("purchased") === "true") {
+      setPurchaseSuccess(true);
+      const url = new URL(window.location.href);
+      url.searchParams.delete("purchased");
+      window.history.replaceState({}, "", url.toString());
+      // Re-fetch credits (webhook may take a moment)
+      const poll = setInterval(() => {
+        fetch("/api/studio/credits")
+          .then((r) => r.json())
+          .then((d) => {
+            if ((d.credits ?? 0) > 0) {
+              setCredits(d.credits);
+              clearInterval(poll);
+            }
+          });
+      }, 2000);
+      setTimeout(() => clearInterval(poll), 20000); // stop after 20s
+    }
+  }, []);
 
   async function handleGenerate() {
-    if (!file) {
-      setStatus("Please upload a photo.");
-      return;
-    }
-
-    if (!selectedSongId) {
-      setStatus("Please choose a song.");
-      return;
-    }
+    if (!file) { setStatus("Please upload a photo."); return; }
+    if (!selectedSongId) { setStatus("Please choose a song."); return; }
 
     const song = SONGS.find((s) => s.id === selectedSongId);
-    if (!song) {
-      setStatus("Selected song not found.");
+    if (!song) { setStatus("Selected song not found."); return; }
+
+    // Auth gate
+    if (!isSignedIn) {
+      openSignIn({ redirectUrl: "/studio" });
+      return;
+    }
+
+    // Credits gate
+    if (credits === 0) {
+      window.location.href = "/studio/checkout";
       return;
     }
 
@@ -40,7 +80,6 @@ export default function VideoGenerator() {
       setStatus("Creating your video...");
       setVideoUrl("");
 
-      // Convert file to base64 as the API expects
       const imageBase64 = await new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.onload = () => resolve(reader.result);
@@ -55,42 +94,34 @@ export default function VideoGenerator() {
       });
 
       const createData = await createRes.json();
-
-      if (!createRes.ok) {
-        throw new Error(createData.error || "Failed to start video generation.");
-      }
+      if (!createRes.ok) throw new Error(createData.error || "Failed to start video generation.");
 
       const videoId = createData.id;
-
       let finalVideoUrl = "";
+
       for (let i = 0; i < 80; i++) {
         await new Promise((resolve) => setTimeout(resolve, 3000));
 
-        const pollRes = await fetch(`/api/generate-video?id=${videoId}`, {
-          cache: "no-store",
-        });
-
+        const pollRes = await fetch(`/api/generate-video?id=${videoId}`, { cache: "no-store" });
         const pollData = await pollRes.json();
 
-        if (!pollRes.ok) {
-          throw new Error(pollData.error || "Failed while checking video status.");
-        }
-
-        if (pollData.status === "done" && pollData.resultUrl) {
-          finalVideoUrl = pollData.resultUrl;
-          break;
-        }
-
-        if (pollData.status === "error") {
-          throw new Error("Video generation failed.");
-        }
+        if (!pollRes.ok) throw new Error(pollData.error || "Failed while checking video status.");
+        if (pollData.status === "done" && pollData.resultUrl) { finalVideoUrl = pollData.resultUrl; break; }
+        if (pollData.status === "error") throw new Error("Video generation failed.");
 
         setStatus(`Rendering video... (${i + 1})`);
       }
 
-      if (!finalVideoUrl) {
-        throw new Error("Video generation timed out.");
-      }
+      if (!finalVideoUrl) throw new Error("Video generation timed out.");
+
+      // Save video + decrement credit
+      const completeRes = await fetch("/api/studio/complete", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ songId: song.id, songTitle: song.title, videoUrl: finalVideoUrl }),
+      });
+      const completeData = await completeRes.json();
+      if (completeRes.ok) setCredits(completeData.creditsRemaining ?? 0);
 
       setVideoUrl(finalVideoUrl);
       setStatus("Your video is ready.");
@@ -100,6 +131,13 @@ export default function VideoGenerator() {
       setLoading(false);
     }
   }
+
+  const buttonLabel = () => {
+    if (loading) return "Generating...";
+    if (!isSignedIn) return "Sign in to Generate";
+    if (credits === 0) return "Buy Credits to Generate";
+    return "Generate My Video";
+  };
 
   return (
     <div className="rounded-[28px] border border-white/10 bg-[#0b0b14] p-6 text-white md:p-8">
@@ -115,26 +153,41 @@ export default function VideoGenerator() {
         </h2>
 
         <p className="mt-4 text-base text-white/70">
-          Upload a photo and we’ll create a personalized music video with your face powered by AI.
+          Upload a photo and we'll create a personalized music video with your face powered by AI.
         </p>
+
+        {purchaseSuccess && (
+          <div className="mt-4 rounded-2xl border border-violet-500/30 bg-violet-500/10 px-4 py-3 text-sm text-violet-300">
+            Payment received! Your credits are being applied — this takes just a moment.
+          </div>
+        )}
+
+        {isSignedIn && credits !== null && (
+          <div className="mt-4 text-sm text-white/40">
+            Credits remaining: <span className="font-semibold text-white/70">{credits}</span>
+            {credits === 0 && (
+              <a href="/studio/checkout" className="ml-2 text-violet-400 underline underline-offset-2 hover:text-violet-300">
+                Buy more →
+              </a>
+            )}
+            {credits > 0 && (
+              <a href="/studio/videos" className="ml-4 text-violet-400 underline underline-offset-2 hover:text-violet-300">
+                View my videos →
+              </a>
+            )}
+          </div>
+        )}
 
         <div className="mt-8 space-y-8">
           <div>
             <div className="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
-              <span className="flex h-6 w-6 items-center justify-center rounded-full border border-white/20 text-[11px]">
-                1
-              </span>
+              <span className="flex h-6 w-6 items-center justify-center rounded-full border border-white/20 text-[11px]">1</span>
               Upload your photo
             </div>
-
             <label className="flex min-h-[180px] cursor-pointer flex-col items-center justify-center rounded-3xl border border-dashed border-white/15 bg-white/[0.02] px-6 text-center transition hover:bg-white/[0.04]">
               <div className="mb-3 text-2xl">📸</div>
-              <div className="text-base font-medium">
-                {file ? file.name : "Tap or drag a photo here"}
-              </div>
-              <div className="mt-2 text-sm text-white/40">
-                JPG or PNG · Face must be clearly visible
-              </div>
+              <div className="text-base font-medium">{file ? file.name : "Tap or drag a photo here"}</div>
+              <div className="mt-2 text-sm text-white/40">JPG or PNG · Face must be clearly visible</div>
               <input
                 type="file"
                 accept="image/png,image/jpeg,image/webp"
@@ -146,25 +199,19 @@ export default function VideoGenerator() {
 
           <div>
             <div className="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
-              <span className="flex h-6 w-6 items-center justify-center rounded-full border border-white/20 text-[11px]">
-                2
-              </span>
+              <span className="flex h-6 w-6 items-center justify-center rounded-full border border-white/20 text-[11px]">2</span>
               Choose a song
             </div>
-
             <div className="grid gap-3 sm:grid-cols-2">
               {SONGS.map((song) => {
                 const active = selectedSongId === song.id;
-
                 return (
                   <button
                     key={song.id}
                     type="button"
                     onClick={() => setSelectedSongId(song.id)}
                     className={`rounded-2xl border px-5 py-5 text-left transition ${
-                      active
-                        ? "border-violet-400 bg-violet-500/10"
-                        : "border-white/10 bg-white/[0.02] hover:bg-white/[0.04]"
+                      active ? "border-violet-400 bg-violet-500/10" : "border-white/10 bg-white/[0.02] hover:bg-white/[0.04]"
                     }`}
                   >
                     <div className="text-base font-medium">{song.title}</div>
@@ -181,7 +228,7 @@ export default function VideoGenerator() {
               disabled={loading}
               className="w-full rounded-2xl bg-violet-600 px-6 py-4 text-base font-semibold text-white transition hover:bg-violet-500 disabled:cursor-not-allowed disabled:opacity-50"
             >
-              {loading ? "Generating..." : "Generate My Video"}
+              {buttonLabel()}
             </button>
             <p className="mt-3 text-center text-sm text-white/40">
               Need video credits?{" "}

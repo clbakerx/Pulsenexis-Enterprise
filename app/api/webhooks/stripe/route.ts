@@ -1,5 +1,6 @@
 import Stripe from "stripe";
 import { NextResponse } from "next/server";
+import { supabaseAdmin } from "@/lib/supabase";
 
 export const runtime = "nodejs";
 
@@ -25,28 +26,48 @@ export async function POST(req: Request) {
   try {
     if (event.type === "checkout.session.completed") {
       const session = event.data.object as Stripe.Checkout.Session;
-
       const meta = session.metadata || {};
       const productType = meta.product_type;
-      const productId = meta.product_id;
-      const productTitle = meta.product_title;
-      const note = meta.note;
 
-      // ✅ This is your “notification” source of truth
-      console.log("✅ PAID:", {
+      console.log("PAID:", {
         productType,
-        productId,
-        productTitle,
-        note,
         amount_total: session.amount_total,
         customer_email: session.customer_details?.email,
         session_id: session.id,
       });
 
-      // OPTIONAL: store in DB, send email, create download record, etc.
-      // Example pseudo:
-      // await db.orders.create({ ... })
-      // await sendEmailToYou({ productType, productId, productTitle, ... })
+      // Credit studio video purchases
+      if (productType === "studio_credits") {
+        const clerkUserId = session.client_reference_id;
+        const creditsToAdd = parseInt(meta.credits || "1", 10);
+
+        if (clerkUserId) {
+          // Upsert user row
+          await supabaseAdmin.from("users").upsert(
+            {
+              clerk_user_id: clerkUserId,
+              email: session.customer_details?.email ?? null,
+            },
+            { onConflict: "clerk_user_id" }
+          );
+
+          // Fetch and increment credits
+          const { data: user } = await supabaseAdmin
+            .from("users")
+            .select("id, credits")
+            .eq("clerk_user_id", clerkUserId)
+            .single();
+
+          if (user) {
+            await supabaseAdmin
+              .from("users")
+              .update({ credits: user.credits + creditsToAdd })
+              .eq("id", user.id);
+
+            console.log("Added " + creditsToAdd + " credit(s) to user " + clerkUserId);
+          }
+        }
+      }
     }
 
     return NextResponse.json({ received: true });

@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { UserButton, SignInButton, useAuth } from "@clerk/nextjs";
 
 const VideoGenerator = dynamic(() => import("@/components/VideoGenerator"), {
   ssr: false,
@@ -13,6 +14,7 @@ const VideoGenerator = dynamic(() => import("@/components/VideoGenerator"), {
 });
 
 export default function StudioPage() {
+  const { isSignedIn } = useAuth();
   return (
     <div style={{ minHeight: "100vh", background: "#0a0a0f" }}>
 
@@ -52,6 +54,15 @@ export default function StudioPage() {
           }}>
             Buy Credits
           </Link>
+          {isSignedIn ? (
+            <UserButton />
+          ) : (
+            <SignInButton mode="modal" forceRedirectUrl="/studio">
+              <button style={{ fontSize: 13, color: "#c4a8ff", background: "transparent", border: "0.5px solid #3a3245", padding: "6px 14px", borderRadius: 20, cursor: "pointer" }}>
+                Sign in
+              </button>
+            </SignInButton>
+          )}
         </div>
       </div>
 

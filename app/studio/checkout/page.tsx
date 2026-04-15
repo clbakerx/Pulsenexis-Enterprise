@@ -1,4 +1,5 @@
 import Link from "next/link";
+// Note: buy buttons now use internal API routes — remove target="_blank" below
 
 const TIERS = [
   {
@@ -6,7 +7,7 @@ const TIERS = [
     label: "1 AI Video",
     price: "$9.99",
     unit: "per video",
-    href: "https://buy.stripe.com/4gM8wPgaT131c8V45f4ZG0I",
+    href: "/api/checkout/studio?tier=single",
     description: "Perfect for a one-time creation — your photo, your music, your story.",
     features: [
       "1 personalized AI video",
@@ -22,7 +23,7 @@ const TIERS = [
     label: "3 AI Videos",
     price: "$24",
     unit: "pack of 3",
-    href: "https://buy.stripe.com/28EdR90bV5jha0NeJT4ZG0J",
+    href: "/api/checkout/studio?tier=pack3",
     description: "Try different songs or create videos for multiple moments.",
     features: [
       "3 personalized AI videos",
@@ -38,7 +39,7 @@ const TIERS = [
     label: "10 AI Videos",
     price: "$59",
     unit: "pack of 10",
-    href: "https://buy.stripe.com/7sY7sLbUDh1Zeh31X74ZG0K",
+    href: "/api/checkout/studio?tier=pack10",
     description: "For creators, couples, or anyone with a lot to share.",
     features: [
       "10 personalized AI videos",
@@ -169,8 +170,6 @@ export default function StudioCheckoutPage() {
 
             <a
               href={tier.href}
-              target="_blank"
-              rel="noopener noreferrer"
               style={{
                 display: "block",
                 width: "100%",
