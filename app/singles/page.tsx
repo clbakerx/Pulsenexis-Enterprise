@@ -3,6 +3,20 @@ import TopHero from "@/app/components/TopHero";
 
 const DEFAULT_BUY_URL = "https://buy.stripe.com/7sYaEXaQz4fd3Cp45f4ZG0C";
 
+// Songs that have AI video clips ready in the VideoGenerator
+const VIDEO_READY_IDS = new Set([
+  "someone-elses-man",
+  "the-only-way-i-be",
+  "how-many-love-songs",
+  "all-in",
+  "crystal-ball",
+  "movie-of-the-year",
+  "movie-of-the-year", // alias
+  "no-way-you-win",
+  "boyfriend",
+  "where-we-need-to-be",
+]);
+
 type SingleTrack = {
   id: string;
   title: string;
@@ -483,7 +497,7 @@ const SINGLES: SingleTrack[] = [
   },
   {
     id: "no-halfway-love_v2",
-    title: "No Halfway Love_v2",
+    title: "No Halfway Love V2",
     subtitle: "Song Preview",
     priceLabel: "$3.99",
     buyUrl: DEFAULT_BUY_URL,
@@ -565,12 +579,17 @@ export default function SinglesPage() {
 
           <div className="flex flex-wrap gap-2">
             <Link
+              href="/studio"
+              className="inline-flex w-fit items-center rounded-full bg-violet-600 px-5 py-2 text-sm font-semibold text-white hover:bg-violet-500 transition-colors"
+            >
+              🎬 AI Video Studio
+            </Link>
+            <Link
               href="/licensing"
               className="inline-flex w-fit items-center rounded-full border border-neutral-300 bg-white px-5 py-2 text-sm font-semibold text-neutral-900 hover:bg-neutral-50"
             >
               License Terms
             </Link>
-
             <Link
               href="/packs"
               className="inline-flex w-fit items-center rounded-full border border-neutral-300 bg-white px-5 py-2 text-sm font-semibold text-neutral-900 hover:bg-neutral-50"
@@ -581,50 +600,66 @@ export default function SinglesPage() {
         </div>
 
         <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {SINGLES.map((s) => (
-            <article
-              key={s.id}
-              className="group rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
-            >
-              <div className="flex items-start justify-between gap-3">
-                <div className="min-w-0">
-                  <h3 className="truncate text-base font-semibold tracking-tight text-neutral-900">
-                    {s.title}
-                  </h3>
-                  {s.subtitle ? (
-                    <p className="mt-1 text-xs text-neutral-500">{s.subtitle}</p>
-                  ) : null}
+          {SINGLES.map((s) => {
+            const videoReady = VIDEO_READY_IDS.has(s.id);
+            const studioUrl = videoReady
+              ? `/studio?song=${s.id}`
+              : `/studio`;
+            return (
+              <article
+                key={s.id}
+                className="group rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <h3 className="truncate text-base font-semibold tracking-tight text-neutral-900">
+                      {s.title}
+                    </h3>
+                    {s.subtitle ? (
+                      <p className="mt-1 text-xs text-neutral-500">{s.subtitle}</p>
+                    ) : null}
+                  </div>
+                  <span className="shrink-0 rounded-full bg-neutral-100 px-3 py-1 text-xs font-semibold text-neutral-800">
+                    {s.priceLabel}
+                  </span>
                 </div>
 
-                <span className="shrink-0 rounded-full bg-neutral-100 px-3 py-1 text-xs font-semibold text-neutral-800">
-                  {s.priceLabel}
-                </span>
-              </div>
+                <div className="mt-5">
+                  <audio controls preload="none" className="w-full">
+                    <source src={s.previewUrl} type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                  </audio>
+                </div>
 
-              <div className="mt-5">
-                <audio controls preload="none" className="w-full">
-                  <source src={s.previewUrl} type="audio/mpeg" />
-                  Your browser does not support the audio element.
-                </audio>
-              </div>
+                <div className="mt-5 flex items-center gap-2">
+                  <a
+                    href={s.buyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex flex-1 items-center justify-center rounded-full bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-neutral-800"
+                  >
+                    Buy
+                  </a>
+                  <Link
+                    href={studioUrl}
+                    className="inline-flex flex-1 items-center justify-center rounded-full border border-violet-200 bg-violet-50 px-4 py-2 text-sm font-semibold text-violet-700 hover:bg-violet-100 transition-colors"
+                  >
+                    {videoReady ? "🎬 Make Video" : "🎬 Studio"}
+                  </Link>
+                </div>
 
-              <div className="mt-5 flex items-center gap-3">
-                <a
-                  href={s.buyUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex flex-1 items-center justify-center rounded-full bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-neutral-800"
-                >
-                  Buy
-                </a>
-                <span className="text-xs text-neutral-500">Secure checkout</span>
-              </div>
+                {videoReady && (
+                  <p className="mt-2 text-xs text-violet-500 font-medium">
+                    ✨ AI video ready for this song
+                  </p>
+                )}
 
-              <p className="mt-3 text-xs text-neutral-500">
-                Opens Stripe in a new tab • Access provided after purchase
-              </p>
-            </article>
-          ))}
+                <p className="mt-2 text-xs text-neutral-500">
+                  Opens Stripe in a new tab • Access provided after purchase
+                </p>
+              </article>
+            );
+          })}
         </div>
       </section>
 
