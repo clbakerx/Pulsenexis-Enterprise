@@ -33,52 +33,58 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <ClerkProvider>
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <CartProvider>
-          <header className="border-b bg-white">
-            <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-              <Link href="/" className="flex items-center gap-2 font-semibold">
-                <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border text-sm">
-                  PN
-                </span>
-                <span>PulseNexis</span>
-              </Link>
-              <div className="flex items-center gap-4">
-                <nav className="flex items-center gap-4 text-sm">
-                  <Link className="hover:underline" href="/packs">
-                    Packs
-                  </Link>
-                  <Link className="hover:underline" href="/cinema">
-                    Cinema
-                  </Link>
-                  <Link className="hover:underline" href="/licensing">
-                    Licensing
-                  </Link>
-                  <Link className="hover:underline" href="/support">
-                    Support
-                  </Link>
-                  <Link className="hover:underline" href="/pulsenexis-download">
-                    PulseNexis Download™
-                  </Link>
-                  <Link
-                    href="/studio"
-                    className="rounded-full bg-violet-600 px-4 py-1.5 text-white hover:bg-violet-700 transition-colors"
-                  >
-                    🎬 Studio
-                  </Link>
-                </nav>
-                <div className="hidden sm:block">
-                  <TrafficMeter />
+      <html lang="en">
+        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+          <CartProvider>
+            <header className="border-b bg-white">
+              <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+                <Link href="/" className="flex items-center gap-2 font-semibold">
+                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border text-sm">
+                    PN
+                  </span>
+                  <span>PulseNexis</span>
+                </Link>
+                <div className="flex items-center gap-4">
+                  <nav className="flex items-center gap-4 text-sm">
+                    <Link className="hover:underline" href="/packs">
+                      Packs
+                    </Link>
+                    <Link className="hover:underline" href="/cinema">
+                      Cinema
+                    </Link>
+                    <Link className="hover:underline" href="/licensing">
+                      Licensing
+                    </Link>
+                    <Link className="hover:underline" href="/support">
+                      Support
+                    </Link>
+                    <Link className="hover:underline" href="/pulsenexis-download">
+                      PulseNexis Download™
+                    </Link>
+                    <Link
+                      className="hover:underline font-medium text-violet-600"
+                      href="/sample"
+                    >
+                      Free Sample
+                    </Link>
+                    <Link
+                      href="/studio"
+                      className="rounded-full bg-violet-600 px-4 py-1.5 text-white hover:bg-violet-700 transition-colors"
+                    >
+                      🎬 Studio
+                    </Link>
+                  </nav>
+                  <div className="hidden sm:block">
+                    <TrafficMeter />
+                  </div>
                 </div>
               </div>
-            </div>
-          </header>
-          <main className="mx-auto max-w-6xl px-4 py-6">{children}</main>
-          <ConsentBanner />
-        </CartProvider>
-      </body>
-    </html>
+            </header>
+            <main className="mx-auto max-w-6xl px-4 py-6">{children}</main>
+            <ConsentBanner />
+          </CartProvider>
+        </body>
+      </html>
     </ClerkProvider>
   );
 }
