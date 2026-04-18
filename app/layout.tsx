@@ -65,7 +65,7 @@ export default function RootLayout({
                       className="hover:underline font-medium text-violet-600"
                       href="/sample"
                     >
-                      Free Sample
+                      AI Video Sample
                     </Link>
                     <Link
                       href="/studio"
