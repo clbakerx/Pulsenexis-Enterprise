@@ -37,7 +37,7 @@ export async function POST(_req: Request) {
 
     const data = await resend.emails.send({
       from: "PulseNexis <onboarding@resend.dev>", // OK for testing; later use your verified domain
-      to: ["clbakerx@gmail.com"],
+      to: ["info@pulsenexis.com"],
       subject: "PulseNexis Email Test ✅",
       html: "<h2>Resend is working ✅</h2><p>This confirms your email system is live.</p>",
     });

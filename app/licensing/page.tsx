@@ -514,7 +514,7 @@ export default function PulseNexisLicensingLanding() {
 
                   <p className="text-xs text-slate-600 text-center">
                     Or email directly:{" "}
-                    <a href="mailto:clbakerx@gmail.com" className="text-emerald-400">clbakerx@gmail.com</a>
+                    <a href="mailto:info@pulsenexis.com" className="text-emerald-400">info@pulsenexis.com</a>
                     {" "}· Usually responds within 24 hours
                   </p>
                 </form>
