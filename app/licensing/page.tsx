@@ -159,6 +159,31 @@ const SYNC_TIERS = [
 export default function PulseNexisLicensingLanding() {
   const [licenseOpen, setLicenseOpen] = useState(false);
   const [contactSent, setContactSent] = useState(false);
+  const [contactError, setContactError] = useState("");
+  const [contactLoading, setContactLoading] = useState(false);
+  const [form, setForm] = useState({ name: "", email: "", projectType: "", songs: "", message: "" });
+
+  async function handleContactSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setContactError("");
+    setContactLoading(true);
+    try {
+      const subject = `Sync Licensing Request — ${form.projectType || "Custom"}`;
+      const body = `Project Type: ${form.projectType}\nSongs Interested In: ${form.songs}\n\n${form.message}`;
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: form.name, email: form.email, subject, message: body }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Failed to send");
+      setContactSent(true);
+    } catch (err: unknown) {
+      setContactError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+    } finally {
+      setContactLoading(false);
+    }
+  }
 
   return (
     <main className="min-h-screen bg-slate-950 text-slate-50">
@@ -401,72 +426,99 @@ export default function PulseNexisLicensingLanding() {
                 reach out and we'll put together a custom package. Most requests answered within 24 hours.
               </p>
 
-              <div className="grid gap-4">
-                <div className="grid sm:grid-cols-2 gap-4">
+              {contactSent ? (
+                <div className="rounded-2xl border border-emerald-500/40 bg-emerald-500/10 px-6 py-8 text-center">
+                  <p className="text-emerald-300 font-semibold text-lg mb-2">Request sent!</p>
+                  <p className="text-sm text-slate-400">We'll get back to you within 24 hours.</p>
+                </div>
+              ) : (
+                <form onSubmit={handleContactSubmit} className="grid gap-4">
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-[10px] uppercase tracking-widest text-slate-400 block mb-2">Your Name</label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="John Smith"
+                        value={form.name}
+                        onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
+                        className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-100 placeholder-slate-600 focus:outline-none focus:border-emerald-500"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-[10px] uppercase tracking-widest text-slate-400 block mb-2">Email</label>
+                      <input
+                        type="email"
+                        required
+                        placeholder="you@studio.com"
+                        value={form.email}
+                        onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
+                        className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-100 placeholder-slate-600 focus:outline-none focus:border-emerald-500"
+                      />
+                    </div>
+                  </div>
+
                   <div>
-                    <label className="text-[10px] uppercase tracking-widest text-slate-400 block mb-2">Your Name</label>
+                    <label className="text-[10px] uppercase tracking-widest text-slate-400 block mb-2">Project Type</label>
+                    <select
+                      value={form.projectType}
+                      onChange={(e) => setForm((f) => ({ ...f, projectType: e.target.value }))}
+                      className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-emerald-500"
+                    >
+                      <option value="">Select project type...</option>
+                      <option>Feature Film</option>
+                      <option>TV Series</option>
+                      <option>Documentary</option>
+                      <option>Commercial / Brand Campaign</option>
+                      <option>YouTube / Social Media</option>
+                      <option>Video Game</option>
+                      <option>Podcast / Audio</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="text-[10px] uppercase tracking-widest text-slate-400 block mb-2">Song(s) You're Interested In</label>
                     <input
                       type="text"
-                      placeholder="John Smith"
+                      placeholder="e.g. Almost Counts, Comfortable Stranger"
+                      value={form.songs}
+                      onChange={(e) => setForm((f) => ({ ...f, songs: e.target.value }))}
                       className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-100 placeholder-slate-600 focus:outline-none focus:border-emerald-500"
                     />
                   </div>
+
                   <div>
-                    <label className="text-[10px] uppercase tracking-widest text-slate-400 block mb-2">Email</label>
-                    <input
-                      type="email"
-                      placeholder="you@studio.com"
-                      className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-100 placeholder-slate-600 focus:outline-none focus:border-emerald-500"
+                    <label className="text-[10px] uppercase tracking-widest text-slate-400 block mb-2">Tell us about your project</label>
+                    <textarea
+                      rows={4}
+                      required
+                      placeholder="Describe your project, how you'd like to use the music, timeline, and budget range..."
+                      value={form.message}
+                      onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
+                      className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-100 placeholder-slate-600 focus:outline-none focus:border-emerald-500 resize-none"
                     />
                   </div>
-                </div>
 
-                <div>
-                  <label className="text-[10px] uppercase tracking-widest text-slate-400 block mb-2">Project Type</label>
-                  <select className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-emerald-500">
-                    <option value="">Select project type...</option>
-                    <option>Feature Film</option>
-                    <option>TV Series</option>
-                    <option>Documentary</option>
-                    <option>Commercial / Brand Campaign</option>
-                    <option>YouTube / Social Media</option>
-                    <option>Video Game</option>
-                    <option>Podcast / Audio</option>
-                    <option>Other</option>
-                  </select>
-                </div>
+                  {contactError && (
+                    <p className="text-sm text-red-400 text-center">{contactError}</p>
+                  )}
 
-                <div>
-                  <label className="text-[10px] uppercase tracking-widest text-slate-400 block mb-2">Song(s) You're Interested In</label>
-                  <input
-                    type="text"
-                    placeholder="e.g. Almost Counts, Comfortable Stranger"
-                    className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-100 placeholder-slate-600 focus:outline-none focus:border-emerald-500"
-                  />
-                </div>
+                  <button
+                    type="submit"
+                    disabled={contactLoading}
+                    className="w-full bg-emerald-500 hover:bg-emerald-400 disabled:opacity-60 disabled:cursor-not-allowed text-slate-950 font-semibold py-4 rounded-xl text-sm transition"
+                  >
+                    {contactLoading ? "Sending…" : "Send Licensing Request →"}
+                  </button>
 
-                <div>
-                  <label className="text-[10px] uppercase tracking-widest text-slate-400 block mb-2">Tell us about your project</label>
-                  <textarea
-                    rows={4}
-                    placeholder="Describe your project, how you'd like to use the music, timeline, and budget range..."
-                    className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-100 placeholder-slate-600 focus:outline-none focus:border-emerald-500 resize-none"
-                  />
-                </div>
-
-                <a
-                  href="mailto:clbakerx@gmail.com?subject=Sync Licensing Request — Honey Drip Records"
-                  className="w-full block text-center bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold py-4 rounded-xl text-sm transition"
-                >
-                  Send Licensing Request →
-                </a>
-
-                <p className="text-xs text-slate-600 text-center">
-                  Or email directly:{" "}
-                  <a href="mailto:clbakerx@gmail.com" className="text-emerald-400">clbakerx@gmail.com</a>
-                  {" "}· Usually responds within 24 hours
-                </p>
-              </div>
+                  <p className="text-xs text-slate-600 text-center">
+                    Or email directly:{" "}
+                    <a href="mailto:clbakerx@gmail.com" className="text-emerald-400">clbakerx@gmail.com</a>
+                    {" "}· Usually responds within 24 hours
+                  </p>
+                </form>
+              )}
             </div>
           </div>
         </section>
