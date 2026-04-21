@@ -540,6 +540,33 @@ const SINGLES: SingleTrack[] = [
     previewUrl:
       "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/No-Way-You-Win/No%20Way%20You%20Win_Sample.mp3",
   },
+  {
+    id: "no-exit-plan",
+    title: "No Exit Plan",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/No-Exit-Plan/No%20Exit%20Plan_V2_Sample.mp3",
+  },
+  {
+    id: "almost-counts",
+    title: "Almost Counts",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Almost-Counts/Almost%20Counts_Sample.mp3",
+  },
+  {
+    id: "touch-like-that",
+    title: "Touch Like That",
+    subtitle: "Song Preview",
+    priceLabel: "$3.99",
+    buyUrl: DEFAULT_BUY_URL,
+    previewUrl:
+      "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Touch-Like-That/Touch%20Like%20That_Sample.mp3",
+  },
 ];
 
 export default function SinglesPage() {
