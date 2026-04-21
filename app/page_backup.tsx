@@ -131,149 +131,117 @@ function CheckIcon() {
 export default function HomePage() {
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
-
-      {/* ── HERO ── */}
+      {/* HERO */}
       <section className="grid gap-8 lg:grid-cols-2 lg:items-center">
-        <div className="rounded-3xl bg-neutral-900 p-10 text-white">
-          {/* eyebrow */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1">
-            <span className="h-2 w-2 rounded-full bg-emerald-400" />
-            <span className="text-xs font-semibold tracking-wide text-white/80">
-              100% royalty-free · no copyright strikes
-            </span>
+        <div className="rounded-3xl bg-gradient-to-br from-violet-500 to-indigo-600 p-10 text-white shadow-sm">
+          <div className="text-sm font-semibold tracking-wide opacity-90">
+            PULSENEXIS
           </div>
 
-          <h1 className="mt-5 text-4xl font-extrabold leading-tight sm:text-5xl">
-            Music that <span className="text-amber-400">hits</span> for creators
-            who can&rsquo;t afford to get flagged
+          <h1 className="mt-4 text-4xl font-extrabold leading-tight sm:text-5xl">
+            Emotion-Ready Music
+            <br />
+            <span className="text-amber-300">for Story Creators</span>
           </h1>
 
-          <p className="mt-4 max-w-xl text-base/7 text-white/70">
-            R&amp;B and hip-hop cleared for YouTube, TikTok, and Reels.
-            Download stems, loops, full cuts, and ready-to-post tracks —
-            commercial license included every time.
+          <p className="mt-4 max-w-xl text-base/7 opacity-90">
+            Creator-safe music packs, emotional singles, and cinematic audio
+            built for reels, shorts, romantic visuals, storytelling, and
+            content that needs real feeling.
           </p>
 
-          {/* trust pills */}
-          <ul className="mt-6 flex flex-wrap gap-2 text-sm">
-            {[
-              "Monetized YouTube ✓",
-              "TikTok & Reels ✓",
-              "Stems included ✓",
-              "Instant download ✓",
-            ].map((item) => (
-              <li
-                key={item}
-                className="rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-white/80"
-              >
-                {item}
-              </li>
-            ))}
+          <ul className="mt-6 grid gap-2 text-sm opacity-95 sm:grid-cols-2">
+            <li>✅ Creator-safe music</li>
+            <li>✅ Clean deliverables</li>
+            <li>✅ Simple licensing</li>
+            <li>✅ Monetized use</li>
           </ul>
 
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-7 flex flex-wrap gap-3">
             <Link
               href="/packs"
-              className="rounded-full bg-amber-400 px-6 py-3 text-sm font-semibold text-neutral-900 hover:bg-amber-300"
+              className="rounded-full bg-emerald-500 px-6 py-3 text-sm font-semibold text-white hover:bg-emerald-400"
             >
               Browse Packs
             </Link>
+
             <Link
               href="/shorts"
-              className="rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-semibold text-white hover:bg-white/15"
+              className="rounded-full bg-white/15 px-6 py-3 text-sm font-semibold text-white hover:bg-white/20"
             >
-              Explore Tracks
+              Explore Shorts
             </Link>
+
             <Link
               href="#plans"
-              className="rounded-full border border-white/10 px-6 py-3 text-sm font-semibold text-white/70 hover:text-white"
+              className="rounded-full bg-black/25 px-6 py-3 text-sm font-semibold text-white hover:bg-black/35"
             >
-              View Pricing
+              View Plans
             </Link>
           </div>
 
-          {/* secondary nav */}
-          <div className="mt-8 border-t border-white/10 pt-4">
-            <div className="text-xs font-semibold uppercase tracking-wide text-white/40">
+          <div className="mt-8 border-t border-white/20 pt-4">
+            <div className="text-xs font-semibold uppercase tracking-wide text-white/70">
               More from PulseNexis
             </div>
+
             <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-sm">
-              <Link href="/games" className="text-white/60 hover:text-white">
+              <Link
+                href="/games"
+                className="text-white/85 underline-offset-4 hover:text-white hover:underline"
+              >
                 Gaming Audio
               </Link>
-              <Link href="/licensing" className="text-white/60 hover:text-white">
+
+              <Link
+                href="/licensing"
+                className="text-white/85 underline-offset-4 hover:text-white hover:underline"
+              >
                 Licensing
               </Link>
-              <Link href="/trademark" className="text-white/60 hover:text-white">
+
+              <Link
+                href="/trademark"
+                className="text-white/85 underline-offset-4 hover:text-white hover:underline"
+              >
                 Trademark Showcase
               </Link>
             </div>
           </div>
+
+          <p className="mt-4 text-xs opacity-80">
+            Music for creators • stories • visual moments • monetized content
+          </p>
         </div>
 
-        {/* right col */}
         <div className="flex flex-col gap-3">
-          {/* AI video banner */}
-          <div className="rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4">
-            <div className="text-xs font-semibold uppercase tracking-wide text-amber-700">
-              New — AI Video Creator
-            </div>
-            <p className="mt-1 text-sm font-semibold text-neutral-900">
-              Your photos + our music = a cinematic video, ready to post.
-            </p>
-            <Link
-              href="/studio"
-              className="mt-3 inline-flex items-center text-sm font-semibold text-amber-700 hover:text-amber-600"
-            >
-              Visit the Studio →
+          <div className="rounded-2xl bg-gradient-to-r from-violet-600 to-indigo-500 px-5 py-3 text-center text-sm font-bold tracking-wide text-white shadow-sm">
+            Your Photo My Music — AI Video Creator{" "}
+            <Link href="/studio" className="underline underline-offset-2 hover:opacity-80">
+              Visit the Studio
             </Link>
           </div>
 
-          {/* hero image */}
           <div className="relative w-full overflow-hidden rounded-3xl border bg-white">
-            <div className="relative aspect-[16/9] w-full">
-              <Image
-                src="/hero-studio.jpg"
-                alt="Music production studio setup"
-                fill
-                priority
-                className="object-cover"
-              />
-            </div>
-            <div className="absolute bottom-4 left-4 rounded-xl bg-black/60 px-3 py-2 text-sm text-white">
-              Creator-safe music · emotional singles · cinematic audio
-            </div>
+          <div className="relative aspect-[16/9] w-full">
+            <Image
+              src="/hero-studio.jpg"
+              alt="Music production studio setup"
+              fill
+              priority
+              className="object-cover"
+            />
           </div>
+
+          <div className="absolute bottom-4 left-4 rounded-xl bg-black/60 px-3 py-2 text-sm text-white">
+            Creator-safe music packs • emotional singles • cinematic audio
+          </div>
+        </div>
         </div>
       </section>
 
-      {/* ── FREE TRACK HOOK ── */}
-      <section className="mt-8">
-        <div className="rounded-2xl border-2 border-dashed border-emerald-300 bg-emerald-50 p-6">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <div className="text-xs font-semibold uppercase tracking-wide text-emerald-700">
-                Not sure yet?
-              </div>
-              <h2 className="mt-1 text-lg font-bold text-neutral-900">
-                Hear it before you buy — download one full track free
-              </h2>
-              <p className="mt-1 text-sm text-neutral-600">
-                No card required. If it slaps, you&rsquo;ll be back.
-              </p>
-            </div>
-            <Link
-              href="/shorts"
-              className="inline-flex shrink-0 items-center rounded-full bg-emerald-500 px-6 py-3 text-sm font-semibold text-white hover:bg-emerald-400"
-            >
-              Get a free track
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ── FEATURED PACK ── */}
-      <section className="mt-10">
+      {/* FEATURED MONEY BLOCK */}
+      <section className="mt-14">
         <div className="rounded-3xl border bg-white p-8 shadow-sm">
           <div className="grid gap-8 lg:grid-cols-[1.3fr_0.9fr] lg:items-center">
             <div>
@@ -290,27 +258,16 @@ export default function HomePage() {
                 and short-form storytelling content that needs real feeling.
               </p>
 
-              {/* what's inside — renamed from formats to benefits */}
-              <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                <div className="rounded-2xl bg-neutral-50 p-4 text-sm text-neutral-700">
-                  2 full R&amp;B / hip-hop tracks
-                </div>
-                <div className="rounded-2xl bg-neutral-50 p-4 text-sm text-neutral-700">
-                  15s &amp; 30s Reels-ready cuts
-                </div>
-                <div className="rounded-2xl bg-neutral-50 p-4 text-sm text-neutral-700">
-                  Loopable versions for editing
-                </div>
-                <div className="rounded-2xl bg-neutral-50 p-4 text-sm text-neutral-700">
-                  Instant download + commercial license
-                </div>
-              </div>
+              <p className="mt-2 text-xs text-neutral-500">
+                Built for creators posting consistent content across reels, shorts,
+                and story-driven formats.
+              </p>
 
-              {/* audio preview */}
               <div className="mt-5 rounded-2xl border bg-neutral-50 p-4">
                 <div className="mb-2 text-xs font-semibold text-neutral-500">
                   Listen before you buy
                 </div>
+
                 <audio controls className="w-full">
                   <source
                     src="https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/Before-You-Hear-It-From-Him/Before%20You%20Hear%20It%20From%20Him_Short.mp3"
@@ -318,9 +275,25 @@ export default function HomePage() {
                   />
                   Your browser does not support the audio element.
                 </audio>
+
                 <p className="mt-2 text-xs text-neutral-500">
-                  2 emotion-ready signature tracks + short-form cuts included.
+                  Includes 2 emotion-ready signature tracks plus short-form cuts.
                 </p>
+              </div>
+
+              <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                <div className="rounded-2xl bg-neutral-50 p-4 text-sm text-neutral-700">
+                  2 premium emotional tracks
+                </div>
+                <div className="rounded-2xl bg-neutral-50 p-4 text-sm text-neutral-700">
+                  15s and 30s creator-ready cuts
+                </div>
+                <div className="rounded-2xl bg-neutral-50 p-4 text-sm text-neutral-700">
+                  Loopable versions for editing
+                </div>
+                <div className="rounded-2xl bg-neutral-50 p-4 text-sm text-neutral-700">
+                  Instant download + fast licensing
+                </div>
               </div>
 
               <div className="mt-7 flex flex-wrap gap-3">
@@ -330,6 +303,7 @@ export default function HomePage() {
                 >
                   Shop This Pack
                 </Link>
+
                 <Link
                   href="#plans"
                   className="rounded-full border border-neutral-300 bg-white px-6 py-3 text-sm font-semibold text-neutral-900 hover:bg-neutral-50"
@@ -337,13 +311,17 @@ export default function HomePage() {
                   See License Options
                 </Link>
               </div>
+
+              <p className="mt-4 text-xs text-neutral-500">
+                Used for reels, storytelling content, and monetized creator projects.
+              </p>
             </div>
 
-            {/* dark aside — unchanged Stripe link */}
             <div className="rounded-3xl bg-neutral-900 p-6 text-white">
               <div className="text-sm font-semibold text-neutral-300">
                 Best for
               </div>
+
               <ul className="mt-4 space-y-3 text-sm text-neutral-200">
                 <li>• Relationship POV edits</li>
                 <li>• Emotional storytelling reels</li>
@@ -355,21 +333,24 @@ export default function HomePage() {
                 <div className="text-xs uppercase tracking-wide text-neutral-400">
                   Starter pricing
                 </div>
+
                 <div className="mt-2 text-3xl font-bold">$29</div>
+
                 <p className="mt-2 text-sm text-neutral-300">
-                  Start with the Basic license. Upgrade anytime as your content grows.
+                  Start with the Basic license now. Upgrade anytime as your content grows.
                 </p>
               </div>
 
-              {/* ← Stripe link untouched */}
-              <Link
-                href="https://buy.stripe.com/7sY28r5wf8vtc8VeJT4ZG0E"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-semibold text-neutral-900 hover:bg-neutral-100"
-              >
-                Buy Basic License
-              </Link>
+              <div className="mt-6">
+                <Link
+                  href="https://buy.stripe.com/7sY28r5wf8vtc8VeJT4ZG0E"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex w-full items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-semibold text-neutral-900 hover:bg-neutral-100"
+                >
+                  Buy Basic License
+                </Link>
+              </div>
 
               <p className="mt-3 text-center text-xs text-neutral-400">
                 Instant access after purchase
@@ -379,7 +360,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── HOT RIGHT NOW ── */}
+      {/* HOT RIGHT NOW */}
       <section className="mt-12" id="hot">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
@@ -387,12 +368,13 @@ export default function HomePage() {
               🔥 Hot Right Now on PulseNexis
             </div>
             <h2 className="mt-2 text-2xl font-bold">
-              Tracks creators are posting with this week
+              Start with the tracks creators are feeling this week
             </h2>
             <p className="mt-1 text-sm text-neutral-600">
-              Preview, license, and download in minutes.
+              Focused track pages with fast preview and checkout.
             </p>
           </div>
+
           <Link
             href="/shorts"
             className="inline-flex w-fit items-center rounded-full border border-neutral-300 bg-white px-5 py-2 text-sm font-semibold text-neutral-900 hover:bg-neutral-50"
@@ -409,6 +391,7 @@ export default function HomePage() {
                   <div className="text-sm font-semibold">{track.title}</div>
                   <p className="mt-2 text-sm opacity-80">{track.desc}</p>
                 </div>
+
                 <span className="shrink-0 rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-800">
                   {track.badge}
                 </span>
@@ -423,25 +406,26 @@ export default function HomePage() {
                   href={track.href}
                   className="inline-flex flex-1 items-center justify-center rounded-full border border-neutral-300 bg-white px-4 py-2 text-sm font-semibold text-neutral-900 hover:bg-neutral-50"
                 >
-                  Preview
+                  View Track
                 </Link>
+
                 <Link
                   href={`${track.href}#buy`}
                   className="inline-flex flex-1 items-center justify-center rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-500"
                 >
-                  License it
+                  Buy Now
                 </Link>
               </div>
 
               <p className="mt-3 text-xs opacity-70">
-                Secure checkout via Stripe · Instant access after purchase
+                Secure checkout via Stripe • Instant access after purchase
               </p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ── USE CASES ── */}
+      {/* USE CASES */}
       <section className="mt-12">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
@@ -450,6 +434,7 @@ export default function HomePage() {
               Choose a use case to see the best-fit PulseNexis options.
             </p>
           </div>
+
           <Link
             href="/packs"
             className="inline-flex w-fit items-center rounded-full border border-neutral-300 bg-white px-5 py-2 text-sm font-semibold text-neutral-900 hover:bg-neutral-50"
@@ -470,10 +455,12 @@ export default function HomePage() {
                   <div className="text-sm font-semibold">{item.title}</div>
                   <p className="mt-2 text-sm opacity-80">{item.desc}</p>
                 </div>
+
                 <span className="shrink-0 rounded-full bg-neutral-100 px-3 py-1 text-xs font-semibold text-neutral-700">
                   {item.badge}
                 </span>
               </div>
+
               <div className="mt-4 text-sm font-semibold text-indigo-600 group-hover:text-indigo-700">
                 Browse →
               </div>
@@ -489,6 +476,7 @@ export default function HomePage() {
                 Start with Packs or Hot Right Now for the fastest path to licensing.
               </p>
             </div>
+
             <Link
               href="/singles"
               className="inline-flex w-fit items-center rounded-full bg-indigo-600 px-5 py-2 text-sm font-semibold text-white hover:bg-indigo-500"
@@ -499,18 +487,20 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── PRICING ── */}
+      {/* PLANS */}
       <section className="mt-14" id="plans">
-        <div>
-          <div className="text-sm font-semibold text-neutral-800">
-            Pricing &amp; Plans
+        <div className="flex flex-col gap-2">
+          <div>
+            <div className="text-sm font-semibold text-neutral-800">
+              Pricing &amp; Plans
+            </div>
+            <h2 className="mt-2 text-2xl font-bold">
+              Choose the license that fits your project
+            </h2>
+            <p className="mt-1 text-sm text-neutral-600">
+              Buy one license fast without changing the rest of your PulseNexis workflow.
+            </p>
           </div>
-          <h2 className="mt-2 text-2xl font-bold">
-            Pay once. Post forever. No subscriptions required.
-          </h2>
-          <p className="mt-1 text-sm text-neutral-600">
-            Every license includes commercial use. Upgrade anytime — your Stripe checkout stays the same.
-          </p>
         </div>
 
         <div className="mt-6 grid gap-4 lg:grid-cols-3">
@@ -538,8 +528,9 @@ export default function HomePage() {
                 <p className="mt-3 text-5xl font-bold text-neutral-900">
                   {plan.price}
                 </p>
-                <p className="mt-1 text-xs text-neutral-500">one-time · lifetime license</p>
-                <p className="mt-3 text-sm text-neutral-600">{plan.description}</p>
+                <p className="mt-3 text-sm text-neutral-600">
+                  {plan.description}
+                </p>
               </div>
 
               <ul className="mt-6 space-y-3">
@@ -553,7 +544,6 @@ export default function HomePage() {
                 ))}
               </ul>
 
-              {/* ← All three Stripe links untouched */}
               <Link
                 href={plan.href}
                 target="_blank"
@@ -569,51 +559,36 @@ export default function HomePage() {
             </div>
           ))}
         </div>
-
-        {/* brand / pro callout */}
-        <div className="mt-4 rounded-2xl border border-neutral-200 bg-neutral-50 p-5">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <div className="text-sm font-semibold text-neutral-900">
-                Need broadcast, sync, or white-label rights?
-              </div>
-              <p className="mt-1 text-sm text-neutral-600">
-                Brands, ad agencies, and sync placements — reach out for a Pro License quote.
-              </p>
-            </div>
-            <Link
-              href="/licensing"
-              className="inline-flex w-fit items-center rounded-full bg-neutral-900 px-5 py-2 text-sm font-semibold text-white hover:bg-neutral-700"
-            >
-              View Licensing
-            </Link>
-          </div>
-        </div>
       </section>
 
-      {/* ── HOW IT WORKS ── */}
+      {/* HOW IT WORKS */}
       <section className="mt-10 grid gap-4 lg:grid-cols-3">
         <div className="rounded-2xl border bg-white p-5">
-          <div className="text-sm font-semibold">1) Find your vibe</div>
+          <div className="text-sm font-semibold">1) Browse</div>
           <p className="mt-2 text-sm opacity-80">
-            Browse by use case — reels, storytelling, romance, ads, gaming. Pick what fits your project.
+            Browse licensable singles, packs, and creator-ready tracks built for
+            emotional content and real-world projects.
           </p>
         </div>
+
         <div className="rounded-2xl border bg-white p-5">
-          <div className="text-sm font-semibold">2) Choose your license</div>
+          <div className="text-sm font-semibold">2) Choose Your Use</div>
           <p className="mt-2 text-sm opacity-80">
-            Basic for personal, Creator for monetized channels, Pro for brands and commercial production.
+            Pick the best fit for shorts, brands, weddings, podcasts, film, or
+            games, then choose the license that matches your use.
           </p>
         </div>
+
         <div className="rounded-2xl border bg-white p-5">
-          <div className="text-sm font-semibold">3) Post without fear</div>
+          <div className="text-sm font-semibold">3) Publish &amp; Monetize</div>
           <p className="mt-2 text-sm opacity-80">
-            Download instantly after checkout. Your license covers YouTube, TikTok, Reels, and beyond.
+            Checkout once and publish confidently with creator-safe music and
+            licensing designed for monetized content.
           </p>
         </div>
       </section>
 
-      {/* ── FINAL CTA ── */}
+      {/* FINAL CTA */}
       <section className="mt-12">
         <div className="rounded-3xl bg-neutral-900 p-8 text-white">
           <div className="max-w-3xl">
@@ -621,11 +596,12 @@ export default function HomePage() {
               Build with PulseNexis
             </div>
             <h2 className="mt-2 text-3xl font-bold">
-              One track. One pack. Or a full licensing path — start anywhere.
+              Start with a track, a pack, or a full licensing path
             </h2>
             <p className="mt-3 text-sm text-neutral-300">
-              R&amp;B and hip-hop built for creators who post every day and need music
-              that won&rsquo;t fight them. Download, license, post, repeat.
+              Whether you need music for a short video, a brand campaign, a wedding
+              piece, or a game system, PulseNexis gives you a fast path from sound
+              to published project.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-3">
@@ -635,12 +611,14 @@ export default function HomePage() {
               >
                 Browse Packs
               </Link>
+
               <Link
                 href="/licensing"
                 className="rounded-full bg-white/10 px-6 py-3 text-sm font-semibold text-white hover:bg-white/20"
               >
                 View Licensing
               </Link>
+
               <Link
                 href="/games"
                 className="rounded-full bg-white/10 px-6 py-3 text-sm font-semibold text-white hover:bg-white/20"
@@ -651,7 +629,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
     </main>
   );
 }
