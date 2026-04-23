@@ -58,6 +58,12 @@ const SAMPLE_SONGS = [
     vibe: "Moody • R&B",
     audioUrl: "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/Where-We-Need-To-Be/Where%20We%20Need%20to%20Be_Sample.mp3",
   },
+  {
+    id: "first-sight",
+    title: "First Sight",
+    vibe: "Moody • R&B",
+    audioUrl: "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Video-Generator/First%20Sight_Sample.mp3",
+  },
 ];
 
 export default function SamplePage() {
