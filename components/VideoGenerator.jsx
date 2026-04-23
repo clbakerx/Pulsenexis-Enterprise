@@ -57,6 +57,7 @@ const SONGS = [
   { id: "where-we-need-to-be", title: "Where We Need To Be", vibe: "Moody • R&B", audioUrl: `${BASE}/Where-We-Need-To-Be/Where-We-Need-To-Be_Sample.mp3` },
   { id: "winter-white", title: "Winter White", vibe: "Poetic • Soul", audioUrl: `${BASE}/Winter-White/Winter-White_Sample.mp3` },
   { id: "wouldnt-want-to", title: "Wouldn't Want To", vibe: "Moody • R&B", audioUrl: `${BASE}/Wouldnt-Want-To/Wouldnt-Want-To_Sample.mp3` },
+  { id: "first-sight", title: "First Sight", vibe: "Moody • R&B", audioUrl: `${BASE}/First-Sight/First-Sight_Sample.mp3` },
 ];
 
 export default function VideoGenerator() {
