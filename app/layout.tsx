@@ -83,6 +83,12 @@ export default function RootLayout({
             <main className="mx-auto max-w-6xl px-4 py-6">{children}</main>
             <ConsentBanner />
           </CartProvider>
+          <script dangerouslySetInnerHTML={{ __html: `
+            window.PulsenexisWidget = {
+              proxyUrl: "/api/chat"
+            };
+          `}} />
+          <script src="/pulsenexis-widget.js" defer />
         </body>
       </html>
     </ClerkProvider>
