@@ -57,8 +57,8 @@ const SYNC_CATALOG = [
     uses: ["Film & TV", "Social Media"],
   },
   {
-    id: "the-foundation",
-    title: "The Foundation",
+    id: "the-way-i-be",
+    title: "The Way I Be",
     mood: "Uplifting • Cinematic • Hopeful",
     tempo: "84 BPM",
     key: "Ab Major",
