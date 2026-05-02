@@ -58,7 +58,7 @@ const SYNC_CATALOG = [
   },
   {
     id: "the-only-way-i-be",
-    title: "The Way I Be",
+    title: "The Only Way I Be",
     mood: "Uplifting • Cinematic • Hopeful",
     tempo: "84 BPM",
     key: "Ab Major",
