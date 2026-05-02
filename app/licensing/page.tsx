@@ -57,14 +57,14 @@ const SYNC_CATALOG = [
     uses: ["Film & TV", "Social Media"],
   },
   {
-    id: "the-way-i-be",
+    id: "the-only-way-i-be",
     title: "The Way I Be",
     mood: "Uplifting • Cinematic • Hopeful",
     tempo: "84 BPM",
     key: "Ab Major",
     lane: "Soul Lift",
     tags: ["love", "cinematic", "gospel", "uplifting"],
-    previewUrl: "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Video-Generator/The%20Only%20Way%20I%20Be_clip.mp3",
+    previewUrl: "https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Singles/The-Only-Way-I-Be/The%20Only%20Way%20I%20Be_Sample.mp3",
     uses: ["Film & TV", "Commercials", "Social Media"],
   },
   {
