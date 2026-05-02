@@ -21,6 +21,7 @@ export async function POST(req: Request) {
     await resend.emails.send({
       from: 'PulseNexis <info@pulsenexis.com>',
       to: [email],
+      bcc: ['info@pulsenexis.com'],
       subject: 'Your free Pulsenexis sample 🎵',
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
