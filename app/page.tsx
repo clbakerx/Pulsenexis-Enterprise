@@ -132,10 +132,9 @@ export default function HomePage() {
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
 
-      {/* ── HERO ── */}
+      {/* HERO */}
       <section className="grid gap-8 lg:grid-cols-2 lg:items-center">
         <div className="rounded-3xl bg-neutral-900 p-10 text-white">
-          {/* eyebrow */}
           <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1">
             <span className="h-2 w-2 rounded-full bg-emerald-400" />
             <span className="text-xs font-semibold tracking-wide text-white/80">
@@ -154,7 +153,6 @@ export default function HomePage() {
             commercial license included every time.
           </p>
 
-          {/* trust pills */}
           <ul className="mt-6 flex flex-wrap gap-2 text-sm">
             {[
               "Monetized YouTube ✓",
@@ -192,7 +190,6 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {/* secondary nav */}
           <div className="mt-8 border-t border-white/10 pt-4">
             <div className="text-xs font-semibold uppercase tracking-wide text-white/40">
               More from PulseNexis
@@ -211,9 +208,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* right col */}
         <div className="flex flex-col gap-3">
-          {/* AI video banner */}
           <div className="rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4">
             <div className="text-xs font-semibold uppercase tracking-wide text-amber-700">
               New — AI Video Creator
@@ -229,7 +224,6 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {/* hero image */}
           <div className="relative w-full overflow-hidden rounded-3xl border bg-white">
             <div className="relative aspect-[16/9] w-full">
               <Image
@@ -247,7 +241,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── FREE TRACK HOOK ── */}
+      {/* FREE SAMPLE HOOK — updated to point to /free-sample */}
       <section className="mt-8">
         <div className="rounded-2xl border-2 border-dashed border-emerald-300 bg-emerald-50 p-6">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -256,23 +250,23 @@ export default function HomePage() {
                 Not sure yet?
               </div>
               <h2 className="mt-1 text-lg font-bold text-neutral-900">
-                Hear it before you buy — download one full track free
+                Taste it before you buy — get a free sample on us
               </h2>
               <p className="mt-1 text-sm text-neutral-600">
-                No card required. If it slaps, you&rsquo;ll be back.
+                No card required. Pulsenexis picks a sample for you.
               </p>
             </div>
             <Link
-              href="/shorts"
+              href="/free-sample"
               className="inline-flex shrink-0 items-center rounded-full bg-emerald-500 px-6 py-3 text-sm font-semibold text-white hover:bg-emerald-400"
             >
-              Get a free track
+              Get a free sample
             </Link>
           </div>
         </div>
       </section>
 
-      {/* ── FEATURED PACK ── */}
+      {/* FEATURED PACK */}
       <section className="mt-10">
         <div className="rounded-3xl border bg-white p-8 shadow-sm">
           <div className="grid gap-8 lg:grid-cols-[1.3fr_0.9fr] lg:items-center">
@@ -290,7 +284,6 @@ export default function HomePage() {
                 and short-form storytelling content that needs real feeling.
               </p>
 
-              {/* what's inside — renamed from formats to benefits */}
               <div className="mt-5 grid gap-3 sm:grid-cols-2">
                 <div className="rounded-2xl bg-neutral-50 p-4 text-sm text-neutral-700">
                   2 full R&amp;B / hip-hop tracks
@@ -306,7 +299,6 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* audio preview */}
               <div className="mt-5 rounded-2xl border bg-neutral-50 p-4">
                 <div className="mb-2 text-xs font-semibold text-neutral-500">
                   Listen before you buy
@@ -339,7 +331,6 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* dark aside — unchanged Stripe link */}
             <div className="rounded-3xl bg-neutral-900 p-6 text-white">
               <div className="text-sm font-semibold text-neutral-300">
                 Best for
@@ -361,7 +352,6 @@ export default function HomePage() {
                 </p>
               </div>
 
-              {/* ← Stripe link untouched */}
               <Link
                 href="https://buy.stripe.com/7sY28r5wf8vtc8VeJT4ZG0E"
                 target="_blank"
@@ -379,7 +369,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── HOT RIGHT NOW ── */}
+      {/* HOT RIGHT NOW */}
       <section className="mt-12" id="hot">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
@@ -441,7 +431,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── USE CASES ── */}
+      {/* USE CASES */}
       <section className="mt-12">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
@@ -499,7 +489,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── PRICING ── */}
+      {/* PRICING */}
       <section className="mt-14" id="plans">
         <div>
           <div className="text-sm font-semibold text-neutral-800">
@@ -553,7 +543,6 @@ export default function HomePage() {
                 ))}
               </ul>
 
-              {/* ← All three Stripe links untouched */}
               <Link
                 href={plan.href}
                 target="_blank"
@@ -570,7 +559,6 @@ export default function HomePage() {
           ))}
         </div>
 
-        {/* brand / pro callout */}
         <div className="mt-4 rounded-2xl border border-neutral-200 bg-neutral-50 p-5">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
@@ -591,7 +579,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── HOW IT WORKS ── */}
+      {/* HOW IT WORKS */}
       <section className="mt-10 grid gap-4 lg:grid-cols-3">
         <div className="rounded-2xl border bg-white p-5">
           <div className="text-sm font-semibold">1) Find your vibe</div>
@@ -613,7 +601,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── FINAL CTA ── */}
+      {/* FINAL CTA — free sample button added */}
       <section className="mt-12">
         <div className="rounded-3xl bg-neutral-900 p-8 text-white">
           <div className="max-w-3xl">
@@ -634,6 +622,12 @@ export default function HomePage() {
                 className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-neutral-900 hover:bg-neutral-100"
               >
                 Browse Packs
+              </Link>
+              <Link
+                href="/free-sample"
+                className="rounded-full bg-emerald-500 px-6 py-3 text-sm font-semibold text-white hover:bg-emerald-400"
+              >
+                Get a free sample
               </Link>
               <Link
                 href="/licensing"
