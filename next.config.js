@@ -1,18 +1,10 @@
+/** @type {import('next').NextConfig} */
 const nextConfig = {
-  async redirects() {
-    return [
-      {
-        source: "/pulsenexis-download",
-        destination: "/trademark",
-        permanent: true,
-      },
-      {
-        source: "/pulsenexis-download/",
-        destination: "/trademark",
-        permanent: true,
-      },
-    ];
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '50mb',
+    },
   },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig

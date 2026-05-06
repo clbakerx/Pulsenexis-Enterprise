@@ -18,7 +18,7 @@ const TRACKS: Track[] = [
   { title: 'Breaking My Heart', vibe: 'Moody - R&B', url: BASE + '/Breaks My Heart.mp3' },
   { title: 'Bring The Snow', vibe: 'Moody - R&B', url: BASE + '/Bring-the-Snow(Slide We Ride)Sample.mp3' },
   { title: 'Built Different', vibe: 'Moody - R&B', url: BASE + '/Built Different_Sample.mp3' },
-  { title: 'Cant Stay Away', vibe: 'Moody - R&B', url: BASE + '/Cant-Stay-Away_Sample.mp3' },
+  { title: 'Cant Stay Away', vibe: 'Moody - R&B', url: BASE + '/Cant Stay Away_Sample.mp3' },
   { title: 'Chances', vibe: 'Moody - R&B', url: BASE + '/Chances_30secSample.mp3' },
   { title: 'Clean Air', vibe: 'Poetic - Soul', url: BASE + '/Clean Air_Sample.mp3' },
   { title: 'Closer Than Before', vibe: 'Romantic - R&B', url: BASE + '/Closer-Than-Before_Sample.mp3' },
