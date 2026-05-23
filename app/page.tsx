@@ -44,6 +44,12 @@ const USE_CASES = [
     href: "/games",
     badge: "NEW",
   },
+  {
+    title: "Custom Songs",
+    desc: "Anniversary, proposal, birthday, or memorial — a one-of-a-kind original song made from your story.",
+    href: "/custom-songs",
+    badge: "Personal",
+  },
 ];
 
 const HOT_RIGHT_NOW = [
@@ -221,6 +227,21 @@ export default function HomePage() {
               className="mt-3 inline-flex items-center text-sm font-semibold text-amber-700 hover:text-amber-600"
             >
               Visit the Studio →
+            </Link>
+          </div>
+
+          <div className="rounded-2xl border border-pink-200 bg-pink-50 px-5 py-4">
+            <div className="text-xs font-semibold uppercase tracking-wide text-pink-700">
+              Custom Songs
+            </div>
+            <p className="mt-1 text-sm font-semibold text-neutral-900">
+              Turn your love story into a real original song — anniversaries, proposals, and more.
+            </p>
+            <Link
+              href="/custom-songs"
+              className="mt-3 inline-flex items-center text-sm font-semibold text-pink-700 hover:text-pink-600"
+            >
+              Start my song →
             </Link>
           </div>
 
@@ -618,10 +639,10 @@ export default function HomePage() {
 
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
-                href="/packs"
+                href="/custom-songs"
                 className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-neutral-900 hover:bg-neutral-100"
               >
-                Browse Packs
+                Custom Songs
               </Link>
               <Link
                 href="/free-sample"
