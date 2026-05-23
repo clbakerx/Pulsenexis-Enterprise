@@ -55,7 +55,7 @@ export default function TermsPage() {
             ← Return to Home
           </Link>
           <Link 
-            href="/catalog" 
+            href="/singles" 
             className="inline-flex items-center rounded-xl border border-indigo-600 px-6 py-3 font-semibold text-indigo-600 transition hover:bg-indigo-50"
           >
             Browse Music Catalog
