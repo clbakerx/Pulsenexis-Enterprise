@@ -58,7 +58,7 @@ export default function RootLayout({
                     <Link className="hover:underline" href="/support">
                       Support
                     </Link>
-                    <Link className="hover:underline" href="/free-sample">
+                    <Link className="hover:underline" href="/trademark">
                       PulseNexis Download™
                     </Link>
                     <Link
