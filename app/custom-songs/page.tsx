@@ -1,60 +1,6 @@
-export default function CustomSongPage() {
-  const packages = [
-    {
-      name: "Starter",
-      price: "$149",
-      description: "A heartfelt custom song concept based on your story.",
-      features: [
-        "Custom lyrics based on your story",
-        "One original song concept",
-        "Demo vocal direction",
-        "MP3 delivery",
-        "Great for birthdays, apologies, and simple gifts",
-      ],
-      cta: "Start My Song",
-      href: "#order",
-    },
-    {
-      name: "Signature",
-      price: "$399",
-      description: "The best choice for anniversaries, proposals, and emotional gifts.",
-      features: [
-        "Custom lyrics + full song structure",
-        "Polished demo production direction",
-        "Personalized hook and chorus",
-        "One revision round",
-        "Delivered as a keepsake-ready MP3",
-      ],
-      cta: "Choose Signature",
-      href: "#order",
-      featured: true,
-    },
-    {
-      name: "Exclusive",
-      price: "$999+",
-      description: "Premium custom song experience with exclusive rights options.",
-      features: [
-        "Full custom song package",
-        "Premium arrangement direction",
-        "Priority delivery",
-        "Expanded revision support",
-        "Exclusive ownership/license options",
-      ],
-      cta: "Request Exclusive",
-      href: "#order",
-    },
-  ];
+import { CUSTOM_SONG_PACKAGES as packages, CUSTOM_SONG_OCCASIONS as occasions } from "@/lib/site-content";
 
-  const occasions = [
-    "Anniversary",
-    "Wedding or proposal",
-    "Birthday",
-    "Apology song",
-    "Memorial tribute",
-    "Long-distance love",
-    "Valentine’s Day",
-    "Just because",
-  ];
+export default function CustomSongPage() {
 
   return (
     <main className="min-h-screen bg-neutral-950 text-white">
