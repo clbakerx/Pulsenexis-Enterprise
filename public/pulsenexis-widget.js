@@ -127,6 +127,32 @@
       display: none;
     }
     #pn-lead-bar span { font-weight: 500; }
+    .pn-email-card {
+      margin: 4px 0; padding: 12px 14px;
+      background: #EEEDFE; border-radius: 14px;
+      border: 1px solid rgba(83,74,183,0.2);
+      font-size: 12px;
+    }
+    .pn-email-card p { margin: 0 0 8px; color: #333; line-height: 1.4; }
+    .pn-email-card strong { color: #534AB7; }
+    .pn-email-row { display: flex; gap: 6px; }
+    .pn-email-input {
+      flex: 1; padding: 7px 10px; font-size: 12px;
+      border-radius: 20px; border: 1px solid rgba(83,74,183,0.35);
+      background: #fff; outline: none; font-family: inherit;
+    }
+    .pn-email-input:focus { border-color: ${BRAND_COLOR}; }
+    .pn-email-submit {
+      padding: 7px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+      background: ${BRAND_COLOR}; color: #fff; border: none; cursor: pointer;
+      font-family: inherit; white-space: nowrap;
+    }
+    .pn-email-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+    .pn-email-success { color: #1D9E75; font-weight: 500; font-size: 12px; margin: 4px 0 0; }
+    .pn-email-skip {
+      background: none; border: none; font-size: 11px; color: #aaa;
+      cursor: pointer; padding: 4px 0 0; font-family: inherit; display: block;
+    }
   `;
 
   const style = document.createElement("style");
@@ -175,6 +201,8 @@
   let history = [];
   let isOpen = false;
   let greeted = false;
+  let emailCaptured = false;
+  let exchangeCount = 0;
 
   const quickSets = {
     start: ["Music for YouTube", "Need stems / samples", "Film or ad sync", "Building a library"],
@@ -194,6 +222,17 @@
   document.getElementById("pn-panel-close").addEventListener("click", togglePanel);
   input.addEventListener("keydown", e => { if (e.key === "Enter") send(); });
   sendBtn.addEventListener("click", send);
+
+  function stripMd(text) {
+    return text
+      .replace(/\*\*(.*?)\*\*/g, "$1")
+      .replace(/\*(.*?)\*/g, "$1")
+      .replace(/__(.*?)__/g, "$1")
+      .replace(/_(.*?)_/g, "$1")
+      .replace(/`(.*?)`/g, "$1")
+      .replace(/^#{1,6}\s+/gm, "")
+      .replace(/^\s*[-*+]\s+/gm, "• ");
+  }
 
   function addMsg(role, text) {
     const div = document.createElement("div");
@@ -234,6 +273,53 @@
       b.addEventListener("click", () => { input.value = label; send(); });
       quickRow.appendChild(b);
     });
+  }
+
+  function showEmailCapture() {
+    if (emailCaptured) return;
+    emailCaptured = true;
+
+    const card = document.createElement("div");
+    card.className = "pn-email-card";
+    card.innerHTML = `
+      <p><strong>Stay connected with PulseNexis</strong><br/>Drop your email and I'll send you new drops + deals.</p>
+      <div class="pn-email-row">
+        <input class="pn-email-input" type="email" placeholder="your@email.com" autocomplete="email" />
+        <button class="pn-email-submit" type="button">Send</button>
+      </div>
+      <button class="pn-email-skip" type="button">No thanks</button>
+    `;
+    chatArea.appendChild(card);
+    chatArea.scrollTop = chatArea.scrollHeight;
+
+    const emailInput = card.querySelector(".pn-email-input");
+    const submitBtn = card.querySelector(".pn-email-submit");
+    const skipBtn = card.querySelector(".pn-email-skip");
+
+    function submitEmail() {
+      const val = emailInput.value.trim();
+      if (!val || !val.includes("@")) { emailInput.focus(); return; }
+      submitBtn.disabled = true;
+      const LEAD_URL = cfg.novaLeadUrl || "/api/nova-lead";
+      fetch(LEAD_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: val })
+      })
+      .then(() => {
+        card.innerHTML = `<p class="pn-email-success">✓ Got it! Check your inbox — I'll be in touch.</p>`;
+        chatArea.scrollTop = chatArea.scrollHeight;
+        if (typeof cfg.onEmailCaptured === "function") cfg.onEmailCaptured(val);
+      })
+      .catch(() => {
+        card.innerHTML = `<p class="pn-email-success">✓ You're on the list!</p>`;
+        chatArea.scrollTop = chatArea.scrollHeight;
+      });
+    }
+
+    emailInput.addEventListener("keydown", function(e) { if (e.key === "Enter") submitEmail(); });
+    submitBtn.addEventListener("click", submitEmail);
+    skipBtn.addEventListener("click", function() { card.remove(); emailCaptured = false; });
   }
 
   function parseLead(text) {
@@ -278,7 +364,7 @@
       const initMsg = [{ role: "user", content: "Hi" }];
       const text = await callProxy(initMsg);
       removeTyping();
-      const clean = text.replace(/LEAD_DATA:\{.*\}/, "").trim();
+      const clean = stripMd(text.replace(/LEAD_DATA:\{.*\}/, "").trim());
       history.push({ role: "user", content: "Hi" });
       history.push({ role: "assistant", content: text });
       addMsg("agent", clean);
@@ -300,9 +386,10 @@
     try {
       const raw = await callProxy(history);
       removeTyping();
-      const clean = raw.replace(/LEAD_DATA:\{.*\}/, "").trim();
+      const clean = stripMd(raw.replace(/LEAD_DATA:\{.*\}/, "").trim());
       history.push({ role: "assistant", content: raw });
       addMsg("agent", clean);
+      exchangeCount++;
       const lead = parseLead(raw);
       if (lead) { onLead(lead); setQuick([]); }
       else {
@@ -311,6 +398,7 @@
         else if (lower.includes("budget") || lower.includes("spend")) setQuick("budget");
         else if (lower.includes("timeline") || lower.includes("project")) setQuick("timeline");
       }
+      if (exchangeCount >= 1 && !emailCaptured) { showEmailCapture(); }
     } catch(e) {
       removeTyping();
       addMsg("agent", "Something went wrong — please try again.");
