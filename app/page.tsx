@@ -79,8 +79,13 @@ export default function HomePage() {
             >
               View Pricing
             </Link>
+            <Link
+              href="/grown-and-sexy"
+              className="rounded-full border border-amber-400/40 bg-amber-400/10 px-6 py-3 text-sm font-semibold text-amber-300 hover:bg-amber-400/20"
+            >
+              Grown &amp; Sexy
+            </Link>
           </div>
-
           <div className="mt-8 border-t border-white/10 pt-4">
             <div className="text-xs font-semibold uppercase tracking-wide text-white/40">
               More from PulseNexis
