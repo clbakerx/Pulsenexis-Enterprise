@@ -147,6 +147,79 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* PULSENEXIS STORY FEATURE */}
+      <section className="mt-10">
+        <div className="grid gap-8 rounded-3xl bg-neutral-950 p-6 text-white shadow-xl lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:p-10">
+          <div className="mx-auto max-w-sm overflow-hidden rounded-2xl border border-amber-300/30 shadow-2xl">
+            <Image
+              src="/The_Dollar_A_Day_FRONT_COVER_6x9.jpg"
+              alt="The PulseNexis Story book cover"
+              width={600}
+              height={900}
+              className="h-auto w-full"
+            />
+          </div>
+
+          <div>
+            <div className="inline-flex rounded-full border border-amber-300/30 bg-amber-400/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-amber-300">
+              The PulseNexis Story
+            </div>
+
+            <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-5xl">
+              More than a story. A blueprint for building what you believe in.
+            </h2>
+
+            <p className="mt-5 max-w-2xl text-base/7 text-white/70">
+              This book shows how a dollar-a-day music channel became PulseNexis —
+              one song, one upload, one lesson, and one step at a time.
+            </p>
+
+            <p className="mt-4 max-w-2xl text-base/7 text-white/70">
+              It was written for artists, creators, entrepreneurs, veterans, and
+              dreamers who wonder if building something meaningful is really possible.
+              The message is simple: it is possible, it is attainable, and you do not
+              have to start with everything figured out.
+            </p>
+
+            <p className="mt-4 max-w-2xl text-base/7 text-white/70">
+              If PulseNexis can grow from an idea into a real music business, your
+              dream can grow too — one disciplined day at a time.
+            </p>
+
+            <p className="mt-4 text-sm font-medium text-amber-300">
+              Kindle and Paperback editions are currently being prepared for release.
+            </p>
+
+            <div className="mt-7 flex flex-wrap gap-3">
+              <button
+                type="button"
+                className="cursor-default rounded-full bg-amber-400 px-6 py-3 text-sm font-semibold text-neutral-950"
+              >
+                Amazon Release Coming Soon
+              </button>
+
+              <Link
+                href="/story"
+                className="rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-semibold text-white hover:bg-white/15"
+              >
+                Read the Story
+              </Link>
+
+              <Link
+                href="/packs"
+                className="rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-semibold text-white hover:bg-white/15"
+              >
+                Browse Music
+              </Link>
+            </div>
+
+            <p className="mt-5 text-sm text-white/50">
+              Built by Chris Baker · Founder of PulseNexis
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* FREE SAMPLE HOOK — updated to point to /free-sample */}
       <section className="mt-8">
         <div className="rounded-2xl border-2 border-dashed border-emerald-300 bg-emerald-50 p-6">
