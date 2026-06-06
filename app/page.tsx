@@ -83,7 +83,7 @@ export default function HomePage() {
               href="/grown-and-sexy"
               className="rounded-full border border-amber-400/40 bg-amber-400/10 px-6 py-3 text-sm font-semibold text-amber-300 hover:bg-amber-400/20"
             >
-              Grown &amp; Sexy
+              New Release
             </Link>
           </div>
           <div className="mt-8 border-t border-white/10 pt-4">
