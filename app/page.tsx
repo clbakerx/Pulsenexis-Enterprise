@@ -192,16 +192,18 @@ export default function HomePage() {
             </p>
 
             <p className="mt-4 text-sm font-medium text-amber-300">
-              Kindle and Paperback editions are currently being prepared for release.
+              Available now in Kindle and Paperback on Amazon.
             </p>
 
             <div className="mt-7 flex flex-wrap gap-3">
-              <button
-                type="button"
-                className="cursor-default rounded-full bg-amber-400 px-6 py-3 text-sm font-semibold text-neutral-950"
+              <Link
+                href="https://www.amazon.com/dp/B0H4C8Q2QZ"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full bg-amber-400 px-6 py-3 text-sm font-semibold text-neutral-950 hover:bg-amber-300"
               >
-                Amazon Release Coming Soon
-              </button>
+                Buy on Amazon
+              </Link>
 
               <Link
                 href="/story"
