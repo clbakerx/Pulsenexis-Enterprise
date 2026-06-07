@@ -1,50 +1,54 @@
 import { NextResponse } from 'next/server';
-import { Resend } from 'resend';
 
 export const runtime = 'nodejs';
 
-export async function POST(req: Request) {
-  const { email, track } = await req.json();
+const hits = new Map<string, number[]>();
+const WINDOW_MS = 10 * 60 * 1000;
+const MAX_PER_WINDOW = 5;
 
+function rateLimited(ip: string): boolean {
+  const now = Date.now();
+  const recent = (hits.get(ip) ?? []).filter((t) => now - t < WINDOW_MS);
+  if (recent.length >= MAX_PER_WINDOW) return true;
+  recent.push(now);
+  hits.set(ip, recent);
+  return false;
+}
+
+export async function POST(req: Request) {
+  const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'unknown';
+  if (rateLimited(ip)) {
+    return NextResponse.json({ error: 'Too many requests' }, { status: 429 });
+  }
+
+  const { email, track } = await req.json();
   if (!email || !email.includes('@')) {
     return NextResponse.json({ error: 'Invalid email' }, { status: 400 });
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    return NextResponse.json({ error: 'Email service not configured' }, { status: 500 });
-  }
-
-  const resend = new Resend(apiKey);
-
   try {
-    await resend.emails.send({
-      from: 'PulseNexis <info@pulsenexis.com>',
-      to: [email],
-      bcc: ['info@pulsenexis.com'],
-      subject: 'Your free Pulsenexis sample 🎵',
-      html: `
-        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #10b981;">Here's your free sample!</h2>
-          <p>Thanks for trying Pulsenexis. Here's the track we picked for you:</p>
-          <p style="font-size: 18px; font-weight: bold;">${track}</p>
-          <p>
-            <a href="${track}" style="background: #10b981; color: white; padding: 12px 24px; border-radius: 999px; text-decoration: none; display: inline-block;">
-              Download Your Sample
-            </a>
-          </p>
-          <p style="color: #6b7280; font-size: 14px;">
-            No spam. Unsubscribe anytime.<br/>
-            — The Pulsenexis Team
-          </p>
-        </div>
-      `,
+    const res = await fetch('https://api.brevo.com/v3/contacts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'api-key': process.env.BREVO_API_KEY!,
+      },
+      body: JSON.stringify({
+        email,
+        listIds: [Number(process.env.BREVO_LIST_ID)],
+        updateEnabled: true,
+        attributes: { SAMPLE_TRACK: track },
+      }),
     });
 
+    if (!res.ok && res.status !== 400) {
+      console.error('Brevo error:', await res.text());
+      return NextResponse.json({ error: 'Subscription failed' }, { status: 502 });
+    }
+
     return NextResponse.json({ success: true });
-  } catch (err: unknown) {
-    const message = err instanceof Error ? err.message : 'Unknown error';
-    console.error('Resend error:', err);
-    return NextResponse.json({ error: message }, { status: 500 });
+  } catch (err) {
+    console.error('Subscribe error:', err);
+    return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }
 }
