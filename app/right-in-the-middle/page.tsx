@@ -66,7 +66,7 @@ export default function RightInTheMiddlePage() {
 
         {/* Make this song your video button */}
         <Link
-          href="/make-video/right-in-the-middle"
+          href="/studio"
           style={{
             display: "block",
             textAlign: "center",
