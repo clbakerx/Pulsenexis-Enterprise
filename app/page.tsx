@@ -197,7 +197,7 @@ export default function HomePage() {
 
             <div className="mt-7 flex flex-wrap gap-3">
               <Link
-                href="https://www.amazon.com/dp/B0H4C8Q2QZ"
+                href="https://www.amazon.com/dp/B0H4DZ4YJ8"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-full bg-amber-400 px-6 py-3 text-sm font-semibold text-neutral-950 hover:bg-amber-300"
