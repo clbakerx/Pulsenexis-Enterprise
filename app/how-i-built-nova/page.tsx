@@ -5,10 +5,14 @@ import Link from "next/link";
 
 const BOOK_URL = "https://www.amazon.com/dp/B0H4DZ4YJ8";
 
-// ─── Simplified, client-side version of Nova's qualification logic ──────────
-// This mirrors the *idea* of how Nova scores a lead — it runs in the browser,
-// makes zero API calls, and costs nothing. The real Nova lives at /api/chat.
-const SIGNALS = {
+type Verdict = "HOT" | "WARM" | "COLD";
+type Caught = { term: string; label: string };
+type Result = { verdict: Verdict; caught: Caught[] };
+
+const SIGNALS: Record<
+  "hot" | "warm" | "cold",
+  { weight: number; label: string; terms: string[] }
+> = {
   hot: {
     weight: 3,
     label: "buying intent",
@@ -26,35 +30,38 @@ const SIGNALS = {
   },
 };
 
-const EXAMPLES = [
+const EXAMPLES: { label: string; text: string }[] = [
   { label: "An urgent buyer", text: "Hey, I need a commercial license for a YouTube ad going live this week — what's your pricing?" },
   { label: "A curious creator", text: "These beats sound great. Tell me more about what you offer for TikTok edits?" },
   { label: "A casual browser", text: "just looking around, not really buying anything, are these free?" },
 ];
 
-function analyze(input: string) {
+function analyze(input: string): Result {
   const t = input.toLowerCase();
-  const caught = [];
+  const caught: Caught[] = [];
   let score = 0;
 
-  for (const [tier, cfg] of Object.entries(SIGNALS)) {
+  for (const cfg of Object.values(SIGNALS)) {
     for (const term of cfg.terms) {
       if (t.includes(term)) {
-        caught.push({ tier, term, label: cfg.label });
+        caught.push({ term, label: cfg.label });
         score += cfg.weight;
       }
     }
   }
 
-  let verdict;
+  let verdict: Verdict;
   if (score >= 3) verdict = "HOT";
   else if (score >= 1) verdict = "WARM";
   else verdict = "COLD";
 
-  return { verdict, caught, score };
+  return { verdict, caught };
 }
 
-const VERDICTS = {
+const VERDICTS: Record<
+  Verdict,
+  { ring: string; dot: string; text: string; headline: string; move: string }
+> = {
   HOT: {
     ring: "border-rose-400/40 bg-rose-500/10",
     dot: "bg-rose-400",
@@ -78,7 +85,7 @@ const VERDICTS = {
   },
 };
 
-const STEPS = [
+const STEPS: { n: string; title: string; body: string }[] = [
   { n: "01", title: "Give it one job", body: "Nova doesn't try to do everything. It does exactly one thing — decide if a visitor is Hot, Warm, or Cold. Narrow it down until the job fits on a single line." },
   { n: "02", title: "Write the judgment down first", body: "Before any code, I wrote out the signals a good salesperson reads on instinct: urgency, a specific need, a budget mention. The rules came before the program." },
   { n: "03", title: "Give it your voice", body: "Nova's instructions are really just me, on paper, explaining how I'd talk to a buyer — patient with the curious, direct with the ready, never pushy with the cold." },
@@ -88,10 +95,10 @@ const STEPS = [
 
 export default function HowIBuiltNovaPage() {
   const [input, setInput] = useState("");
-  const [result, setResult] = useState(null);
+  const [result, setResult] = useState<Result | null>(null);
   const [thinking, setThinking] = useState(false);
 
-  function run(text) {
+  function run(text?: string) {
     const value = text ?? input;
     if (!value.trim()) return;
     setInput(value);
@@ -108,7 +115,6 @@ export default function HowIBuiltNovaPage() {
   return (
     <div className="bg-[#0b0b14] text-white">
       <div className="mx-auto max-w-3xl px-6 py-16">
-        {/* ── Hero ───────────────────────────────────────────── */}
         <p className="text-xs font-semibold uppercase tracking-[0.25em] text-violet-300">
           Behind the build
         </p>
@@ -121,7 +127,6 @@ export default function HowIBuiltNovaPage() {
           solo builder put it together, one step at a time.
         </p>
 
-        {/* ── Interactive demo (the taste) ───────────────────── */}
         <div className="mt-12 rounded-3xl border border-white/10 bg-white/[0.02] p-6 md:p-8">
           <div className="text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
             Try it — send Nova a message
@@ -157,7 +162,6 @@ export default function HowIBuiltNovaPage() {
             {thinking ? "Nova is reading…" : "See how Nova scores it"}
           </button>
 
-          {/* Verdict */}
           {result && v && (
             <div className={`mt-6 rounded-2xl border ${v.ring} p-5`}>
               <div className="flex items-center gap-2">
@@ -200,7 +204,6 @@ export default function HowIBuiltNovaPage() {
           </p>
         </div>
 
-        {/* ── The build, step by step ────────────────────────── */}
         <div className="mt-16">
           <h2 className="text-2xl font-semibold md:text-3xl">
             The build, one step at a time
@@ -224,7 +227,6 @@ export default function HowIBuiltNovaPage() {
           </div>
         </div>
 
-        {/* ── Book CTA ───────────────────────────────────────── */}
         <div className="mt-16 rounded-3xl border border-amber-300/20 bg-amber-400/[0.06] p-7 md:p-9">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-300">
             The full playbook
