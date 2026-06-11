@@ -3,20 +3,6 @@ import TopHero from "@/app/components/TopHero";
 
 const DEFAULT_BUY_URL = "https://buy.stripe.com/7sYaEXaQz4fd3Cp45f4ZG0C";
 
-// Songs that have AI video clips ready in the VideoGenerator
-const VIDEO_READY_IDS = new Set([
-  "someone-elses-man",
-  "the-only-way-i-be",
-  "how-many-love-songs",
-  "all-in",
-  "crystal-ball",
-  "movie-of-the-year",
-  "movie-of-the-year", // alias
-  "no-way-you-win",
-  "boyfriend",
-  "where-we-need-to-be",
-]);
-
 type SingleTrack = {
   id: string;
   title: string;
@@ -606,12 +592,6 @@ export default function SinglesPage() {
 
           <div className="flex flex-wrap gap-2">
             <Link
-              href="/studio"
-              className="inline-flex w-fit items-center rounded-full bg-violet-600 px-5 py-2 text-sm font-semibold text-white hover:bg-violet-500 transition-colors"
-            >
-              🎬 AI Video Studio
-            </Link>
-            <Link
               href="/licensing"
               className="inline-flex w-fit items-center rounded-full border border-neutral-300 bg-white px-5 py-2 text-sm font-semibold text-neutral-900 hover:bg-neutral-50"
             >
@@ -628,10 +608,6 @@ export default function SinglesPage() {
 
         <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {SINGLES.map((s) => {
-            const videoReady = VIDEO_READY_IDS.has(s.id);
-            const studioUrl = videoReady
-              ? `/studio?song=${s.id}`
-              : `/studio`;
             return (
               <article
                 key={s.id}
@@ -658,28 +634,16 @@ export default function SinglesPage() {
                   </audio>
                 </div>
 
-                <div className="mt-5 flex items-center gap-2">
+                <div className="mt-5">
                   <a
                     href={s.buyUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex flex-1 items-center justify-center rounded-full bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-neutral-800"
+                    className="inline-flex w-full items-center justify-center rounded-full bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-neutral-800"
                   >
                     Buy
                   </a>
-                  <Link
-                    href={studioUrl}
-                    className="inline-flex flex-1 items-center justify-center rounded-full border border-violet-200 bg-violet-50 px-4 py-2 text-sm font-semibold text-violet-700 hover:bg-violet-100 transition-colors"
-                  >
-                    {videoReady ? "🎬 Make Video" : "🎬 Studio"}
-                  </Link>
                 </div>
-
-                {videoReady && (
-                  <p className="mt-2 text-xs text-violet-500 font-medium">
-                    ✨ AI video ready for this song
-                  </p>
-                )}
 
                 <p className="mt-2 text-xs text-neutral-500">
                   Opens Stripe in a new tab • Access provided after purchase
