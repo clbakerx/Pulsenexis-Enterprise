@@ -105,18 +105,18 @@ export default function HomePage() {
         </div>
 
         <div className="flex flex-col gap-3">
-          <div className="rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4">
-            <div className="text-xs font-semibold uppercase tracking-wide text-amber-700">
-              New — AI Video Creator
+          <div className="rounded-2xl border border-violet-200 bg-violet-50 px-5 py-4">
+            <div className="text-xs font-semibold uppercase tracking-wide text-violet-700">
+              New — Behind the Build
             </div>
             <p className="mt-1 text-sm font-semibold text-neutral-900">
-              Your photos + our music = a cinematic video, ready to post.
+              See how I built Nova — the AI that qualifies leads on this site.
             </p>
             <Link
-              href="/studio"
-              className="mt-3 inline-flex items-center text-sm font-semibold text-amber-700 hover:text-amber-600"
+              href="/how-i-built-nova"
+              className="mt-3 inline-flex items-center text-sm font-semibold text-violet-700 hover:text-violet-600"
             >
-              Visit the Studio →
+              How I built Nova →
             </Link>
           </div>
 
@@ -218,6 +218,23 @@ export default function HomePage() {
               >
                 Browse Music
               </Link>
+            </div>
+
+            {/* SCAN TO BUY — book QR code */}
+            <div className="mt-7 flex items-center gap-4">
+              <div className="shrink-0 rounded-xl bg-white p-2 shadow-lg">
+                <Image
+                  src="/dollar-a-day-book-qr.png"
+                  alt="Scan to buy The Dollar-A-Day Music Channel on Amazon"
+                  width={96}
+                  height={96}
+                  className="h-24 w-24"
+                />
+              </div>
+              <div className="text-sm leading-relaxed text-white/60">
+                <div className="font-semibold text-amber-300">Scan to buy</div>
+                Point your phone camera here to open the book on Amazon.
+              </div>
             </div>
 
             <p className="mt-5 text-sm text-white/50">
