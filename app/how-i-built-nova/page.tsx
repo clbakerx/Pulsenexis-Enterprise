@@ -32,7 +32,7 @@ const EXAMPLES = [
   { label: "A casual browser", text: "just looking around, not really buying anything, are these free?" },
 ];
 
-function analyze(input) {
+function analyze(input: string) {
   const t = input.toLowerCase();
   const caught = [];
   let score = 0;
