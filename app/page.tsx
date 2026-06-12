@@ -305,7 +305,7 @@ export default function HomePage() {
                 <div className="mb-2 text-xs font-semibold text-neutral-500">
                   Listen before you buy
                 </div>
-                <audio controls className="w-full">
+                <audio controls preload="none" className="w-full">
                   <source
                     src="https://filedn.com/ldxHrdHcf3tV7YntUkvw8R0/Packs/Before-You-Hear-It-From-Him/Before%20You%20Hear%20It%20From%20Him_Short.mp3"
                     type="audio/mpeg"
