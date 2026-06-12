@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ConsentBanner from "./components/ConsentBanner";
@@ -75,12 +76,11 @@ export default function RootLayout({
           <main className="mx-auto max-w-6xl px-4 py-6">{children}</main>
           <ConsentBanner />
         </CartProvider>
-        <script dangerouslySetInnerHTML={{ __html: `
-          window.PulsenexisWidget = {
-            proxyUrl: "/api/chat"
-          };
-        `}} />
-        <script src="/pulsenexis-widget.js" defer />
+
+        <Script id="pulsenexis-widget-config" strategy="lazyOnload">
+          {`window.PulsenexisWidget = { proxyUrl: "/api/chat" };`}
+        </Script>
+        <Script src="/pulsenexis-widget.js" strategy="lazyOnload" />
       </body>
     </html>
   );
