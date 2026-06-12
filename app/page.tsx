@@ -141,7 +141,6 @@ export default function HomePage() {
                 src="/hero-studio.jpg"
                 alt="Music production studio setup"
                 fill
-                priority
                 className="object-cover"
               />
             </div>
