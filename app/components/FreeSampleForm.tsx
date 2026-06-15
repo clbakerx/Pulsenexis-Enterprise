@@ -62,6 +62,8 @@ const TRACKS: Track[] = [
   { title: 'Wouldnt Want To', vibe: 'Moody - R&B', url: BASE + '/Wouldnt-Want-To_Sample.mp3' },
 ];
 
+const USE_CASES = ['Reels & shorts', 'Wedding / love story', 'Podcast', 'Film / cinematic', 'Gaming', 'Just browsing'];
+
 function randomTrack(): Track {
   return TRACKS[Math.floor(Math.random() * TRACKS.length)];
 }
@@ -70,6 +72,7 @@ type Status = 'idle' | 'loading' | 'success' | 'error';
 
 export default function FreeSampleForm() {
   const [email, setEmail] = useState('');
+  const [useCase, setUseCase] = useState('');
   const [status, setStatus] = useState<Status>('idle');
   const [errorMsg, setErrorMsg] = useState('');
   const [picked] = useState<Track>(randomTrack);
@@ -86,13 +89,21 @@ export default function FreeSampleForm() {
       const res = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email.trim(), track: picked.title }),
+        body: JSON.stringify({
+          email: email.trim(),
+          track: picked.title,
+          useCase: useCase || 'unspecified',
+        }),
       });
-      if (!res.ok) throw new Error('failed');
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        console.error('Subscribe failed:', data);
+        throw new Error(data?.error || `Request failed (${res.status})`);
+      }
       setStatus('success');
-    } catch {
+    } catch (e) {
       setStatus('error');
-      setErrorMsg('Something went wrong. Please try again.');
+      setErrorMsg(e instanceof Error ? e.message : 'Something went wrong. Please try again.');
     }
   }
 
@@ -131,7 +142,7 @@ export default function FreeSampleForm() {
           <a href="mailto:info@pulsenexis.com" className="underline">
             info@pulsenexis.com
           </a>{' '}
-          for a download link include the track title.
+          for a download link - include the track title.
         </p>
       </div>
     );
@@ -146,6 +157,28 @@ export default function FreeSampleForm() {
       <p className="mt-2 text-sm text-neutral-600">
         Drop your email and we will pick a sample from the catalog for you - no card, no catch.
       </p>
+
+      <p className="mt-6 text-xs font-semibold uppercase tracking-wide text-emerald-700">
+        What are you scoring?
+      </p>
+      <div className="mt-2 flex flex-wrap gap-2">
+        {USE_CASES.map((u) => (
+          <button
+            key={u}
+            type="button"
+            onClick={() => setUseCase(useCase === u ? '' : u)}
+            className={
+              'rounded-full border px-4 py-2 text-sm transition ' +
+              (useCase === u
+                ? 'border-emerald-500 bg-emerald-500 text-white'
+                : 'border-neutral-300 bg-white text-neutral-700 hover:border-emerald-400')
+            }
+          >
+            {u}
+          </button>
+        ))}
+      </div>
+
       <div className="mt-6 flex flex-col gap-3 sm:flex-row">
         <input
           type="email"
