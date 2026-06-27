@@ -1,22 +1,221 @@
 /*!
- * Pulsenexis AI Sales Widget v1.0
+ * Pulsenexis Nova Widget v2.0 — Local Responses (No API)
  * Drop this script on any page. Configure window.PulsenexisWidget before loading.
  *
  * Usage:
  *   <script>
- *     window.PulsenexisWidget = {
- *       proxyUrl: "https://YOUR-VERCEL-PROJECT.vercel.app/api/chat"
- *     };
+ *     window.PulsenexisWidget = {};
  *   </script>
  *   <script src="pulsenexis-widget.js" defer></script>
  */
 
 (function () {
   const cfg = window.PulsenexisWidget || {};
-  const PROXY_URL = cfg.proxyUrl || "/api/chat";
   const BRAND_COLOR = cfg.brandColor || "#534AB7";
   const AGENT_NAME = cfg.agentName || "Nova";
-  const GREETING = cfg.greeting || "Hey! Looking for music for your next project? I can help you find the perfect tracks, stems, or vocals. What are you working on?";
+
+  // ─── LOCAL RESPONSE ENGINE ───────────────────────────────────────────────
+
+  const INTENTS = [
+    {
+      id: "greeting",
+      keywords: ["hello", "hi", "hey", "sup", "what's up", "howdy", "good morning", "good afternoon"],
+      replies: [
+        "Hey! Welcome to PulseNexis. I'm Nova — what kind of project are you working on?",
+        "Hi there! Nova here. Tell me what you're building and I'll point you to the right tracks.",
+        "Hey, glad you stopped by! What are you working on — film, YouTube, a game, something else?"
+      ],
+      quick: "start",
+      score: 0
+    },
+    {
+      id: "youtube",
+      keywords: ["youtube", "yt", "channel", "content creator", "monetize", "shorts", "vlog", "reel"],
+      replies: [
+        "YouTube creators are our bread and butter. Our $29 standard license covers full monetization — no copyright strikes. Want a free sample first?",
+        "For YouTube, you need tracks that won't get flagged. Our licenses are clean for monetization. Check the Grown & Sexy or After Hours series — what vibe fits your channel?",
+        "We've got Neo-Soul, Quiet Storm, and R&B that works great for YouTube content. License starts at $29. Want me to point you somewhere specific?"
+      ],
+      quick: "format",
+      score: 2
+    },
+    {
+      id: "film",
+      keywords: ["film", "movie", "cinema", "scene", "documentary", "short film", "sync", "commercial", "ad", "advertisement", "brand", "marketing"],
+      replies: [
+        "For film and ad sync, our $49 professional license covers broadcast and digital placements. What's the genre or mood you're going for?",
+        "Sync licensing for film starts at $49 and covers commercial use. Our Quiet Storm and Neo-Soul tracks place really well in drama and lifestyle scenes. What's the project?",
+        "Commercial sync is $49–$79 depending on distribution. Tell me about the project and I'll find the right fit."
+      ],
+      quick: "budget",
+      score: 3
+    },
+    {
+      id: "podcast",
+      keywords: ["podcast", "show", "episode", "intro music", "outro music", "radio", "broadcast"],
+      replies: [
+        "Podcast intros and outros are a great use case. The $29 standard license covers you for ongoing episodes. Instrumental or something with a groove?",
+        "For podcast use, $29 gets you a clean license for your show. Want something low-key or something with more energy?",
+        "Podcast licensing is $29 and covers all your episodes. Our instrumentals work great for that. What's your show about?"
+      ],
+      quick: "format",
+      score: 2
+    },
+    {
+      id: "game",
+      keywords: ["game", "gaming", "video game", "indie game", "unity", "unreal", "mobile game", "twitch", "stream", "streamer"],
+      replies: [
+        "Game audio is a specialty here. Depending on distribution size, licenses start at $49. Are you scoring a full game or need loop-ready tracks?",
+        "For games and streaming, we have tracks that loop clean and don't feel repetitive. What platform — mobile, PC, console?",
+        "Gaming projects are $49+ depending on how the music is used. Tell me more about the game and I'll put together some options."
+      ],
+      quick: "budget",
+      score: 3
+    },
+    {
+      id: "stems",
+      keywords: ["stems", "multitrack", "acapella", "vocal stems", "instrumental stems", "remix", "producer", "beat"],
+      replies: [
+        "We offer stems on select tracks — great for producers who want to remix or layer. What genre are you working in?",
+        "Stems are available on request. Tell me what you're building and I'll see what we have that fits.",
+        "Producer packs with stems start at $49. Are you remixing or building something original on top?"
+      ],
+      quick: "format",
+      score: 2
+    },
+    {
+      id: "neosoul",
+      keywords: ["neo soul", "neo-soul", "r&b", "rnb", "soul", "smooth", "quiet storm", "after hours", "midnight", "grown and sexy", "grown & sexy"],
+      replies: [
+        "That's our core catalog right there — Neo-Soul and Quiet Storm R&B. Check the After Hours and Midnight Lounge series. Anything specific you're looking for?",
+        "Neo-Soul is what we do best. Every track is produced to the PulseNexis Blueprint — D Major, live-feeling instrumentation, real arrangements. Want a sample?",
+        "The Quiet Storm and Grown & Sexy series are our most licensed catalogs. What's the use case?"
+      ],
+      quick: "start",
+      score: 1
+    },
+    {
+      id: "gospel",
+      keywords: ["gospel", "church", "worship", "spiritual", "ministry", "christian", "praise"],
+      replies: [
+        "We have Gospel-influenced tracks with full choir builds and real arrangements. Are you licensing for a service, event, or media project?",
+        "The Gospel influence runs deep in our catalog — choir stacks, organ, the whole thing. What do you need it for?",
+        "Gospel and inspirational tracks are available. License starts at $29. Tell me about the project."
+      ],
+      quick: "format",
+      score: 2
+    },
+    {
+      id: "pricing",
+      keywords: ["price", "pricing", "how much", "cost", "fee", "rates", "what does it cost", "license fee", "affordable"],
+      replies: [
+        "Three tiers: $29 standard (YouTube, podcasts, social), $49 professional (commercial, film, broadcast), $79 premium (full exclusive rights). Which fits your project?",
+        "Licensing starts at $29 for standard use, $49 for commercial and broadcast, $79 for premium/exclusive. What's the intended use?",
+        "Standard license is $29 — covers most digital use cases. Professional at $49 for broadcast and ads. Premium at $79 for exclusivity. What are you working on?"
+      ],
+      quick: "budget",
+      score: 2
+    },
+    {
+      id: "free",
+      keywords: ["free", "free music", "free beats", "no cost", "freebie", "free sample", "free download", "broke", "no budget", "zero budget"],
+      replies: [
+        "We do have free samples — grab one at pulsenexis.com/free-sample. It's a great way to hear the quality before licensing.",
+        "Free samples are available at pulsenexis.com/free-sample. When you're ready to license for a real project, plans start at $29.",
+        "Head to pulsenexis.com/free-sample for a free track. No strings. When the project is ready, we'll be here."
+      ],
+      quick: "start",
+      score: -1
+    },
+    {
+      id: "ready_to_buy",
+      keywords: ["ready to buy", "ready to license", "want to license", "checkout", "purchase", "buy now", "sign up", "get started", "invoice", "this week", "today", "deadline", "need it now", "urgent"],
+      replies: [
+        "Let's get you sorted. Head to pulsenexis.com to browse the catalog and checkout. If you need a specific track or custom license, reply here and I'll help.",
+        "Ready to go — pulsenexis.com has the full catalog with instant licensing. Pick your tier and you're live.",
+        "Let's do it. Browse at pulsenexis.com and grab your license. If you have questions about a specific track or use case, just ask."
+      ],
+      quick: [],
+      score: 3
+    },
+    {
+      id: "custom",
+      keywords: ["custom", "custom song", "original song", "commission", "write a song", "made for me", "exclusive"],
+      replies: [
+        "We do custom songs — original compositions built to your brief. Timeline and pricing depend on the scope. What's the project?",
+        "Custom compositions are available through Honey Drip Records. Tell me what you're envisioning and I'll give you a quote.",
+        "A custom song is a real option here. What's the feel, the use case, and your timeline?"
+      ],
+      quick: "budget",
+      score: 3
+    },
+    {
+      id: "browse",
+      keywords: ["browse", "look around", "just looking", "just browsing", "explore", "what do you have", "show me", "what's available", "catalog"],
+      replies: [
+        "The full catalog is at pulsenexis.com. Neo-Soul, Quiet Storm, Grown & Sexy, After Hours, Midnight Lounge — lots to explore. Anything grab your attention?",
+        "Browse everything at pulsenexis.com. If something sounds right, licensing is instant. What genre are you in the mood for?",
+        "Take your time at pulsenexis.com. If a track catches your ear and you want more info, come back and ask."
+      ],
+      quick: "start",
+      score: 0
+    }
+  ];
+
+  const FALLBACK_REPLIES = [
+    "Tell me more about your project — the genre, format, and how you plan to use the music — and I'll find the right fit.",
+    "I want to make sure I point you to the right tracks. What's the project and what vibe are you going for?",
+    "Can you tell me a bit more? Once I know the use case I can narrow it down for you."
+  ];
+
+  const LEAD_THRESHOLDS = { HOT: 3, WARM: 1 };
+
+  let sessionScore = 0;
+  let replyCounters = {};
+
+  function getReply(replies, intentId) {
+    if (!replyCounters[intentId]) replyCounters[intentId] = 0;
+    const idx = replyCounters[intentId] % replies.length;
+    replyCounters[intentId]++;
+    return replies[idx];
+  }
+
+  function getLocalResponse(userText) {
+    const lower = userText.toLowerCase();
+    let bestMatch = null;
+    let bestCount = 0;
+
+    for (const intent of INTENTS) {
+      const count = intent.keywords.filter(k => lower.includes(k)).length;
+      if (count > bestCount) {
+        bestCount = count;
+        bestMatch = intent;
+      }
+    }
+
+    if (bestMatch) {
+      sessionScore += bestMatch.score;
+      return {
+        text: getReply(bestMatch.replies, bestMatch.id),
+        quick: bestMatch.quick,
+        score: sessionScore
+      };
+    }
+
+    return {
+      text: getReply(FALLBACK_REPLIES, "fallback"),
+      quick: "start",
+      score: sessionScore
+    };
+  }
+
+  function getLeadVerdict() {
+    if (sessionScore >= LEAD_THRESHOLDS.HOT) return "Hot";
+    if (sessionScore >= LEAD_THRESHOLDS.WARM) return "Warm";
+    return "Cold";
+  }
+
+  // ─── CSS ─────────────────────────────────────────────────────────────────
 
   const css = `
     #pn-widget-bubble {
@@ -120,13 +319,7 @@
     .pn-typing span:nth-child(2) { animation-delay: 0.2s; }
     .pn-typing span:nth-child(3) { animation-delay: 0.4s; }
     @keyframes pn-blink { 0%,80%,100%{opacity:0.2} 40%{opacity:1} }
-    #pn-lead-bar {
-      background: #EEEDFE; padding: 7px 14px;
-      font-size: 11px; color: #534AB7;
-      border-top: 1px solid rgba(83,74,183,0.15);
-      display: none;
-    }
-    #pn-lead-bar span { font-weight: 500; }
+    #pn-lead-bar { display: none !important; }
     .pn-email-card {
       margin: 4px 0; padding: 12px 14px;
       background: #EEEDFE; border-radius: 14px;
@@ -159,6 +352,8 @@
   style.textContent = css;
   document.head.appendChild(style);
 
+  // ─── DOM ─────────────────────────────────────────────────────────────────
+
   const bubble = document.createElement("button");
   bubble.id = "pn-widget-bubble";
   bubble.setAttribute("aria-label", "Chat with Nova — Pulsenexis sales agent");
@@ -173,13 +368,13 @@
       <div class="av">🎵</div>
       <div>
         <p class="name">${AGENT_NAME} — Pulsenexis</p>
-        <p class="sub">Music assets · stems · vocals</p>
+        <p class="sub">Music licensing · Neo-Soul · R&B</p>
       </div>
       <button id="pn-panel-close" aria-label="Close chat">&#x2715;</button>
     </div>
     <div id="pn-chat-area"></div>
     <div id="pn-quick-row"></div>
-    <div id="pn-lead-bar">Lead captured: <span id="pn-lead-score"></span></div>
+    <div id="pn-lead-bar">Lead: <span id="pn-lead-score"></span></div>
     <div id="pn-input-row">
       <input id="pn-input" type="text" placeholder="Type a message..." autocomplete="off" />
       <button id="pn-send" aria-label="Send">
@@ -198,48 +393,29 @@
   const leadBar = document.getElementById("pn-lead-bar");
   const leadScore = document.getElementById("pn-lead-score");
 
-  let history = [];
+  // ─── QUICK REPLY SETS ────────────────────────────────────────────────────
+
+  const quickSets = {
+    start: ["Music for YouTube", "Film or ad sync", "Custom song", "Free sample"],
+    format: ["Full tracks", "Stems / producer pack", "Vocals", "Instrumentals"],
+    budget: ["Under $50", "$50–$200", "$200+", "Not sure yet"],
+  };
+
+  // ─── STATE ───────────────────────────────────────────────────────────────
+
   let isOpen = false;
   let greeted = false;
   let emailCaptured = false;
   let exchangeCount = 0;
 
-  const quickSets = {
-    start: ["Music for YouTube", "Need stems / samples", "Film or ad sync", "Building a library"],
-    format: ["Full tracks", "Stems only", "Vocals", "Instrumentals"],
-    budget: ["Under $50", "$50–$200", "$200+", "Not sure"],
-    timeline: ["Active project now", "Building a library"],
-  };
-
-  function togglePanel() {
-    isOpen = !isOpen;
-    panel.classList.toggle("open", isOpen);
-    if (isOpen && !greeted) { greeted = true; greet(); }
-    if (isOpen) input.focus();
-  }
-
-  bubble.addEventListener("click", togglePanel);
-  document.getElementById("pn-panel-close").addEventListener("click", togglePanel);
-  input.addEventListener("keydown", e => { if (e.key === "Enter") send(); });
-  sendBtn.addEventListener("click", send);
-
-  function stripMd(text) {
-    return text
-      .replace(/\*\*(.*?)\*\*/g, "$1")
-      .replace(/\*(.*?)\*/g, "$1")
-      .replace(/__(.*?)__/g, "$1")
-      .replace(/_(.*?)_/g, "$1")
-      .replace(/`(.*?)`/g, "$1")
-      .replace(/^#{1,6}\s+/gm, "")
-      .replace(/^\s*[-*+]\s+/gm, "• ");
-  }
+  // ─── HELPERS ─────────────────────────────────────────────────────────────
 
   function addMsg(role, text) {
     const div = document.createElement("div");
     div.className = "pn-msg " + role;
     const av = document.createElement("div");
     av.className = "pn-av" + (role === "user" ? " user" : "");
-    av.textContent = role === "agent" ? "N" : "You"[0];
+    av.textContent = role === "agent" ? "N" : "Y";
     const bub = document.createElement("div");
     bub.className = "pn-bubble";
     bub.textContent = text;
@@ -267,7 +443,8 @@
 
   function setQuick(key) {
     quickRow.innerHTML = "";
-    (quickSets[key] || []).forEach(label => {
+    const buttons = Array.isArray(key) ? key : (quickSets[key] || []);
+    buttons.forEach(label => {
       const b = document.createElement("button");
       b.className = "pn-qbtn"; b.textContent = label;
       b.addEventListener("click", () => { input.value = label; send(); });
@@ -275,10 +452,20 @@
     });
   }
 
+  function updateLeadBar(score) {
+    const verdict = getLeadVerdict();
+    const colors = { Hot: "#A32D2D", Warm: "#854F0B", Cold: "#185FA5" };
+    leadBar.style.display = "block";
+    leadScore.textContent = verdict + " lead";
+    leadScore.style.color = colors[verdict] || "#534AB7";
+    if (cfg.onLeadCaptured && typeof cfg.onLeadCaptured === "function") {
+      cfg.onLeadCaptured({ score: verdict, sessionScore: score });
+    }
+  }
+
   function showEmailCapture() {
     if (emailCaptured) return;
     emailCaptured = true;
-
     const card = document.createElement("div");
     card.className = "pn-email-card";
     card.innerHTML = `
@@ -322,88 +509,57 @@
     skipBtn.addEventListener("click", function() { card.remove(); emailCaptured = false; });
   }
 
-  function parseLead(text) {
-    const m = text.match(/LEAD_DATA:(\{.*\})/);
-    if (m) { try { return JSON.parse(m[1]); } catch(e) {} }
-    return null;
-  }
+  // ─── CORE LOGIC ──────────────────────────────────────────────────────────
 
-  function onLead(data) {
-    leadBar.style.display = "block";
-    const colors = { Hot: "#A32D2D", Warm: "#854F0B", Cold: "#185FA5" };
-    leadScore.textContent = data.score + " lead";
-    leadScore.style.color = colors[data.score] || "#534AB7";
-
-    // Fire webhook if configured
-    if (cfg.webhookUrl) {
-      fetch(cfg.webhookUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ lead: data, timestamp: new Date().toISOString() })
-      }).catch(() => {});
+  function togglePanel() {
+    isOpen = !isOpen;
+    panel.classList.toggle("open", isOpen);
+    if (isOpen && !greeted) {
+      greeted = true;
+      setTimeout(() => {
+        addMsg("agent", "Hey! Welcome to PulseNexis. I'm Nova — what kind of project are you working on?");
+        setQuick("start");
+      }, 400);
     }
-
-    // Custom callback
-    if (typeof cfg.onLeadCaptured === "function") cfg.onLeadCaptured(data);
+    if (isOpen) input.focus();
   }
 
-  async function callProxy(msgs) {
-    const res = await fetch(PROXY_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ messages: msgs })
-    });
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.error || "Request failed");
-    return data.text;
-  }
-
-  async function greet() {
-    showTyping();
-    try {
-      const initMsg = [{ role: "user", content: "Hi" }];
-      const text = await callProxy(initMsg);
-      removeTyping();
-      const clean = stripMd(text.replace(/LEAD_DATA:\{.*\}/, "").trim());
-      history.push({ role: "user", content: "Hi" });
-      history.push({ role: "assistant", content: text });
-      addMsg("agent", clean);
-      setQuick("start");
-    } catch(e) {
-      removeTyping();
-      addMsg("agent", GREETING);
-      setQuick("start");
-    }
-  }
-
-  async function send() {
+  function send() {
     const text = input.value.trim();
     if (!text) return;
-    input.value = ""; sendBtn.disabled = true; quickRow.innerHTML = "";
+    input.value = "";
+    sendBtn.disabled = true;
+    quickRow.innerHTML = "";
     addMsg("user", text);
-    history.push({ role: "user", content: text });
     showTyping();
-    try {
-      const raw = await callProxy(history);
+
+    // Simulate a brief thinking delay so it feels natural
+    setTimeout(() => {
       removeTyping();
-      const clean = stripMd(raw.replace(/LEAD_DATA:\{.*\}/, "").trim());
-      history.push({ role: "assistant", content: raw });
-      addMsg("agent", clean);
+      const result = getLocalResponse(text);
+      addMsg("agent", result.text);
       exchangeCount++;
-      const lead = parseLead(raw);
-      if (lead) { onLead(lead); setQuick([]); }
-      else {
-        const lower = clean.toLowerCase();
-        if (lower.includes("format") || lower.includes("stems")) setQuick("format");
-        else if (lower.includes("budget") || lower.includes("spend")) setQuick("budget");
-        else if (lower.includes("timeline") || lower.includes("project")) setQuick("timeline");
+
+      updateLeadBar(result.score);
+
+      if (Array.isArray(result.quick)) {
+        setQuick(result.quick);
+      } else {
+        setQuick(result.quick || "start");
       }
-      if (exchangeCount >= 1 && !emailCaptured) { showEmailCapture(); }
-    } catch(e) {
-      removeTyping();
-      addMsg("agent", "Something went wrong — please try again.");
-    }
-    sendBtn.disabled = false;
-    input.focus();
+
+      if (exchangeCount >= 2 && !emailCaptured) {
+        showEmailCapture();
+      }
+
+      sendBtn.disabled = false;
+      input.focus();
+    }, 600 + Math.random() * 400);
   }
+
+  bubble.addEventListener("click", togglePanel);
+  document.getElementById("pn-panel-close").addEventListener("click", togglePanel);
+  input.addEventListener("keydown", e => { if (e.key === "Enter") send(); });
+  sendBtn.addEventListener("click", send);
+
 })();
