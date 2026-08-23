@@ -100,6 +100,17 @@ export default function HomePage() {
               <Link href="/trademark" className="text-white/60 hover:text-white">
                 Trademark Showcase
               </Link>
+              <Link
+                href="https://pulsenexis.bandcamp.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/60 hover:text-white"
+              >
+                Bandcamp
+              </Link>
+              <Link href="/donate" className="text-white/60 hover:text-white">
+                Support / Donate
+              </Link>
             </div>
           </div>
         </div>
@@ -239,6 +250,41 @@ export default function HomePage() {
             <p className="mt-5 text-sm text-white/50">
               Built by Chris Baker · Founder of PulseNexis
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* SUPPORT & CONNECT — donation + Bandcamp */}
+      <section className="mt-8">
+        <div className="rounded-2xl border-2 border-dashed border-amber-300 bg-amber-50 p-6">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <div className="text-xs font-semibold uppercase tracking-wide text-amber-700">
+                Support the mission
+              </div>
+              <h2 className="mt-1 text-lg font-bold text-neutral-900">
+                Follow the catalog on Bandcamp, or chip in to keep it growing
+              </h2>
+              <p className="mt-1 text-sm text-neutral-600">
+                Every bit helps fund new releases, gear, and future PulseNexis projects.
+              </p>
+            </div>
+            <div className="flex shrink-0 flex-wrap gap-3">
+              <Link
+                href="https://pulsenexis.bandcamp.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center rounded-full border border-neutral-300 bg-white px-6 py-3 text-sm font-semibold text-neutral-900 hover:bg-neutral-50"
+              >
+                Listen on Bandcamp
+              </Link>
+              <Link
+                href="/donate"
+                className="inline-flex items-center rounded-full bg-amber-500 px-6 py-3 text-sm font-semibold text-white hover:bg-amber-400"
+              >
+                Donate
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -630,6 +676,20 @@ export default function HomePage() {
                 className="rounded-full bg-emerald-500 px-6 py-3 text-sm font-semibold text-white hover:bg-emerald-400"
               >
                 Get a free sample
+              </Link>
+              <Link
+                href="https://pulsenexis.bandcamp.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full bg-white/10 px-6 py-3 text-sm font-semibold text-white hover:bg-white/20"
+              >
+                Bandcamp
+              </Link>
+              <Link
+                href="/donate"
+                className="rounded-full bg-white/10 px-6 py-3 text-sm font-semibold text-white hover:bg-white/20"
+              >
+                Donate
               </Link>
               <Link
                 href="/licensing"
