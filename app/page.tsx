@@ -108,7 +108,12 @@ export default function HomePage() {
               >
                 Bandcamp
               </Link>
-              <Link href="/donate" className="text-white/60 hover:text-white">
+              <Link
+                href="https://www.paypal.com/donate/?hosted_button_id=BH3W89KV6VD3Y"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/60 hover:text-white"
+              >
                 Support / Donate
               </Link>
             </div>
@@ -279,10 +284,12 @@ export default function HomePage() {
                 Listen on Bandcamp
               </Link>
               <Link
-                href="/donate"
+                href="https://www.paypal.com/donate/?hosted_button_id=BH3W89KV6VD3Y"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center rounded-full bg-amber-500 px-6 py-3 text-sm font-semibold text-white hover:bg-amber-400"
               >
-                Donate
+                Donate via PayPal
               </Link>
             </div>
           </div>
@@ -686,7 +693,9 @@ export default function HomePage() {
                 Bandcamp
               </Link>
               <Link
-                href="/donate"
+                href="https://www.paypal.com/donate/?hosted_button_id=BH3W89KV6VD3Y"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="rounded-full bg-white/10 px-6 py-3 text-sm font-semibold text-white hover:bg-white/20"
               >
                 Donate
